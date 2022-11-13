@@ -14,6 +14,7 @@ namespace Elementary
         [Button]
         public void Call()
         {
+            Debug.Log($"Event was {name} received!");
             this.OnEvent?.Invoke();
         }
     }

@@ -11,6 +11,11 @@ namespace Elementary
         public bool Value
         {
             get { return this.value; }
+            set
+            {
+                this.value = value;
+                this.OnValueChanged?.Invoke(value);
+            }
         }
         
         [SerializeField]
