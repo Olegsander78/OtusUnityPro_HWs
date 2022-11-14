@@ -6,7 +6,7 @@ using Elementary;
 public class TakeDamageMechanics : MonoBehaviour
 {
     [SerializeField]
-    private EventReceiver _takeDamageReceiver;
+    private EventReceiver_Int _takeDamageReceiver;
 
     [SerializeField]
     private IntBehaviour _hitPoints;
@@ -21,15 +21,15 @@ public class TakeDamageMechanics : MonoBehaviour
         _takeDamageReceiver.OnEvent -= OnDamageTaken;
     }
 
-    //private void OnDamageTaken(int damage)
-    //{
-    //    this.hitPoints.Value -= damage;
-    //}
-
-    private void OnDamageTaken()
+    private void OnDamageTaken(int damage)
     {
-        const int damage = 1;
         _hitPoints.Value -= damage;
     }
+
+    //private void OnDamageTaken()
+    //{
+    //    const int damage = 1;
+    //    _hitPoints.Value -= damage;
+    //}
 
 }
