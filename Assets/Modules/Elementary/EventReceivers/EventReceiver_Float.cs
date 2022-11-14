@@ -14,6 +14,7 @@ namespace Elementary
         [Button]
         public void Call(float value)
         {
+            Debug.Log($"Event_Float was {name} received!");
             this.OnEvent?.Invoke(value);
         }
     }
