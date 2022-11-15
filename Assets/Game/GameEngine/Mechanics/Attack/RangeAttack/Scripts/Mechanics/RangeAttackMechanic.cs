@@ -26,17 +26,17 @@ public class RangeAttackMechanic : MonoBehaviour
 
     private void OnEnable()
     {
-        _rangeAttackReciever.OnEvent += RangeAttack;
+        _rangeAttackReciever.OnEvent += OnRequestRangeAttack;
     }
 
     private void OnDisable()
     {
-        _rangeAttackReciever.OnEvent -= RangeAttack;
+        _rangeAttackReciever.OnEvent -= OnRequestRangeAttack;
     }
 
     //[GUIColor(0, 1, 0)]
     //[Button]
-    private void RangeAttack()
+    private void OnRequestRangeAttack()
     {
         if (Time.time - _lastAttackTime > _attackRate.Value)
         {
