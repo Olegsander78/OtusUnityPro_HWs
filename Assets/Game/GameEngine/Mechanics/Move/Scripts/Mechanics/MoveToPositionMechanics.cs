@@ -27,9 +27,9 @@ public class MoveToPositionMechanics : MonoBehaviour
         _moveToPositionReceiver.OnEvent -= OnMoved;
     }
 
-    private void OnMoved(Vector3 direction)
+    private void OnMoved(Vector3 position)
     {
-        direction.y = 0f;
-        _rigidbody.MovePosition(direction);
+        position.y = 0f;
+        _rigidbody.MovePosition(position);
     }
 }
