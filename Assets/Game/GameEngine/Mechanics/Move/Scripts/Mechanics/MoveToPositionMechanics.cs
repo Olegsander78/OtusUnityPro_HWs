@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Elementary;
 using System;
 
@@ -8,9 +9,6 @@ public class MoveToPositionMechanics : MonoBehaviour
 {
     [SerializeField]
     private EventReceiver_Vector3 _moveToPositionReceiver;
-
-    [SerializeField]
-    private FloatBehaviour _moveSpeed;
 
     [SerializeField]
     private Rigidbody _rigidbody;
@@ -32,6 +30,6 @@ public class MoveToPositionMechanics : MonoBehaviour
     private void OnMoved(Vector3 direction)
     {
         direction.y = 0f;
-        _rigidbody.velocity = direction * _moveSpeed.Value;
+        _rigidbody.MovePosition(direction);
     }
 }

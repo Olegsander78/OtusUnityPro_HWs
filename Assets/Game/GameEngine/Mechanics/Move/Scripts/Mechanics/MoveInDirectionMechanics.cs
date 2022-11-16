@@ -22,6 +22,7 @@ public class MoveInDirectionMechanics : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponentInParent<Rigidbody>();
+        _transform = GetComponentInParent<Transform>();
     }
 
     private void OnEnable()
