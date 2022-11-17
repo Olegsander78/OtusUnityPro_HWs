@@ -28,14 +28,7 @@ public class RangeAttackMechanic : MonoBehaviour
 
         _projectileEngine.ShootProjectile(_projectileEngine.ProjectilePrefab);
 
-        Invoke(nameof(Shoot), 2f);
-
         _attackCountdown.ResetTime();
         _attackCountdown.Play();
-    }
-
-    private void Shoot()
-    {
-        _projectileEngine.ShootProjectile(_projectileEngine.ProjectilePrefab);
     }
 }
