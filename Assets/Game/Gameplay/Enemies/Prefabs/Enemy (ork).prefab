@@ -1437,9 +1437,10 @@ GameObject:
   - component: {fileID: 255514065818384865}
   - component: {fileID: 747886781372227596}
   - component: {fileID: 5386832482772079547}
+  - component: {fileID: 5309059163074194893}
   m_Layer: 0
   m_Name: Enemy (ork)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1495,6 +1496,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _takeDamageReceiver: {fileID: 4750880160566647002}
+--- !u!136 &5309059163074194893
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255514065818384876}
+  m_Material: {fileID: 13400000, guid: 598ab391ca1ee544da525a7ea422d405, type: 2}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.44
+  m_Height: 2.36
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &551949759182452618
 GameObject:
   m_ObjectHideFlags: 0

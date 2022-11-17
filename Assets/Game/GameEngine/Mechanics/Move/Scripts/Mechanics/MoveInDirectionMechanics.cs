@@ -16,13 +16,9 @@ public class MoveInDirectionMechanics : MonoBehaviour
     [SerializeField]
     private Rigidbody _rigidbody;
 
-    [SerializeField]
-    private Transform _transform;
-
     private void Awake()
     {
         _rigidbody = GetComponentInParent<Rigidbody>();
-        _transform = GetComponentInParent<Transform>();
     }
 
     private void OnEnable()
@@ -37,19 +33,7 @@ public class MoveInDirectionMechanics : MonoBehaviour
     private void OnMoved(Vector3 direction)
     {        
         Vector3 dir = (transform.right * direction.x) + (transform.forward * direction.z);
-
         dir.Normalize();
-        
         _rigidbody.velocity = dir * _moveSpeed.Value;
     }
-
-    //[Title("Methods")]
-    //[GUIColor(0, 1, 0)]
-    //[Button]
-    //private void Rotate(Vector3 direction)
-    //{
-    //    direction.y = 0f;
-    //    _transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
-    //}
-    
 }
