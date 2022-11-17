@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Elementary
 {
-    [AddComponentMenu("Elementary/Int")]
+    [AddComponentMenu("Elementary/Vector3")]
     public sealed class Vector3Behavior : MonoBehaviour
     {
         public event Action<Vector3> OnValueChanged;
