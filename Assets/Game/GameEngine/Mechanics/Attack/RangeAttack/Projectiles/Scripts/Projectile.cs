@@ -1,5 +1,6 @@
 using UnityEngine;
 using Elementary;
+using Entities;
 
 public class Projectile: MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class Projectile: MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyDummy>().TakeDamage(_damage.Value);
-            Destroy(gameObject);
+            if (other.GetComponent<IEntity>() != null)
+            {
+                other.GetComponent<IEntity>().Get<IComponent_TakeDamage>().TakeDamage(_damage.Value);
+                Destroy(gameObject);
+            }            
         }
     }
 }

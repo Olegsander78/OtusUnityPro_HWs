@@ -1,22 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Elementary;
 using System;
+using Entities;
 
 public class MeleeAttackMechanics : MonoBehaviour
 {
     [SerializeField]
-    private EventReceiver_EntityHW _meleeAttackReciever;
+    private EventReceiver_Entity _meleeAttackReciever;
 
     [SerializeField]
     private TimerBehaviour _countdown;
 
     [SerializeField]
     private IntBehaviour _damage;
-
-    [SerializeField]
-    private EntityHW _entity;
 
     private void OnEnable()
     {
@@ -27,12 +23,12 @@ public class MeleeAttackMechanics : MonoBehaviour
         _meleeAttackReciever.OnEvent -= OnRequestMeleeAttack;
     }
 
-    private void OnRequestMeleeAttack(EntityHW target)
+    private void OnRequestMeleeAttack(UnityEntityBase target)
     {
         if (_countdown.IsPlaying)
             return;
 
-        //_entity.Get<Comp> (_damage.Value);
+        target.Get<IComponent_TakeDamage>().TakeDamage(_damage.Value);
 
         _countdown.ResetTime();
         _countdown.Play();

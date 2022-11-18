@@ -1,10 +1,11 @@
+using Entities;
 using System;
 using UnityEngine;
 
 public class JumpConroller : MonoBehaviour
 {
     [SerializeField]
-    private EntityHW _unit;
+    private UnityEntityBase _unit;
 
     private IComponent_Jump _jumpComponent;
 

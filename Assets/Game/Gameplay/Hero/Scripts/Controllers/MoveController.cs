@@ -1,9 +1,10 @@
+using Entities;
 using UnityEngine;
 
 public class MoveController : AbstractMoveController
 {
     [SerializeField]
-    private EntityHW _unit;
+    private UnityEntityBase _unit;
 
     private IComponent_MoveInDirection _moveComponent;
     private void Awake()

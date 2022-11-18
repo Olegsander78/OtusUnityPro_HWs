@@ -25,11 +25,4 @@ public class TakeDamageMechanics : MonoBehaviour
     {
         _hitPoints.Value -= damage;
     }
-
-    //private void OnDamageTaken()
-    //{
-    //    const int damage = 1;
-    //    _hitPoints.Value -= damage;
-    //}
-
 }

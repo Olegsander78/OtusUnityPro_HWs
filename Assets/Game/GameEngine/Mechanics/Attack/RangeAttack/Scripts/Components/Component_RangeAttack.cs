@@ -1,13 +1,13 @@
 using UnityEngine;
 using Elementary;
 
-public class Component_RangeAttack : MonoBehaviour, IComponent_Attack
+public class Component_RangeAttack : MonoBehaviour, IComponent_RangeAttack
 {
     [SerializeField]
-    private EventReceiver_EntityHW _attackReceiver;
+    private EventReceiver _attackReceiver;
 
-    public void Attack(EntityHW target)
+    public void Attack()
     {
-        _attackReceiver.Call(target);
+        _attackReceiver.Call();
     }
 }
