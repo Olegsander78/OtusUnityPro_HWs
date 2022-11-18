@@ -9,6 +9,6 @@ public class EventReceiver_EntityHW : MonoBehaviour
     [Button]
     public void Call(EntityHW entity)
     {
-        this.OnEvent?.Invoke(entity);
+        OnEvent?.Invoke(entity);
     }
 }

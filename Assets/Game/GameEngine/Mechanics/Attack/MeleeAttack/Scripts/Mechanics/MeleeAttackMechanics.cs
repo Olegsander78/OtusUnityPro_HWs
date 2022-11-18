@@ -7,7 +7,7 @@ using System;
 public class MeleeAttackMechanics : MonoBehaviour
 {
     [SerializeField]
-    private EventReceiver _meleeAttackReciever;
+    private EventReceiver_EntityHW _meleeAttackReciever;
 
     [SerializeField]
     private TimerBehaviour _countdown;
@@ -16,7 +16,7 @@ public class MeleeAttackMechanics : MonoBehaviour
     private IntBehaviour _damage;
 
     [SerializeField]
-    private EnemyDummy _enemy;
+    private EntityHW _entity;
 
     private void OnEnable()
     {
@@ -27,12 +27,12 @@ public class MeleeAttackMechanics : MonoBehaviour
         _meleeAttackReciever.OnEvent -= OnRequestMeleeAttack;
     }
 
-    private void OnRequestMeleeAttack()
+    private void OnRequestMeleeAttack(EntityHW target)
     {
         if (_countdown.IsPlaying)
             return;
 
-        _enemy.TakeDamage(_damage.Value);
+        //_entity.Get<Comp> (_damage.Value);
 
         _countdown.ResetTime();
         _countdown.Play();
