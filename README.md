@@ -18,6 +18,8 @@ Otus Unity Pro. Домашнии задания
 
 
 ### Сделано:
-    1.Сделано 
-    2.Сделано
-    3.
+    1. Сделано 
+    2. Сделано
+    3. Обернул механики Move, Jump, Melee & Range Attacks, TakeDamage
+    4. Написал контроллеры Move, Jump, Melee & Range Attacks
+    
