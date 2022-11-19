@@ -1,6 +1,5 @@
 using UnityEngine;
 using Entities;
-using System;
 
 [AddComponentMenu("Gameplay/Hero/Hero MeleeAttack Controller")]
 public class MeleeAttackController : MonoBehaviour
@@ -9,7 +8,7 @@ public class MeleeAttackController : MonoBehaviour
     private UnityEntityBase _unit;
 
     [SerializeField]
-    private UnityEntityBase _enemy;
+    private UnityEntityBase _target;
 
     [SerializeField]
     private LayerMask _layerMask;
@@ -42,22 +41,22 @@ public class MeleeAttackController : MonoBehaviour
         {
             foreach (var hit in hits)
             {
-              _enemy= hit.collider.GetComponent<UnityEntityBase>();
+              hit.collider.TryGetComponent(out _target);
                 break;
             }
-
-            MeleeAttack(_enemy);
+            if (_target != null)
+                MeleeAttack(_target);
         }
         else
         {
             Debug.Log("Missed! Try to get closer!");
-            _enemy = null;
+            _target = null;
             return;
             //throw new Exception("Enemy is not founded!");
         }        
     }
-    private void MeleeAttack(UnityEntityBase enemy)
+    private void MeleeAttack(UnityEntityBase target)
     {
-        _meleeAttackComponent.Attack(enemy);
+        _meleeAttackComponent.Attack(target);
     }
 }
