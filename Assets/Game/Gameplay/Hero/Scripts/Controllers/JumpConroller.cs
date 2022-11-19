@@ -2,6 +2,7 @@ using Entities;
 using System;
 using UnityEngine;
 
+[AddComponentMenu("Gameplay/Hero/Hero Jump Controller")]
 public class JumpConroller : MonoBehaviour
 {
     [SerializeField]
