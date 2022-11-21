@@ -2,7 +2,9 @@ using Entities;
 using UnityEngine;
 
 [AddComponentMenu("Gameplay/Hero/Hero Move Controller")]
-public class MoveController : MonoBehaviour
+public class MoveController : MonoBehaviour,
+    IStartGameListener,
+    IFinishGameListener
 {
     [SerializeField]
     private KeyboardInput _input;
@@ -16,15 +18,25 @@ public class MoveController : MonoBehaviour
         _moveComponent = _unit.Get<IComponent_MoveInDirection>();
     }
 
-    private void OnEnable()
+    void IStartGameListener.OnStartGame()
     {
         _input.OnMove += Move;
     }
 
-    private void OnDisable()
+    void IFinishGameListener.OnFinishGame()
     {
         _input.OnMove -= Move;
     }
+
+    //private void OnEnable()
+    //{
+    //    _input.OnMove += Move;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    _input.OnMove -= Move;
+    //}
 
     private void Move(Vector3 direction)
     {

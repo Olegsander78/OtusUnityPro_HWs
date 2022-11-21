@@ -1,29 +1,32 @@
 using System;
 using UnityEngine;
+using GameElements;
 
-public sealed class KeyboardInput : MonoBehaviour
+public sealed class KeyboardInput : MonoBehaviour,
+    IStartGameListener,
+    IFinishGameListener
 {
     public event Action<Vector3> OnMove;
 
-    //private void Awake()
-    //{
-    //    enabled = false;
-    //}
+    private void Awake()
+    {
+        enabled = false;
+    }
 
     private void Update()
     {
         HandleKeyboard();
     }
 
-    //void IStartGameListener.OnStartGame()
-    //{
-    //    this.enabled = true;
-    //}
+    void IStartGameListener.OnStartGame()
+    {
+        enabled = true;
+    }
 
-    //void IFinishGameListener.OnFinishGame()
-    //{
-    //    this.enabled = false;
-    //}
+    void IFinishGameListener.OnFinishGame()
+    {
+        enabled = false;
+    }
 
     private void HandleKeyboard()
     {
