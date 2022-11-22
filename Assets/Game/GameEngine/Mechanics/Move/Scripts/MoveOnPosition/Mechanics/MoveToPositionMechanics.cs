@@ -8,15 +8,10 @@ using System;
 public class MoveToPositionMechanics : MonoBehaviour
 {
     [SerializeField]
-    private EventReceiver_Vector3 _moveToPositionReceiver;
+    private EventReceiver_Vector3 _moveToPositionReceiver;       
 
     [SerializeField]
-    private Rigidbody _rigidbody;
-
-    private void Awake()
-    {
-        _rigidbody = GetComponentInParent<Rigidbody>();
-    }
+    private Transform _transform;
 
     private void OnEnable()
     {
@@ -29,7 +24,6 @@ public class MoveToPositionMechanics : MonoBehaviour
 
     private void OnMoved(Vector3 position)
     {
-        //position.y = 0f;
-        _rigidbody.MovePosition(position);
+        _transform.position = position;
     }
 }

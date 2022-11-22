@@ -13,15 +13,12 @@ public class DieController : MonoBehaviour,
 
     private IComponent_MoveOnPosition _respawnComponent;
 
-    //private IComponent_TakeDamage _takeDamageComponent;
-
     [SerializeField]
     private Transform _respawnPoint;
 
     private void Awake()
     {
         _dieComponent = _unit.Get<IComponent_Die>();
-       // _takeDamageComponent = _unit.Get<IComponent_TakeDamage>();
         _respawnComponent = _unit.Get<IComponent_MoveOnPosition>();
     }
 
