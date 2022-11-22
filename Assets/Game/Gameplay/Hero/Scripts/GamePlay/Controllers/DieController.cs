@@ -1,37 +1,43 @@
-//using UnityEngine;
-//using Entities;
+using UnityEngine;
+using Entities;
 
-//[AddComponentMenu("Gameplay/Hero/Hero Die Controller")]
-//public class DieController : MonoBehaviour, 
-//    IStartGameListener,
-//    IFinishGameListener
-//{
-//    private UnityEntity _unit;
+[AddComponentMenu("Gameplay/Hero/Hero Die Controller")]
+public class DieController : MonoBehaviour,
+    IStartGameListener,
+    IFinishGameListener
+{
+    [SerializeField]
+    private UnityEntityBase _unit;
 
-//    private IComponent_Die _dieComponent;
+    private IComponent_Die _dieComponent;
 
-//    private IComponent_TakeDamage _takeDamageComponent;
+    private IComponent_MoveOnPosition _respawnComponent;
 
-//    private void Awake()
-//    {
-//        _dieComponent = _unit.Get<IComponent_Die>();
-//        _takeDamageComponent = _unit.Get<IComponent_TakeDamage>();
-//    }
+    //private IComponent_TakeDamage _takeDamageComponent;
 
-//    void IStartGameListener.OnStartGame()
-//    {
-//        _takeDamageComponent.TakeDamage += OnHeroDestroyed;
-//    }
+    [SerializeField]
+    private Transform _respawnPoint;
 
-//    void IFinishGameListener.OnFinishGame()
-//    {
-//        _takeDamageComponent.TakeDamage -= OnHeroDestroyed;
-//    }
+    private void Awake()
+    {
+        _dieComponent = _unit.Get<IComponent_Die>();
+       // _takeDamageComponent = _unit.Get<IComponent_TakeDamage>();
+        _respawnComponent = _unit.Get<IComponent_MoveOnPosition>();
+    }
 
-//    private void OnHeroDestroyed()
-//    {
-        
-//        _dieComponent.Die();
-//    }
-//}
+    void IStartGameListener.OnStartGame()
+    {
+        _dieComponent.OnDie += OnHeroDestroyed;
+    }
+
+    void IFinishGameListener.OnFinishGame()
+    {
+        _dieComponent.OnDie -= OnHeroDestroyed;
+    }
+
+    private void OnHeroDestroyed()
+    {
+        _respawnComponent.Move(_respawnPoint.position);
+    }
+}
 

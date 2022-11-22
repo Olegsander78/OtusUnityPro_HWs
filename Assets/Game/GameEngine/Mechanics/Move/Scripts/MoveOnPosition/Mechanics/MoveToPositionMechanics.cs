@@ -29,7 +29,7 @@ public class MoveToPositionMechanics : MonoBehaviour
 
     private void OnMoved(Vector3 position)
     {
-        position.y = 0f;
+        //position.y = 0f;
         _rigidbody.MovePosition(position);
     }
 }

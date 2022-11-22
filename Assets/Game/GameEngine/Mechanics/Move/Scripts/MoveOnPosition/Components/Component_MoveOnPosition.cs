@@ -1,7 +1,7 @@
 using UnityEngine;
 using Elementary;
 
-public class Component_MoveOnPosition : MonoBehaviour
+public class Component_MoveOnPosition : MonoBehaviour, IComponent_MoveOnPosition
 {
     [SerializeField]
     private EventReceiver_Vector3 _moveReceiver;

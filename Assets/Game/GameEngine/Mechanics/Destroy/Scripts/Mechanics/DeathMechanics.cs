@@ -25,7 +25,7 @@ public class DeathMechanics : MonoBehaviour
     {
         if(newHitPoints <= 0)
         {
-            _deathReceiver.Call();
+            _deathReceiver.Call();            
         }
     }
 }

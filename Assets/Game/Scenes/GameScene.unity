@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 146174680}
   - component: {fileID: 146174682}
   - component: {fileID: 146174683}
+  - component: {fileID: 146174684}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -337,6 +338,20 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 8704
+--- !u!114 &146174684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146174677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264960561f8681f4aaf36aa4da59911c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unit: {fileID: 9132227182522956720}
+  _respawnPoint: {fileID: 1960656562}
 --- !u!1 &212325573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,7 +2077,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960656561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0.149, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7003,6 +7018,8 @@ MonoBehaviour:
   - {fileID: 1369901738}
   - {fileID: 1358287554}
   - {fileID: 2102374349}
+  - {fileID: 851642987}
+  - {fileID: 1357760789}
 --- !u!136 &9132227182522956721
 CapsuleCollider:
   m_ObjectHideFlags: 0
