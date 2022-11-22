@@ -27,17 +27,6 @@ public class MoveController : MonoBehaviour,
     {
         _input.OnMove -= Move;
     }
-
-    //private void OnEnable()
-    //{
-    //    _input.OnMove += Move;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    _input.OnMove -= Move;
-    //}
-
     private void Move(Vector3 direction)
     {
         const float speed = 5.0f;
