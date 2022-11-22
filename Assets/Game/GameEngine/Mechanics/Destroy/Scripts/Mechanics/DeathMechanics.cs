@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Elementary;
-using System;
 
 public class DeathMechanics : MonoBehaviour
 {
@@ -25,7 +22,7 @@ public class DeathMechanics : MonoBehaviour
     {
         if(newHitPoints <= 0)
         {
-            _deathReceiver.Call();            
+            _deathReceiver.Call();
         }
     }
 }

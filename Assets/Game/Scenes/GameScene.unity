@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -484,8 +484,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217731980}
-  - component: {fileID: 217731982}
   - component: {fileID: 217731983}
+  - component: {fileID: 217731982}
   m_Layer: 0
   m_Name: MakeDamageOnTrigger
   m_TagString: Untagged
@@ -1561,6 +1561,7 @@ MonoBehaviour:
   _listeners:
   - {fileID: 146174681}
   - {fileID: 1580759285}
+  - {fileID: 146174684}
   _services: []
 --- !u!114 &1293597473
 MonoBehaviour:

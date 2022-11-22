@@ -1,5 +1,6 @@
 using UnityEngine;
 using Entities;
+using Sirenix.OdinInspector;
 
 [AddComponentMenu("Gameplay/Hero/Hero Die Controller")]
 public class DieController : MonoBehaviour,
@@ -22,16 +23,18 @@ public class DieController : MonoBehaviour,
         _respawnComponent = _unit.Get<IComponent_MoveOnPosition>();
     }
 
+
     void IStartGameListener.OnStartGame()
     {
-        _dieComponent.OnDie += OnHeroDestroyed;
+        _dieComponent.OnDieEvent += OnHeroDestroyed;
     }
 
     void IFinishGameListener.OnFinishGame()
     {
-        _dieComponent.OnDie -= OnHeroDestroyed;
+        _dieComponent.OnDieEvent -= OnHeroDestroyed;
     }
 
+    [Button]
     private void OnHeroDestroyed()
     {
         _respawnComponent.Move(_respawnPoint.position);

@@ -2,7 +2,6 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Elementary;
 using System.Collections;
 
 public class GameContext : MonoBehaviour

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Component_Die : MonoBehaviour, IComponent_Die
 {
-    public event Action OnDie;
+    public event Action OnDieEvent;
 
     [SerializeField]
     private EventReceiver _deathReceiver;
@@ -12,6 +12,6 @@ public class Component_Die : MonoBehaviour, IComponent_Die
     {
         _deathReceiver.Call();
 
-        OnDie?.Invoke();
+        OnDieEvent?.Invoke();
     }
 }
