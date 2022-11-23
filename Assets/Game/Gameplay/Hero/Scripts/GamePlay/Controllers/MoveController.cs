@@ -3,19 +3,30 @@ using UnityEngine;
 
 [AddComponentMenu("Gameplay/Hero/Hero Move Controller")]
 public class MoveController : MonoBehaviour,
+    IConstructListener,
     IStartGameListener,
     IFinishGameListener
 {
-    [SerializeField]
+    
     private KeyboardInput _input;
 
-    [SerializeField]
-    private UnityEntityBase _unit;
-
     private IComponent_MoveInDirection _moveComponent;
-    private void Awake()
+
+    //[SerializeField]
+    //private UnityEntityBase _unit;
+
+    //private IComponent_MoveInDirection _moveComponent;
+    //private void Awake()
+    //{
+    //    _moveComponent = _unit.Get<IComponent_MoveInDirection>();
+    //}
+
+    void IConstructListener.Construct(GameContext context)
     {
-        _moveComponent = _unit.Get<IComponent_MoveInDirection>();
+        _input = context.GetService<KeyboardInput>();
+        _moveComponent = context.GetService<HeroService>()
+            .GetHero()
+            .Get<IComponent_MoveInDirection>();
     }
 
     void IStartGameListener.OnStartGame()
