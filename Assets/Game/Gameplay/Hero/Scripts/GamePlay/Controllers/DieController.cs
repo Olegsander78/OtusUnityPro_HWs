@@ -4,26 +4,32 @@ using Sirenix.OdinInspector;
 
 [AddComponentMenu("Gameplay/Hero/Hero Die Controller")]
 public class DieController : MonoBehaviour,
+    IConstructListener,
     IStartGameListener,
     IFinishGameListener
 {
-    [SerializeField]
-    private UnityEntityBase _unit;
+    private GameContext _context;
 
     private IComponent_Die _dieComponent;
 
-    private IComponent_MoveOnPosition _respawnComponent;
+    private IComponent_MoveOnPosition _moveOnStartPositionComponent;
 
     [SerializeField]
     private Transform _respawnPoint;
 
-    private void Awake()
+    public void Construct(GameContext context)
     {
-        _dieComponent = _unit.Get<IComponent_Die>();
-        _respawnComponent = _unit.Get<IComponent_MoveOnPosition>();
+        _context = context;
+
+        _dieComponent = context.GetService<HeroService>()
+            .GetHero()
+            .Get<IComponent_Die>();
+
+        _moveOnStartPositionComponent = context.GetService<HeroService>()
+            .GetHero()
+            .Get<IComponent_MoveOnPosition>();
+        
     }
-
-
     void IStartGameListener.OnStartGame()
     {
         _dieComponent.OnDieEvent += OnHeroDestroyed;
@@ -37,7 +43,13 @@ public class DieController : MonoBehaviour,
     [Button]
     private void OnHeroDestroyed()
     {
-        _respawnComponent.Move(_respawnPoint.position);
+        _moveOnStartPositionComponent.Move(_respawnPoint.position);
+        Invoke(nameof(FinishGameWithDelay), 1f);
+    } 
+    
+    private void FinishGameWithDelay()
+    {
+        _context.FinishGame();
     }
 }
 

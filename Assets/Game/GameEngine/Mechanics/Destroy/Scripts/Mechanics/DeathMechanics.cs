@@ -12,11 +12,13 @@ public class DeathMechanics : MonoBehaviour
     private void OnEnable()
     {
         _hitPoints.OnValueChanged += OnHitPointsChanged;
+        _deathReceiver.OnEvent += OnDestroyEvent;
     }    
 
     private void OnDisable()
     {
         _hitPoints.OnValueChanged -= OnHitPointsChanged;
+        _deathReceiver.OnEvent -= OnDestroyEvent;
     }
     private void OnHitPointsChanged(int newHitPoints)
     {
@@ -24,5 +26,10 @@ public class DeathMechanics : MonoBehaviour
         {
             _deathReceiver.Call();
         }
+    }
+
+    private void OnDestroyEvent()
+    {
+        _deathReceiver.Call();
     }
 }

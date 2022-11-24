@@ -31,9 +31,10 @@ public class MoveInDirectionMechanics : MonoBehaviour
     }
 
     private void OnMoved(Vector3 direction)
-    {        
+    {
         Vector3 dir = (_transform.right * direction.x) + (_transform.forward * direction.z);
-        dir.Normalize();
-        _rigidbody.velocity = dir * _moveSpeed.Value;
+        dir.Normalize();        
+
+        _rigidbody.velocity = dir * _moveSpeed.Value;               
     }
 }
