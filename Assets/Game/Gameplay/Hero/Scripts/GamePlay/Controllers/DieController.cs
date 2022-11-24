@@ -8,7 +8,7 @@ public class DieController : MonoBehaviour,
     IStartGameListener,
     IFinishGameListener
 {
-    private GameContext _context;
+    private GameContext _gameContext;
 
     private IComponent_Die _dieComponent;
 
@@ -19,7 +19,7 @@ public class DieController : MonoBehaviour,
 
     public void Construct(GameContext context)
     {
-        _context = context;
+        _gameContext = context;
 
         _dieComponent = context.GetService<HeroService>()
             .GetHero()
@@ -30,14 +30,15 @@ public class DieController : MonoBehaviour,
             .Get<IComponent_MoveOnPosition>();
         
     }
+        
     void IStartGameListener.OnStartGame()
     {
-        _dieComponent.OnDieEvent += OnHeroDestroyed;
+        _dieComponent.OnDestroyedEvent += OnHeroDestroyed;
     }
 
     void IFinishGameListener.OnFinishGame()
     {
-        _dieComponent.OnDieEvent -= OnHeroDestroyed;
+        _dieComponent.OnDestroyedEvent -= OnHeroDestroyed;
     }
 
     [Button]
@@ -49,7 +50,7 @@ public class DieController : MonoBehaviour,
     
     private void FinishGameWithDelay()
     {
-        _context.FinishGame();
+        _gameContext.FinishGame();
     }
 }
 

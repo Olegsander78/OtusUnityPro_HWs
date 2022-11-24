@@ -11,8 +11,6 @@ public class MoveController : MonoBehaviour,
 
     private IComponent_MoveInDirection _moveComponent;
 
-    private IEntity _unit;
-
     void IConstructListener.Construct(GameContext context)
     {
         _input = context.GetService<KeyboardInput>();
@@ -20,8 +18,6 @@ public class MoveController : MonoBehaviour,
         _moveComponent = context.GetService<HeroService>()
             .GetHero()
             .Get<IComponent_MoveInDirection>();
-
-        _unit = context.GetService<HeroService>().GetHero();
     }
 
     void IStartGameListener.OnStartGame()
@@ -34,8 +30,7 @@ public class MoveController : MonoBehaviour,
         _input.OnMoveEvent -= Move;
     }
     private void Move(Vector3 direction)
-    {
-        //direction.y = _unit.Get<Transform>().position.y;        
+    {         
         Vector3 velocity = direction * Time.deltaTime;
         _moveComponent.Move(velocity);
     }

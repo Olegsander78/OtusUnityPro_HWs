@@ -2,6 +2,6 @@ using System;
 
 public interface IComponent_Die 
 {
-    public event Action OnDieEvent;
+    public event Action OnDestroyedEvent;
     void Die();
 }
