@@ -34,23 +34,29 @@ public class DieController : MonoBehaviour,
     void IStartGameListener.OnStartGame()
     {
         _dieComponent.OnDestroyedEvent += OnHeroDestroyed;
+        _gameContext.OnGameFinished += HeroRespawn;
     }
 
     void IFinishGameListener.OnFinishGame()
     {
         _dieComponent.OnDestroyedEvent -= OnHeroDestroyed;
+        _gameContext.OnGameFinished -= HeroRespawn;
     }
 
     [Button]
-    private void OnHeroDestroyed()
-    {
-        _moveOnStartPositionComponent.Move(_respawnPoint.position);
+    private void OnHeroDestroyed()    {
+        
         Invoke(nameof(FinishGameWithDelay), 1f);
     } 
     
     private void FinishGameWithDelay()
     {
         _gameContext.FinishGame();
+    }
+
+    private void HeroRespawn()
+    {
+        _moveOnStartPositionComponent.Move(_respawnPoint.position);
     }
 }
 

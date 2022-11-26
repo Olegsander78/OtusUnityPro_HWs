@@ -6,13 +6,17 @@ using System.Collections;
 
 public class GameContext : MonoBehaviour
 {
-    [ReadOnly]
-    [ShowInInspector]
-    private readonly List<object> listeners = new();
+    public event Action OnGameStarted;    
+
+    public event Action OnGameFinished;
 
     [ReadOnly]
     [ShowInInspector]
-    private readonly List<object> services = new();
+    private readonly List<object> _listeners = new();
+
+    [ReadOnly]
+    [ShowInInspector]
+    private readonly List<object> _services = new();
 
     [Header("Start Game Timer")]
     [SerializeField]
@@ -29,7 +33,7 @@ public class GameContext : MonoBehaviour
 
     public T GetService<T>()
     {
-        foreach (var service in this.services)
+        foreach (var service in _services)
         {
             if (service is T result)
             {
@@ -42,28 +46,28 @@ public class GameContext : MonoBehaviour
 
     public void AddService(object service)
     {
-        this.services.Add(service);
+        _services.Add(service);
     }
 
     public void RemoveService(object service)
     {
-        this.services.Remove(service);
+        _services.Remove(service);
     }
 
     public void AddListener(object listener)
     {
-        this.listeners.Add(listener);
+        _listeners.Add(listener);
     }
 
     public void RemoveListener(object listener)
     {
-        this.listeners.Remove(listener);
+        _listeners.Remove(listener);
     }
 
     [Button]
     public void ConstructGame()
     {
-        foreach (var listener in this.listeners)
+        foreach (var listener in _listeners)
         {
             if (listener is IConstructListener constructListener)
             {
@@ -78,6 +82,7 @@ public class GameContext : MonoBehaviour
     public void StartGame()
     {
         StartGameTimer();
+        OnGameStarted?.Invoke();
     }
 
     private void StartGameTimer()
@@ -94,7 +99,7 @@ public class GameContext : MonoBehaviour
             yield return new WaitForSeconds(_countdown);
         }
 
-        foreach (var listener in this.listeners)
+        foreach (var listener in _listeners)
         {
             if (listener is IStartGameListener startListener)
             {
@@ -108,7 +113,7 @@ public class GameContext : MonoBehaviour
     [Button]
     public void FinishGame()
     {
-        foreach (var listener in this.listeners)
+        foreach (var listener in _listeners)
         {
             if (listener is IFinishGameListener finishListener)
             {
@@ -119,5 +124,7 @@ public class GameContext : MonoBehaviour
         Debug.Log("Game Finished!");
 
         _delay = _startDelay;
+
+        OnGameFinished?.Invoke();
     }
 }
