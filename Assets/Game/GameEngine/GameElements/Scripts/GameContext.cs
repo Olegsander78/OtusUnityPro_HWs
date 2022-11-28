@@ -2,7 +2,6 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
 public class GameContext : MonoBehaviour
 {
@@ -17,20 +16,7 @@ public class GameContext : MonoBehaviour
     [ReadOnly]
     [ShowInInspector]
     private readonly List<object> _services = new();
-
-    [Header("Start Game Timer")]
-    [SerializeField]
-    private float _delay;
-    [SerializeField]
-    private float _countdown;
-
-    private float _startDelay;
-
-    private void Awake()
-    {
-      _startDelay = _delay;
-    }
-
+    
     public T GetService<T>()
     {
         foreach (var service in _services)
@@ -80,25 +66,7 @@ public class GameContext : MonoBehaviour
 
     [Button]
     public void StartGame()
-    {
-        StartGameTimer();
-        OnGameStarted?.Invoke();
-    }
-
-    private void StartGameTimer()
-    {
-        StartCoroutine(StartGameRoutine());
-    }
-
-    private IEnumerator StartGameRoutine()
-    {
-        while (_delay > 0)
-        {
-            Debug.Log($"Start in {_delay} second!");
-            _delay--;
-            yield return new WaitForSeconds(_countdown);
-        }
-
+    {  
         foreach (var listener in _listeners)
         {
             if (listener is IStartGameListener startListener)
@@ -108,6 +76,8 @@ public class GameContext : MonoBehaviour
         }
 
         Debug.Log("Game Started!");
+
+        OnGameStarted?.Invoke();
     }
 
     [Button]
@@ -121,9 +91,7 @@ public class GameContext : MonoBehaviour
             }
         }
 
-        Debug.Log("Game Finished!");
-
-        _delay = _startDelay;
+        Debug.Log("Game Finished!");        
 
         OnGameFinished?.Invoke();
     }
