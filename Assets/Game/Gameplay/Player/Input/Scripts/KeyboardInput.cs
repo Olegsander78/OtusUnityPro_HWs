@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using GameElements;
 
 public sealed class KeyboardInput : MonoBehaviour,
     IStartGameListener,
@@ -8,6 +7,8 @@ public sealed class KeyboardInput : MonoBehaviour,
 {
     public event Action<Vector3> OnMoveEvent;
     public event Action OnJumpEvent;
+    public event Action OnRangeAttackEvent;
+    public event Action OnMeleeAttackEvent;
 
     private void Awake()
     {
@@ -34,12 +35,16 @@ public sealed class KeyboardInput : MonoBehaviour,
 
         Move(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")));
 
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
+
+        if (Input.GetMouseButtonDown(1))
+            RangeAttack();
+
+        if (Input.GetMouseButtonDown(0))
+            MeleeAttack();
     }
 
     private void Move(Vector3 direction)
@@ -50,6 +55,16 @@ public sealed class KeyboardInput : MonoBehaviour,
     private void Jump()
     {
         OnJumpEvent?.Invoke();
+    }
+
+    private void RangeAttack()
+    {
+        OnRangeAttackEvent?.Invoke();
+    }
+
+    private void MeleeAttack()
+    {
+        OnMeleeAttackEvent?.Invoke();
     }
 }
 

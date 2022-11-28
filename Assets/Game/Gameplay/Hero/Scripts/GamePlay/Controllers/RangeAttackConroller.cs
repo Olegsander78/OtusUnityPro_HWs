@@ -2,28 +2,32 @@ using UnityEngine;
 using Entities;
 
 [AddComponentMenu("Gameplay/Hero/Hero RangeAttack Controller")]
-public class RangeAttackConroller : MonoBehaviour
-{
-    [SerializeField]
-    private UnityEntityBase _unit;
+public class RangeAttackConroller : MonoBehaviour,
+    IConstructListener,
+    IStartGameListener,
+    IFinishGameListener
+{    
+    private KeyboardInput _input;
 
-    [SerializeField]
     private IComponent_RangeAttack _rangeAttackComponent;
 
-    private void Awake()
+    void IConstructListener.Construct(GameContext context)
     {
-        _rangeAttackComponent = _unit.Get<IComponent_RangeAttack>();
+        _input = context.GetService<KeyboardInput>();
+
+        _rangeAttackComponent = context.GetService<HeroService>()
+            .GetHero()
+            .Get<IComponent_RangeAttack>();
     }
 
-    private void Update()
+    void IStartGameListener.OnStartGame()
     {
-        HandleInput();
+        _input.OnRangeAttackEvent += RangeAttack;
     }
 
-    private void HandleInput()
+    void IFinishGameListener.OnFinishGame()
     {
-        if (Input.GetMouseButtonDown(1))
-            RangeAttack();
+        _input.OnRangeAttackEvent -= RangeAttack;
     }
 
     private void RangeAttack()

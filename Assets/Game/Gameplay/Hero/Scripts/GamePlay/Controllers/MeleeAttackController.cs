@@ -2,9 +2,14 @@ using UnityEngine;
 using Entities;
 
 [AddComponentMenu("Gameplay/Hero/Hero MeleeAttack Controller")]
-public class MeleeAttackController : MonoBehaviour
+public class MeleeAttackController : MonoBehaviour,
+    IConstructListener,
+    IStartGameListener,
+    IFinishGameListener
 {
-    [SerializeField]
+   
+    private KeyboardInput _input;
+    
     private UnityEntityBase _unit;
 
     [SerializeField]
@@ -13,24 +18,28 @@ public class MeleeAttackController : MonoBehaviour
     [SerializeField]
     private LayerMask _layerMask;
 
-    [SerializeField]
     private IComponent_MeleeAttack _meleeAttackComponent;
 
-    private void Awake()
+    void IConstructListener.Construct(GameContext context)
     {
-        _meleeAttackComponent = _unit.Get<IComponent_MeleeAttack>();
+        _input = context.GetService<KeyboardInput>();
+
+        _unit = (UnityEntityBase)context.GetService<HeroService>().GetHero();
+
+        _meleeAttackComponent = context.GetService<HeroService>()
+            .GetHero()
+            .Get<IComponent_MeleeAttack>();
     }
 
-    private void Update()
+    void IStartGameListener.OnStartGame()
     {
-        HandleInput();
+        _input.OnMeleeAttackEvent += TryMeleeAttack;
     }
 
-    private void HandleInput()
+    void IFinishGameListener.OnFinishGame()
     {
-        if (Input.GetMouseButtonDown(0))
-            TryMeleeAttack();
-    }    
+        _input.OnMeleeAttackEvent -= TryMeleeAttack;
+    }
 
     void TryMeleeAttack()
     {

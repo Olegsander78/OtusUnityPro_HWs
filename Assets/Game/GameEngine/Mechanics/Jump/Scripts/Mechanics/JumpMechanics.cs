@@ -17,7 +17,7 @@ public class JumpMechanics : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponentInParent<Rigidbody>();
     }
 
     private void OnEnable()
