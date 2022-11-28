@@ -14,7 +14,7 @@ public sealed class MoneyStorage : MonoBehaviour
 
     public int Money
     {
-        get { return this._money; }
+        get { return _money; }
     }
 
     [ReadOnly]
@@ -36,12 +36,12 @@ public sealed class MoneyStorage : MonoBehaviour
             throw new Exception($"Can not earn negative money {amount}");
         }
 
-        var previousValue = this._money;
+        var previousValue = _money;
         var newValue = previousValue + amount;
 
-        this._money = newValue;
-        this.OnMoneyChanged?.Invoke(newValue);
-        this.OnMoneyEarned?.Invoke(amount);
+        _money = newValue;
+        OnMoneyChanged?.Invoke(newValue);
+        OnMoneyEarned?.Invoke(amount);
     }
 
     [Button]
@@ -58,7 +58,7 @@ public sealed class MoneyStorage : MonoBehaviour
             throw new Exception($"Can not spend negative money {amount}");
         }
 
-        var previousValue = this._money;
+        var previousValue = _money;
         var newValue = previousValue - amount;
         if (newValue < 0)
         {
@@ -66,21 +66,21 @@ public sealed class MoneyStorage : MonoBehaviour
                 $"Negative money after spend. Money in bank: {previousValue}, spend amount {amount} ");
         }
 
-        this._money = newValue;
-        this.OnMoneyChanged?.Invoke(newValue);
-        this.OnMoneySpent?.Invoke(amount);
+        _money = newValue;
+        OnMoneyChanged?.Invoke(newValue);
+        OnMoneySpent?.Invoke(amount);
     }
 
     [Button]
     [GUIColor(0, 1, 0)]
     public void SetupMoney(int money)
     {
-        this._money = money;
-        this.OnMoneyChanged?.Invoke(money);
+        _money = money;
+        OnMoneyChanged?.Invoke(money);
     }
 
     public bool CanSpendMoney(int amount)
     {
-        return this._money >= amount;
+        return _money >= amount;
     }
 }

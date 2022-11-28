@@ -1,4 +1,3 @@
-using Entities;
 using UnityEngine;
 
 [AddComponentMenu("Gameplay/Hero/Hero Move Controller")]
