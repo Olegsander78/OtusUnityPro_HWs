@@ -8,7 +8,7 @@ public sealed class MoneyPanelAdapter : MonoBehaviour,
     IFinishGameListener
 {
     [SerializeField]
-    private MoneyPanel _moneyPanel;
+    private CurrencyPanel _moneyPanel;
 
     private MoneyStorage _moneyStorage;
 

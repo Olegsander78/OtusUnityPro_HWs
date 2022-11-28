@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 
 //VIEW
-public sealed class MoneyPanel : MonoBehaviour
+public sealed class CurrencyPanel : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _moneyText;
