@@ -19,7 +19,6 @@ public class HitPointsParameterAdapter : MonoBehaviour,
     public void OnStartGame()
     {
         _character.Get<IComponent_OnHitPointsChanged>().OnHitPointsChanged += UpdatePanel;
-
     }
 
     public void OnFinishGame()

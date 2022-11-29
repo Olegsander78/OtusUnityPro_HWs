@@ -1,5 +1,4 @@
 using UnityEngine;
-using Elementary;
 
 public class GroundChecker : MonoBehaviour
 {
