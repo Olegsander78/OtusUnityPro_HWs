@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d488c22e29f4576bd8e7fbc8ff56ceb, type: 3}
+  m_Name: BounceAnimation (Value)
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.42265752
+      outSlope: 0.42265752
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.21857616
+    - serializedVersion: 3
+      time: 0.17156492
+      value: 0.039716978
+      inSlope: -0.00013493451
+      outSlope: -0.00013493451
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.41713026
+      outWeight: 0.41657063
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.0016344159
+      outSlope: -0.0016344159
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.6977043
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 0.25
+  functionType: 0
