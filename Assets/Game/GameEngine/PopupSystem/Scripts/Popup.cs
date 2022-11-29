@@ -1,20 +1,19 @@
-using System;
 using UnityEngine;
 
 
 public class Popup : MonoBehaviour
 {
-    private ICallback callback;
+    private ICallback _callback;
 
     public void Show(object args = null, ICallback callback = null)
     {
-        this.callback = callback;
-        this.OnShow(args);
+        _callback = callback;
+        OnShow(args);
     }
 
     public void Hide()
     {
-        this.OnHide();
+        OnHide();
     }
 
     protected virtual void OnShow(object args)
@@ -27,11 +26,6 @@ public class Popup : MonoBehaviour
 
     public void RequestClose()
     {
-        this.callback?.OnClose(this);
-    }
-
-    public interface ICallback
-    {
-        void OnClose(Popup popup);
+        _callback?.OnClose(this);
     }
 }
