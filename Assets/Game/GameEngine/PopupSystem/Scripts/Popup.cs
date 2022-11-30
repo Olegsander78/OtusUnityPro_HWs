@@ -28,4 +28,8 @@ public class Popup : MonoBehaviour
     {
         _callback?.OnClose(this);
     }
+    public interface ICallback
+    {
+        void OnClose(Popup popup);
+    }
 }

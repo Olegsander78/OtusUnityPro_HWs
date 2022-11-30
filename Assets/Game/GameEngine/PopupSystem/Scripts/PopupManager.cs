@@ -4,16 +4,16 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 
-public sealed class PopupManager : MonoBehaviour, ICallback
+public sealed class PopupManager : MonoBehaviour, Popup.ICallback
 {
     [SerializeField]
-    private PopupHolder[] _allPopups;
+    private PopupHolder[] allPopups;
 
-    private readonly Dictionary<PopupName, Popup> _activePopups = new();
+    private readonly Dictionary<PopupName, Popup> activePopups = new();
 
     private void Awake()
     {
-        foreach (var popupHolder in _allPopups)
+        foreach (var popupHolder in this.allPopups)
         {
             popupHolder.popup.gameObject.SetActive(false);
         }
@@ -23,46 +23,46 @@ public sealed class PopupManager : MonoBehaviour, ICallback
     [Button]
     public void ShowPopup(PopupName name, object args = null)
     {
-        if (IsPopupActive(name))
+        if (this.IsPopupActive(name))
         {
             return;
         }
 
-        var popup = FindPopup(name);
+        var popup = this.FindPopup(name);
         popup.gameObject.SetActive(true);
         popup.Show(args: args, callback: this);
-        _activePopups.Add(name, popup);
+        this.activePopups.Add(name, popup);
     }
 
     [Button]
     public void HidePopup(PopupName name)
     {
-        if (!IsPopupActive(name))
+        if (!this.IsPopupActive(name))
         {
             return;
         }
 
-        var popup = _activePopups[name];
+        var popup = this.activePopups[name];
         popup.Hide();
         popup.gameObject.SetActive(false);
-        _activePopups.Remove(name);
+        this.activePopups.Remove(name);
     }
 
     [Button]
     public bool IsPopupActive(PopupName name)
     {
-        return _activePopups.ContainsKey(name);
+        return this.activePopups.ContainsKey(name);
     }
 
-    void ICallback.OnClose(Popup popup)
+    void Popup.ICallback.OnClose(Popup popup)
     {
-        var name = FindName(popup);
-        HidePopup(name);
+        var name = this.FindName(popup);
+        this.HidePopup(name);
     }
 
     private PopupName FindName(Popup popup)
     {
-        foreach (var holder in _allPopups)
+        foreach (var holder in allPopups)
         {
             if (ReferenceEquals(holder.popup, popup))
             {
@@ -75,7 +75,7 @@ public sealed class PopupManager : MonoBehaviour, ICallback
 
     private Popup FindPopup(PopupName name)
     {
-        foreach (var holder in _allPopups)
+        foreach (var holder in this.allPopups)
         {
             if (holder.name == name)
             {
