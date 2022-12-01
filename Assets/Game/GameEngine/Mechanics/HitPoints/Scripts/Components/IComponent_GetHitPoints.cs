@@ -1,5 +1,6 @@
 
 public interface IComponent_GetHitPoints
 {
-    int HitPoints { get; }
+    int CurHitPoints { get; }
+    int MaxHitPoints { get; }
 }

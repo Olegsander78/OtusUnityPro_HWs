@@ -1,13 +1,14 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Elementary;
 
 
 public sealed class HitPointsEngine : MonoBehaviour
 {
     public event Action OnSetuped;
 
-    public event Action<int> OnHitPointsChanged;
+    public event Action<int> OnLevelChanged;
 
     public event Action<int> OnMaxHitPointsChanged;
 
@@ -17,48 +18,48 @@ public sealed class HitPointsEngine : MonoBehaviour
 
     public int CurrentHitPoints
     {
-        get { return this.currentHitPoints; }
-        set { this.SetHitPoints(value); }
+        get { return _currentHitPoints.Value; }
+        set { SetHitPoints(value); }
     }
 
     public int MaxHitPoints
     {
-        get { return this.maxHitPoints; }
-        set { this.SetMaxHitPoints(value); }
+        get { return _maxHitPoints.Value; }
+        set { SetMaxHitPoints(value); }
     }
 
     [SerializeField]
-    private int maxHitPoints;
+    private IntBehaviour _maxHitPoints;
 
     [SerializeField]
-    private int currentHitPoints;
+    private IntBehaviour _currentHitPoints;
 
     [Title("Methods")]
     [GUIColor(0, 1, 0)]
     [Button]
     public void Setup(int current, int max)
     {
-        this.maxHitPoints = max;
-        this.currentHitPoints = Mathf.Clamp(current, 0, this.maxHitPoints);
-        this.OnSetuped?.Invoke();
+        _maxHitPoints.Value = max;
+        _currentHitPoints.Value = Mathf.Clamp(current, 0, _maxHitPoints.Value);
+        OnSetuped?.Invoke();
     }
 
     [GUIColor(0, 1, 0)]
     [Button]
     private void SetHitPoints(int value)
     {
-        value = Mathf.Clamp(value, 0, this.maxHitPoints);
-        this.currentHitPoints = value;
-        this.OnHitPointsChanged?.Invoke(this.currentHitPoints);
+        value = Mathf.Clamp(value, 0, _maxHitPoints.Value);
+        _currentHitPoints.Value = value;
+        OnLevelChanged?.Invoke(_currentHitPoints.Value);
 
         if (value <= 0)
         {
-            this.OnHitPointsEmpty?.Invoke();
+            OnHitPointsEmpty?.Invoke();
         }
 
-        if (value >= this.maxHitPoints)
+        if (value >= _maxHitPoints.Value)
         {
-            this.OnHitPointsFull?.Invoke();
+            OnHitPointsFull?.Invoke();
         }
     }
 
@@ -67,20 +68,20 @@ public sealed class HitPointsEngine : MonoBehaviour
     private void SetMaxHitPoints(int value)
     {
         value = Math.Max(1, value);
-        if (this.currentHitPoints > value)
+        if (_currentHitPoints.Value > value)
         {
-            this.currentHitPoints = value;
+            _currentHitPoints.Value = value;
         }
 
-        this.maxHitPoints = value;
-        this.OnMaxHitPointsChanged?.Invoke(value);
+        _maxHitPoints.Value = value;
+        OnMaxHitPointsChanged?.Invoke(value);
     }
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        this.maxHitPoints = Math.Max(1, this.maxHitPoints);
-        this.currentHitPoints = Mathf.Clamp(this.currentHitPoints, 1, this.maxHitPoints);
+        _maxHitPoints.Value = Math.Max(1, _maxHitPoints.Value);
+        _currentHitPoints.Value = Mathf.Clamp(_currentHitPoints.Value, 1, _maxHitPoints.Value);
     }
 #endif
 }

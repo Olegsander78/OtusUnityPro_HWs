@@ -9,11 +9,11 @@ public sealed class Component_HitPoints : MonoBehaviour,
 {
     public event Action<int> OnHitPointsChanged
     {
-        add { this._engine.OnHitPointsChanged += value; }
-        remove { this._engine.OnHitPointsChanged -= value; }
+        add { this._engine.OnLevelChanged += value; }
+        remove { this._engine.OnLevelChanged -= value; }
     }
 
-    public int HitPoints
+    public int CurHitPoints
     {
         get { return this._engine.CurrentHitPoints; }
     }

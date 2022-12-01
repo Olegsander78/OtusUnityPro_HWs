@@ -10,11 +10,14 @@ public class HitPointsParameterAdapter : MonoBehaviour,
     private PropertyPanel _panel;
 
     private IEntity _character;
-    
+
+    private int _maxhitPoints;
     public void Construct(GameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
-        SetupPanel();
+        _maxhitPoints = _character.Get<IComponent_GetHitPoints>().MaxHitPoints;
+
+        SetupPanel();        
     }
     public void OnStartGame()
     {
@@ -28,12 +31,12 @@ public class HitPointsParameterAdapter : MonoBehaviour,
 
     private void SetupPanel()
     {
-        var hitPoints = _character.Get<IComponent_GetHitPoints>().HitPoints;
-        _panel.SetupValue(hitPoints.ToString());
+        var curhitPoints = _character.Get<IComponent_GetHitPoints>().CurHitPoints;
+        _panel.SetupValue($"{curhitPoints} / {_maxhitPoints}");
     }
 
     private void UpdatePanel(int newHitPoints)
     {
-        _panel.UpdateValue(newHitPoints.ToString());
+        _panel.UpdateValue($"{newHitPoints} / {_maxhitPoints}");
     }
 }
