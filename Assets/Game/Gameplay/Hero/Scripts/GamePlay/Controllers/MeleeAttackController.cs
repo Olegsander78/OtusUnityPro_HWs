@@ -58,7 +58,7 @@ public class MeleeAttackController : MonoBehaviour,
         }
         else
         {
-            Debug.Log("Missed! Try to get closer!");
+            //Debug.Log("Missed! Try to get closer!");
             _target = null;
             return;
             //throw new Exception("Enemy is not founded!");
