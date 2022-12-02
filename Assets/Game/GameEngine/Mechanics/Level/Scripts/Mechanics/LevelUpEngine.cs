@@ -29,9 +29,7 @@ public sealed class LevelUpEngine : MonoBehaviour
     private IntBehaviour _currentLevel;
 
     [SerializeField]
-    private IntBehaviour _maxLevel;
-
-    
+    private IntBehaviour _maxLevel;    
 
     [Title("Methods")]
     [GUIColor(0, 1, 0)]
@@ -62,20 +60,20 @@ public sealed class LevelUpEngine : MonoBehaviour
     private void SetMaxLevel(int value)
     {
         value = Math.Max(1, value);
-        if (_currentLevel.Value > value)
+        if (_maxLevel.Value > value)
         {
-            _currentLevel.Value = value;
+            _maxLevel.Value = value;
         }
 
         _maxLevel.Value = value;
         OnMaxLevelChanged?.Invoke(value);
     }
 
-//#if UNITY_EDITOR
-//    private void OnValidate()
-//    {
-//        _maxLevel.Value = Math.Max(1, _maxLevel.Value);
-//        _currentLevel.Value = Mathf.Clamp(_currentLevel.Value, 1, _maxLevel.Value);
-//    }
-//#endif
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        _maxLevel.Value = Math.Max(1, _maxLevel.Value);
+        _currentLevel.Value = Mathf.Clamp(_currentLevel.Value, 1, _maxLevel.Value);
+    }
+#endif
 }

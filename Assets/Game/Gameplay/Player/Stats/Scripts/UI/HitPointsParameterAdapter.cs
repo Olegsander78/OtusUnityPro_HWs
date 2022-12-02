@@ -10,33 +10,38 @@ public class HitPointsParameterAdapter : MonoBehaviour,
     private PropertyPanel _panel;
 
     private IEntity _character;
-
-    private int _maxhitPoints;
     public void Construct(GameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
-        _maxhitPoints = _character.Get<IComponent_GetHitPoints>().MaxHitPoints;
 
         SetupPanel();        
     }
     public void OnStartGame()
     {
-        _character.Get<IComponent_OnHitPointsChanged>().OnHitPointsChanged += UpdatePanel;
+        _character.Get<IComponent_OnHitPointsChanged>().OnHitPointsChanged += UpdateCurHPPanel;
+        _character.Get<IComponent_OnHitPointsChanged>().OnMaxHitPointsChanged += UpdateMaxHPPanel;
     }
 
     public void OnFinishGame()
     {
-        _character.Get<IComponent_OnHitPointsChanged>().OnHitPointsChanged -= UpdatePanel;
+        _character.Get<IComponent_OnHitPointsChanged>().OnHitPointsChanged -= UpdateCurHPPanel;
+        _character.Get<IComponent_OnHitPointsChanged>().OnMaxHitPointsChanged -= UpdateMaxHPPanel;
     }    
 
     private void SetupPanel()
     {
         var curhitPoints = _character.Get<IComponent_GetHitPoints>().CurHitPoints;
-        _panel.SetupValue($"{curhitPoints} / {_maxhitPoints}");
+        var maxhitPoints = _character.Get<IComponent_GetHitPoints>().MaxHitPoints;
+
+        _panel.SetupValue($"{curhitPoints} / {maxhitPoints}");
     }
 
-    private void UpdatePanel(int newHitPoints)
+    private void UpdateCurHPPanel(int newHitPoints)
     {
-        _panel.UpdateValue($"{newHitPoints} / {_maxhitPoints}");
+        _panel.UpdateValue($"{newHitPoints} / {_character.Get<IComponent_GetHitPoints>().MaxHitPoints}");
+    }
+    private void UpdateMaxHPPanel(int newMaxHitPoints)
+    {
+        _panel.UpdateValue($"{_character.Get<IComponent_GetHitPoints>().CurHitPoints} / {newMaxHitPoints}");
     }
 }

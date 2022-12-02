@@ -11,33 +11,37 @@ public class LevelUpParameterAdapter : MonoBehaviour,
 
     private IEntity _character;
 
-    private int _maxLevel;
-
     public void Construct(GameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
-        _maxLevel = _character.Get<IComponent_GetLevel>().MaxLevel;
 
         SetupPanel();        
     }
     public void OnStartGame()
     {
-        _character.Get<IComponent_OnLevelChanged>().OnLevelChanged += UpdatePanel;
+        _character.Get<IComponent_OnLevelChanged>().OnLevelChanged += UpdateCurLvlPanel;
+        _character.Get<IComponent_OnLevelChanged>().OnMaxLevelChanged += UpdateMaxLvlPanel;
     }
 
     public void OnFinishGame()
     {
-        _character.Get<IComponent_OnLevelChanged>().OnLevelChanged -= UpdatePanel;
+        _character.Get<IComponent_OnLevelChanged>().OnLevelChanged -= UpdateCurLvlPanel;
+        _character.Get<IComponent_OnLevelChanged>().OnMaxLevelChanged -= UpdateMaxLvlPanel;
     }    
 
     private void SetupPanel()
     {
         var curLevel = _character.Get<IComponent_GetLevel>().Level;
-        _panel.SetupValue($"{curLevel} / {_maxLevel}");
+        var maxLevel = _character.Get<IComponent_GetLevel>().MaxLevel;
+        _panel.SetupValue($"{curLevel} / {maxLevel}");
     }
 
-    private void UpdatePanel(int newLevel)
+    private void UpdateCurLvlPanel(int newLevel)
     {
-        _panel.UpdateValue($"{newLevel} / {_maxLevel}");
+        _panel.UpdateValue($"{newLevel} / {_character.Get<IComponent_GetLevel>().MaxLevel}");
+    }
+    private void UpdateMaxLvlPanel(int newMaxLevel)
+    {
+        _panel.UpdateValue($"{_character.Get<IComponent_GetLevel>().Level} / {newMaxLevel}");
     }
 }

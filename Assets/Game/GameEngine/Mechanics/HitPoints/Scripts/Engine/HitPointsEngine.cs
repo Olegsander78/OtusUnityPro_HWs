@@ -8,7 +8,7 @@ public sealed class HitPointsEngine : MonoBehaviour
 {
     public event Action OnSetuped;
 
-    public event Action<int> OnLevelChanged;
+    public event Action<int> OnHitPointsChanged;
 
     public event Action<int> OnMaxHitPointsChanged;
 
@@ -50,7 +50,7 @@ public sealed class HitPointsEngine : MonoBehaviour
     {
         value = Mathf.Clamp(value, 0, _maxHitPoints.Value);
         _currentHitPoints.Value = value;
-        OnLevelChanged?.Invoke(_currentHitPoints.Value);
+        OnHitPointsChanged?.Invoke(_currentHitPoints.Value);
 
         if (value <= 0)
         {
@@ -68,9 +68,9 @@ public sealed class HitPointsEngine : MonoBehaviour
     private void SetMaxHitPoints(int value)
     {
         value = Math.Max(1, value);
-        if (_currentHitPoints.Value > value)
+        if (_maxHitPoints.Value > value)
         {
-            _currentHitPoints.Value = value;
+            _maxHitPoints.Value = value;
         }
 
         _maxHitPoints.Value = value;
@@ -81,7 +81,7 @@ public sealed class HitPointsEngine : MonoBehaviour
     private void OnValidate()
     {
         _maxHitPoints.Value = Math.Max(1, _maxHitPoints.Value);
-        _currentHitPoints.Value = Mathf.Clamp(_currentHitPoints.Value, 1, _maxHitPoints.Value);
+        _currentHitPoints.Value = Mathf.Clamp(_currentHitPoints.Value, 0, _maxHitPoints.Value);
     }
 #endif
 }

@@ -12,6 +12,11 @@ public sealed class Component_LevelUp : MonoBehaviour,
         add { _engine.OnLevelChanged += value; }
         remove { _engine.OnLevelChanged -= value; }
     }
+    public event Action<int> OnMaxLevelChanged
+    {
+        add { _engine.OnMaxLevelChanged += value; }
+        remove { _engine.OnMaxLevelChanged -= value; }
+    }
 
     public int Level
     {
