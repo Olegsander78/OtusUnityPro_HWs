@@ -73,10 +73,10 @@ public sealed class ExperienceStorage : MonoBehaviour
 
     [Button]
     [GUIColor(0, 1, 0)]
-    public void SetupExperience(int money)
+    public void SetupExperience(int exp)
     {
-        _experience = money;
-        OnExpChanged?.Invoke(money);
+        _experience = exp;
+        OnExpChanged?.Invoke(exp);
     }
 
     public bool CanSpendExperience(int amount)
