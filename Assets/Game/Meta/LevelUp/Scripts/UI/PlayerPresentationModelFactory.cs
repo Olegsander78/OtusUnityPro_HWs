@@ -3,18 +3,18 @@ using UnityEngine;
 
 public sealed class PlayerPresentationModelFactory : MonoBehaviour, IConstructListener
 {
-    private ProductBuyer productBuyer;
+    private PlayerLevelUpper _playerLevelUpper;
 
-    private MoneyStorage moneyStorage;
+    private ExperienceStorage _experienceStorage;
 
-    public ProductPresentationModel CreatePresenter(Product product)
+    public PlayerPresentationModel CreatePresenter(Player player)
     {
-        return new ProductPresentationModel(product, this.productBuyer, this.moneyStorage);
+        return new PlayerPresentationModel(player, _playerLevelUpper, _experienceStorage);
     }
 
     void IConstructListener.Construct(GameContext context)
     {
-        this.productBuyer = context.GetService<ProductBuyer>();
-        this.moneyStorage = context.GetService<MoneyStorage>();
+        _playerLevelUpper = context.GetService<PlayerLevelUpper>();
+        _experienceStorage = context.GetService<ExperienceStorage>();
     }
 }

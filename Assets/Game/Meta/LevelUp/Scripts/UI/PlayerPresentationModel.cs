@@ -4,64 +4,84 @@ using UnityEngine;
 
 public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 {
-    public event Action<bool> OnBuyButtonStateChanged;
+    public event Action<bool> OnLevelUpButtonStateChanged;
 
-    private readonly Product product;
+    private readonly Player _player;
 
-    private readonly ProductBuyer productBuyer;
+    private readonly PlayerLevelUpper _playerLevelUpper;
 
-    private readonly MoneyStorage moneyStorage;
+    private readonly ExperienceStorage _expStorage;
 
-    public PlayerPresentationModel(Product product, ProductBuyer productBuyer, MoneyStorage moneyStorage)
+    public PlayerPresentationModel(Player player, PlayerLevelUpper playerLevelUpper, ExperienceStorage expStorage)
     {
-        this.product = product;
-        this.productBuyer = productBuyer;
-        this.moneyStorage = moneyStorage;
+        _player = player;
+        _playerLevelUpper = playerLevelUpper;
+        _expStorage = expStorage;
     }
 
-    public void Start()
+    public void StartPM()
     {
-        this.moneyStorage.OnMoneyChanged += this.OnMoneyChanged;
+        _expStorage.OnExpChanged += OnExpChanged;
     }
 
-    public void Stop()
+    public void StopPM()
     {
-        this.moneyStorage.OnMoneyChanged -= this.OnMoneyChanged;
+        _expStorage.OnExpChanged -= OnExpChanged;
     }
 
     public string GetTitle()
     {
-        return this.product.title;
+        return _player.TitleText;
     }
 
-    public string GetDescription()
+    public string GetNameHero()
     {
-        return this.product.description;
-    }
+        return _player.NameHeroText;    }
 
     public Sprite GetIcon()
     {
-        return this.product.icon;
+        return _player.IconHeroImage;
     }
 
-    public string GetPrice()
+    public string GetClassHero()
     {
-        return this.product.price.ToString();
+        return _player.ClassHero.ToString();
     }
 
-    public bool CanBuy()
+    public string GetHistoryHero()
     {
-        return this.productBuyer.CanBuy(this.product);
+        return _player.HistoryHeroText;
     }
 
-    public void OnBuyClicked()
+    public string GetLevelHero()
     {
-        this.productBuyer.Buy(this.product);
+        throw new NotImplementedException();
     }
 
-    private void OnMoneyChanged(int money)
+    public string GetHitPointsHero()
     {
-        var canBuy = this.productBuyer.CanBuy(this.product);
-        this.OnBuyButtonStateChanged?.Invoke(canBuy);
+        throw new NotImplementedException();
     }
+
+    public string GetMeleeDamageHero()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool CanLevelUp()
+    {
+        // return _playerLevelUpper.CanLevelUp(_player);
+        return true;
+    }
+
+    public void OnLevelUpClicked()
+    {
+        //_playerLevelUpper.LevelUp(_player);
+    }
+
+    private void OnExpChanged(int money)
+    {
+       // var canLevelUp = _playerLevelUpper.CanLevelUp(_player);
+       // OnLevelUpButtonStateChanged?.Invoke(canLevelUp);
+    }    
 }

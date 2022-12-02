@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public sealed class PlayerPopup : Popup
 {
     [SerializeField]
@@ -19,7 +18,7 @@ public sealed class PlayerPopup : Popup
     private TextMeshProUGUI _historyHeroText;
 
     [SerializeField]
-    private Image iconHeroImage;
+    private Image _iconHeroImage;
 
     [SerializeField]
     private TextMeshProUGUI _levelHeroText;
@@ -33,7 +32,7 @@ public sealed class PlayerPopup : Popup
     [SerializeField]
     private LevelUpButton _levelUpButton;
 
-    private IPresentationModel presenter;
+    private IPresentationModel _presenter;
 
     protected override void OnShow(object args)
     {
@@ -42,54 +41,62 @@ public sealed class PlayerPopup : Popup
             throw new Exception("Expected Presentation model!");
         }
 
-        this.presenter = presenter;
-        this.presenter.OnBuyButtonStateChanged += this.OnBuyButtonStateChanged;
-        this.presenter.Start();
+        _presenter = presenter;
+        _presenter.OnLevelUpButtonStateChanged += OnLevelUpButtonStateChanged;
+        _presenter.StartPM();
 
-        this._titleText.text = presenter.GetTitle();
-        this._historyHeroText.text = presenter.GetDescription();
-        this.iconHeroImage.sprite = presenter.GetIcon();
+        _titleText.text = presenter.GetTitle();
+        _nameHeroText.text = presenter.GetNameHero();
+        _classHeroText.text = presenter.GetClassHero();
+        _historyHeroText.text = presenter.GetHistoryHero();
+        _iconHeroImage.sprite = presenter.GetIcon();
+        _levelHeroText.text = presenter.GetLevelHero();
+        _hitPointsHeroText.text = presenter.GetHitPointsHero();
+        _meleeDamageHeroText.text = presenter.GetMeleeDamageHero();
 
-        //this._levelUpButton.SetPrice(presenter.GetPrice());
-        this._levelUpButton.SetAvailable(presenter.CanBuy());
-        this._levelUpButton.AddListener(this.OnBuyButtonClicked);
+        _levelUpButton.SetAvailable(presenter.CanLevelUp());
+        _levelUpButton.AddListener(OnLevelUpButtonClicked);
     }
 
     protected override void OnHide()
     {
-        this._levelUpButton.RemoveListener(this.OnBuyButtonClicked);
-        this.presenter.OnBuyButtonStateChanged -= this.OnBuyButtonStateChanged;
-        this.presenter.Stop();
+        _levelUpButton.RemoveListener(OnLevelUpButtonClicked);
+        _presenter.OnLevelUpButtonStateChanged -= this.OnLevelUpButtonStateChanged;
+        _presenter.StopPM();
     }
 
-    private void OnBuyButtonStateChanged(bool isAvailabe)
+    private void OnLevelUpButtonStateChanged(bool isAvailabe)
     {
-        this._levelUpButton.SetAvailable(isAvailabe);
+        _levelUpButton.SetAvailable(isAvailabe);
     }
 
-    private void OnBuyButtonClicked()
+    private void OnLevelUpButtonClicked()
     {
-        this.presenter.OnBuyClicked();
+        _presenter.OnLevelUpClicked();
     }
 
     public interface IPresentationModel
     {
-        event Action<bool> OnBuyButtonStateChanged;
+        event Action<bool> OnLevelUpButtonStateChanged;
 
-        void Start();
+        void StartPM();
 
-        void Stop();
+        void StopPM();
 
         string GetTitle();
 
-        string GetDescription();
+        string GetNameHero();
+        string GetClassHero();
+        string GetHistoryHero();
 
         Sprite GetIcon();
 
-        string GetPrice();
+        string GetLevelHero();
+        string GetHitPointsHero();
+        string GetMeleeDamageHero();
 
-        bool CanBuy();
+        bool CanLevelUp();
 
-        void OnBuyClicked();
+        void OnLevelUpClicked();
     }
 }

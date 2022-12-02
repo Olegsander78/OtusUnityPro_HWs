@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public sealed class ProductPopup : Popup
 {
     [SerializeField]
