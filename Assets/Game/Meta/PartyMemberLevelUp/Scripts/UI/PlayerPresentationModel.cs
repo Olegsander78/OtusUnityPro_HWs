@@ -21,12 +21,12 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 
     public void StartPM()
     {
-        _expStorage.OnExpChanged += OnExpChanged;
+        //_expStorage.OnExpChanged += OnExpChanged;
     }
 
     public void StopPM()
     {
-        _expStorage.OnExpChanged -= OnExpChanged;
+        //_expStorage.OnExpChanged -= OnExpChanged;
     }
 
     public string GetTitle()
