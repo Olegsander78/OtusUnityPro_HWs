@@ -1,4 +1,4 @@
-public enum PlayerClass 
+public enum PartyMemberClass 
 {
     KNIGHT = 0,
     PALADIN = 1,

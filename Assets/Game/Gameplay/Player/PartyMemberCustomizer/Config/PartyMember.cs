@@ -1,11 +1,12 @@
+using Entities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(
     fileName = "Player",
-    menuName = "MetaGame - Products/New Player (Presentation Model)"
+    menuName = "MetaGame - Products/New PartyMember (Presentation Model)"
 )]
-public sealed class Player : ScriptableObject
+public sealed class PartyMember : ScriptableObject
 {
     [PreviewField]
     [SerializeField]
@@ -18,9 +19,12 @@ public sealed class Player : ScriptableObject
     public string NameHeroText;
 
     [SerializeField]
-    public PlayerClass ClassHero;
+    public PartyMemberClass ClassHero;
 
     [TextArea]
     [SerializeField]
-    public string HistoryHeroText;    
+    public string HistoryHeroText;
+
+    [SerializeField]
+    public UnityEntity MemberOfParty;
 }

@@ -9,6 +9,9 @@ public class LevelUpParameterAdapter : MonoBehaviour,
     [SerializeField]
     private PropertyPanel _panel;
 
+    [SerializeField]
+    private PartyMember _partyMember;
+
     private IEntity _character;
 
     public void Construct(GameContext context)
@@ -35,6 +38,8 @@ public class LevelUpParameterAdapter : MonoBehaviour,
         var maxLevel = _character.Get<IComponent_GetLevel>().MaxLevel;
 
         _panel.SetupValue($"{curLevel} /{maxLevel}");
+
+        _panel.SetIcon(_partyMember.IconHeroImage);
     }
 
     private void UpdateCurLvlPanel(int newLevel)

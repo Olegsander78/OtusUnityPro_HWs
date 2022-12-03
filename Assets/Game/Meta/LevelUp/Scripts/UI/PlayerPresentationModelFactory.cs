@@ -7,7 +7,7 @@ public sealed class PlayerPresentationModelFactory : MonoBehaviour, IConstructLi
 
     private ExperienceStorage _experienceStorage;
 
-    public PlayerPresentationModel CreatePresenter(Player player)
+    public PlayerPresentationModel CreatePresenter(PartyMember player)
     {
         return new PlayerPresentationModel(player, _playerLevelUpper, _experienceStorage);
     }

@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using Elementary;
 
 
 [AddComponentMenu("GameEngine/Mechanics/Component «LevelUp»")]
 public sealed class Component_LevelUp : MonoBehaviour,
     IComponent_GetLevel,
-    IComponent_OnLevelChanged
+    IComponent_OnLevelChanged,
+    IComponent_AddLevel
 {
     public event Action<int> OnLevelChanged
     {
@@ -30,6 +32,16 @@ public sealed class Component_LevelUp : MonoBehaviour,
 
     [SerializeField]
     private LevelUpEngine _engine;
+
+    [SerializeField]
+    private IntBehaviour _currentExp;
+
+    [SerializeField]
+    private IntBehaviour _nextLevelExp;
+
+    [SerializeField]
+    private IntBehaviour _totalExp;
+
 
     public void Setup(int current, int max)
     {

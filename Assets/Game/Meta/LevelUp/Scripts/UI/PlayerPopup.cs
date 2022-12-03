@@ -51,7 +51,7 @@ public sealed class PlayerPopup : Popup
         _historyHeroText.text = presenter.GetHistoryHero();
         _iconHeroImage.sprite = presenter.GetIcon();
         _levelHeroText.text = presenter.GetLevelHero();
-        _hitPointsHeroText.text = presenter.GetHitPointsHero();
+        _hitPointsHeroText.text = presenter.GetMaxHitPointsHero();
         _meleeDamageHeroText.text = presenter.GetMeleeDamageHero();
 
         _levelUpButton.SetAvailable(presenter.CanLevelUp());
@@ -92,7 +92,7 @@ public sealed class PlayerPopup : Popup
         Sprite GetIcon();
 
         string GetLevelHero();
-        string GetHitPointsHero();
+        string GetMaxHitPointsHero();
         string GetMeleeDamageHero();
 
         bool CanLevelUp();

@@ -6,13 +6,13 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 {
     public event Action<bool> OnLevelUpButtonStateChanged;
 
-    private readonly Player _player;
+    private readonly PartyMember _player;
 
     private readonly PlayerLevelUpper _playerLevelUpper;
 
     private readonly ExperienceStorage _expStorage;
 
-    public PlayerPresentationModel(Player player, PlayerLevelUpper playerLevelUpper, ExperienceStorage expStorage)
+    public PlayerPresentationModel(PartyMember player, PlayerLevelUpper playerLevelUpper, ExperienceStorage expStorage)
     {
         _player = player;
         _playerLevelUpper = playerLevelUpper;
@@ -55,17 +55,17 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 
     public string GetLevelHero()
     {
-        throw new NotImplementedException();
+        return _player.MemberOfParty.Get<IComponent_GetLevel>().Level.ToString();
     }
 
-    public string GetHitPointsHero()
+    public string GetMaxHitPointsHero()
     {
-        throw new NotImplementedException();
+        return _player.MemberOfParty.Get<IComponent_GetHitPoints>().MaxHitPoints.ToString();
     }
 
     public string GetMeleeDamageHero()
     {
-        throw new NotImplementedException();
+        return _player.MemberOfParty.Get<IComponent_GetMeleeDamage>().Damage.ToString();
     }
 
     public bool CanLevelUp()
