@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 //VIEW
 public sealed class ExperiencePanel : MonoBehaviour
@@ -11,6 +12,9 @@ public sealed class ExperiencePanel : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _expText;
 
+    [SerializeField]
+    private Image _iconPartyMember;
+
     public void SetupExp(string curExp, string maxExp)
     {
         _expText.text = $"EXP {curExp}/{maxExp}";
@@ -18,6 +22,11 @@ public sealed class ExperiencePanel : MonoBehaviour
     public void SetupLevel(string level)
     {
         _levelText.text = level;
+    }
+
+    public void SetupIcon(Sprite icon)
+    {
+        _iconPartyMember.sprite = icon;
     }
 
     public void UpdateExp(string curExp, string maxExp)

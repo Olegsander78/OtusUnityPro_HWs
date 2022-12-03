@@ -1073,6 +1073,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHitPoints: {fileID: 5757293414908946536}
   _currentHitPoints: {fileID: 3392276977838844746}
+--- !u!1 &417545607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417545608}
+  - component: {fileID: 417545609}
+  m_Layer: 0
+  m_Name: Experience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &417545608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417545607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7160271757469168772}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &417545609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417545607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e820a2ad68644044b3a2fd451e1291b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _addExpReceiver: {fileID: 1260005047}
+  _currentExperience: {fileID: 727690104}
+  _toNextLevelExperience: {fileID: 1325866501}
+  _totalExperience: {fileID: 90603855}
 --- !u!1 &466194351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,9 +3530,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _engine: {fileID: 547723183}
-  _currentExp: {fileID: 0}
-  _nextLevelExp: {fileID: 0}
-  _totalExp: {fileID: 0}
+  _currentExp: {fileID: 727690104}
+  _nextLevelExp: {fileID: 1325866501}
+  _totalExp: {fileID: 90603855}
 --- !u!1001 &1170665045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3627,7 +3675,8 @@ MonoBehaviour:
   _currentExp: {fileID: 727690104}
   _nextLevelExp: {fileID: 1325866501}
   _totalExp: {fileID: 90603855}
-  _currentLevel: {fileID: 2068211665}
+  _levelUpEngine: {fileID: 547723183}
+  _character: {fileID: 9132227182522956720}
 --- !u!114 &1260005047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11188,6 +11237,7 @@ Transform:
   - {fileID: 385370417}
   - {fileID: 716546560}
   - {fileID: 1140730200}
+  - {fileID: 417545608}
   m_Father: {fileID: 1203030876944531436}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11803,6 +11853,7 @@ MonoBehaviour:
   - {fileID: 716546559}
   - {fileID: 1093986770}
   - {fileID: 1140730201}
+  - {fileID: 417545609}
 --- !u!54 &9132227182522956721
 Rigidbody:
   m_ObjectHideFlags: 0

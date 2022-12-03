@@ -37,9 +37,7 @@ public class LevelUpParameterAdapter : MonoBehaviour,
         var curLevel = _character.Get<IComponent_GetLevel>().Level;
         var maxLevel = _character.Get<IComponent_GetLevel>().MaxLevel;
 
-        _panel.SetupValue($"{curLevel} /{maxLevel}");
-
-        _panel.SetIcon(_partyMember.IconHeroImage);
+        _panel.SetupValue($"{curLevel} /{maxLevel}");       
     }
 
     private void UpdateCurLvlPanel(int newLevel)

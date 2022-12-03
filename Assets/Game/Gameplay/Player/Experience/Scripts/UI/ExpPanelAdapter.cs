@@ -16,7 +16,14 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
     private IEntity _character;
 
-    private Component_LevelUp _component_LevelUp;
+    [SerializeField]
+    private PartyMember _partyMember;
+
+    private IComponent_GetLevel _component_GetLevel;
+
+    private IComponent_GetExperience _component_GetExp;
+
+    private IComponent_AddExperience _component_AddExp;
 
     void IConstructListener.Construct(GameContext context)
     {
@@ -24,32 +31,44 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
         _character = context.GetService<HeroService>().GetHero();
 
-        _component_LevelUp = _character.Get<Component_LevelUp>();
+        _component_GetLevel = _character.Get<IComponent_GetLevel>();
 
-        _expPanel.SetupLevel(_component_LevelUp.Level.ToString());
+        _component_GetExp = _character.Get<IComponent_GetExperience>();
 
-        var maxExpOnLevel = _component_LevelUp.Level * 100 / 2;
+        _component_AddExp = _character.Get<IComponent_AddExperience>();
+
+        _expPanel.SetupLevel(_component_GetLevel.Level.ToString());
         
-        _expPanel.SetupExp(_expStorage.Experience.ToString(),maxExpOnLevel.ToString());
+        _expPanel.SetupExp(_component_GetExp.CurrentExperience.ToString(),_component_GetExp.ToNextLevelExperience.ToString());
+
+        _expPanel.SetupIcon(_partyMember.IconHeroImage);
     }
 
     public void OnStartGame()
     {
-        _expStorage.OnExpChanged += OnExpChanged;
+        //_expStorage.OnExpChanged += OnExpChanged;
+        _component_AddExp.OnExperienceChanged += OnCurrentExpChanged;
+        _component_AddExp.OnNextlvlExperienceChanged += OnNextLvlExpChanged;
+
         _character.Get<IComponent_OnLevelChanged>().OnLevelChanged += UpdateCurLvlPanel;
     }    
 
     public void OnFinishGame()
     {
-        _expStorage.OnExpChanged -= OnExpChanged;
+        //_expStorage.OnExpChanged -= OnExpChanged;
+        _component_AddExp.OnExperienceChanged -= OnCurrentExpChanged;
+        _component_AddExp.OnNextlvlExperienceChanged -= OnNextLvlExpChanged;
+
         _character.Get<IComponent_OnLevelChanged>().OnLevelChanged -= UpdateCurLvlPanel;
     }
 
-    private void OnExpChanged(int exp)
+    private void OnCurrentExpChanged(int exp)
     {
-        var maxExpOnLevel = _component_LevelUp.Level * 100 / 2;
-
-        _expPanel.UpdateExp(exp.ToString(),maxExpOnLevel.ToString());
+        _expPanel.UpdateExp(exp.ToString(), _component_GetExp.ToNextLevelExperience.ToString());
+    }
+    private void OnNextLvlExpChanged(int exp)
+    {
+        _expPanel.UpdateExp(_component_GetExp.CurrentExperience.ToString(), exp.ToString());
     }
     private void UpdateCurLvlPanel(int level)
     {

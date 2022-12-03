@@ -2,6 +2,7 @@ using UnityEngine;
 using Elementary;
 using System;
 using Sirenix.OdinInspector;
+using Entities;
 
 public class ExperienceMechanics : MonoBehaviour
 {
@@ -26,7 +27,10 @@ public class ExperienceMechanics : MonoBehaviour
     private IntBehaviour _totalExp;
 
     [SerializeField]
-    private IntBehaviour _currentLevel;
+    private LevelUpEngine _levelUpEngine;
+
+    [SerializeField]
+    private UnityEntity _character;
 
 
     public int CurrentExp
@@ -48,12 +52,12 @@ public class ExperienceMechanics : MonoBehaviour
     }
     private void OnEnable()
     {
-        _expReceiver.OnEvent += OnAddExp;
+        _expReceiver.OnEvent += OnAddedExp;
     }
 
     private void OnDisable()
     {
-        _expReceiver.OnEvent -= OnAddExp;
+        _expReceiver.OnEvent -= OnAddedExp;
     }
 
     [Title("Methods")]
@@ -85,7 +89,7 @@ public class ExperienceMechanics : MonoBehaviour
     [Button]
     private void SetNextLevelExp()
     {
-        _nextLevelExp.Value = 100 * _currentLevel.Value;
+        _nextLevelExp.Value = 100 * _character.Get<IComponent_GetLevel>().Level;
         OnNextLvlExpChanged?.Invoke(_nextLevelExp.Value);
     }
 
@@ -98,7 +102,7 @@ public class ExperienceMechanics : MonoBehaviour
 
     [GUIColor(0, 1, 0)]
     [Button]
-    private void OnAddExp(int value)
+    private void OnAddedExp(int value)
     {
         _totalExp.Value += value;
         _currentExp.Value += value;
@@ -106,7 +110,7 @@ public class ExperienceMechanics : MonoBehaviour
         while(_currentExp.Value >= _nextLevelExp.Value)
         {
             _currentExp.Value = _currentExp.Value - _nextLevelExp.Value;
-            _currentLevel.Value++;
+            _character.Get<IComponent_AddLevel>().AddLevel(1);
             SetNextLevelExp();
         }        
     }

@@ -69,11 +69,21 @@ public sealed class LevelUpEngine : MonoBehaviour
         OnMaxLevelChanged?.Invoke(value);
     }
 
-#if UNITY_EDITOR
-    private void OnValidate()
+    [GUIColor(0, 1, 0)]
+    [Button]
+    private void AddLevel(int value)
     {
-        _maxLevel.Value = Math.Max(1, _maxLevel.Value);
-        _currentLevel.Value = Mathf.Clamp(_currentLevel.Value, 1, _maxLevel.Value);
+        _currentLevel.Value += value;
+        if (_currentLevel.Value >= _maxLevel.Value)
+            _currentLevel.Value = _maxLevel.Value;
+
+        OnLevelChanged?.Invoke(_currentLevel.Value);
     }
-#endif
+    //#if UNITY_EDITOR
+    //    private void OnValidate()
+    //    {
+    //        _maxLevel.Value = Math.Max(1, _maxLevel.Value);
+    //        _currentLevel.Value = Mathf.Clamp(_currentLevel.Value, 1, _maxLevel.Value);
+    //    }
+    //#endif
 }

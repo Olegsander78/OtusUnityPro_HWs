@@ -93,12 +93,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38
+  m_fontSize: 50
   m_fontSizeBase: 38
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 0
-  m_fontSizeMax: 0
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 50
   m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _expPanel: {fileID: 4109764605396258374}
+  _partyMember: {fileID: 11400000, guid: 89b0e550c2a6ba34b8e77f2ca477c346, type: 2}
 --- !u!1 &6600653078183820362
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelText: {fileID: 6600653078421287683}
   _expText: {fileID: 1838594393310411408}
+  _iconPartyMember: {fileID: 1838594394777885062}
 --- !u!114 &6953639322874155677
 MonoBehaviour:
   m_ObjectHideFlags: 0
