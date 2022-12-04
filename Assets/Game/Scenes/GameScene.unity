@@ -490,7 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a571ab830ef1146bb9cfc51372ac4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partyMember: {fileID: 0}
 --- !u!1 &212325573
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e820a2ad68644044b3a2fd451e1291b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _experienceEngine: {fileID: 1260005046}
   _changeExpReceiver: {fileID: 1260005047}
   _currentExperience: {fileID: 727690104}
   _toNextLevelExperience: {fileID: 1325866501}
@@ -8892,7 +8892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f85fef83fa24b4fa79e7a70d9eec2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 15
+  value: 25
 --- !u!4 &5813095340763227341
 Transform:
   m_ObjectHideFlags: 0
@@ -9466,11 +9466,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PopupPartyMember
-      objectReference: {fileID: 0}
-    - target: {fileID: 3333933333227149438, guid: ead423ea14328db4e864c4f143d9880f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ead423ea14328db4e864c4f143d9880f, type: 3}

@@ -9,9 +9,6 @@ public class LevelUpParameterAdapter : MonoBehaviour,
     [SerializeField]
     private PropertyPanel _panel;
 
-    [SerializeField]
-    private PartyMember _partyMember;
-
     private IEntity _character;
 
     public void Construct(GameContext context)

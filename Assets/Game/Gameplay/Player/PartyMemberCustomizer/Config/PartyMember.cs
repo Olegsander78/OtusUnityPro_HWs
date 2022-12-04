@@ -26,5 +26,5 @@ public sealed class PartyMember : ScriptableObject
     public string HistoryHeroText;
 
     [SerializeField]
-    public UnityEntity MemberOfParty;
+    public UnityEntityBase MemberOfParty;
 }

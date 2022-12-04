@@ -1,7 +1,5 @@
 using Entities;
-using System;
 using UnityEngine;
-
 
 //ADAPTER
 public sealed class ExpPanelAdapter : MonoBehaviour,
@@ -11,8 +9,6 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 {
     [SerializeField]
     private ExperiencePanel _expPanel;
-
-    //private ExperienceStorage _expStorage;
 
     private IEntity _character;
 
@@ -27,8 +23,6 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
     void IConstructListener.Construct(GameContext context)
     {
-        //_expStorage = context.GetService<ExperienceStorage>();
-
         _character = context.GetService<HeroService>().GetHero();
 
         _component_GetLevel = _character.Get<IComponent_GetLevel>();
@@ -46,7 +40,6 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
     public void OnStartGame()
     {
-        //_expStorage.OnExpChanged += OnExpChanged;
         _component_AddExp.OnExperienceChanged += OnCurrentExpChanged;
         _component_AddExp.OnNextlvlExperienceChanged += OnNextLvlExpChanged;
 
@@ -55,7 +48,6 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
     public void OnFinishGame()
     {
-        //_expStorage.OnExpChanged -= OnExpChanged;
         _component_AddExp.OnExperienceChanged -= OnCurrentExpChanged;
         _component_AddExp.OnNextlvlExperienceChanged -= OnNextLvlExpChanged;
 

@@ -46,11 +46,11 @@ public sealed class PlayerPopup : Popup
         _presenter.StartPM();
 
         _titleText.text = presenter.GetTitle();
-        _nameHeroText.text = presenter.GetNameHero();
-        _classHeroText.text = presenter.GetClassHero();
-        _historyHeroText.text = presenter.GetHistoryHero();
+        _nameHeroText.text = presenter.GetHeroName();
+        _classHeroText.text = presenter.GetHeroClass();
+        _historyHeroText.text = presenter.GetHeroHistory();
         _iconHeroImage.sprite = presenter.GetIcon();
-        _levelHeroText.text = presenter.GetLevelHero();
+        _levelHeroText.text = presenter.GetHeroLevel();
         _hitPointsHeroText.text = presenter.GetMaxHitPointsHero();
         _meleeDamageHeroText.text = presenter.GetMeleeDamageHero();
 
@@ -85,13 +85,13 @@ public sealed class PlayerPopup : Popup
 
         string GetTitle();
 
-        string GetNameHero();
-        string GetClassHero();
-        string GetHistoryHero();
+        string GetHeroName();
+        string GetHeroClass();
+        string GetHeroHistory();
 
         Sprite GetIcon();
 
-        string GetLevelHero();
+        string GetHeroLevel();
         string GetMaxHitPointsHero();
         string GetMeleeDamageHero();
 

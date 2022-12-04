@@ -5,7 +5,8 @@ using UnityEngine;
 [AddComponentMenu("GameEngine/Mechanics/Component «Experience»")]
 public class Component_Experience :MonoBehaviour, 
     IComponent_ChangeExperience,
-    IComponent_GetExperience
+    IComponent_GetExperience,
+    IComponent_SpendExperience
 {
     public event Action<int> OnExperienceChanged
     {
@@ -25,20 +26,25 @@ public class Component_Experience :MonoBehaviour,
         remove { _toNextLevelExperience.OnValueChanged-=value; }
     }
 
+    public event Action<int> OnSpendExperience;
+
+    [SerializeField]
+    private ExperienceEngine _experienceEngine;
+    
     [SerializeField]
     private EventReceiver_Int _changeExpReceiver;      
 
     public int CurrentExperience
     {
-        get { return _currentExperience.Value; }
+        get { return _experienceEngine.CurrentExp; }
     }
     public int ToNextLevelExperience
     {
-        get { return _toNextLevelExperience.Value; }
+        get { return _experienceEngine.NextLevelExp; }
     }
     public int TotalExperience
     {
-        get { return _totalExperience.Value; }
+        get { return _experienceEngine.TotalExp; }
     }
 
     [SerializeField]
@@ -53,5 +59,12 @@ public class Component_Experience :MonoBehaviour,
     public void ChangeExperience(int experience)
     {
         _changeExpReceiver.Call(experience);
-    }    
+    }
+    
+    public void SpendExpPerLevel(int exp)
+    {
+        _experienceEngine.OnSpendedExpForLevelUpOnClick(exp);
+
+        OnSpendExperience?.Invoke(exp);
+    }
 }

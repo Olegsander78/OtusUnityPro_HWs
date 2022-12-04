@@ -4,7 +4,7 @@ using System;
 using Sirenix.OdinInspector;
 using Entities;
 
-public class ExperienceMechanics : MonoBehaviour
+public class ExperienceEngine : MonoBehaviour
 {
     public event Action OnSetuped;
 
@@ -67,7 +67,7 @@ public class ExperienceMechanics : MonoBehaviour
     [Title("Methods")]
     [GUIColor(0, 1, 0)]
     [Button]
-    private void Setup(int curExp, int nextLvlExp, int totalExp)
+    public void Setup(int curExp, int nextLvlExp, int totalExp)
     {
         _currentExp.Value = curExp;
         _nextLevelExp.Value = nextLvlExp;
@@ -126,7 +126,7 @@ public class ExperienceMechanics : MonoBehaviour
     // Experience calculate for OnClick
     [GUIColor(0, 1, 0)]
     [Button]
-    private void OnAddedExpWithoutAutoSpending(int value)
+    public void OnAddedExpWithoutAutoSpending(int value)
     {
         _totalExp.Value += value;
         _currentExp.Value += value;
@@ -136,13 +136,11 @@ public class ExperienceMechanics : MonoBehaviour
     // Experience calculate levels OnClick
     [GUIColor(0, 1, 0)]
     [Button]
-    private void OnSpendedExpForLevelUpOnClick(int value)
-    {
-        _currentExp.Value -= value;
-
+    public void OnSpendedExpForLevelUpOnClick(int value)
+    {        
         if (value >= _nextLevelExp.Value)
-        {            
-            _currentExp.Value = Mathf.Max(0, _currentExp.Value);
+        {
+            _currentExp.Value = Mathf.Max(0, _currentExp.Value - _nextLevelExp.Value);
             value = value - _nextLevelExp.Value;
             _levelUpEngine.CurrentLevel++;
             SetNextLevelExp();

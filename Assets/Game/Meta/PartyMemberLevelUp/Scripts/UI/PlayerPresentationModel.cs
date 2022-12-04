@@ -1,20 +1,21 @@
+using Entities;
 using System;
 using UnityEngine;
 public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 {
     public event Action<bool> OnLevelUpButtonStateChanged;
 
-    private readonly PartyMember _player;
+    private PartyMember _player;
 
-    private readonly PlayerLevelUpper _playerLevelUpper;
+    private PlayerLevelUpper _playerLevelUpper;
 
-    //private readonly ExperienceStorage _expStorage;
+    private IEntity _character;
 
-    public PlayerPresentationModel(PartyMember player, PlayerLevelUpper playerLevelUpper)
+    public PlayerPresentationModel(PartyMember player, IEntity character, PlayerLevelUpper playerLevelUpper)
     {
         _player = player;
+        _character = character;
         _playerLevelUpper = playerLevelUpper;
-        //_expStorage = expStorage;
     }
 
     public void StartPM()
@@ -32,38 +33,39 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
         return _player.TitleText;
     }
 
-    public string GetNameHero()
+    public string GetHeroName()
     {
-        return _player.NameHeroText;    }
+        return _player.NameHeroText; 
+    }
 
     public Sprite GetIcon()
     {
         return _player.IconHeroImage;
     }
 
-    public string GetClassHero()
+    public string GetHeroClass()
     {
         return _player.ClassHero.ToString();
     }
 
-    public string GetHistoryHero()
+    public string GetHeroHistory()
     {
         return _player.HistoryHeroText;
     }
 
-    public string GetLevelHero()
+    public string GetHeroLevel()
     {
-        return _player.MemberOfParty.Get<IComponent_GetLevel>().Level.ToString();
+        return _character.Get<IComponent_GetLevel>().Level.ToString();
     }
 
     public string GetMaxHitPointsHero()
     {
-        return _player.MemberOfParty.Get<IComponent_GetHitPoints>().MaxHitPoints.ToString();
+        return _character.Get<IComponent_GetHitPoints>().MaxHitPoints.ToString();
     }
 
     public string GetMeleeDamageHero()
     {
-        return _player.MemberOfParty.Get<IComponent_GetMeleeDamage>().Damage.ToString();
+        return _character.Get<IComponent_GetMeleeDamage>().Damage.ToString();
     }
 
     public bool CanLevelUp()
@@ -81,5 +83,5 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
     {
        // var canLevelUp = _playerLevelUpper.CanLevelUp(_player);
        // OnLevelUpButtonStateChanged?.Invoke(canLevelUp);
-    }    
+    }
 }
