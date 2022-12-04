@@ -45,9 +45,16 @@ public sealed class PlayerPopup : Popup
         }
 
         _presenter = presenter;
+        UpdateStats(_presenter);
+
         _presenter.OnLevelUpButtonStateChanged += OnLevelUpButtonStateChanged;
         _presenter.StartPM();
 
+        _levelUpButton.AddListener(OnLevelUpButtonClicked);
+    }
+
+    private void UpdateStats(IPresentationModel presenter)
+    {
         _titleText.text = presenter.GetTitle();
         _nameHeroText.text = presenter.GetHeroName();
         _classHeroText.text = presenter.GetHeroClass();
@@ -60,24 +67,23 @@ public sealed class PlayerPopup : Popup
 
         _levelUpButton.SetPrice(presenter.GetPrice());
         _levelUpButton.SetAvailable(presenter.CanLevelUp());
-        _levelUpButton.AddListener(OnLevelUpButtonClicked);
     }
-
     protected override void OnHide()
     {
         _levelUpButton.RemoveListener(OnLevelUpButtonClicked);
-        _presenter.OnLevelUpButtonStateChanged -= this.OnLevelUpButtonStateChanged;
+        _presenter.OnLevelUpButtonStateChanged -= OnLevelUpButtonStateChanged;
         _presenter.StopPM();
     }
 
     private void OnLevelUpButtonStateChanged(bool isAvailabe)
-    {
+    {       
         _levelUpButton.SetAvailable(isAvailabe);
     }
 
     private void OnLevelUpButtonClicked()
     {
         _presenter.OnLevelUpClicked();
+        UpdateStats(_presenter);
     }
 
     public interface IPresentationModel

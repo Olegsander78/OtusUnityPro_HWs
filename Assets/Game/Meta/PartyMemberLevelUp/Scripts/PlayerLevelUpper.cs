@@ -3,20 +3,21 @@ using Entities;
 using Sirenix.OdinInspector;
 
 public class PlayerLevelUpper : MonoBehaviour, IConstructListener
-{    
+{
+    private const int INCREMENT_HP_PER_LEVEL = 5; 
+    private const int INCREMENT_MELEEDAMAGE_PER_LEVEL = 1; 
+
     private IEntity _character;
 
     public void Construct(GameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
-        Debug.Log("construct in PlUpper");
     }
 
     [GUIColor(0, 1, 0)]
     [Button]
     public bool CanLevelUp()
-    {
-        Debug.Log($"Check Canlevelup {_character.Get<IComponent_GetExperience>().CurrentExperience} / {_character.Get<IComponent_GetExperience>().ToNextLevelExperience} ");
+    {        
         return _character.Get<IComponent_GetExperience>().CurrentExperience >= _character.Get<IComponent_GetExperience>().ToNextLevelExperience;
     }
 
@@ -29,6 +30,12 @@ public class PlayerLevelUpper : MonoBehaviour, IConstructListener
         {
             _character.Get<IComponent_SpendExperience>().
                 SpendExpPerLevel(_character.Get<IComponent_GetExperience>().CurrentExperience);
+
+            _character.Get<IComponent_SetMeleeDamage>().SetDamage(_character.Get<IComponent_GetMeleeDamage>().Damage + INCREMENT_MELEEDAMAGE_PER_LEVEL);
+
+            _character.Get<IComponent_GetHitPoints>().MaxHitPoints += INCREMENT_HP_PER_LEVEL;
+            _character.Get<IComponent_GetHitPoints>().CurHitPoints = _character.Get<IComponent_GetHitPoints>().MaxHitPoints;
+
 
             Debug.Log($"<color=green>Party member {partyMember.NameHeroText} successfully increased level!</color>");
         }

@@ -21,12 +21,14 @@ public sealed class Component_HitPoints : MonoBehaviour,
 
     public int CurHitPoints
     {
-        get { return this._engine.CurrentHitPoints; }
+        get { return _engine.CurrentHitPoints; }
+        set { _engine.CurrentHitPoints = value; }
     }
 
     public int MaxHitPoints
     {
-        get { return this._engine.MaxHitPoints; }
+        get { return _engine.MaxHitPoints; }
+        set { _engine.MaxHitPoints = value; }
     }
 
     [SerializeField]
