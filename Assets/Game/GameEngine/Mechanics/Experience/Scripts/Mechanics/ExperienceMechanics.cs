@@ -10,6 +10,10 @@ public class ExperienceMechanics : MonoBehaviour
 
     public event Action<int> OnExpChanged;
 
+    public event Action<int> OnExpChangedOnClick;
+
+    public event Action<int> OnExpSpendedOnClick;
+
     public event Action<int> OnNextLvlExpChanged;
         
     public event Action OnExpFull;
@@ -52,12 +56,14 @@ public class ExperienceMechanics : MonoBehaviour
     }
     private void OnEnable()
     {
-        _expReceiver.OnEvent += OnAddedExp;
+        //_expReceiver.OnEvent += OnAddedExpWithAutoLevelUp;
+        _expReceiver.OnEvent += OnAddedExpWithoutAutoSpending;
     }
 
     private void OnDisable()
     {
-        _expReceiver.OnEvent -= OnAddedExp;
+        //_expReceiver.OnEvent -= OnAddedExpWithAutoLevelUp;
+        _expReceiver.OnEvent -= OnAddedExpWithoutAutoSpending;
     }
 
     [Title("Methods")]
@@ -100,9 +106,11 @@ public class ExperienceMechanics : MonoBehaviour
         _totalExp.Value += value;
     }
 
+
+    // Experience auto-calculate levels
     [GUIColor(0, 1, 0)]
     [Button]
-    private void OnAddedExp(int value)
+    private void OnAddedExpWithAutoLevelUp(int value)
     {
         _totalExp.Value += value;
         _currentExp.Value += value;
@@ -112,6 +120,33 @@ public class ExperienceMechanics : MonoBehaviour
             _currentExp.Value = _currentExp.Value - _nextLevelExp.Value;
             _character.Get<IComponent_AddLevel>().AddLevel(1);
             SetNextLevelExp();
-        }        
+        }
+        
+        OnExpChanged?.Invoke(_currentExp.Value);
+    }
+
+    // Experience calculate for OnClick
+    [GUIColor(0, 1, 0)]
+    [Button]
+    private void OnAddedExpWithoutAutoSpending(int value)
+    {
+        _totalExp.Value += value;
+        _currentExp.Value += value;
+
+        OnExpChangedOnClick?.Invoke(_currentExp.Value);
+    }
+    // Experience calculate levels OnClick
+    [GUIColor(0, 1, 0)]
+    [Button]
+    private void OnSpendedExpForLevelUpOnClick()
+    {
+        if (_currentExp.Value >= _nextLevelExp.Value)
+        {
+            _currentExp.Value = _currentExp.Value - _nextLevelExp.Value;
+            _character.Get<IComponent_AddLevel>().AddLevel(1);
+            SetNextLevelExp();
+        }
+
+        OnExpSpendedOnClick?.Invoke(_currentExp.Value);
     }
 }

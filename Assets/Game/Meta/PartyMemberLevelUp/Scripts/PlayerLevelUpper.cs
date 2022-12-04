@@ -11,6 +11,8 @@ public class PlayerLevelUpper : MonoBehaviour, IConstructListener
 
     private IComponent_GetLevel _getLevelComponent;
 
+    private IComponent_OnLevelChanged _onLevelChangedComponent;
+
     private IComponent_GetExperience _getExperienceComponent;
     public void Construct(GameContext context)
     {
@@ -19,6 +21,7 @@ public class PlayerLevelUpper : MonoBehaviour, IConstructListener
         _character = context.GetService<HeroService>().GetHero();
         _addLevelComponent = _character.Get<IComponent_AddLevel>();
         _getLevelComponent = _character.Get<IComponent_GetLevel>();
+        _onLevelChangedComponent = _character.Get<IComponent_OnLevelChanged>();
         _getExperienceComponent = _character.Get<IComponent_GetExperience>();
     }
 
@@ -31,6 +34,6 @@ public class PlayerLevelUpper : MonoBehaviour, IConstructListener
 
     public void LevelUp()
     {
-
+        
     }
 }
