@@ -23,7 +23,7 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
     private IComponent_GetExperience _component_GetExp;
 
-    private IComponent_AddExperience _component_AddExp;
+    private IComponent_ChangeExperience _component_AddExp;
 
     void IConstructListener.Construct(GameContext context)
     {
@@ -35,7 +35,7 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
         _component_GetExp = _character.Get<IComponent_GetExperience>();
 
-        _component_AddExp = _character.Get<IComponent_AddExperience>();
+        _component_AddExp = _character.Get<IComponent_ChangeExperience>();
 
         _expPanel.SetupLevel(_component_GetLevel.Level.ToString());
         

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [AddComponentMenu("GameEngine/Mechanics/Component «Experience»")]
 public class Component_Experience :MonoBehaviour, 
-    IComponent_AddExperience,
+    IComponent_ChangeExperience,
     IComponent_GetExperience
 {
     public event Action<int> OnExperienceChanged
@@ -26,7 +26,7 @@ public class Component_Experience :MonoBehaviour,
     }
 
     [SerializeField]
-    private EventReceiver_Int _addExpReceiver;      
+    private EventReceiver_Int _changeExpReceiver;      
 
     public int CurrentExperience
     {
@@ -50,8 +50,8 @@ public class Component_Experience :MonoBehaviour,
     [SerializeField]
     private IntBehaviour _totalExperience;
 
-    public void AddExperience(int experience)
+    public void ChangeExperience(int experience)
     {
-        _addExpReceiver.Call(experience);
+        _changeExpReceiver.Call(experience);
     }    
 }

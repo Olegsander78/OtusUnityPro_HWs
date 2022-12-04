@@ -1,11 +1,11 @@
 using System;
 
-public interface IComponent_AddExperience
+public interface IComponent_ChangeExperience
 {
     event Action<int> OnExperienceChanged;
 
     event Action<int> OnNextlvlExperienceChanged;
 
     event Action<int> OnTotalExperienceChanged;
-    void AddExperience(int experience);
+    void ChangeExperience(int experience);
 }

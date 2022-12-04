@@ -95,7 +95,7 @@ public class ExperienceMechanics : MonoBehaviour
     [Button]
     private void SetNextLevelExp()
     {
-        _nextLevelExp.Value = 100 * _character.Get<IComponent_GetLevel>().Level;
+        _nextLevelExp.Value = 100 * _levelUpEngine.CurrentLevel;
         OnNextLvlExpChanged?.Invoke(_nextLevelExp.Value);
     }
 
@@ -118,7 +118,7 @@ public class ExperienceMechanics : MonoBehaviour
         while(_currentExp.Value >= _nextLevelExp.Value)
         {
             _currentExp.Value = _currentExp.Value - _nextLevelExp.Value;
-            _character.Get<IComponent_AddLevel>().AddLevel(1);
+            _levelUpEngine.CurrentLevel++;
             SetNextLevelExp();
         }
         
@@ -143,7 +143,7 @@ public class ExperienceMechanics : MonoBehaviour
         if (_currentExp.Value >= _nextLevelExp.Value)
         {
             _currentExp.Value = _currentExp.Value - _nextLevelExp.Value;
-            _character.Get<IComponent_AddLevel>().AddLevel(1);
+            _levelUpEngine.CurrentLevel++;
             SetNextLevelExp();
         }
 
