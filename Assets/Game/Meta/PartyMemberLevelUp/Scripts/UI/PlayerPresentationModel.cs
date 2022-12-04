@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-
-
 public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 {
     public event Action<bool> OnLevelUpButtonStateChanged;
@@ -10,13 +8,13 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 
     private readonly PlayerLevelUpper _playerLevelUpper;
 
-    private readonly ExperienceStorage _expStorage;
+    //private readonly ExperienceStorage _expStorage;
 
-    public PlayerPresentationModel(PartyMember player, PlayerLevelUpper playerLevelUpper, ExperienceStorage expStorage)
+    public PlayerPresentationModel(PartyMember player, PlayerLevelUpper playerLevelUpper)
     {
         _player = player;
         _playerLevelUpper = playerLevelUpper;
-        _expStorage = expStorage;
+        //_expStorage = expStorage;
     }
 
     public void StartPM()

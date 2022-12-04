@@ -33,10 +33,6 @@ public class ExperienceMechanics : MonoBehaviour
     [SerializeField]
     private LevelUpEngine _levelUpEngine;
 
-    [SerializeField]
-    private UnityEntity _character;
-
-
     public int CurrentExp
     {
         get { return _currentExp.Value; }
@@ -58,12 +54,14 @@ public class ExperienceMechanics : MonoBehaviour
     {
         //_expReceiver.OnEvent += OnAddedExpWithAutoLevelUp;
         _expReceiver.OnEvent += OnAddedExpWithoutAutoSpending;
+        _expReceiver.OnEvent += OnSpendedExpForLevelUpOnClick;
     }
 
     private void OnDisable()
     {
         //_expReceiver.OnEvent -= OnAddedExpWithAutoLevelUp;
         _expReceiver.OnEvent -= OnAddedExpWithoutAutoSpending;
+        _expReceiver.OnEvent -= OnSpendedExpForLevelUpOnClick;
     }
 
     [Title("Methods")]
@@ -138,11 +136,14 @@ public class ExperienceMechanics : MonoBehaviour
     // Experience calculate levels OnClick
     [GUIColor(0, 1, 0)]
     [Button]
-    private void OnSpendedExpForLevelUpOnClick()
+    private void OnSpendedExpForLevelUpOnClick(int value)
     {
-        if (_currentExp.Value >= _nextLevelExp.Value)
-        {
-            _currentExp.Value = _currentExp.Value - _nextLevelExp.Value;
+        _currentExp.Value -= value;
+
+        if (value >= _nextLevelExp.Value)
+        {            
+            _currentExp.Value = Mathf.Max(0, _currentExp.Value);
+            value = value - _nextLevelExp.Value;
             _levelUpEngine.CurrentLevel++;
             SetNextLevelExp();
         }

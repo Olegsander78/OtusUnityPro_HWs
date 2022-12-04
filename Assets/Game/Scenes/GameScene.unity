@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f85fef83fa24b4fa79e7a70d9eec2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 300
+  value: 0
 --- !u!1 &113199252
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a571ab830ef1146bb9cfc51372ac4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _partyMember: {fileID: 0}
 --- !u!1 &212325573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,7 +1824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f85fef83fa24b4fa79e7a70d9eec2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 300
+  value: 0
 --- !u!1 &794732821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2931,7 +2932,6 @@ MonoBehaviour:
   _nextLevelExp: {fileID: 1325866501}
   _totalExp: {fileID: 90603855}
   _levelUpEngine: {fileID: 547723183}
-  _character: {fileID: 9132227182522956720}
 --- !u!114 &1260005047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3013,6 +3013,8 @@ MonoBehaviour:
   - {fileID: 6036786507298616449}
   - {fileID: 6600653078313580083}
   - {fileID: 1629863449}
+  - {fileID: 2064652361}
+  - {fileID: 195231937}
   _services:
   - {fileID: 548840911}
   - {fileID: 1580759285}
@@ -3020,7 +3022,6 @@ MonoBehaviour:
   - {fileID: 1513928997}
   - {fileID: 905701458}
   - {fileID: 717236818}
-  - {fileID: 1016778452}
   - {fileID: 2064652361}
   - {fileID: 195231937}
 --- !u!114 &1293597473

@@ -1,20 +1,19 @@
 using UnityEngine;
 
-
 public sealed class PlayerPresentationModelFactory : MonoBehaviour, IConstructListener
 {
     private PlayerLevelUpper _playerLevelUpper;
 
-    private ExperienceStorage _experienceStorage;
+    //private ExperienceStorage _experienceStorage;
 
     public PlayerPresentationModel CreatePresenter(PartyMember player)
     {
-        return new PlayerPresentationModel(player, _playerLevelUpper, _experienceStorage);
+        return new PlayerPresentationModel(player, _playerLevelUpper);
     }
 
     void IConstructListener.Construct(GameContext context)
     {
         _playerLevelUpper = context.GetService<PlayerLevelUpper>();
-        _experienceStorage = context.GetService<ExperienceStorage>();
+        //_experienceStorage = context.GetService<ExperienceStorage>();
     }
 }

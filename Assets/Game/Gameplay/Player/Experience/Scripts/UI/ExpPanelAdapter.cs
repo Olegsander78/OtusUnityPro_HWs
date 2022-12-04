@@ -12,7 +12,7 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
     [SerializeField]
     private ExperiencePanel _expPanel;
 
-    private ExperienceStorage _expStorage;
+    //private ExperienceStorage _expStorage;
 
     private IEntity _character;
 
@@ -27,7 +27,7 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
     void IConstructListener.Construct(GameContext context)
     {
-        _expStorage = context.GetService<ExperienceStorage>();
+        //_expStorage = context.GetService<ExperienceStorage>();
 
         _character = context.GetService<HeroService>().GetHero();
 
