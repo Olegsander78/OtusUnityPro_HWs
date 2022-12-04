@@ -5,52 +5,52 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 {
     public event Action<bool> OnLevelUpButtonStateChanged;
 
-    private PartyMember _player;
+    private PartyMember _partyMember;
 
     private PlayerLevelUpper _playerLevelUpper;
 
     private IEntity _character;
 
-    public PlayerPresentationModel(PartyMember player, IEntity character, PlayerLevelUpper playerLevelUpper)
+    public PlayerPresentationModel(PartyMember partyMember, IEntity character, PlayerLevelUpper playerLevelUpper)
     {
-        _player = player;
+        _partyMember = partyMember;
         _character = character;
         _playerLevelUpper = playerLevelUpper;
     }
 
     public void StartPM()
     {
-        //_expStorage.OnExpChanged += OnExpChanged;
+        _character.Get<IComponent_ChangeExperience>().OnExperienceChanged += OnExpSpended;
     }
 
     public void StopPM()
     {
-        //_expStorage.OnExpChanged -= OnExpChanged;
+        _character.Get<IComponent_ChangeExperience>().OnExperienceChanged -= OnExpSpended;
     }
 
     public string GetTitle()
     {
-        return _player.TitleText;
+        return _partyMember.TitleText;
     }
 
     public string GetHeroName()
     {
-        return _player.NameHeroText; 
+        return _partyMember.NameHeroText; 
     }
 
     public Sprite GetIcon()
     {
-        return _player.IconHeroImage;
+        return _partyMember.IconHeroImage;
     }
 
     public string GetHeroClass()
     {
-        return _player.ClassHero.ToString();
+        return _partyMember.ClassHero.ToString();
     }
 
     public string GetHeroHistory()
     {
-        return _player.HistoryHeroText;
+        return _partyMember.HistoryHeroText;
     }
 
     public string GetHeroLevel()
@@ -67,21 +67,29 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
     {
         return _character.Get<IComponent_GetMeleeDamage>().Damage.ToString();
     }
+    public string GetCurrentExperience()
+    {
+        return _character.Get<IComponent_GetExperience>().CurrentExperience.ToString();
+    }
+
+    public string GetPrice()
+    {
+        return _character.Get<IComponent_GetExperience>().ToNextLevelExperience.ToString();
+    }
 
     public bool CanLevelUp()
     {
-        // return _playerLevelUpper.CanLevelUp(_player);
-        return true;
+        return _playerLevelUpper.CanLevelUp();        
     }
 
     public void OnLevelUpClicked()
     {
-        //_playerLevelUpper.LevelUp(_player);
+        _playerLevelUpper.LevelUp(_partyMember);
     }
 
-    private void OnExpChanged(int money)
+    private void OnExpSpended(int exp)
     {
-       // var canLevelUp = _playerLevelUpper.CanLevelUp(_player);
-       // OnLevelUpButtonStateChanged?.Invoke(canLevelUp);
+        var canLevelUp = _playerLevelUpper.CanLevelUp();
+        OnLevelUpButtonStateChanged?.Invoke(canLevelUp);
     }
 }

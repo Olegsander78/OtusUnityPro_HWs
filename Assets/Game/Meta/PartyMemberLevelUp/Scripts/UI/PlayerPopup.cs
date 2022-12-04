@@ -30,7 +30,10 @@ public sealed class PlayerPopup : Popup
     private TextMeshProUGUI _meleeDamageHeroText;
 
     [SerializeField]
-    private LevelUpButton _levelUpButton;
+    private TextMeshProUGUI _currentExpHeroText;
+
+    [SerializeField]
+    private BuyButton _levelUpButton;
 
     private IPresentationModel _presenter;
 
@@ -53,7 +56,9 @@ public sealed class PlayerPopup : Popup
         _levelHeroText.text = presenter.GetHeroLevel();
         _hitPointsHeroText.text = presenter.GetMaxHitPointsHero();
         _meleeDamageHeroText.text = presenter.GetMeleeDamageHero();
+        _currentExpHeroText.text = presenter.GetCurrentExperience();
 
+        _levelUpButton.SetPrice(presenter.GetPrice());
         _levelUpButton.SetAvailable(presenter.CanLevelUp());
         _levelUpButton.AddListener(OnLevelUpButtonClicked);
     }
@@ -94,6 +99,9 @@ public sealed class PlayerPopup : Popup
         string GetHeroLevel();
         string GetMaxHitPointsHero();
         string GetMeleeDamageHero();
+
+        string GetCurrentExperience();
+        string GetPrice();
 
         bool CanLevelUp();
 
