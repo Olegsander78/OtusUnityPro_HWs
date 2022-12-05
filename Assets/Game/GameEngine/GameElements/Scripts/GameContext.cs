@@ -2,8 +2,9 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using GameElements;
 
-public class GameContext : MonoBehaviour
+public class GameContext : MonoBehaviour, IGameContext
 {
     public event Action OnGameStarted;    
 
@@ -16,7 +17,61 @@ public class GameContext : MonoBehaviour
     [ReadOnly]
     [ShowInInspector]
     private readonly List<object> _services = new();
-    
+
+    GameState IGameContext.State => throw new NotImplementedException();
+
+    event Action IGameContext.OnGameInitialized
+    {
+        add
+        {
+            throw new NotImplementedException();
+        }
+
+        remove
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    event Action IGameContext.OnGameReady
+    {
+        add
+        {
+            throw new NotImplementedException();
+        }
+
+        remove
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    event Action IGameContext.OnGamePaused
+    {
+        add
+        {
+            throw new NotImplementedException();
+        }
+
+        remove
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    event Action IGameContext.OnGameResumed
+    {
+        add
+        {
+            throw new NotImplementedException();
+        }
+
+        remove
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public T GetService<T>()
     {
         foreach (var service in _services)
@@ -94,5 +149,65 @@ public class GameContext : MonoBehaviour
         Debug.Log("Game Finished!");        
 
         OnGameFinished?.Invoke();
+    }
+
+    void IGameContext.InitGame()
+    {
+        throw new NotImplementedException();
+    }
+
+    void IGameContext.ReadyGame()
+    {
+        throw new NotImplementedException();
+    }
+
+    void IGameContext.PauseGame()
+    {
+        throw new NotImplementedException();
+    }
+
+    void IGameContext.ResumeGame()
+    {
+        throw new NotImplementedException();
+    }
+
+    void IGameContext.RegisterElement(IGameElement element)
+    {
+        throw new NotImplementedException();
+    }
+
+    void IGameContext.UnregisterElement(IGameElement element)
+    {
+        throw new NotImplementedException();
+    }
+
+    void IGameContext.RegisterService(object service)
+    {
+        throw new NotImplementedException();
+    }
+
+    void IGameContext.UnregisterService(object service)
+    {
+        throw new NotImplementedException();
+    }
+
+    object[] IGameContext.GetAllServices()
+    {
+        throw new NotImplementedException();
+    }
+
+    object IGameContext.GetService(Type type)
+    {
+        throw new NotImplementedException();
+    }
+
+    bool IGameContext.TryGetService<T>(out T service)
+    {
+        throw new NotImplementedException();
+    }
+
+    bool IGameContext.TryGetService(Type type, out object service)
+    {
+        throw new NotImplementedException();
     }
 }
