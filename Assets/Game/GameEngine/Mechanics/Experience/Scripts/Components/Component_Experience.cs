@@ -6,6 +6,7 @@ using UnityEngine;
 public class Component_Experience :MonoBehaviour, 
     IComponent_ChangeExperience,
     IComponent_GetExperience,
+    IComponent_SetExperience,
     IComponent_SpendExperience
 {
     public event Action<int> OnExperienceChanged
@@ -55,6 +56,19 @@ public class Component_Experience :MonoBehaviour,
 
     [SerializeField]
     private IntBehaviour _totalExperience;
+
+    public void SetCurrentExperience(int exp)
+    {
+        _experienceEngine.CurrentExp = exp;
+    }
+    public void SetNextLevelExperience(int exp)
+    {
+        _experienceEngine.NextLevelExp = exp;
+    }
+    public void SetTotalExperience(int exp)
+    {
+        _experienceEngine.TotalExp = exp;
+    }
 
     public void ChangeExperience(int experience)
     {

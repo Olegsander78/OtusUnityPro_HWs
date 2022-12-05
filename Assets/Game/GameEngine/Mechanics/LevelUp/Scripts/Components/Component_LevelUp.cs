@@ -6,6 +6,7 @@ using Elementary;
 [AddComponentMenu("GameEngine/Mechanics/Component «LevelUp»")]
 public sealed class Component_LevelUp : MonoBehaviour,
     IComponent_GetLevel,
+    IComponent_SetLevel,
     IComponent_OnLevelChanged,
     IComponent_AddLevel
 {
