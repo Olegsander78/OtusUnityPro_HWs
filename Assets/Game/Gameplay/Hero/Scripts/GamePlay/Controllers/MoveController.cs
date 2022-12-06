@@ -14,11 +14,9 @@ public class MoveController : MonoBehaviour,
     void IGameInitElement.InitGame(IGameContext context)
     {
         _input = context.GetService<KeyboardInput>();
-        Debug.Log(" Get KeyboardInputService!");
         _moveComponent = context.GetService<HeroService>()
             .GetHero()
             .Get<IComponent_MoveInDirection>();
-        Debug.Log(" Get MoveCompon!");
     }
 
     void IGameStartElement.StartGame(IGameContext context)
