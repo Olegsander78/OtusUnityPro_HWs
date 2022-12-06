@@ -214,7 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameElements: []
+  gameElements:
+  - {fileID: 1580759285}
 --- !u!114 &25734115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2156,6 +2157,7 @@ MonoBehaviour:
   - {fileID: 1505714480508210649}
   - {fileID: 8820169885798365873}
   - {fileID: 5712831829680806480}
+  - {fileID: 905701458}
 --- !u!1 &918980288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,6 +2271,10 @@ MonoBehaviour:
   gameServices:
   - {fileID: 548840911}
   - {fileID: 146174681}
+  - {fileID: 146174680}
+  - {fileID: 146174682}
+  - {fileID: 146174683}
+  - {fileID: 146174684}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3128,6 +3134,7 @@ GameObject:
   - component: {fileID: 1293597470}
   - component: {fileID: 1293597474}
   - component: {fileID: 1293597475}
+  - component: {fileID: 1293597476}
   m_Layer: 0
   m_Name: GAME_CONTEXT
   m_TagString: GameContext
@@ -3179,7 +3186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d81c3c6418194b6290affd2c186ac72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoRun: 0
+  autoRun: 1
   gameServices:
   - {fileID: 1687535227}
   - {fileID: 961791230}
@@ -3190,6 +3197,25 @@ MonoBehaviour:
   - {fileID: 961791229}
   - {fileID: 1035551874}
   - {fileID: 256818653}
+--- !u!114 &1293597476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293597469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508d1e5ed99c4f499d4d65e7b83da2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  installOnAwake: 1
+  monoServices:
+  - {fileID: 961791230}
+  - {fileID: 1687535227}
+  - {fileID: 1035551875}
+  - {fileID: 256818654}
+  servicePacks: []
 --- !u!1 &1325866499
 GameObject:
   m_ObjectHideFlags: 0

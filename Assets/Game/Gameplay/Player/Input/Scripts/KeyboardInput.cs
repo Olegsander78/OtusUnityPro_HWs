@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using GameElements;
 
 public sealed class KeyboardInput : MonoBehaviour,
-    IStartGameListener,
-    IFinishGameListener
+    IGameStartElement,
+    IGameFinishElement
 {
     public event Action<Vector3> OnMoveEvent;
     public event Action OnJumpEvent;
@@ -20,12 +21,12 @@ public sealed class KeyboardInput : MonoBehaviour,
         HandleKeyboard();
     }
 
-    void IStartGameListener.OnStartGame()
+    void IGameStartElement.StartGame(IGameContext context)
     {
         enabled = true;
     }
 
-    void IFinishGameListener.OnFinishGame()
+    void IGameFinishElement.FinishGame(IGameContext context)
     {
         enabled = false;
     }

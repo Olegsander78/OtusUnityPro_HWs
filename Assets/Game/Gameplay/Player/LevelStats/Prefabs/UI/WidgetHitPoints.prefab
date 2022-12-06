@@ -209,7 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameElements: []
+  gameElements:
+  - {fileID: 652019430726369597}
 --- !u!1 &5808786837866265411
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,9 +307,9 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
