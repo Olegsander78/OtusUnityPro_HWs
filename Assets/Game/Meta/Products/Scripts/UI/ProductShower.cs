@@ -1,8 +1,8 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using GameElements;
 
-
-public sealed class ProductShower : MonoBehaviour, IConstructListener
+public sealed class ProductShower : MonoBehaviour, IGameInitElement
 {
     private PopupManager popupManager;
 
@@ -15,7 +15,7 @@ public sealed class ProductShower : MonoBehaviour, IConstructListener
         this.popupManager.ShowPopup(PopupName.PRODUCT, presentationModel);
     }
 
-    void IConstructListener.Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         this.popupManager = context.GetService<PopupManager>();
         this.presenterFactory = context.GetService<ProductPresentationModelFactory>();

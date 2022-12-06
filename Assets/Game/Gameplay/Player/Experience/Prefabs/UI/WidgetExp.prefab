@@ -145,6 +145,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1838594393514158116}
   - component: {fileID: 1838594393514158121}
+  - component: {fileID: 3647035302509157622}
+  - component: {fileID: 6842477785712602197}
   m_Layer: 5
   m_Name: WidgetExp
   m_TagString: Untagged
@@ -182,6 +184,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838594393514158117}
   m_CullTransparentMesh: 0
+--- !u!114 &3647035302509157622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838594393514158117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be92d8661e54e91951a924b1dc1c368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameServices:
+  - {fileID: 7963231916527889571}
+--- !u!114 &6842477785712602197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838594393514158117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameElements:
+  - {fileID: 7963231916527889571}
 --- !u!1 &1838594394777885060
 GameObject:
   m_ObjectHideFlags: 0

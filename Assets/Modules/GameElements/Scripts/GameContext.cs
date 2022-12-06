@@ -47,6 +47,7 @@ namespace GameElements
             this.State = GameState.INIT;
             this.elementContext.InitGame();
             this.OnGameInitialized?.Invoke();
+            Debug.Log(" The game elements was Init!");
         }
 
         protected virtual void OnInitGame()
@@ -66,6 +67,7 @@ namespace GameElements
             this.State = GameState.READY;
             this.elementContext.ReadyGame();
             this.OnGameReady?.Invoke();
+            Debug.Log(" The game elements is Ready!");
         }
 
         protected virtual void OnReadyGame()
@@ -85,6 +87,7 @@ namespace GameElements
             this.State = GameState.PLAY;
             this.elementContext.StartGame();
             this.OnGameStarted?.Invoke();
+            Debug.Log(" The game elements Started!");
         }
 
         protected virtual void OnStartGame()
@@ -137,6 +140,7 @@ namespace GameElements
                 this.State = GameState.FINISH;
                 this.elementContext.FinishGame();
                 this.OnGameFinished?.Invoke();
+                Debug.Log(" The game elements Finished!");
             }
             else
             {

@@ -114,6 +114,8 @@ GameObject:
   - component: {fileID: 5808786837019313979}
   - component: {fileID: 5808786837019313977}
   - component: {fileID: 5808786837019313976}
+  - component: {fileID: 5407237995239676246}
+  - component: {fileID: 8887954661024509252}
   m_Layer: 5
   m_Name: WidgetHitPoints
   m_TagString: Untagged
@@ -181,6 +183,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5407237995239676246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808786837019313978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be92d8661e54e91951a924b1dc1c368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameServices:
+  - {fileID: 652019430726369597}
+--- !u!114 &8887954661024509252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808786837019313978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameElements: []
 --- !u!1 &5808786837866265411
 GameObject:
   m_ObjectHideFlags: 0

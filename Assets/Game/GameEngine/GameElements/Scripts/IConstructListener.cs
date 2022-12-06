@@ -1,4 +1,4 @@
-﻿internal interface IConstructListener
-{
-    void Construct(GameContext context);
-}
+﻿//internal interface IConstructListener
+//{
+//    void Construct(GameContext context);
+//}

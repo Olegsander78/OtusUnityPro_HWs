@@ -1,10 +1,11 @@
 using Entities;
 using UnityEngine;
+using GameElements;
 
 public class DamageParameterAdapter : MonoBehaviour,
-    IConstructListener,
-    IStartGameListener,
-    IFinishGameListener
+    IGameInitElement,
+    IGameStartElement,
+    IGameFinishElement
 
 {
     [SerializeField]
@@ -12,18 +13,18 @@ public class DamageParameterAdapter : MonoBehaviour,
 
     private IEntity _character;
 
-    public void Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
         SetupPanel();
     }
-    public void OnStartGame()
+    void IGameStartElement.StartGame(IGameContext context)
     {
         _character.Get<IComponent_OnMeleeDamageChanged>().OnDamageChanged += UpdatePanel;
 
     }
 
-    public void OnFinishGame()
+    void IGameFinishElement.FinishGame(IGameContext context)
     {
         _character.Get<IComponent_OnMeleeDamageChanged>().OnDamageChanged -= UpdatePanel;
     }

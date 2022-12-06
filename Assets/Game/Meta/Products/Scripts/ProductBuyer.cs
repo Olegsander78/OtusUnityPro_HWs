@@ -1,7 +1,8 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using GameElements;
 
-public sealed class ProductBuyer : MonoBehaviour, IConstructListener
+public sealed class ProductBuyer : MonoBehaviour, IGameInitElement
 {
     private MoneyStorage _moneyStorage;
 
@@ -25,7 +26,7 @@ public sealed class ProductBuyer : MonoBehaviour, IConstructListener
         }
     }
 
-    void IConstructListener.Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _moneyStorage = context.GetService<MoneyStorage>();
     }

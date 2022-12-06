@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Popup : MonoBehaviour
 {
     private ICallback _callback;

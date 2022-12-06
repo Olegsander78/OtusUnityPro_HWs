@@ -1,11 +1,12 @@
 using Entities;
 using UnityEngine;
+using GameElements;
 
 //ADAPTER
 public sealed class ExpPanelAdapter : MonoBehaviour,
-    IConstructListener,
-    IStartGameListener,
-    IFinishGameListener
+    IGameInitElement,
+    IGameStartElement,
+    IGameFinishElement
 {
     [SerializeField]
     private ExperiencePanel _expPanel;
@@ -21,7 +22,7 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
     private IComponent_ChangeExperience _component_AddExp;
 
-    void IConstructListener.Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
 
@@ -38,15 +39,15 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
         _expPanel.SetupIcon(_partyMember.IconHeroImage);
     }
 
-    public void OnStartGame()
+    void IGameStartElement.StartGame(IGameContext context)
     {
         _component_AddExp.OnExperienceChanged += OnCurrentExpChanged;
         _component_AddExp.OnNextlvlExperienceChanged += OnNextLvlExpChanged;
 
         _character.Get<IComponent_OnLevelChanged>().OnLevelChanged += UpdateCurLvlPanel;
-    }    
+    }
 
-    public void OnFinishGame()
+    void IGameFinishElement.FinishGame(IGameContext context)
     {
         _component_AddExp.OnExperienceChanged -= OnCurrentExpChanged;
         _component_AddExp.OnNextlvlExperienceChanged -= OnNextLvlExpChanged;

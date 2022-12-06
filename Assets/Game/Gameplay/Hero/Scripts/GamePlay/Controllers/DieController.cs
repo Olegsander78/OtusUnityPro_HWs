@@ -1,20 +1,21 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections;
+using GameElements;
 
 [AddComponentMenu("Gameplay/Hero/Hero Die Controller")]
 public class DieController : MonoBehaviour,
-    IConstructListener,
-    IStartGameListener,
-    IFinishGameListener
+    IGameInitElement,
+    IGameStartElement,
+    IGameFinishElement
 {
     private const float DELAY = 1f;
     
-    private GameContext _gameContext;
+    private IGameContext _gameContext;
 
     private IComponent_Die _dieComponent;
 
-    public void Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _gameContext = context;
 
@@ -22,13 +23,13 @@ public class DieController : MonoBehaviour,
             .GetHero()
             .Get<IComponent_Die>();
     }
-        
-    void IStartGameListener.OnStartGame()
+
+    void IGameStartElement.StartGame(IGameContext context)
     {
         _dieComponent.OnDestroyedEvent += OnHeroDestroyed;
     }
 
-    void IFinishGameListener.OnFinishGame()
+    void IGameFinishElement.FinishGame(IGameContext context)
     {
         _dieComponent.OnDestroyedEvent -= OnHeroDestroyed;
     }

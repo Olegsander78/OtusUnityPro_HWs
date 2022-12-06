@@ -1,7 +1,7 @@
 using UnityEngine;
+using GameElements;
 
-
-public sealed class ProductPresentationModelFactory : MonoBehaviour, IConstructListener
+public sealed class ProductPresentationModelFactory : MonoBehaviour, IGameInitElement
 {
     private ProductBuyer productBuyer;
 
@@ -12,7 +12,7 @@ public sealed class ProductPresentationModelFactory : MonoBehaviour, IConstructL
         return new ProductPresentationModel(product, this.productBuyer, this.moneyStorage);
     }
 
-    void IConstructListener.Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         this.productBuyer = context.GetService<ProductBuyer>();
         this.moneyStorage = context.GetService<MoneyStorage>();

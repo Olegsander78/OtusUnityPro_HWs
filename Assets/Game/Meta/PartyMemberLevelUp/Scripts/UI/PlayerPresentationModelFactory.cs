@@ -1,7 +1,8 @@
 using Entities;
 using UnityEngine;
+using GameElements;
 
-public sealed class PlayerPresentationModelFactory : MonoBehaviour, IConstructListener
+public sealed class PlayerPresentationModelFactory : MonoBehaviour, IGameInitElement
 {
     private IEntity _character;
 
@@ -12,7 +13,7 @@ public sealed class PlayerPresentationModelFactory : MonoBehaviour, IConstructLi
         return new PlayerPresentationModel(player,_character, _playerLevelUpper);
     }
 
-    void IConstructListener.Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
         _playerLevelUpper = context.GetService<PlayerLevelUpper>();

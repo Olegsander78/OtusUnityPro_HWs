@@ -1,29 +1,30 @@
 using Entities;
 using UnityEngine;
+using GameElements;
 
 public class LevelUpParameterAdapter : MonoBehaviour,
-    IConstructListener,
-    IStartGameListener,
-    IFinishGameListener
+    IGameInitElement,
+    IGameStartElement,
+    IGameFinishElement
 {
     [SerializeField]
     private PropertyPanel _panel;
 
     private IEntity _character;
 
-    public void Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
 
         SetupPanel();        
     }
-    public void OnStartGame()
+    void IGameStartElement.StartGame(IGameContext context)
     {
         _character.Get<IComponent_OnLevelChanged>().OnLevelChanged += UpdateCurLvlPanel;
         _character.Get<IComponent_OnLevelChanged>().OnMaxLevelChanged += UpdateMaxLvlPanel;
     }
 
-    public void OnFinishGame()
+    void IGameFinishElement.FinishGame(IGameContext context)
     {
         _character.Get<IComponent_OnLevelChanged>().OnLevelChanged -= UpdateCurLvlPanel;
         _character.Get<IComponent_OnLevelChanged>().OnMaxLevelChanged -= UpdateMaxLvlPanel;

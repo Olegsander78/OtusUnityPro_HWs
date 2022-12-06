@@ -1,16 +1,17 @@
 using UnityEngine;
+using GameElements;
 
 [AddComponentMenu("Gameplay/Hero/Hero Move Controller")]
 public class MoveController : MonoBehaviour,
-    IConstructListener,
-    IStartGameListener,
-    IFinishGameListener
+    IGameInitElement,
+    IGameStartElement,
+    IGameFinishElement
 {    
     private KeyboardInput _input;
 
     private IComponent_MoveInDirection _moveComponent;
 
-    void IConstructListener.Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _input = context.GetService<KeyboardInput>();
 
@@ -19,12 +20,12 @@ public class MoveController : MonoBehaviour,
             .Get<IComponent_MoveInDirection>();
     }
 
-    void IStartGameListener.OnStartGame()
+    void IGameStartElement.StartGame(IGameContext context)
     {
         _input.OnMoveEvent += Move;
     }
 
-    void IFinishGameListener.OnFinishGame()
+    void IGameFinishElement.FinishGame(IGameContext context)
     {
         _input.OnMoveEvent -= Move;
     }

@@ -1,12 +1,13 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
+using GameElements;
 
 public class GameLauncher : MonoBehaviour,
-    IConstructListener
+    IGameInitElement
 
 {
-    private GameContext _gameContext;
+    private IGameContext _gameContext;
 
     [Header("Start Game Timer")]
     [SerializeField]
@@ -22,7 +23,7 @@ public class GameLauncher : MonoBehaviour,
         _startDelay = _delay;
     }
 
-    public void Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _gameContext = context;
     }

@@ -1,17 +1,17 @@
 using UnityEngine;
-using Entities;
+using GameElements;
 
 [AddComponentMenu("Gameplay/Hero/Hero RangeAttack Controller")]
 public class RangeAttackConroller : MonoBehaviour,
-    IConstructListener,
-    IStartGameListener,
-    IFinishGameListener
+    IGameInitElement,
+    IGameStartElement,
+    IGameFinishElement
 {    
     private KeyboardInput _input;
 
     private IComponent_RangeAttack _rangeAttackComponent;
 
-    void IConstructListener.Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _input = context.GetService<KeyboardInput>();
 
@@ -20,12 +20,12 @@ public class RangeAttackConroller : MonoBehaviour,
             .Get<IComponent_RangeAttack>();
     }
 
-    void IStartGameListener.OnStartGame()
+    void IGameStartElement.StartGame(IGameContext context)
     {
         _input.OnRangeAttackEvent += RangeAttack;
     }
 
-    void IFinishGameListener.OnFinishGame()
+    void IGameFinishElement.FinishGame(IGameContext context)
     {
         _input.OnRangeAttackEvent -= RangeAttack;
     }

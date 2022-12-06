@@ -1,29 +1,29 @@
 using UnityEngine;
-
+using GameElements;
 
 //ADAPTER
 public sealed class MoneyPanelAdapter : MonoBehaviour,
-    IConstructListener,
-    IStartGameListener,
-    IFinishGameListener
+    IGameInitElement, 
+    IGameStartElement,
+    IGameFinishElement
 {
     [SerializeField]
     private CurrencyPanel _moneyPanel;
 
     private MoneyStorage _moneyStorage;
 
-    void IConstructListener.Construct(GameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         _moneyStorage = context.GetService<MoneyStorage>();
         _moneyPanel.SetupMoney(_moneyStorage.Money.ToString());
     }
 
-    void IStartGameListener.OnStartGame()
+    void IGameStartElement.StartGame(IGameContext context)
     {
         _moneyStorage.OnMoneyChanged += OnMoneyChanged;
     }
 
-    void IFinishGameListener.OnFinishGame()
+    void IGameFinishElement.FinishGame(IGameContext context)
     {
         _moneyStorage.OnMoneyChanged -= OnMoneyChanged;
     }

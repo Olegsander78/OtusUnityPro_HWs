@@ -1,5 +1,4 @@
 using Entities;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 
@@ -16,6 +15,7 @@ public sealed class HeroService : MonoBehaviour
 
     public IEntity GetHero()
     {
+        Debug.Log(" Get Hero!");
         return _currentHero;
     }
 }

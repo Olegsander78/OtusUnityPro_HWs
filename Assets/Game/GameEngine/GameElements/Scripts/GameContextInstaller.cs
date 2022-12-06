@@ -1,12 +1,13 @@
 using UnityEngine;
+using GameElements;
 public sealed class GameContextInstaller : MonoBehaviour
 {
     [SerializeField]
-    private GameContext _context;
+    private IGameContext _context;
 
     [Space]
     [SerializeField]
-    private MonoBehaviour[] _listeners;
+    private MonoBehaviour[] _elements;
 
     [Space]
     [SerializeField]
@@ -14,14 +15,14 @@ public sealed class GameContextInstaller : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var service in _services)
+        foreach (object service in _services)
         {
-            _context.AddService(service);
+            _context.RegisterService(service);
         }
 
-        foreach (var listener in _listeners)
+        foreach (var element in _elements)
         {
-            _context.AddListener(listener);
+            _context.RegisterElement((IGameElement)element);
         }
     }
 }
