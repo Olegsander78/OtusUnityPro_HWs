@@ -1,106 +1,54 @@
-using System.Collections;
-using GameElements.Unity;
-using Services;
-using Services.Unity;
-using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
-//using UnityEngine.AddressableAssets;
-using UnityEngine.SceneManagement;
 
 
-//Тестовый класс... Нарушает принципы SOLID
 public sealed class ApplicationManager : MonoBehaviour
 {
-    [SerializeField]
-    private ServiceInstaller serviceInstaller;
+    public event Action<float> OnUpdate;
 
-    private bool applicationLoaded;
+    public event Action OnPaused;
 
-    private MonoGameContext gameContext;
+    public event Action OnResumed;
 
-    [Button]
-    public void LoadApplication()
+    public event Action OnQuit;
+
+    #region Lifecycle
+
+    private void Update()
     {
-        if (!this.applicationLoaded)
+        this.OnUpdate?.Invoke(Time.deltaTime);
+    }
+
+#if UNITY_EDITOR
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
         {
-            this.StartCoroutine(this.LoadRoutine());
+            this.OnResumed?.Invoke();
+        }
+        else
+        {
+            this.OnPaused?.Invoke();
         }
     }
-
-    private IEnumerator LoadRoutine()
-    {
-        this.InstallServices();
-        yield return this.LoadGameScene();
-        this.LoadGameData();
-        this.StartGame();
-        this.applicationLoaded = true;
-    }
-
-    private void InstallServices()
-    {
-        this.serviceInstaller.InstallServices();
-        ServiceInjector.ResolveDependencies();
-    }
-    private IEnumerator LoadGameScene()
-    {
-        const string sceneId = "Game/Scenes/GameScene";
-        AsyncOperation asyncProc = SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Additive);
-        yield return asyncProc;
-
-        this.gameContext = FindObjectOfType<MonoGameContext>();
-        this.gameContext.LoadGame();
-    }
-
-    //private IEnumerator LoadGameScene()
-    //{
-    //    const string sceneId = "Game/Scene/GameScene";
-    //    var operation = Addressables.LoadSceneAsync(sceneId, LoadSceneMode.Additive);
-    //    yield return operation;
-
-    //    this.gameContext = FindObjectOfType<MonoGameContext>();
-    //    this.gameContext.LoadGame();
-    //}
-
-    private void LoadGameData()
-    {
-        var dataLoaders = ServiceLocator.GetServices<IGameDataLoader>();
-        foreach (var dataLoader in dataLoaders)
+#else
+        private void OnApplicationPause(bool pauseStatus)
         {
-            dataLoader.LoadData(this.gameContext);
+            if (pauseStatus)
+            {
+                OnPaused?.Invoke();
+            }
+            else
+            {
+                OnResumed?.Invoke();
+            }
         }
-    }
-
-    private void StartGame()
-    {
-        this.gameContext.InitGame();
-        this.gameContext.ReadyGame();
-        this.gameContext.StartGame();
-    }
-
-    private void OnApplicationPause(bool pauseStatus)
-    {
-        if (pauseStatus)
-        {
-            this.SaveGameData();
-        }
-    }
+#endif
 
     private void OnApplicationQuit()
     {
-        this.SaveGameData();
+        this.OnQuit?.Invoke();
     }
 
-    private void SaveGameData()
-    {
-        if (!this.applicationLoaded)
-        {
-            return;
-        }
-
-        var dataSavers = ServiceLocator.GetServices<IGameDataSaver>();
-        foreach (var dataSaver in dataSavers)
-        {
-            dataSaver.SaveData(this.gameContext);
-        }
-    }
+    #endregion
 }

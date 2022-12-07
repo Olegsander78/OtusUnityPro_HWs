@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using GameElements;
 
-public class GameLauncher : MonoBehaviour,
+public class GameLauncherHW : MonoBehaviour,
     IGameInitElement
 
 {

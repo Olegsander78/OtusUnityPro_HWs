@@ -1,29 +1,21 @@
+using System;
 using UnityEngine;
 
-public sealed class CharacterRepository
+public sealed class CharacterRepository: DataRepository<CharacterData>
 {
-    private const string PLAYER_PREFS_KEY = "CharacterData";
+    protected override string Key => "CharacterData";
 
-    public bool LoadStats(out CharacterData data)
+    public bool LoadCharacter(out CharacterData characterData)
     {
-        if (PlayerPrefs.HasKey(PLAYER_PREFS_KEY))
-        {
-            var json = PlayerPrefs.GetString(PLAYER_PREFS_KEY);
-            data = JsonUtility.FromJson<CharacterData>(json);
-
-            Debug.Log($"<color=orange>LOAD CHARACTER DATA {json}</color>");
-            return true;
-        }
-
-        data = default;
-        return false;
+        var result = LoadData(out characterData);
+        if (result)
+            Debug.Log($"<color=orange>LOAD CHARACTER DATA {characterData}</color>");
+        return result;
     }
 
-    public void SaveStats(CharacterData data)
+    public void SaveCharacter(CharacterData characterData)
     {
-        var json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString(PLAYER_PREFS_KEY, json);
-
-        Debug.Log($"<color=yellow>SAVE CHARACTER DATA {json}</color>");
+        SaveData(characterData);
+        Debug.Log($"<color=yellow>SAVE Money DATA {characterData}</color>");
     }
 }

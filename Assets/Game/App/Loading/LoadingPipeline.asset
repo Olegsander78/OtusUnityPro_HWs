@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a1e33b262d42545b52c238c8b93cc1, type: 3}
+  m_Name: LoadingPipeline
+  m_EditorClassIdentifier: 
+  tasks:
+  - script: {fileID: 11500000, guid: 9fcf82f5c30a4561b525771c663a523d, type: 3}
+    className: LoadingTask_InstallApplicationServices
+  - script: {fileID: 11500000, guid: 57ba11eea39f4489812fb8385c8e18cd, type: 3}
+    className: LoadingTask_ResolveApplicationDependencies
+  - script: {fileID: 11500000, guid: 36960ce576c2475f845422bc6f8e3aa4, type: 3}
+    className: LoadingTask_LoadApplicationConfigs
+  - script: {fileID: 11500000, guid: 7b514996605942da94a588a3dd6806f7, type: 3}
+    className: LoadingTask_InitApplicationServices
+  - script: {fileID: 11500000, guid: c0907386e6d24abebca77fef3cb9016b, type: 3}
+    className: LoadingTask_StartApplicationServices
+  - script: {fileID: 11500000, guid: 71012f7c0b744dc29f693d7e2f82469f, type: 3}
+    className: Game.App.LoadingTask_LaunchGame
+  - script: {fileID: 11500000, guid: 60402b1377534666ab35d1fd1b324398, type: 3}
+    className: LoadingTask_HideLoadingScreen

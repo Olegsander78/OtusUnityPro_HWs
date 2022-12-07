@@ -1,23 +1,33 @@
-using GameElements;
 using Services;
 
-public sealed class MoneyMediator : IGameDataLoader, IGameDataSaver
+public sealed class MoneyMediator :
+    IGameSetupListener,
+    IGameSaveListener
 {
     [Inject]
     private MoneyRepository _repository;
 
-    void IGameDataLoader.LoadData(IGameContext context)
+    private MoneyStorage _storage;
+
+    [Inject]
+    public void Construct(MoneyRepository repository)
     {
-        if (_repository.LoadMoney(out var money))
-        {
-            var moneyStorage = context.GetService<MoneyStorage>();
-            moneyStorage.SetupMoney(money);
-        }
+        _repository = repository;
+    }
+    void IGameSetupListener.OnSetupGame(GameManager gameManager)
+    {
+        _storage = gameManager.GetService<MoneyStorage>();
+        LoadMoney();
     }
 
-    void IGameDataSaver.SaveData(IGameContext context)
+    void IGameSaveListener.OnSaveGame(GameSaveReason reason)
     {
-        var moneyStorage = context.GetService<MoneyStorage>();
-        _repository.SaveMoney(moneyStorage.Money);
+        _repository.SaveMoney(_storage.Money);
+    }
+
+    private void LoadMoney()
+    {
+        if (_repository.LoadMoney(out var money))
+            _storage.SetupMoney(money);
     }
 }

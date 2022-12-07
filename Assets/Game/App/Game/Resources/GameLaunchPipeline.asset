@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a1e33b262d42545b52c238c8b93cc1, type: 3}
+  m_Name: GameLaunchPipeline
+  m_EditorClassIdentifier: 
+  tasks:
+  - script: {fileID: 11500000, guid: 1a93ba1b92026bd48a0dece8c74d5dff, type: 3}
+    className: GameTask_LoadScene
+  - script: {fileID: 11500000, guid: 38539396f7a4afd46bbba15e93b4aa5f, type: 3}
+    className: GameTask_LoadInterface
+  - script: {fileID: 11500000, guid: 654ca422b690a2645be367f1b6a4c128, type: 3}
+    className: GameTask_SetupGame
+  - script: {fileID: 11500000, guid: d90f1602f58a1b24baf25e4dc9bc9eb9, type: 3}
+    className: GameTask_NotifyAboutSetup
+  - script: {fileID: 11500000, guid: 65e57db1b12c7174db5d1be6c8c436bb, type: 3}
+    className: GameTask_InitGame
+  - script: {fileID: 11500000, guid: e98bca293bbbcfd4992162d2d4ea70c8, type: 3}
+    className: GameTask_ReadyGame
+  - script: {fileID: 11500000, guid: f3168dfb48c9f6446a0d027af3a7a5d3, type: 3}
+    className: GameTask_NotifyAboutStart
+  - script: {fileID: 11500000, guid: 2a6561cea34e2e744b63dcc2cbe6323a, type: 3}
+    className: GameTask_StartGame
