@@ -1,7 +1,5 @@
 using Entities;
-using GameElements;
 using Services;
-using UnityEngine;
 
 public sealed class CharacterMediator :
     IGameSetupListener,
@@ -27,35 +25,10 @@ public sealed class CharacterMediator :
             CharacterConverter.SetupStats(_character, data);
         }
     }
-    //void IGameDataLoader.LoadData(IGameContext context)
-    //{
-    //    if (_repository.LoadStats(out CharacterData data))
-    //    {
-    //        IEntity character = context.GetService<HeroService>().GetHero();
-    //        CharacterConverter.SetupStats(character, data);
-    //    }
-    //}
 
     void IGameSaveListener.OnSaveGame(GameSaveReason reason)
     {
-        //_character = ServiceLocator.GetService<HeroService>().GetHero();
         var data = CharacterConverter.ConvertToData(_character);
         _repository.SaveCharacter(data);
     }
-
-
-
-    //void IGameDataSaver.SaveData(IGameContext context)
-    //{
-    //    _character = context.GetService<HeroService>().GetHero();
-    //    var data = CharacterConverter.ConvertToData(character);
-    //    _repository.SaveStats(data);
-    //}
-
-    //private void LoadCharactear()
-    //{
-    //    if (_repository.LoadCharacter(out var character))
-    //        _ .SetupMoney(character);
-    //}
-
 }

@@ -8,13 +8,13 @@ public class MoneyRepository:DataRepository<int>
     {
         var result  = LoadData(out money);
         if (result)
-            Debug.Log($"<color=orange>LOAD Money DATA {money}</color>");
+            Debug.Log($"<color=orange>LOAD Money DATA: {money}</color>");
         return result;
     }
 
     public void SaveMoney(int money)
     {
         SaveData(money);
-        Debug.Log($"<color=yellow>SAVE Money DATA {money}</color>");
+        Debug.Log($"<color=yellow>SAVE Money DATA: {money}</color>");
     }
 }
