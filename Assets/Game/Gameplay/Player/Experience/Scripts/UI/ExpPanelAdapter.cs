@@ -65,7 +65,7 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
     }
     private void UpdateCurLvlPanel(int level)
     {
-        _expPanel.UpdateLevel(level.ToString());
+        _expPanel.UpdateLevel(_component_GetLevel.Level.ToString());
     }
 }
 

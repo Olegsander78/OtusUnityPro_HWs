@@ -16,7 +16,7 @@ public sealed class LevelUpEngine : MonoBehaviour
     public int CurrentLevel
     {
         get { return _currentLevel.Value; }
-        set { SetLevel(value); }
+        set { SetCurrentLevel(value); }
     }
 
     public int MaxLevel
@@ -36,17 +36,20 @@ public sealed class LevelUpEngine : MonoBehaviour
     [Button]
     public void Setup(int current, int max)
     {
-        _maxLevel.Value = max;
         _currentLevel.Value = Mathf.Clamp(current, 1, _maxLevel.Value);
-        OnSetuped?.Invoke();
+        _maxLevel.Value = max;
+        
+        OnLevelChanged?.Invoke(_currentLevel.Value);
+        OnMaxLevelChanged?.Invoke(_maxLevel.Value = max);
     }
 
     [GUIColor(0, 1, 0)]
     [Button]
-    private void SetLevel(int value)
+    private void SetCurrentLevel(int value)
     {
         value = Mathf.Clamp(value, 1, _maxLevel.Value);
         _currentLevel.Value = value;
+
         OnLevelChanged?.Invoke(_currentLevel.Value);
 
         if (value >= _maxLevel.Value)
