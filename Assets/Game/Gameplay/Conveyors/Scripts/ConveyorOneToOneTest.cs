@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 
-public sealed class ConveyorTest : MonoBehaviour
+public sealed class ConveyorOneToOneTest : MonoBehaviour
 {
     [SerializeField]
     private UnityEntity conveyor;

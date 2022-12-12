@@ -29,4 +29,12 @@ public sealed class ZoneVisualAdapter : MonoBehaviour
     {
         this.visualZone.SetupItems(count);
     }
+    private void OnValidate()
+    {
+        if(this.visualZone != null && this.storage != null)
+        {
+            this.storage.OnValueChanged -= this.visualZone.SetupItems;
+            this.storage.OnValueChanged += this.visualZone.SetupItems;
+        }
+    }
 }

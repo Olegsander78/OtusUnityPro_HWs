@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6672744726906466332}
   - component: {fileID: 2987108692778816971}
   m_Layer: 0
-  m_Name: WidgetConveyor
+  m_Name: WidgetConveyor_1x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,11 +412,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4840277846555172083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd59e7250bc4792995cabfa6958b430, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c0a12793404984439cf2ef7e55b0f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progress: {fileID: 4840277844646652905}
   root: {fileID: 4840277846555172083}
+  fillImage: {fileID: 4840277844646652905}
+  hasMask: 0
+  maskImage: {fileID: 0}
 --- !u!1 &7738964285707548167
 GameObject:
   m_ObjectHideFlags: 0
