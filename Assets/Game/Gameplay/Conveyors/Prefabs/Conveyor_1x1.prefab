@@ -3871,6 +3871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526377342958539027}
   - component: {fileID: 8526377342958539024}
+  - component: {fileID: 135164444415305224}
   m_Layer: 0
   m_Name: LoadTrigger
   m_TagString: Untagged
@@ -3906,6 +3907,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &135164444415305224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526377342958539026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56abfc1d78099954c98198fd12d4f117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conveyor: {fileID: 8526377342938500588}
+  zone: 0
 --- !u!1 &8526377342991561280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3916,6 +3931,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526377342991561281}
   - component: {fileID: 8526377342991561286}
+  - component: {fileID: 554561396520932245}
   m_Layer: 0
   m_Name: UnloadTrigger
   m_TagString: Untagged
@@ -3951,6 +3967,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &554561396520932245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526377342991561280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56abfc1d78099954c98198fd12d4f117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conveyor: {fileID: 8526377342938500588}
+  zone: 1
 --- !u!1 &8526377343054241683
 GameObject:
   m_ObjectHideFlags: 0

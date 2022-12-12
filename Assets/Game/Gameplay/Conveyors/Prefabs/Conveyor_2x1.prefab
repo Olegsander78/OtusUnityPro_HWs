@@ -3288,6 +3288,66 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1546123432308521671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5080517162252845356}
+  - component: {fileID: 5288691823625326808}
+  - component: {fileID: 7626764500747629106}
+  m_Layer: 0
+  m_Name: LoadTriggerTwo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5080517162252845356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546123432308521671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.127, y: 0, z: 0.55}
+  m_LocalScale: {x: 0.53259957, y: 1.0265, z: 0.9392269}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5212612978243581455}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5288691823625326808
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546123432308521671}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7626764500747629106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546123432308521671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56abfc1d78099954c98198fd12d4f117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conveyor: {fileID: 5212612978871518482}
+  zone: 0
 --- !u!1 &1600148867195102493
 GameObject:
   m_ObjectHideFlags: 0
@@ -11941,6 +12001,7 @@ Transform:
   m_Children:
   - {fileID: 5212612978747667367}
   - {fileID: 5212612978851453421}
+  - {fileID: 5080517162252845356}
   - {fileID: 5212612978817432255}
   m_Father: {fileID: 5212612978871518481}
   m_RootOrder: 3
@@ -12145,6 +12206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5212612978817432255}
   - component: {fileID: 5212612978817432248}
+  - component: {fileID: 7230309810445515221}
   m_Layer: 0
   m_Name: UnloadTrigger
   m_TagString: Untagged
@@ -12165,7 +12227,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5212612978243581455}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5212612978817432248
 BoxCollider:
@@ -12180,6 +12242,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7230309810445515221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5212612978817432254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56abfc1d78099954c98198fd12d4f117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conveyor: {fileID: 5212612978871518482}
+  zone: 1
 --- !u!1 &5212612978851453420
 GameObject:
   m_ObjectHideFlags: 0
@@ -12190,8 +12266,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5212612978851453421}
   - component: {fileID: 5212612978851453422}
+  - component: {fileID: 2665740462140179724}
   m_Layer: 0
-  m_Name: LoadTrigger
+  m_Name: LoadTriggerOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12205,7 +12282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5212612978851453420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.127, y: 0, z: -0.965}
+  m_LocalPosition: {x: 3.127, y: 0, z: -1.91}
   m_LocalScale: {x: 0.53259957, y: 1.0265, z: 0.9392269}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12225,6 +12302,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2665740462140179724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5212612978851453420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56abfc1d78099954c98198fd12d4f117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conveyor: {fileID: 5212612978871518482}
+  zone: 0
 --- !u!1 &5212612978871518480
 GameObject:
   m_ObjectHideFlags: 0

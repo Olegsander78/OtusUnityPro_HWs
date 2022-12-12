@@ -18,6 +18,11 @@ public sealed class WorkEngine : MonoBehaviour
     {
         _workTimer.OnFinished += OnWorkFinished;
     }
+    private void OnDisable()
+    {
+        _workTimer.OnFinished -= OnWorkFinished;
+    }
+
 
     private void Update()
     {
@@ -26,12 +31,7 @@ public sealed class WorkEngine : MonoBehaviour
             StartWork();
         }
     }
-
-    private void OnDisable()
-    {
-        _workTimer.OnFinished -= OnWorkFinished;
-    }
-
+ 
     private bool CanStartWork()
     {
         if (_workTimer.IsPlaying)
