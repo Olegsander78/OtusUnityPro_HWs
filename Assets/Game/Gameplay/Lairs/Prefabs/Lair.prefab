@@ -27,95 +27,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1938747029583210783}
+  m_Children: []
   m_Father: {fileID: 2302326348259715799}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &1938747029583210782
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1938747029583210783}
-  - component: {fileID: 1938747029583210780}
-  m_Layer: 0
-  m_Name: Visual
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1938747029583210783
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938747029583210782}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -0.3, z: -0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1938747028840606997}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!212 &1938747029583210780
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938747029583210782}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 013844b871a304857936cffac4cbb257, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1226413899
-  m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 9a8d6f66eb6694ff4871aab0fda0dbcd, type: 3}
-  m_Color: {r: 0.27058828, g: 0.51203525, b: 1, a: 0.8}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 14.4232435, y: 9.382461}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &2302326348259715798
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source:
     maxValue: 3
-    currentValue: 1
+    currentValue: 0
 --- !u!1 &3311226877764015477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,7 +1120,7 @@ PrefabInstance:
     - target: {fileID: 255514065818384876, guid: 06edf8bf8c4b33b48b9630f670642c3c,
         type: 3}
       propertyPath: m_Name
-      value: Enemy (ork) (2)
+      value: Enemy (LizardWarrior) (2)
       objectReference: {fileID: 0}
     - target: {fileID: 255514065818384876, guid: 06edf8bf8c4b33b48b9630f670642c3c,
         type: 3}
@@ -1306,7 +1221,7 @@ PrefabInstance:
     - target: {fileID: 255514065818384876, guid: 06edf8bf8c4b33b48b9630f670642c3c,
         type: 3}
       propertyPath: m_Name
-      value: Enemy (ork)
+      value: Enemy (LizardWarrior)
       objectReference: {fileID: 0}
     - target: {fileID: 255514065818384876, guid: 06edf8bf8c4b33b48b9630f670642c3c,
         type: 3}
@@ -1407,7 +1322,7 @@ PrefabInstance:
     - target: {fileID: 255514065818384876, guid: 06edf8bf8c4b33b48b9630f670642c3c,
         type: 3}
       propertyPath: m_Name
-      value: Enemy (ork) (1)
+      value: Enemy (LizardWarrior) (1)
       objectReference: {fileID: 0}
     - target: {fileID: 255514065818384876, guid: 06edf8bf8c4b33b48b9630f670642c3c,
         type: 3}
