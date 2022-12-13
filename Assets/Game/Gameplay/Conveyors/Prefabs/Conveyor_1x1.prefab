@@ -3457,7 +3457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source:
-    maxValue: 12
+    maxValue: 15
     currentValue: 0
 --- !u!1 &8526377342335985624
 GameObject:
@@ -3504,7 +3504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source:
-    maxValue: 24
+    maxValue: 15
     currentValue: 0
 --- !u!1 &8526377342378534259
 GameObject:
@@ -3767,7 +3767,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8526377342913195675}
-  - component: {fileID: 8526377342913195672}
+  - component: {fileID: 4540433004436375017}
   m_Layer: 0
   m_Name: Id
   m_TagString: Untagged
@@ -3790,7 +3790,7 @@ Transform:
   m_Father: {fileID: 8526377343702226267}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8526377342913195672
+--- !u!114 &4540433004436375017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3799,14 +3799,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8526377342913195674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea86ff2b8954f14bdee7d23cf312a6d, type: 3}
+  m_Script: {fileID: 11500000, guid: e5a81500d3920ac40a250977fad2055c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id:
-    mode: 1
-    scriptableString: {fileID: 0}
-    id: WoodToLamber_1x1
-    targetObject: {fileID: 0}
 --- !u!1 &8526377342938500590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3817,6 +3812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526377342938500591}
   - component: {fileID: 8526377342938500588}
+  - component: {fileID: 1073124033}
   m_Layer: 0
   m_Name: Conveyor_1x1
   m_TagString: Untagged
@@ -3857,10 +3853,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elements:
-  - {fileID: 8526377342913195672}
+  - {fileID: 4540433004436375017}
   - {fileID: 8526377343704943506}
   - {fileID: 8526377342399173766}
   - {fileID: 8526377342091335300}
+--- !u!114 &1073124033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526377342938500590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e701a6911e25b44ba77f65fffd19d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conveyourInfo: {fileID: 11400000, guid: ee08998bb76f84046a45d578b659edf7, type: 2}
+  resourceCatalog: {fileID: 11400000, guid: 47ce7eb27deaa0e40994d4933f62bba6, type: 2}
+  idComponent: {fileID: 4540433004436375017}
+  loadComponent: {fileID: 8526377343704943506}
+  unloadComponent: {fileID: 8526377342399173766}
+  inputStorage: {fileID: 8526377342244509448}
+  outputStorage: {fileID: 8526377342335985630}
+  workTimer: {fileID: 8526377343054241681}
+  widget: {fileID: 6856607852142673560}
 --- !u!1 &8526377342958539026
 GameObject:
   m_ObjectHideFlags: 0

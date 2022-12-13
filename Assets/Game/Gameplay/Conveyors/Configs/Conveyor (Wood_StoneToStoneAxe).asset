@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c60547d5dc784ea7da5cff8e605a1, type: 3}
+  m_Name: Conveyor (Wood_StoneToStoneAxe)
+  m_EditorClassIdentifier: 
+  id: ConveyorWoodStoneToStoneAxe
+  inputOneResourceType: 1
+  inputOneCapacity: 15
+  inputTwoResourceType: 0
+  inputTwoCapacity: 15
+  outputItem:
+    Name: Stone Axe
+    Description: The simple stone axe
+    AmountResourceOne: 5
+    AmountResourceTwo: 5
+  outputCapacity: 3
+  workTime: 5
