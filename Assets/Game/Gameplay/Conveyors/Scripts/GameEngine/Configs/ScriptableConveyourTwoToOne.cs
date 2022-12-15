@@ -24,14 +24,10 @@ public sealed class ScriptableConveyourTwoToOne : ScriptableObject
     [SerializeField]
     public int inputTwoCapacity;
 
+    [Header("Unload Zone")]
     [SerializeField]
-    public DoubleWorkOnLoadEngine.RecipeTwoPart outputItem;
-
-
-    //[Header("Unload Zone")]
-    //[SerializeField]
-    //public ResourceType outputResourceType;
-
+    public ItemFromTwoResourcesInfo outputItem;
+    
     [SerializeField]
     public int outputCapacity;
 

@@ -33,12 +33,12 @@ public sealed class ConveyorTwoToOneTest : MonoBehaviour
     [Button]
     private void TakeAllResources()
     {
-        var unloadComponent = _conveyor.Get<IComponent_UnloadZone>();
+        var unloadComponent = _conveyor.Get<IComponent_ItemUnloadZone>();
         
         if (!unloadComponent.IsEmpty)
         {
             var extractedResources = unloadComponent.ExtractAll();
-            Debug.Log($"Extracted resources {extractedResources} {_engine.ItemOnUnload.Name}");
+            Debug.Log($"Extracted resources {extractedResources} Axe");
         }
     }
 }

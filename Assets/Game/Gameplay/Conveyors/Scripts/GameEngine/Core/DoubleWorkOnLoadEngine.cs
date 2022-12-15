@@ -5,15 +5,6 @@ using UnityEngine;
 
 public sealed class DoubleWorkOnLoadEngine : MonoBehaviour
 {
-        
-    [Serializable]
-    public struct RecipeTwoPart
-    {
-        public string Name;
-        public string Description;
-        public int AmountResourceOne;
-        public int AmountResourceTwo;
-    }
 
     [Space]
     [SerializeField]
@@ -29,9 +20,8 @@ public sealed class DoubleWorkOnLoadEngine : MonoBehaviour
     private LimitedIntBehavior _unloadStorage;
 
     [SerializeField]
-    private RecipeTwoPart _itemOnUnload;
+    private ItemFromTwoResourcesInfo _itemFromTwoResourcesInfo;
 
-    public RecipeTwoPart ItemOnUnload => _itemOnUnload;
 
     private void OnEnable()
     {
@@ -57,8 +47,8 @@ public sealed class DoubleWorkOnLoadEngine : MonoBehaviour
         {
             return false;
         }
-        if (_loadStorageOne.Value < _itemOnUnload.AmountResourceOne 
-            || _loadStorageTwo.Value < _itemOnUnload.AmountResourceTwo)
+        if (_loadStorageOne.Value < _itemFromTwoResourcesInfo.AmountResourceOne 
+            || _loadStorageTwo.Value < _itemFromTwoResourcesInfo.AmountResourceTwo)
         {
             return false;
         }
@@ -73,8 +63,8 @@ public sealed class DoubleWorkOnLoadEngine : MonoBehaviour
 
     private void StartWork()
     {
-        _loadStorageOne.Value -= _itemOnUnload.AmountResourceOne;
-        _loadStorageTwo.Value -= _itemOnUnload.AmountResourceTwo;
+        _loadStorageOne.Value -= _itemFromTwoResourcesInfo.AmountResourceOne;
+        _loadStorageTwo.Value -= _itemFromTwoResourcesInfo.AmountResourceTwo;
         _workTimer.ResetTime();
         _workTimer.Play();
     }

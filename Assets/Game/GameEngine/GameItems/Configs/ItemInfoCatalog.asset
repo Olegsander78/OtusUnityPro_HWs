@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f429dfc5db1dcb64aa898c6de823dc08, type: 3}
-  m_Name: Conveyor (Test)
+  m_Script: {fileID: 11500000, guid: 9bd903f9dbcbcb84389e123d51e07471, type: 3}
+  m_Name: ItemInfoCatalog
   m_EditorClassIdentifier: 
-  id: Conveyor
-  inputResourceType: 1
-  inputCapacity: 15
-  outputResourceType: 0
-  outputCapacity: 15
-  workTime: 3
+  configs:
+  - {fileID: 11400000, guid: 729dc355a6866e149a8e92aa988e5c5b, type: 2}

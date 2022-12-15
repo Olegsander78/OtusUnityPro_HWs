@@ -12,7 +12,7 @@ public interface IComponent_LoadZone
 
     bool IsFull { get; }
 
-    ResourceType ResourceType { get; }
+    ResourceType ResourceType { get; set; }
 
     void SetupAmount(int currentAmount);
 
