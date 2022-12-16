@@ -42,7 +42,7 @@ public class PlayerLevelUpper : MonoBehaviour, IGameInitElement
             _character.Get<IComponent_GetHitPoints>().MaxHitPoints += INCREMENT_HP_PER_LEVEL;
             _character.Get<IComponent_GetHitPoints>().CurHitPoints = _character.Get<IComponent_GetHitPoints>().MaxHitPoints;
 
-            _character.Get<IComponent_MoveInDirection>().SetSpeed(_character.Get<IComponent_MoveInDirection>().Speed + INCREMENT_SPEED_PER_LEVEL);
+            _character.Get<IComponent_MoveRigidbody>().SetSpeed(_character.Get<IComponent_MoveRigidbody>().Speed + INCREMENT_SPEED_PER_LEVEL);
 
             Debug.Log($"<color=green>Party member {partyMember.NameHeroText} successfully increased level!</color>");
         }
