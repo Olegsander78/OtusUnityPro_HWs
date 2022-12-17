@@ -34,17 +34,34 @@ public sealed class KeyboardInput : MonoBehaviour,
     private void HandleKeyboard()
     {
 
-        Move(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")));
+        //Move(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")));
+
+        //if (Input.GetKey(KeyCode.UpArrow))
+        //{
+        //    Move(Vector3.forward);
+        //}
+        //else if (Input.GetKey(KeyCode.DownArrow))
+        //{
+        //    Move(Vector3.back);
+        //}
+        //else if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    Move(Vector3.left);
+        //}
+        //else if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    Move(Vector3.right);
+        //}
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2))
             RangeAttack();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
             MeleeAttack();
     }
 

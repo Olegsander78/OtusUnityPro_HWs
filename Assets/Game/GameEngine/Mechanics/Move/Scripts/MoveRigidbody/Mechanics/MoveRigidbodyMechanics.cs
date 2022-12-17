@@ -1,8 +1,12 @@
 using UnityEngine;
 using Elementary;
+using Entities;
 
 public class MoveRigidbodyMechanics : MonoBehaviour
 {
+    [SerializeField]
+    private UnityEntity _player;
+    
     [SerializeField]
     private EventReceiver_Vector3 _moveInDirectionReceiver;
 
@@ -13,12 +17,14 @@ public class MoveRigidbodyMechanics : MonoBehaviour
     private Rigidbody _rigidbody;
 
     [SerializeField]
-    private Transform _transform;
+    private Vector3 _transform;
 
     private void Awake()
     {
-        _rigidbody = GetComponentInParent<Rigidbody>();
-        _transform = GetComponentInParent<Transform>();
+        //_rigidbody = GetComponentInParent<Rigidbody>();
+        //_transform = GetComponentInParent<Transform>();
+        _transform = _player.Get<IComponent_GetPosition>().Position;
+        _rigidbody = _player.GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -32,9 +38,11 @@ public class MoveRigidbodyMechanics : MonoBehaviour
 
     private void OnMoved(Vector3 direction)
     {
-        Vector3 dir = (_transform.right * direction.x) + (_transform.forward * direction.z);
-        dir.Normalize();        
+        _transform = _player.GetComponent<IComponent_GetPosition>().Position;
 
-        _rigidbody.velocity = dir * _moveSpeed.Value;               
+        //Vector3 dir = (_transform.right * direction.x) + (_transformEngine.transform.forward * direction.z);
+        _transform.Normalize();        
+
+        _rigidbody.velocity = _transform * _moveSpeed.Value;               
     }
 }
