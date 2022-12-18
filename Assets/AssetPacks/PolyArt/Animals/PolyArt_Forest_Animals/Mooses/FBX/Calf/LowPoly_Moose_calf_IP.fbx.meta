@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: 008216a8a631f8748831bb51a59c0f72
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arm_Moose
+    100002: ear_1.L
+    100004: ear_1.R
+    100006: eyelid_up.L
+    100008: eyelid_up.R
+    100010: head
+    100012: hip_1_f.L
+    100014: hip_1_f.R
+    100016: hip_2_f.L
+    100018: hip_2_f.R
+    100020: hip_b.L
+    100022: hip_b.R
+    100024: hoof_b.L
+    100026: hoof_b.R
+    100028: hoof_b_Helper.L
+    100030: hoof_b_Helper.R
+    100032: hoof_f.L
+    100034: hoof_f.R
+    100036: hoof_f_Helper.L
+    100038: hoof_f_Helper.R
+    100040: knee_f_Helper.L
+    100042: knee_f_Helper.R
+    100044: //RootNode
+    100046: Moose_calf_1
+    100048: mouth
+    100050: neck_01
+    100052: root_bone
+    100054: shin_b.L
+    100056: shin_b.R
+    100058: shin_f.L
+    100060: shin_f.R
+    100062: Spine_01
+    100064: Spine_02
+    100066: Spine_03
+    100068: Spine_04
+    100070: Spine_05
+    100072: Spine_base
+    100074: tail_1
+    100076: thigh_b.L
+    100078: thigh_b.R
+    100080: thigh_f.L
+    100082: thigh_f.R
+    400000: Arm_Moose
+    400002: ear_1.L
+    400004: ear_1.R
+    400006: eyelid_up.L
+    400008: eyelid_up.R
+    400010: head
+    400012: hip_1_f.L
+    400014: hip_1_f.R
+    400016: hip_2_f.L
+    400018: hip_2_f.R
+    400020: hip_b.L
+    400022: hip_b.R
+    400024: hoof_b.L
+    400026: hoof_b.R
+    400028: hoof_b_Helper.L
+    400030: hoof_b_Helper.R
+    400032: hoof_f.L
+    400034: hoof_f.R
+    400036: hoof_f_Helper.L
+    400038: hoof_f_Helper.R
+    400040: knee_f_Helper.L
+    400042: knee_f_Helper.R
+    400044: //RootNode
+    400046: Moose_calf_1
+    400048: mouth
+    400050: neck_01
+    400052: root_bone
+    400054: shin_b.L
+    400056: shin_b.R
+    400058: shin_f.L
+    400060: shin_f.R
+    400062: Spine_01
+    400064: Spine_02
+    400066: Spine_03
+    400068: Spine_04
+    400070: Spine_05
+    400072: Spine_base
+    400074: tail_1
+    400076: thigh_b.L
+    400078: thigh_b.R
+    400080: thigh_f.L
+    400082: thigh_f.R
+    2100000: LowPoly_Forest_color
+    4300000: Moose_calf_1
+    7400000: Arm_Moose|Attack_B
+    7400002: Arm_Moose|Attack_F
+    7400004: Arm_Moose|Attack_L
+    7400006: Arm_Moose|Attack_R
+    7400008: Arm_Moose|Attack_Run_IP
+    7400010: Arm_Moose|Attack_Trot_IP
+    7400012: Arm_Moose|Death_L
+    7400014: Arm_Moose|Death_R
+    7400016: Arm_Moose|Drink
+    7400018: Arm_Moose|Eat
+    7400020: Arm_Moose|Eat_loop_2
+    7400022: Arm_Moose|Fall_edge_IP
+    7400024: Arm_Moose|Fall_high
+    7400026: Arm_Moose|Fall_land
+    7400028: Arm_Moose|Fall_low
+    7400030: Arm_Moose|Hit_B
+    7400032: Arm_Moose|Hit_F
+    7400034: Arm_Moose|Hit_M
+    7400036: Arm_Moose|Idle_1
+    7400038: Arm_Moose|Idle_2
+    7400040: Arm_Moose|Idle_3
+    7400042: Arm_Moose|Jump_F_IP
+    7400044: Arm_Moose|Jump_place
+    7400046: Arm_Moose|Jump_Run_IP
+    7400048: Arm_Moose|Lie
+    7400050: Arm_Moose|Lie_sleep
+    7400052: Arm_Moose|Run_F_IP
+    7400054: Arm_Moose|Run_L_IP
+    7400056: Arm_Moose|Run_R_IP
+    7400058: Arm_Moose|Trot_F_IP
+    7400060: Arm_Moose|Trot_L_IP
+    7400062: Arm_Moose|Trot_R_IP
+    7400064: Arm_Moose|Turn_180_L_IP
+    7400066: Arm_Moose|Turn_180_R_IP
+    7400068: Arm_Moose|Turn_L_IP
+    7400070: Arm_Moose|Turn_R_IP
+    7400072: Arm_Moose|Walk_B_IP
+    7400074: Arm_Moose|Walk_BL_IP
+    7400076: Arm_Moose|Walk_BR_IP
+    7400078: Arm_Moose|Walk_F_IP
+    7400080: Arm_Moose|Walk_L_IP
+    7400082: Arm_Moose|Walk_R_IP
+    9500000: //RootNode
+    13700000: Moose_calf_1
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LowPoly_Forest_color
+    second: {fileID: 2100000, guid: b623b2ca33c23514b8eb2fa0dacefd0f, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 0
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
