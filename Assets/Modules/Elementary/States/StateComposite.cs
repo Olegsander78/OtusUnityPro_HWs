@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Elementary
@@ -6,11 +7,11 @@ namespace Elementary
     public class StateComposite : State
     {
         [SerializeField]
-        private State[] stateComponents;
+        private List<State> stateComponents;
 
         public override void Enter()
         {
-            for (int i = 0, count = this.stateComponents.Length; i < count; i++)
+            for (int i = 0, count = this.stateComponents.Count; i < count; i++)
             {
                 var state = this.stateComponents[i];
                 state.Enter();
@@ -19,11 +20,21 @@ namespace Elementary
 
         public override void Exit()
         {
-            for (int i = 0, count = this.stateComponents.Length; i < count; i++)
+            for (int i = 0, count = this.stateComponents.Count; i < count; i++)
             {
                 var state = this.stateComponents[i];
                 state.Exit();
             }
+        }
+
+        public void AddState(State state)
+        {
+            this.stateComponents.Add(state);
+        }
+
+        public void RemoveState(State state)
+        {
+            this.stateComponents.Remove(state);
         }
     }
 }

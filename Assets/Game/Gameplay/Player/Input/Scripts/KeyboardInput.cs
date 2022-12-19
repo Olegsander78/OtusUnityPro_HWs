@@ -85,22 +85,3 @@ public sealed class KeyboardInput : MonoBehaviour,
         OnMeleeAttackEvent?.Invoke();
     }
 }
-
-
-
-//if (Input.GetKey(KeyCode.UpArrow))
-//{
-//    Move(Vector3.forward);
-//}
-//else if (Input.GetKey(KeyCode.DownArrow))
-//{
-//    Move(Vector3.back);
-//}
-//else if (Input.GetKey(KeyCode.LeftArrow))
-//{
-//    Move(Vector3.left);
-//}
-//else if (Input.GetKey(KeyCode.RightArrow))
-//{
-//    Move(Vector3.right);
-//}

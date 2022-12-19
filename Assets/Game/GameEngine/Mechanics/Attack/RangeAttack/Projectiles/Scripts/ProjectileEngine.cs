@@ -19,7 +19,7 @@ public class ProjectileEngine : MonoBehaviour
 
     public void ShootProjectile(GameObject projectilePrefab)
     {
-        GameObject proj = Instantiate(projectilePrefab, transform.position + Vector3.up, Quaternion.identity);
+        GameObject proj = Instantiate(projectilePrefab, transform.position + Vector3.up, transform.rotation);
         proj.GetComponent<Rigidbody>().velocity = transform.forward * _speedProjectile.Value;
         proj.GetComponent<Projectile>().Damage.Assign(_damageProjectile.Value);
         Destroy(proj, _lifeTimeProjectile);
