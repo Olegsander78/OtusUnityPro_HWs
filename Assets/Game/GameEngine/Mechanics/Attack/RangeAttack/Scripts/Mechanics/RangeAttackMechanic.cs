@@ -1,8 +1,13 @@
 using UnityEngine;
 using Elementary;
+using System;
 
 public class RangeAttackMechanic : MonoBehaviour
 {
+    public event Action OnRangeAttackStarted;
+
+    public event Action OnRangeAttackFinished;
+
     [SerializeField]
     private EventReceiver _rangeAttackReciever; 
 
@@ -27,8 +32,10 @@ public class RangeAttackMechanic : MonoBehaviour
             return;
 
         _projectileEngine.ShootProjectile(_projectileEngine.ProjectilePrefab);
+        OnRangeAttackStarted?.Invoke();
 
         _attackCountdown.ResetTime();
         _attackCountdown.Play();
+        OnRangeAttackFinished?.Invoke();
     }
 }

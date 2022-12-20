@@ -11,7 +11,7 @@ public sealed class HeroStateResolver : MonoBehaviour
     private MoveInDirectionEngine _moveEngine;
 
     [SerializeField]
-    private EventReceiver _rangeAttackMechanic;
+    private RangeAttackMechanic _rangeAttackMechanic;
 
     //[SerializeField]
     //private MeleeCombatEngine combatEngine;
@@ -30,7 +30,8 @@ public sealed class HeroStateResolver : MonoBehaviour
         _moveEngine.OnStartMove += OnMoveStarted;
         _moveEngine.OnStopMove += OnMoveEnded;
 
-        _rangeAttackMechanic.OnEvent += OnShootStarted;
+        _rangeAttackMechanic.OnRangeAttackStarted += OnShootStarted;
+        _rangeAttackMechanic.OnRangeAttackFinished += OnShootEnded;
 
         //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
@@ -47,7 +48,8 @@ public sealed class HeroStateResolver : MonoBehaviour
         _moveEngine.OnStartMove -= OnMoveStarted;
         _moveEngine.OnStopMove -= OnMoveEnded;
 
-        _rangeAttackMechanic.OnEvent -= OnShootStarted;
+        _rangeAttackMechanic.OnRangeAttackStarted -= OnShootStarted;
+        _rangeAttackMechanic.OnRangeAttackFinished -= OnShootEnded;
 
         //this.combatEngine.OnCombatStarted -= this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped -= this.OnCombatEnded;
@@ -82,6 +84,15 @@ public sealed class HeroStateResolver : MonoBehaviour
     private void OnShootStarted()
     {
         _stateMachine.SwitchState(HeroStateType.SHOOT);
+        Debug.LogWarning("SHOOT STATE ENTER");
+    }
+    private void OnShootEnded()
+    {
+        if (_stateMachine.CurrentState == HeroStateType.SHOOT)
+        {
+            _stateMachine.SwitchState(HeroStateType.IDLE);
+            Debug.LogWarning("SHOOT STATE EXIT");
+        }
     }
 
     //private void OnHarvestStarted(HarvestResourceOperation operation)

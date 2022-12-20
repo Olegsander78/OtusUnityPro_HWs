@@ -1,27 +1,21 @@
 using Elementary;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeAttackState : StateCoroutine
+public class RangeAttackState : State
 {
     [SerializeField]
     private RangeAttackMechanic _rangeAttackMechanic;
 
-    [SerializeField]
-    private ProjectileEngine _projectileEngine;
 
-    protected override IEnumerator Do()
+    public override void Enter()
     {
-        var delay = new WaitForSeconds(3f);
-        while (true)
-        {
-            yield return delay;
-            Shoot();
-        }
+
     }
 
-    private void Shoot()
+    public override void Exit()
     {
-        _projectileEngine.ShootProjectile(_projectileEngine.ProjectilePrefab);
+
     }
 }
