@@ -11,19 +11,12 @@ public class RangeAttackRateState : StateCoroutine
     private ProjectileEngine _projectileEngine;
 
 
-    public override void Exit()
-    {
-        if (_rateRangeAttack.Duration == 0f)
-            base.Exit();
-    }
+
     protected override IEnumerator Do()
     {
-        var delay = new WaitForFixedUpdate();
-        while (_rateRangeAttack.Duration > 0f)
-        {
-            yield return delay;            
-        }
         Shoot();
+
+        yield return new WaitForSeconds(_rateRangeAttack.Duration);
     }
 
     private void Shoot()

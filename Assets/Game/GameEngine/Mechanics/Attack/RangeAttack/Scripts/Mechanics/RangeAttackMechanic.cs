@@ -20,22 +20,28 @@ public class RangeAttackMechanic : MonoBehaviour
     private void OnEnable()
     {
         _rangeAttackReciever.OnEvent += OnRequestRangeAttack;
+        _attackCountdown.OnFinished += OnAttackFinished;
     }
 
     private void OnDisable()
     {
         _rangeAttackReciever.OnEvent -= OnRequestRangeAttack;
+        _attackCountdown.OnFinished -= OnAttackFinished;
     }
     private void OnRequestRangeAttack()
     {
         if (_attackCountdown.IsPlaying)
-            return;
+            return;            
 
         _projectileEngine.ShootProjectile(_projectileEngine.ProjectilePrefab);
         OnRangeAttackStarted?.Invoke();
 
         _attackCountdown.ResetTime();
-        _attackCountdown.Play();
+        _attackCountdown.Play();        
+    }
+
+    private void OnAttackFinished()
+    {
         OnRangeAttackFinished?.Invoke();
     }
 }
