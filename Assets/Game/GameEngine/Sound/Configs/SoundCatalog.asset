@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990e99dc6bc641a6bbcbdfa752a21b8d, type: 3}
+  m_Name: SoundCatalog
+  m_EditorClassIdentifier: 
+  sounds:
+  - id: Step
+    clip: {fileID: 8300000, guid: 4be8b797e77fb44d1b5634962a21c565, type: 3}
+  - id: ShootArrow
+    clip: {fileID: 8300000, guid: 974b3af9eab2343efbb44a38262d6ce9, type: 3}
