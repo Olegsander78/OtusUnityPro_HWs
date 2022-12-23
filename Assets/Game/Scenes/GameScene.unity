@@ -7884,7 +7884,7 @@ GameObject:
   - component: {fileID: 161895822376990365}
   m_Layer: 10
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8108,7 +8108,7 @@ GameObject:
   - component: {fileID: 161895824067635588}
   m_Layer: 10
   m_Name: COLLISION
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11788,7 +11788,6 @@ MonoBehaviour:
   - {fileID: 7016975864190893338}
   - {fileID: 7016975862986946426}
   - {fileID: 7016975863569099626}
-  - {fileID: 7016975863569099637}
   - {fileID: 7016975864018284662}
 --- !u!4 &2473737778056725379
 Transform:
@@ -13954,11 +13953,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7016975863569099627}
-  - component: {fileID: 7016975863569099637}
   - component: {fileID: 7016975863569099626}
   m_Layer: 0
   m_Name: Collision
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13991,19 +13989,6 @@ Transform:
   m_Father: {fileID: 161895823780997217}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7016975863569099637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7016975863569099624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad65ff2fbf1fed743a60fba5b8bc186e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensor: {fileID: 0}
 --- !u!4 &7016975863689763128
 Transform:
   m_ObjectHideFlags: 0
@@ -15052,7 +15037,7 @@ GameObject:
   - component: {fileID: 2296130345379145557}
   m_Layer: 0
   m_Name: Enemy (LizardWarrior)
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
