@@ -6,9 +6,9 @@ public sealed class EnemyStateResolver : MonoBehaviour
     [SerializeField]
     private EnemyStateMachine stateMachine;
 
-    //[Space]
-    //[SerializeField]
-    //private DestroyReceiver dieReceiver;
+    [Space]
+    [SerializeField]
+    private DestroyReceiver dieReceiver;
 
     //[SerializeField]
     //private MeleeCombatEngine combatEngine;
@@ -27,7 +27,7 @@ public sealed class EnemyStateResolver : MonoBehaviour
         //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
 
-        //this.dieReceiver.OnDestroy += this.OnDestroyed;
+        this.dieReceiver.OnDestroy += this.OnDestroyed;
         //this.respawnReceiver.OnEvent += this.OnRespawned;
     }
 
@@ -39,7 +39,7 @@ public sealed class EnemyStateResolver : MonoBehaviour
         //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
 
-        //this.dieReceiver.OnDestroy -= this.OnDestroyed;
+        this.dieReceiver.OnDestroy -= this.OnDestroyed;
         //this.respawnReceiver.OnEvent -= this.OnRespawned;
     }
 
@@ -69,10 +69,10 @@ public sealed class EnemyStateResolver : MonoBehaviour
     //    }
     //}
 
-    //private void OnDestroyed(DestroyEvent @event)
-    //{
-    //    this.stateMachine.SwitchState(EnemyStateType.DIE);
-    //}
+    private void OnDestroyed(DestroyEvent @event)
+    {
+        this.stateMachine.SwitchState(EnemyStateType.DIE);
+    }
 
     //private void OnRespawned()
     //{
