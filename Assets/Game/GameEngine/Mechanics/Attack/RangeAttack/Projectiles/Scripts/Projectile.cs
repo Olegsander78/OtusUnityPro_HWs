@@ -1,6 +1,7 @@
 using UnityEngine;
 using Elementary;
 using Entities;
+using Unity.VisualScripting;
 
 public class Projectile: MonoBehaviour
 {
@@ -8,15 +9,36 @@ public class Projectile: MonoBehaviour
 
     [SerializeField]
     private IntBehaviour _damage;
+
+    [SerializeField]
+    private IEntity _target;
     private void OnTriggerEnter(Collider other)
-    {
+    {       
         if (other.CompareTag("Enemy"))
         {
             if (other.GetComponent<IEntity>() != null)
             {
-                other.GetComponent<IEntity>().Get<IComponent_TakeDamageMechanics>().TakeDamage(_damage.Value);
+                _target= other.GetComponent<IEntity>();
+                DealDamage();
                 Destroy(gameObject);
             }            
         }
+    }
+
+    public void DealDamage()
+    {   
+        var aliveComponent = _target.Get<IComponent_IsAlive>();
+        if (!aliveComponent.IsAlive)
+        {
+            return;
+        }
+
+        var takeDamageComponent = _target.Get<IComponent_TakeDamage>();
+        var damageEvent = new TakeDamageEvent(
+            _damage.Value,
+            TakeDamageReason.BULLET,
+            this
+        );
+        takeDamageComponent.TakeDamage(damageEvent);
     }
 }
