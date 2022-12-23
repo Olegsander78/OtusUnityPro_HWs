@@ -1,12 +1,23 @@
+using System;
 using UnityEngine;
-using Elementary;
 
-public class Component_TakeDamage : MonoBehaviour, IComponent_TakeDamage
+
+[AddComponentMenu("GameEngine/Mechanics/Component «Take Damage»")]
+public sealed class Component_TakeDamage : MonoBehaviour,
+    IComponent_TakeDamage,
+    IComponent_OnDamageTaken
 {
-    [SerializeField]
-    private EventReceiver_Int _takeDamageReceiver;
-    public void TakeDamage(int damage)
+    public event Action<TakeDamageEvent> OnDamageTaken
     {
-        _takeDamageReceiver.Call(damage);
+        add { this.engine.OnDamageTaken += value; }
+        remove { this.engine.OnDamageTaken -= value; }
+    }
+
+    [SerializeField]
+    private TakeDamageEngine engine;
+
+    public void TakeDamage(TakeDamageEvent damageEvent)
+    {
+        this.engine.TakeDamage(damageEvent);
     }
 }
