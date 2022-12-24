@@ -38,6 +38,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateId: 4
+--- !u!1102 &-3990793550597829153
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Human (GetArrow)
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 315727f1bbaa33c4888464a8090c7054, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!114 &-231855893978405585
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,7 +91,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -97,6 +123,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 5728426629800982025}
     m_Position: {x: 120, y: 170, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -3990793550597829153}
+    m_Position: {x: 120, y: 70, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -5901450224075137404}
@@ -109,6 +138,19 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 420, y: 10, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 7036403370637664986}
+--- !u!114 &3833417353028339736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad63daf05a264e899ba4e3ba2699b91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateId: 0
 --- !u!1102 &5728426629800982025
 AnimatorState:
   serializedVersion: 6
