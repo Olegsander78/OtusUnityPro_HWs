@@ -1,14 +1,18 @@
+using System;
 using UnityEngine;
 
 
 public sealed class EnemyStateResolver : MonoBehaviour
 {
     [SerializeField]
-    private EnemyStateMachine stateMachine;
+    private EnemyStateMachine _stateMachine;
 
     [Space]
     [SerializeField]
-    private DestroyReceiver dieReceiver;
+    private DestroyReceiver _dieReceiver;
+
+    [SerializeField]
+    private TakeDamageEngine _takeDamageEngine;
 
     //[SerializeField]
     //private MeleeCombatEngine combatEngine;
@@ -27,9 +31,11 @@ public sealed class EnemyStateResolver : MonoBehaviour
         //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
 
-        this.dieReceiver.OnDestroy += this.OnDestroyed;
+        _dieReceiver.OnDestroy += OnDestroyed;
+        _takeDamageEngine.OnDamageTaken += OnDamageTakenStarted;
+        _takeDamageEngine.OnDamageTakenFinished += OnDamageTakenFinished;
         //this.respawnReceiver.OnEvent += this.OnRespawned;
-    }
+    }    
 
     private void OnDisable()
     {
@@ -39,7 +45,9 @@ public sealed class EnemyStateResolver : MonoBehaviour
         //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
 
-        this.dieReceiver.OnDestroy -= this.OnDestroyed;
+        _dieReceiver.OnDestroy -= OnDestroyed;
+        _takeDamageEngine.OnDamageTaken -= OnDamageTakenStarted;
+        _takeDamageEngine.OnDamageTakenFinished -= OnDamageTakenFinished;
         //this.respawnReceiver.OnEvent -= this.OnRespawned;
     }
 
@@ -71,8 +79,22 @@ public sealed class EnemyStateResolver : MonoBehaviour
 
     private void OnDestroyed(DestroyEvent @event)
     {
-        this.stateMachine.SwitchState(EnemyStateType.DIE);
+        _stateMachine.SwitchState(EnemyStateType.DIE);
     }
+
+    private void OnDamageTakenStarted(TakeDamageEvent obj)
+    {
+        _stateMachine.SwitchState(EnemyStateType.HIT);        
+    }
+
+    private void OnDamageTakenFinished()
+    {
+        if (_stateMachine.CurrentState == EnemyStateType.HIT)
+        {
+            _stateMachine.SwitchState(EnemyStateType.IDLE);
+        }
+    }
+
 
     //private void OnRespawned()
     //{

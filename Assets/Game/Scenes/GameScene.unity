@@ -1407,14 +1407,14 @@ GameObject:
   m_Component:
   - component: {fileID: 261830422}
   - component: {fileID: 261830424}
-  - component: {fileID: 261830423}
+  - component: {fileID: 261830425}
   m_Layer: 0
   m_Name: 4.Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &261830422
 Transform:
   m_ObjectHideFlags: 0
@@ -1430,24 +1430,6 @@ Transform:
   m_Father: {fileID: 7016975864257612603}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &261830423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 261830421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c8dccb3adb01a1449a4297da33e3dbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1443905708312190451}
-  stateId:
-    mode: 0
-    baseValue: 4
-    monoValue: {fileID: 0}
-    scriptableValue: {fileID: 0}
 --- !u!114 &261830424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,7 +1443,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateComponents:
-  - {fileID: 261830423}
+  - {fileID: 261830425}
+--- !u!114 &261830425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261830421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2066512421cffe646a75845f78253d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  system: {fileID: 1783014471}
+  enterId:
+    mode: 0
+    baseValue: 4
+    monoValue: {fileID: 0}
+    scriptableValue: {fileID: 0}
+  hasExitAnimation: 0
+  exitId:
+    mode: 0
+    baseValue: 0
+    monoValue: {fileID: 0}
+    scriptableValue: {fileID: 0}
 --- !u!1 &322843945
 GameObject:
   m_ObjectHideFlags: 0
@@ -4720,7 +4726,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1134512724}
   - component: {fileID: 1134512722}
-  - component: {fileID: 1134512723}
   m_Layer: 0
   m_Name: 4.Hit
   m_TagString: Untagged
@@ -4740,26 +4745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdb7454648c7084daea41295ce1ac87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateComponents:
-  - {fileID: 1134512723}
---- !u!114 &1134512723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134512721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04bafff813138a545b7eb999967bf39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationSystem: {fileID: 1783014471}
-  unityEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  animationEvents:
-  - step
+  stateComponents: []
 --- !u!4 &1134512724
 Transform:
   m_ObjectHideFlags: 0
@@ -15010,6 +14996,8 @@ MonoBehaviour:
   states:
   - mode: 0
     state: {fileID: 7016975863902565934}
+  - mode: 4
+    state: {fileID: 261830424}
   - mode: 5
     state: {fileID: 763526330}
 --- !u!114 &7016975863528679889
@@ -15170,8 +15158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afde74dd1924793933edf2c99b6e6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateMachine: {fileID: 7016975863528679888}
-  dieReceiver: {fileID: 4499871340496779535}
+  _stateMachine: {fileID: 7016975863528679888}
+  _dieReceiver: {fileID: 4499871340496779535}
+  _takeDamageEngine: {fileID: 7707438669903203399}
 --- !u!1 &7016975864018284660
 GameObject:
   m_ObjectHideFlags: 0

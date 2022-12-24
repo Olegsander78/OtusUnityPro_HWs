@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ using UnityEngine;
 public sealed class TakeDamageEngine : MonoBehaviour
 {
     public event Action<TakeDamageEvent> OnDamageTaken;
+    public event Action OnDamageTakenFinished;
 
     [SerializeField]
     private HitPointsEngine hitPointsEngine;
@@ -25,11 +27,19 @@ public sealed class TakeDamageEngine : MonoBehaviour
         this.hitPointsEngine.CurrentHitPoints -= damageEvent.damage;
         this.OnDamageTaken?.Invoke(damageEvent);
 
+        StartCoroutine(FinishTakeDamageRoutine());
+
         if (this.hitPointsEngine.CurrentHitPoints <= 0)
         {
             var destroyEvent = ComposeDestroyEvent(damageEvent);
-            this.destroyReceiver.Invoke(destroyEvent);
+            this.destroyReceiver?.Invoke(destroyEvent);
         }
+    }
+
+    private IEnumerator FinishTakeDamageRoutine()
+    {
+        yield return new WaitForSeconds(0.22f);
+        OnDamageTakenFinished?.Invoke();
     }
 
     private static DestroyEvent ComposeDestroyEvent(TakeDamageEvent damageEvent)
