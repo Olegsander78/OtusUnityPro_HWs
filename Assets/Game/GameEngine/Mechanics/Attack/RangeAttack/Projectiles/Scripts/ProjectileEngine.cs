@@ -4,6 +4,7 @@ using Elementary;
 public class ProjectileEngine : MonoBehaviour
 {
     public GameObject ProjectilePrefab { get => _projectilePrefab; set => value = _projectilePrefab; }
+    public GameObject CurrentProjectile { get => _currentProjectile; set => value = _currentProjectile; }
 
     [SerializeField]
     private FloatBehaviour _speedProjectile;
@@ -16,16 +17,33 @@ public class ProjectileEngine : MonoBehaviour
 
     [SerializeField]
     private GameObject _projectilePrefab;
+    
+    private GameObject _currentProjectile;
+
 
     [SerializeField]
     private Transform _startPoint;
 
-    public void ShootProjectile(GameObject projectilePrefab)
+    public GameObject CreateProjectile(GameObject projectilePrefab)
     {
-        //GameObject proj = Instantiate(projectilePrefab, transform.position + Vector3.up, transform.rotation);
-        GameObject proj = Instantiate(projectilePrefab, _startPoint.transform.position,_startPoint.transform.rotation);
-        proj.GetComponent<Rigidbody>().velocity = transform.forward * _speedProjectile.Value;
-        proj.GetComponent<Projectile>().Damage.Assign(_damageProjectile.Value);
-        Destroy(proj, _lifeTimeProjectile);
+        _currentProjectile = Instantiate(projectilePrefab, _startPoint.transform.position, _startPoint.transform.rotation);
+        _currentProjectile.transform.SetParent(_startPoint.transform, true);
+        _currentProjectile.SetActive(true);
+
+        return _currentProjectile;
+    }
+
+    public void ShootProjectile()
+    {
+        if(_currentProjectile != null)
+        {
+            _currentProjectile.GetComponent<Rigidbody>().velocity = transform.forward * _speedProjectile.Value;
+            _currentProjectile.GetComponent<Projectile>().Damage.Assign(_damageProjectile.Value);
+            Destroy(_currentProjectile, _lifeTimeProjectile);
+        }
+
+        return;
     }
 }
+
+

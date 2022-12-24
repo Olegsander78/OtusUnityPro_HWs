@@ -21,6 +21,7 @@ public class RangeAttackRateState : StateCoroutine
 
     private void Shoot()
     {
-        _projectileEngine.ShootProjectile(_projectileEngine.ProjectilePrefab);
+        _projectileEngine.CreateProjectile(_projectileEngine.ProjectilePrefab);
+        _projectileEngine.ShootProjectile();
     }
 }
