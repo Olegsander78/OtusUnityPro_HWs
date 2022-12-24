@@ -4857,7 +4857,19 @@ MonoBehaviour:
   onEnable:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 161895822376990364}
+      - m_Target: {fileID: 161895822376990366}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 161895822376990367}
         m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -4872,7 +4884,19 @@ MonoBehaviour:
   onDisable:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 161895822376990364}
+      - m_Target: {fileID: 161895822376990366}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 161895822376990367}
         m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -9017,7 +9041,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 161895822376990355}
-  - component: {fileID: 161895822376990364}
+  - component: {fileID: 161895822376990366}
+  - component: {fileID: 161895822376990367}
   - component: {fileID: 161895822376990365}
   m_Layer: 10
   m_Name: Collider
@@ -9041,19 +9066,6 @@ Transform:
   m_Father: {fileID: 161895824067635643}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &161895822376990364
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161895822376990354}
-  m_Material: {fileID: 13400000, guid: 598ab391ca1ee544da525a7ea422d405, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &161895822376990365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9067,6 +9079,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 2296130345379145557}
+--- !u!136 &161895822376990366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161895822376990354}
+  m_Material: {fileID: 13400000, guid: 598ab391ca1ee544da525a7ea422d405, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.4156038
+  m_Direction: 1
+  m_Center: {x: 0.02000001, y: 0.5578019, z: 0.22999999}
+--- !u!135 &161895822376990367
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161895822376990354}
+  m_Material: {fileID: 13400000, guid: 598ab391ca1ee544da525a7ea422d405, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.32140434
+  m_Center: {x: 0.09, y: 1, z: 0.5214044}
 --- !u!1 &161895822829860154
 GameObject:
   m_ObjectHideFlags: 0
@@ -9315,8 +9354,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 835168127570628771}
-  - component: {fileID: 5969317693342621399}
   - component: {fileID: 5601061856374019310}
+  - component: {fileID: 5969317693342621399}
   m_Layer: 0
   m_Name: TakeDamage
   m_TagString: Untagged
@@ -15793,6 +15832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPointsEngine: {fileID: 7016975863348942296}
   destroyReceiver: {fileID: 4499871340496779535}
+  _durationDamage: 0.22
 --- !u!4 &7771017479446854223
 Transform:
   m_ObjectHideFlags: 0

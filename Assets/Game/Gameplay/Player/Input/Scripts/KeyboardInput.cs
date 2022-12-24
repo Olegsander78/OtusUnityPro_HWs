@@ -58,10 +58,10 @@ public sealed class KeyboardInput : MonoBehaviour,
             Jump();
         }
 
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(1))
             RangeAttack();
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2))
             MeleeAttack();
     }
 

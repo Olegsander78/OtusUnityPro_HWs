@@ -15,6 +15,9 @@ public sealed class TakeDamageEngine : MonoBehaviour
     [SerializeField]
     private DestroyReceiver destroyReceiver;
 
+    [SerializeField]
+    private float _durationDamage;
+
     [Button]
     [GUIColor(0, 1, 0)]
     public void TakeDamage(TakeDamageEvent damageEvent)
@@ -38,7 +41,7 @@ public sealed class TakeDamageEngine : MonoBehaviour
 
     private IEnumerator FinishTakeDamageRoutine()
     {
-        yield return new WaitForSeconds(0.22f);
+        yield return new WaitForSeconds(_durationDamage);
         OnDamageTakenFinished?.Invoke();
     }
 
