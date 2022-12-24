@@ -12,6 +12,10 @@ public class Projectile: MonoBehaviour
 
     [SerializeField]
     private IEntity _target;
+
+    [SerializeField]
+    private Rigidbody _rigidbody;
+
     private void OnTriggerEnter(Collider other)
     {       
         if (other.CompareTag("Enemy"))
@@ -20,7 +24,10 @@ public class Projectile: MonoBehaviour
             {
                 _target= other.GetComponent<IEntity>();
                 DealDamage();
-                Destroy(gameObject);
+                transform.parent = other.transform;
+                _rigidbody.velocity = transform.forward * 0f;
+                //transform.position = other.transform.position;
+                //Destroy(gameObject);
             }            
         }
     }
