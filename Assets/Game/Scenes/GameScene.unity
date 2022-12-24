@@ -6992,19 +6992,6 @@ MonoBehaviour:
           m_StringArgument: ShootArrow
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7659668982995364272}
-        m_TargetAssemblyTypeName: ProjectileEngine, Assembly-CSharp
-        m_MethodName: ShootProjectile
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5312123466556654964, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1323004341}
         m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
         m_MethodName: Play
@@ -7062,7 +7049,7 @@ MonoBehaviour:
   mode: 0
   invertOnAwake: 1
   gameObjects:
-  - {fileID: 140448702}
+  - {fileID: 2026436938}
 --- !u!1 &1960656561
 GameObject:
   m_ObjectHideFlags: 0
@@ -7353,6 +7340,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   includeInactive: 0
+--- !u!1 &2026436938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5312123466556654964, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3836046887580335992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2026436943 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3836046887580335992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2035283446
 GameObject:
   m_ObjectHideFlags: 0
@@ -7414,6 +7413,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 140021662}
+  - {fileID: 2026436943}
   m_Father: {fileID: 1846023237}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12960,7 +12960,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rangeAttackReciever: {fileID: 7377188463903917072}
   _projectileEngine: {fileID: 7659668982995364272}
-  _attackCountdown: {fileID: 99472865032435463}
+  _shotCountdown: {fileID: 99472865032435463}
+  _preshotCountdown: 1.15
 --- !u!4 &1766854321768056789
 Transform:
   m_ObjectHideFlags: 0
@@ -13423,6 +13424,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 5
+--- !u!1001 &3836046887580335992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2036194383}
+    m_Modifications:
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.43265343
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15887612
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2513771
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.08311922
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.015099134
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.21301161
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.97339064
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.259
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -188.884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654952, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -72.406
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312123466556654964, guid: fe90c4e9f943f024ebb764eb70a8c4c8,
+        type: 3}
+      propertyPath: m_Name
+      value: ArrowProjectile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe90c4e9f943f024ebb764eb70a8c4c8, type: 3}
 --- !u!1001 &3919014031786931680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14591,8 +14661,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6360968779908052281}
   - component: {fileID: 7377188463903917072}
-  - component: {fileID: 99472865032435463}
   - component: {fileID: 1679331756918340608}
+  - component: {fileID: 99472865032435463}
   m_Layer: 0
   m_Name: RangeAttack
   m_TagString: Untagged

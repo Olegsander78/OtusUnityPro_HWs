@@ -1,6 +1,7 @@
 using UnityEngine;
 using Elementary;
 using System;
+using System.Collections;
 
 public class RangeAttackMechanic : MonoBehaviour
 {
@@ -14,30 +15,48 @@ public class RangeAttackMechanic : MonoBehaviour
     [SerializeField]
     private ProjectileEngine _projectileEngine;
 
+    [Header("Shot Countdown")]
     [SerializeField]
-    private TimerBehaviour _attackCountdown;
+    private TimerBehaviour _shotCountdown;
+
+    [Header("Pre-Shot Countdown")]
+    [SerializeField]
+    private float _preshotCountdown;
 
     private void OnEnable()
     {
         _rangeAttackReciever.OnEvent += OnRequestRangeAttack;
-        _attackCountdown.OnFinished += OnAttackFinished;
+        _shotCountdown.OnFinished += OnAttackFinished;
     }
 
     private void OnDisable()
     {
         _rangeAttackReciever.OnEvent -= OnRequestRangeAttack;
-        _attackCountdown.OnFinished -= OnAttackFinished;
+        _shotCountdown.OnFinished -= OnAttackFinished;
     }
     private void OnRequestRangeAttack()
     {
-        if (_attackCountdown.IsPlaying)
-            return;            
+        if (_shotCountdown.IsPlaying)
+            return;
 
-        _projectileEngine.ShootProjectile(_projectileEngine.ProjectilePrefab);
+        PreShot();
+
+        _shotCountdown.ResetTime();
+        _shotCountdown.Play();        
+    }
+
+    private void PreShot()
+    {
+        StartCoroutine(PreShotRoutine());
+    }
+
+    private IEnumerator PreShotRoutine()
+    {
         OnRangeAttackStarted?.Invoke();
 
-        _attackCountdown.ResetTime();
-        _attackCountdown.Play();        
+        yield return new WaitForSeconds(_preshotCountdown);
+
+        _projectileEngine.ShootProjectile(_projectileEngine.ProjectilePrefab);        
     }
 
     private void OnAttackFinished()
