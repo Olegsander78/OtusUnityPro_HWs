@@ -39,11 +39,9 @@ public class ProjectileEngine : MonoBehaviour
         {
             _currentProjectile.transform.parent= null;
             _currentProjectile.GetComponent<Rigidbody>().velocity = transform.forward * _speedProjectile.Value;
-            _currentProjectile.GetComponent<Projectile>().Damage.Assign(_damageProjectile.Value);
+            _currentProjectile.GetComponent<Projectile>().Damage.Assign(_damageProjectile.Value);            
             Destroy(_currentProjectile, _lifeTimeProjectile);
         }
-
-        return;
     }
 }
 

@@ -9,6 +9,8 @@ public class RangeAttackMechanic : MonoBehaviour
 
     public event Action OnRangeAttackFinished;
 
+    public bool IsShoted => _isShoted;
+
     [SerializeField]
     private EventReceiver _rangeAttackReciever; 
 
@@ -22,6 +24,11 @@ public class RangeAttackMechanic : MonoBehaviour
     [Header("Pre-Shot Countdown")]
     [SerializeField]
     private float _preshotCountdown;
+        
+    private bool _isShoted;
+
+    private Coroutine _shotRoutine;
+
 
     private void OnEnable()
     {
@@ -34,20 +41,20 @@ public class RangeAttackMechanic : MonoBehaviour
         _rangeAttackReciever.OnEvent -= OnRequestRangeAttack;
         _shotCountdown.OnFinished -= OnAttackFinished;
     }
-    private void OnRequestRangeAttack()
+    public void OnRequestRangeAttack()
     {
         if (_shotCountdown.IsPlaying)
             return;
 
-        PreShot();
+        Shot();
 
         _shotCountdown.ResetTime();
         _shotCountdown.Play();        
     }
 
-    private void PreShot()
+    private void Shot()
     {
-        StartCoroutine(PreShotRoutine());
+        StartCoroutine(ShotRoutine());
     }
 
     private IEnumerator PreShotRoutine()
@@ -56,10 +63,23 @@ public class RangeAttackMechanic : MonoBehaviour
 
         OnRangeAttackStarted?.Invoke();
 
-        yield return new WaitForSeconds(_preshotCountdown);
+        _isShoted = false;
 
-        if (_projectileEngine.CurrentProjectile != null)
-            _projectileEngine.ShootProjectile();        
+        yield return new WaitForSeconds(_preshotCountdown);        
+
+        _isShoted = true;
+    }
+
+    private IEnumerator ShotRoutine()
+    {
+        yield return StartCoroutine(PreShotRoutine());
+
+        if (_projectileEngine.CurrentProjectile != null && _isShoted)
+        {
+            _projectileEngine.ShootProjectile();
+        }
+        else if(!_isShoted)
+            Destroy(_projectileEngine.CurrentProjectile);
     }
 
     private void OnAttackFinished()

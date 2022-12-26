@@ -13,6 +13,8 @@ public sealed class HeroStateResolver : MonoBehaviour
     [SerializeField]
     private RangeAttackMechanic _rangeAttackMechanic;
 
+    [SerializeField]
+    private ProjectileEngine _projectileEngine;
     //[SerializeField]
     //private MeleeCombatEngine combatEngine;
 
@@ -90,7 +92,8 @@ public sealed class HeroStateResolver : MonoBehaviour
     {
         if (_stateMachine.CurrentState == HeroStateType.SHOOT)
         {
-            _stateMachine.SwitchState(HeroStateType.IDLE);
+            _stateMachine.SwitchState(HeroStateType.IDLE); 
+                
             Debug.LogWarning("SHOOT STATE EXIT");
         }
     }

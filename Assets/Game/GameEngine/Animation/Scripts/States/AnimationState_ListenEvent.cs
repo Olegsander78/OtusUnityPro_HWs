@@ -33,8 +33,7 @@ public sealed class AnimationState_ListenEvent : State
     private void OnAnimationEvent(string message)
     {
         if (this.animationEvents.Contains(message))
-        {
-            Debug.Log($"{message} was contained!");
+        {            
             this.unityEvent.Invoke();
         }
         else

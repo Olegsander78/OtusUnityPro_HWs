@@ -10,18 +10,21 @@ public class RangeAttackRateState : StateCoroutine
     [SerializeField]
     private ProjectileEngine _projectileEngine;
 
-
+    [SerializeField]
+    private RangeAttackMechanic _rangeAttackMechanic;
 
     protected override IEnumerator Do()
     {
-        Shoot();
+        _rangeAttackMechanic.OnRequestRangeAttack();        
+
+        //Shoot();
 
         yield return new WaitForSeconds(_rateRangeAttack.Duration);
     }
 
-    private void Shoot()
-    {
-        _projectileEngine.CreateProjectile(_projectileEngine.ProjectilePrefab);
-        _projectileEngine.ShootProjectile();
-    }
+    //private void Shoot()
+    //{
+    //    _projectileEngine.CreateProjectile(_projectileEngine.ProjectilePrefab);
+    //    _projectileEngine.ShootProjectile();
+    //}
 }
