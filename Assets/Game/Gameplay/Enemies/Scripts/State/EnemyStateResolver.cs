@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Elementary;
 
 
 public sealed class EnemyStateResolver : MonoBehaviour
@@ -20,8 +21,8 @@ public sealed class EnemyStateResolver : MonoBehaviour
     //[SerializeField]
     //private MoveInDirectionEngine moveEngine;
 
-    //[SerializeField]
-    //private EventBehaviour respawnReceiver;
+    [SerializeField]
+    private EventBehaviour _respawnReceiver;
 
     private void OnEnable()
     {
@@ -34,7 +35,7 @@ public sealed class EnemyStateResolver : MonoBehaviour
         _dieReceiver.OnDestroy += OnDestroyed;
         _takeDamageEngine.OnDamageTaken += OnDamageTakenStarted;
         _takeDamageEngine.OnDamageTakenFinished += OnDamageTakenFinished;
-        //this.respawnReceiver.OnEvent += this.OnRespawned;
+        _respawnReceiver.OnEvent += OnRespawned;
     }    
 
     private void OnDisable()
@@ -48,7 +49,7 @@ public sealed class EnemyStateResolver : MonoBehaviour
         _dieReceiver.OnDestroy -= OnDestroyed;
         _takeDamageEngine.OnDamageTaken -= OnDamageTakenStarted;
         _takeDamageEngine.OnDamageTakenFinished -= OnDamageTakenFinished;
-        //this.respawnReceiver.OnEvent -= this.OnRespawned;
+        _respawnReceiver.OnEvent -= OnRespawned;
     }
 
     //private void OnMoveStarted()
@@ -96,11 +97,11 @@ public sealed class EnemyStateResolver : MonoBehaviour
     }
 
 
-    //private void OnRespawned()
-    //{
-    //    if (this.stateMachine.CurrentState == EnemyStateType.DIE)
-    //    {
-    //        this.stateMachine.SwitchState(EnemyStateType.IDLE);
-    //    }
-    //}
+    private void OnRespawned()
+    {
+        if (_stateMachine.CurrentState == EnemyStateType.DIE)
+        {
+            _stateMachine.SwitchState(EnemyStateType.IDLE);
+        }
+    }
 }
