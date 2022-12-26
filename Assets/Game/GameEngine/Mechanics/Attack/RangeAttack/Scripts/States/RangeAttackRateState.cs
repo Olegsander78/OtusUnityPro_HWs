@@ -7,11 +7,12 @@ public class RangeAttackRateState : StateCoroutine
     [SerializeField]
     private TimerBehaviour _rateRangeAttack;
 
-    [SerializeField]
-    private ProjectileEngine _projectileEngine;
+    //[SerializeField]
+    //private ProjectileEngine _projectileEngine;
 
     [SerializeField]
     private RangeAttackMechanic _rangeAttackMechanic;
+     
 
     protected override IEnumerator Do()
     {
