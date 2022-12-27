@@ -17,9 +17,9 @@ public class LunchProjectileState : StateCoroutine
 
     protected override IEnumerator Do()
     {
-        _projectileEngine.CreateProjectile();
-
         yield return new WaitForSeconds(_preshotCountdown);
+
+        _projectileEngine.CreateProjectile();
 
         _projectileEngine.ShootProjectile();
 
