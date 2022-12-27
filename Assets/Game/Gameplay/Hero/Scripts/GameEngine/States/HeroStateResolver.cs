@@ -11,7 +11,7 @@ public sealed class HeroStateResolver : MonoBehaviour
     private MoveInDirectionEngine _moveEngine;
 
     [SerializeField]
-    private RangeAttackMechanic _rangeAttackMechanic;
+    private RangeAttackEngine _rangeAttackEngine;
 
     [SerializeField]
     private ProjectileEngine _projectileEngine;
@@ -32,8 +32,8 @@ public sealed class HeroStateResolver : MonoBehaviour
         _moveEngine.OnStartMove += OnMoveStarted;
         _moveEngine.OnStopMove += OnMoveEnded;
 
-        _rangeAttackMechanic.OnRangeAttackStarted += OnShootStarted;
-        _rangeAttackMechanic.OnRangeAttackFinished += OnShootEnded;
+        _rangeAttackEngine.OnRangeAttackStarted += OnShootStarted;
+        _rangeAttackEngine.OnRangeAttackFinished += OnShootEnded;
 
         //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
@@ -50,8 +50,8 @@ public sealed class HeroStateResolver : MonoBehaviour
         _moveEngine.OnStartMove -= OnMoveStarted;
         _moveEngine.OnStopMove -= OnMoveEnded;
 
-        _rangeAttackMechanic.OnRangeAttackStarted -= OnShootStarted;
-        _rangeAttackMechanic.OnRangeAttackFinished -= OnShootEnded;
+        _rangeAttackEngine.OnRangeAttackStarted -= OnShootStarted;
+        _rangeAttackEngine.OnRangeAttackFinished -= OnShootEnded;
 
         //this.combatEngine.OnCombatStarted -= this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped -= this.OnCombatEnded;

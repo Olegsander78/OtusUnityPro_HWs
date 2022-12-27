@@ -293,8 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameElements:
-  - {fileID: 1580759285}
+  gameElements: []
 --- !u!114 &25734115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,9 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be92d8661e54e91951a924b1dc1c368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameServices:
-  - {fileID: 605744059}
-  - {fileID: 1580759285}
+  gameServices: []
 --- !u!1 &33737136
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +395,7 @@ GameObject:
   - component: {fileID: 70457306}
   - component: {fileID: 70457307}
   - component: {fileID: 70457310}
+  - component: {fileID: 70457311}
   m_Layer: 0
   m_Name: 4.Shoot
   m_TagString: Untagged
@@ -434,6 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateComponents:
   - {fileID: 70457310}
+  - {fileID: 70457311}
 --- !u!114 &70457310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +457,21 @@ MonoBehaviour:
     baseValue: 0
     monoValue: {fileID: 0}
     scriptableValue: {fileID: 0}
+--- !u!114 &70457311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70457305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0165f7abcdf188b4cbe91cfab6d3cf2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileEngine: {fileID: 7659668982995364272}
+  _rangeAttackEngine: {fileID: 7377188463903917073}
+  _preshotCountdown: 1.15
 --- !u!1 &76809692
 GameObject:
   m_ObjectHideFlags: 0
@@ -3714,7 +3728,6 @@ MonoBehaviour:
   - {fileID: 1505714480508210649}
   - {fileID: 8820169885798365873}
   - {fileID: 5712831829680806480}
-  - {fileID: 905701458}
 --- !u!1 &914470349
 GameObject:
   m_ObjectHideFlags: 0
@@ -3873,12 +3886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameElements:
-  - {fileID: 146174682}
-  - {fileID: 146174683}
-  - {fileID: 146174684}
-  - {fileID: 146174685}
-  - {fileID: 146174686}
+  gameElements: []
 --- !u!114 &961791230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3891,13 +3899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be92d8661e54e91951a924b1dc1c368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameServices:
-  - {fileID: 548840911}
-  - {fileID: 146174682}
-  - {fileID: 146174683}
-  - {fileID: 146174684}
-  - {fileID: 146174685}
-  - {fileID: 146174686}
+  gameServices: []
 --- !u!114 &962549464 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4991480938305525709, guid: c743e60f6b4f2ba4ca69f17e48e1d220,
@@ -4203,7 +4205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateMachine: {fileID: 322843947}
   _moveEngine: {fileID: 123344437}
-  _rangeAttackMechanic: {fileID: 1679331756918340608}
+  _rangeAttackEngine: {fileID: 7377188463903917073}
   _projectileEngine: {fileID: 7659668982995364272}
 --- !u!1 &1006810854
 GameObject:
@@ -4752,8 +4754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be92d8661e54e91951a924b1dc1c368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameServices:
-  - {fileID: 113199254}
+  gameServices: []
 --- !u!1 &1084853395
 GameObject:
   m_ObjectHideFlags: 0
@@ -5761,10 +5762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be92d8661e54e91951a924b1dc1c368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameServices:
-  - {fileID: 195231937}
-  - {fileID: 1629863449}
-  - {fileID: 2064652361}
+  gameServices: []
 --- !u!114 &1366807994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5777,10 +5775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameElements:
-  - {fileID: 195231937}
-  - {fileID: 1629863449}
-  - {fileID: 2064652361}
+  gameElements: []
 --- !u!1 &1369901736
 GameObject:
   m_ObjectHideFlags: 0
@@ -6027,10 +6022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameElements:
-  - {fileID: 1513928997}
-  - {fileID: 548018399}
-  - {fileID: 717236818}
+  gameElements: []
 --- !u!114 &1583149736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6043,10 +6035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be92d8661e54e91951a924b1dc1c368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameServices:
-  - {fileID: 1513928997}
-  - {fileID: 548018399}
-  - {fileID: 717236818}
+  gameServices: []
 --- !u!1 &1614965787
 GameObject:
   m_ObjectHideFlags: 0
@@ -7287,8 +7276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameElements:
-  - {fileID: 1979274937}
+  gameElements: []
 --- !u!114 &1966956695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13116,7 +13104,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6565003098211404459}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 892ead4db0cbc2c42a46fddd7b3caaf6, type: 3}
   m_Name: 
@@ -14758,6 +14746,7 @@ GameObject:
   - component: {fileID: 7377188463903917072}
   - component: {fileID: 1679331756918340608}
   - component: {fileID: 99472865032435463}
+  - component: {fileID: 7377188463903917073}
   m_Layer: 0
   m_Name: RangeAttack
   m_TagString: Untagged
@@ -15993,6 +15982,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ce1d2c9b2b4a2bae36618cb7933d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7377188463903917073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565003098211404459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae527b9d929a1c54a86fdfeccaaf3d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shotCountdown: {fileID: 99472865032435463}
+  _preshotCountdown: 1.15
 --- !u!224 &7421886717754225371 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5808786837019313979, guid: 14ae3ef57c3c3644f8dfa4e4078c5828,
