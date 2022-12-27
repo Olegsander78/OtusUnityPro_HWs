@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Elementary
 {
-    public abstract class StateMachine<T> : State, 
+    public abstract class StateMachine<T> : State,
         ISerializationCallbackReceiver
         where T : Enum
     {
@@ -22,12 +23,13 @@ namespace Elementary
         [SerializeField]
         private bool exitOnDisable;
 
+        [OnValueChanged("SwitchState")]
         [Space]
         [SerializeField]
         private T mode;
 
         [SerializeField]
-        private StateInfo[] states = Array.Empty<StateInfo>();
+        private StateHolder[] states = Array.Empty<StateHolder>();
 
         private Dictionary<T, State> stateMap;
 
@@ -48,7 +50,7 @@ namespace Elementary
                 this.Exit();
             }
         }
-
+        
         public virtual void SwitchState(T state)
         {
             if (!ReferenceEquals(this.currentState, null))
@@ -62,6 +64,9 @@ namespace Elementary
             this.OnStateChanged?.Invoke(state);
         }
 
+        [Title("Methods")]
+        [GUIColor(0, 1, 0)]
+        [Button]
         public override void Enter()
         {
             if (ReferenceEquals(this.currentState, null))
@@ -71,6 +76,8 @@ namespace Elementary
             }
         }
 
+        [GUIColor(0, 1, 0)]
+        [Button]
         public override void Exit()
         {
             if (!ReferenceEquals(this.currentState, null))
@@ -94,7 +101,7 @@ namespace Elementary
         }
 
         [Serializable]
-        private struct StateInfo
+        private struct StateHolder
         {
             [SerializeField]
             public T mode;

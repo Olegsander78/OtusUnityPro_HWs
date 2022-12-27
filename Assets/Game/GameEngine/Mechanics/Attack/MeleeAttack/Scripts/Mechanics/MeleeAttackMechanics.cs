@@ -27,7 +27,7 @@ public class MeleeAttackMechanics : MonoBehaviour
         if (_countdown.IsPlaying)
             return;
 
-        target.Get<IComponent_TakeDamage>().TakeDamage(_damage.Value);
+        target.Get<IComponent_TakeDamageMechanics>().TakeDamage(_damage.Value);
 
         _countdown.ResetTime();
         _countdown.Play();

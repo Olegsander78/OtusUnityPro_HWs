@@ -32,6 +32,4 @@ public class Component_RangeAttack : MonoBehaviour,
     {
         _attackReceiver.Call();
     }
-
-
 }

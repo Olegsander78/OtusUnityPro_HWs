@@ -13,9 +13,9 @@ public class MakeDamageOnTriggerMechanic : MonoBehaviour
     {
         if (other.GetComponent<IEntity>() != null)
         {
-            if(other.GetComponent<IEntity>().Get<IComponent_TakeDamage>() != null)
+            if(other.GetComponent<IEntity>().Get<IComponent_TakeDamageMechanics>() != null)
             {  
-                other.GetComponent<IEntity>().Get<IComponent_TakeDamage>().TakeDamage(_damage.Value);             
+                other.GetComponent<IEntity>().Get<IComponent_TakeDamageMechanics>().TakeDamage(_damage.Value);             
             }
         }        
     }
