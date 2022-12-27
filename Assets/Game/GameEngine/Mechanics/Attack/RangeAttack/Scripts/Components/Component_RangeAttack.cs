@@ -12,8 +12,11 @@ public class Component_RangeAttack : MonoBehaviour,
         remove { _damage.OnValueChanged -= value; }
     }
 
+    //[SerializeField]
+    //private EventReceiver _attackReceiver;
+
     [SerializeField]
-    private EventReceiver _attackReceiver;
+    private RangeAttackEngine _rangeAttackEngine;
     public int Damage
     {
         get { return _damage.Value; }
@@ -30,6 +33,7 @@ public class Component_RangeAttack : MonoBehaviour,
 
     public void Attack()
     {
-        _attackReceiver.Call();
+        _rangeAttackEngine.TryShoot();
+        //_attackReceiver.Call();
     }
 }

@@ -9,7 +9,9 @@ public class RangeAttackEngine : MonoBehaviour
 
     public event Action OnRangeAttackFinished;
 
-    public bool IsShoted => _isShoted;
+    public TimerBehaviour ShotFullCountdown => _shotFullCountdown;
+
+    //public bool IsShoted => _isShoted;
 
     //[SerializeField]
     //private EventReceiver _rangeAttackReciever; 
@@ -17,39 +19,40 @@ public class RangeAttackEngine : MonoBehaviour
     //[SerializeField]
     //private ProjectileEngine _projectileEngine;
 
-    [Header("Shot Countdown")]
+    [Header("Shot Full Countdown")]
     [SerializeField]
-    private TimerBehaviour _shotCountdown;
+    private TimerBehaviour _shotFullCountdown;
 
     [Header("Pre-Shot Countdown")]
     [SerializeField]
     private float _preshotCountdown;
         
-    private bool _isShoted;
+    //private bool _isShoted;
 
-    private Coroutine _shotRoutine;
+    //private Coroutine _shotRoutine;
 
 
     private void OnEnable()
     {
         //_rangeAttackReciever.OnEvent += OnRequestRangeAttack;
-        _shotCountdown.OnFinished += FinishAttack;
+        _shotFullCountdown.OnFinished += FinishAttack;
     }
 
     private void OnDisable()
     {
        // _rangeAttackReciever.OnEvent -= OnRequestRangeAttack;
-        _shotCountdown.OnFinished -= FinishAttack;
+        _shotFullCountdown.OnFinished -= FinishAttack;
     }
-    public void OnRequestRangeAttack()
+    public void TryShoot()
     {
-        if (_shotCountdown.IsPlaying)
+        if (_shotFullCountdown.IsPlaying)
             return;
 
         //Shot();
+        //OnRangeAttackFinished?.Invoke();
 
-        _shotCountdown.ResetTime();
-        _shotCountdown.Play();
+        _shotFullCountdown.ResetTime();
+        _shotFullCountdown.Play();
         OnRangeAttackStarted?.Invoke();
     }
 

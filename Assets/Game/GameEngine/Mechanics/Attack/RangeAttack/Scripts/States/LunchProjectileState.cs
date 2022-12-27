@@ -14,11 +14,17 @@ public class LunchProjectileState : StateCoroutine
     [SerializeField]
     private float _preshotCountdown;
 
+
     protected override IEnumerator Do()
     {
+        _projectileEngine.CreateProjectile();
+
         yield return new WaitForSeconds(_preshotCountdown);
 
         _projectileEngine.ShootProjectile();
+
+        yield return new WaitForSeconds(_rangeAttackEngine.ShotFullCountdown.Duration - _preshotCountdown);
+
         _rangeAttackEngine.FinishAttack();
     }
 }
