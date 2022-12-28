@@ -1,5 +1,6 @@
 using UnityEngine;
 using Elementary;
+using Sirenix.OdinInspector;
 
 public class ProjectileEngine : MonoBehaviour
 {
@@ -24,15 +25,17 @@ public class ProjectileEngine : MonoBehaviour
     [SerializeField]
     private Transform _startPoint;
 
-    public GameObject CreateProjectile(GameObject projectilePrefab)
+    [Button]
+    public GameObject CreateProjectile()
     {
-        _currentProjectile = Instantiate(projectilePrefab, _startPoint.transform.position, _startPoint.transform.rotation);
+        _currentProjectile = Instantiate(_projectilePrefab, _startPoint.transform.position, _startPoint.transform.rotation);
         _currentProjectile.transform.SetParent(_startPoint.transform, true);
         _currentProjectile.SetActive(true);
-
+        Destroy(_currentProjectile, _lifeTimeProjectile);
         return _currentProjectile;
     }
 
+    [Button]
     public void ShootProjectile()
     {
         if(_currentProjectile != null)

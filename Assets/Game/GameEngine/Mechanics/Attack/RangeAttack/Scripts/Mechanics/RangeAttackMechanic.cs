@@ -59,7 +59,7 @@ public class RangeAttackMechanic : MonoBehaviour
 
     private IEnumerator PreShotRoutine()
     {
-       _projectileEngine.CurrentProjectile = _projectileEngine.CreateProjectile(_projectileEngine.ProjectilePrefab);
+       _projectileEngine.CurrentProjectile = _projectileEngine.CreateProjectile();
 
         OnRangeAttackStarted?.Invoke();
 
