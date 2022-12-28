@@ -7,7 +7,7 @@ using UnityEngine;
 public sealed class TakeDamageEngine : MonoBehaviour
 {
     public event Action<TakeDamageEvent> OnDamageTaken;
-    public event Action OnDamageTakenFinished;
+    //public event Action OnDamageTakenFinished;
 
     [SerializeField]
     private HitPointsEngine hitPointsEngine;
@@ -15,8 +15,8 @@ public sealed class TakeDamageEngine : MonoBehaviour
     [SerializeField]
     private DestroyReceiver destroyReceiver;
 
-    [SerializeField]
-    private float _durationDamage;
+    //[SerializeField]
+    //private float _durationDamage;
 
     [Button]
     [GUIColor(0, 1, 0)]
@@ -30,7 +30,7 @@ public sealed class TakeDamageEngine : MonoBehaviour
         this.hitPointsEngine.CurrentHitPoints -= damageEvent.damage;
         this.OnDamageTaken?.Invoke(damageEvent);
 
-        StartCoroutine(FinishTakeDamageRoutine());
+        //StartCoroutine(FinishTakeDamageRoutine());
 
         if (this.hitPointsEngine.CurrentHitPoints <= 0)
         {
@@ -39,11 +39,11 @@ public sealed class TakeDamageEngine : MonoBehaviour
         }
     }
 
-    private IEnumerator FinishTakeDamageRoutine()
-    {
-        yield return new WaitForSeconds(_durationDamage);
-        OnDamageTakenFinished?.Invoke();
-    }
+    //private IEnumerator FinishTakeDamageRoutine()
+    //{
+    //    yield return new WaitForSeconds(_durationDamage);
+    //    OnDamageTakenFinished?.Invoke();
+    //}
 
     private static DestroyEvent ComposeDestroyEvent(TakeDamageEvent damageEvent)
     {

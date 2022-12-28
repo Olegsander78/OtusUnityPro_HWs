@@ -86,7 +86,7 @@ public sealed class HeroStateResolver : MonoBehaviour
     private void OnShootStarted()
     {
         _stateMachine.SwitchState(HeroStateType.SHOOT);
-        Debug.LogWarning("SHOOT STATE ENTER");
+        //Debug.LogWarning("SHOOT STATE ENTER");
     }
     private void OnShootEnded()
     {
@@ -94,7 +94,7 @@ public sealed class HeroStateResolver : MonoBehaviour
         {
             _stateMachine.SwitchState(HeroStateType.IDLE); 
                 
-            Debug.LogWarning("SHOOT STATE EXIT");
+            //Debug.LogWarning("SHOOT STATE EXIT");
         }
     }
 

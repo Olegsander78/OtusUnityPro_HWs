@@ -34,7 +34,7 @@ public sealed class EnemyStateResolver : MonoBehaviour
 
         _dieReceiver.OnDestroy += OnDestroyed;
         _takeDamageEngine.OnDamageTaken += OnDamageTakenStarted;
-        _takeDamageEngine.OnDamageTakenFinished += OnDamageTakenFinished;
+        //_takeDamageEngine.OnDamageTakenFinished += OnDamageTakenFinished;
         _respawnReceiver.OnEvent += OnRespawned;
     }    
 
@@ -48,7 +48,7 @@ public sealed class EnemyStateResolver : MonoBehaviour
 
         _dieReceiver.OnDestroy -= OnDestroyed;
         _takeDamageEngine.OnDamageTaken -= OnDamageTakenStarted;
-        _takeDamageEngine.OnDamageTakenFinished -= OnDamageTakenFinished;
+        //_takeDamageEngine.OnDamageTakenFinished -= OnDamageTakenFinished;
         _respawnReceiver.OnEvent -= OnRespawned;
     }
 
@@ -85,7 +85,14 @@ public sealed class EnemyStateResolver : MonoBehaviour
 
     private void OnDamageTakenStarted(TakeDamageEvent obj)
     {
-        _stateMachine.SwitchState(EnemyStateType.HIT);        
+        _stateMachine.SwitchState(EnemyStateType.HIT);
+        Debug.Log($"ENTER STATE {EnemyStateType.HIT}");
+
+        if (obj.source == null)
+        {
+            _stateMachine.SwitchState(EnemyStateType.IDLE);
+            Debug.Log($"EXIT STATE {EnemyStateType.HIT}");
+        }       
     }
 
     private void OnDamageTakenFinished()
@@ -95,8 +102,6 @@ public sealed class EnemyStateResolver : MonoBehaviour
             _stateMachine.SwitchState(EnemyStateType.IDLE);
         }
     }
-
-
     private void OnRespawned()
     {
         if (_stateMachine.CurrentState == EnemyStateType.DIE)

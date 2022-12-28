@@ -26,9 +26,7 @@ public class Projectile: MonoBehaviour
                 DealDamage();
                 transform.parent = other.transform;
                 _rigidbody.velocity = transform.forward * 0f;
-                //transform.position = other.transform.position;
-                //Destroy(gameObject);
-            }            
+            }
         }
     }
 
