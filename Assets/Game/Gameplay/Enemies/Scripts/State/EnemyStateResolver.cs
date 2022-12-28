@@ -88,11 +88,17 @@ public sealed class EnemyStateResolver : MonoBehaviour
         _stateMachine.SwitchState(EnemyStateType.HIT);
         Debug.Log($"ENTER STATE {EnemyStateType.HIT}");
 
-        if (obj.source == null)
+        //if (obj.source == null)
+        //{
+        //    _stateMachine.SwitchState(EnemyStateType.IDLE);
+        //    Debug.Log($"EXIT STATE {EnemyStateType.HIT}");
+        //}
+
+        if (_stateMachine.CurrentState == EnemyStateType.HIT)
         {
             _stateMachine.SwitchState(EnemyStateType.IDLE);
             Debug.Log($"EXIT STATE {EnemyStateType.HIT}");
-        }       
+        }
     }
 
     private void OnDamageTakenFinished()

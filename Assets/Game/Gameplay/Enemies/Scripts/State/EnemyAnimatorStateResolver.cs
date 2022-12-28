@@ -85,12 +85,12 @@ public sealed class EnemyAnimatorStateResolver : MonoBehaviour
         {
             Debug.Log($"{takeDamageEvent.source}, {takeDamageEvent.reason}");
             _animationSystem.ChangeState((int)EnemyAnimatorStateType.HIT);
-            Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE ENTER , {takeDamageEvent.source}");
+            Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE ENTER , {takeDamageEvent.source}");            
         }
         else
         {
-            _animationSystem.ChangeState((int)EnemyAnimatorStateType.IDLE);
-            Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE ENTER, {takeDamageEvent.source}");
+            _animationSystem.ChangeState((int)EnemyAnimatorStateType.IDLE); 
+            Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE EXIT, {takeDamageEvent.source}");
         }
     }
 
