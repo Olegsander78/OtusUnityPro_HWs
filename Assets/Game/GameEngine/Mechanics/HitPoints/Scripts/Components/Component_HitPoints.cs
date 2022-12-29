@@ -5,6 +5,7 @@ using UnityEngine;
 [AddComponentMenu("GameEngine/Mechanics/Component «Hit Points»")]
 public sealed class Component_HitPoints : MonoBehaviour,
     IComponent_GetHitPoints,
+    IComponent_GetMaxHitPoints,
     IComponent_SetHitPoints,
     IComponent_SetMaxHitPoints,
     IComponent_OnHitPointsChanged,

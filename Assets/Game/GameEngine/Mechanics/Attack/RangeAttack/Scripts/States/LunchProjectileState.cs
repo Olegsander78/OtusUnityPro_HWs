@@ -14,7 +14,6 @@ public class LunchProjectileState : StateCoroutine
     [SerializeField]
     private float _preshotCountdown;
 
-
     protected override IEnumerator Do()
     {
         yield return new WaitForSeconds(_preshotCountdown);

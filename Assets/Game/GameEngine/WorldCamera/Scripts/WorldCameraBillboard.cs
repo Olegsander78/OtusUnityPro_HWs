@@ -1,18 +1,27 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 
 [AddComponentMenu("GameEngine/World Camera/World Camera Billboard")]
+[ExecuteAlways]
 public sealed class WorldCameraBillboard : MonoBehaviour
 {
+    [SerializeField]
+    private bool lookAtStart;
+
     private void Start()
     {
-        this.LookAtCamera();
+        if (this.lookAtStart)
+        {
+            this.LookAtCamera();
+        }
     }
 
-    private void LookAtCamera()
+    [Button]
+    public void LookAtCamera()
     {
         var rootPosition = this.transform.position;
-        var instance = WorldCameraService.Instance;
+        var instance = WorldCamera.Instance;
         if (ReferenceEquals(instance, null))
         {
             return;

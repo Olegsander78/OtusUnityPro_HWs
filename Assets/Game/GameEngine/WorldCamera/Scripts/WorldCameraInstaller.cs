@@ -6,13 +6,13 @@ public sealed class WorldCameraInstaller : MonoBehaviour
 {
     private void Awake()
     {
-        WorldCameraService.SetupCamera(Camera.main);
+        WorldCamera.Setup(Camera.main);
     }
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        WorldCameraService.SetupCamera(Camera.main);
+        WorldCamera.Setup(Camera.main);
     }
 #endif
 }
