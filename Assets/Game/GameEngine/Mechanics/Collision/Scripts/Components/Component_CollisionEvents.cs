@@ -3,7 +3,8 @@ using System;
 using UnityEngine;
 
 [AddComponentMenu("GameEngine/Mechanics/Component «Collision Events»")]
-public sealed class Component_CollisionEvents : MonoBehaviour
+public sealed class Component_CollisionEvents : MonoBehaviour,
+    IComponent_CollisionEvents
 {
     public event Action<Collision> OnCollisionEntered
     {
