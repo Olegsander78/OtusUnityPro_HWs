@@ -1,26 +1,20 @@
 using UnityEngine;
 using Elementary;
 
-public class TakeDamageMechanics : MonoBehaviour
+public abstract class TakeDamageMechanics : MonoBehaviour
 {
     [SerializeField]
-    private EventReceiver_Int _takeDamageReceiver;
-
-    [SerializeField]
-    private IntBehaviour _hitPoints;
+    private TakeDamageEngine _takeDamageEngine;
 
     private void OnEnable()
     {
-        _takeDamageReceiver.OnEvent += OnDamageTaken;
+        _takeDamageEngine.OnDamageTaken += OnDamageTaken;
     }
 
     private void OnDisable()
     {
-        _takeDamageReceiver.OnEvent -= OnDamageTaken;
+        _takeDamageEngine.OnDamageTaken -= OnDamageTaken;
     }
 
-    private void OnDamageTaken(int damage)
-    {
-        _hitPoints.Value -= damage;
-    }
+    protected abstract void OnDamageTaken(TakeDamageEvent damageEvent);
 }

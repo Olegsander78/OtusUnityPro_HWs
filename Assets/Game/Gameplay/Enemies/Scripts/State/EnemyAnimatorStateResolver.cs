@@ -5,8 +5,6 @@ using UnityEngine;
 
 public sealed class EnemyAnimatorStateResolver : MonoBehaviour
 {
-    //[SerializeField]
-    //private BoolBehaviour _isAttack;
     [Space]
     [SerializeField]
     private AnimationSystem _animationSystem;
@@ -23,14 +21,11 @@ public sealed class EnemyAnimatorStateResolver : MonoBehaviour
 
     private void Awake()
     {
-        //this.UpdateState(this._isAttack.Value);
         UpdateStateEnable(_isEnable.Value);
     }
 
-
     private void OnEnable()
     {
-        //this._isAttack.OnValueChanged += this.OnStateChanged;
         _isEnable.OnValueChanged += OnEnabled;
         _destroyReceiver.OnDestroy += OnDestroyed;
         _takeDamageEngine.OnDamageTaken += OnHit;
@@ -38,7 +33,6 @@ public sealed class EnemyAnimatorStateResolver : MonoBehaviour
 
     private void OnDisable()
     {
-        // this._isAttack.OnValueChanged -= this.OnStateChanged;
         _isEnable.OnValueChanged -= OnEnabled;
         _destroyReceiver.OnDestroy -= OnDestroyed;
         _takeDamageEngine.OnDamageTaken -= OnHit;
@@ -68,46 +62,37 @@ public sealed class EnemyAnimatorStateResolver : MonoBehaviour
     }
     private void UpdateStateDestroy(DestroyEvent destroyEvent)
     {
-        if (destroyEvent.source != null)
-        {
-            _animationSystem.ChangeState((int)EnemyAnimatorStateType.DIE);
-            Debug.LogWarning($"{EnemyAnimatorStateType.DIE} ANIM STATE ENTER");
-        }
-        else
-        {
-            _animationSystem.ChangeState((int)EnemyAnimatorStateType.IDLE);
-            Debug.LogWarning($"{EnemyAnimatorStateType.DIE} ANIM STATE EXIT");
-        }
+        _animationSystem.ChangeState((int)EnemyAnimatorStateType.DIE);
+        Debug.LogWarning($"{EnemyAnimatorStateType.DIE} ANIM STATE ENTER");
+
+        //if (destroyEvent.source != null)
+        //{
+        //    _animationSystem.ChangeState((int)EnemyAnimatorStateType.DIE);
+        //    Debug.LogWarning($"{EnemyAnimatorStateType.DIE} ANIM STATE ENTER");
+        //}
+        //else
+        //{
+        //    _animationSystem.ChangeState((int)EnemyAnimatorStateType.IDLE);
+        //    Debug.LogWarning($"{EnemyAnimatorStateType.DIE} ANIM STATE EXIT");
+        //}
     }
     private void UpdateStateHit(TakeDamageEvent takeDamageEvent)
     {
-        if(takeDamageEvent.source != null)
-        {
-            Debug.Log($"{takeDamageEvent.source}, {takeDamageEvent.reason}");
-            _animationSystem.ChangeState((int)EnemyAnimatorStateType.HIT);
-            Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE ENTER , {takeDamageEvent.source}");            
-        }
-        else
-        {
-            _animationSystem.ChangeState((int)EnemyAnimatorStateType.IDLE); 
-            Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE EXIT, {takeDamageEvent.source}");
-        }
+       
+        _animationSystem.PlayAnimation("GetHit", "BaseLayer", 0);
+
+        _animationSystem.ChangeState((int)EnemyAnimatorStateType.IDLE);
+        
+        //if(takeDamageEvent.source != null)
+        //{
+        //    Debug.Log($"{takeDamageEvent.source}, {takeDamageEvent.reason}");
+        //    _animationSystem.ChangeState((int)EnemyAnimatorStateType.HIT);
+        //    Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE ENTER , {takeDamageEvent.source}");            
+        //}
+        //else
+        //{
+        //    _animationSystem.ChangeState((int)EnemyAnimatorStateType.IDLE); 
+        //    Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE EXIT, {takeDamageEvent.source}");
+        //}
     }
-
-    //private void OnStateChanged(bool isTrue)
-    //{
-    //    UpdateState(isTrue);
-    //}
-
-    //private void UpdateState(bool isTrue)
-    //{
-    //    if (isTrue)
-    //    {
-    //        //this._animationSystem.SwitchState(AnimatorStateType.ATTACK);
-    //    }
-    //    else
-    //    {
-    //        //this._animationSystem.SwitchState(AnimatorStateType.IDLE);
-    //    }
-    //}
 }
