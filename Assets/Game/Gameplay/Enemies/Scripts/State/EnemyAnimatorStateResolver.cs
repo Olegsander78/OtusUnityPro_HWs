@@ -78,11 +78,14 @@ public sealed class EnemyAnimatorStateResolver : MonoBehaviour
     }
     private void UpdateStateHit(TakeDamageEvent takeDamageEvent)
     {
-       
+        _animationSystem.ChangeState((int)EnemyAnimatorStateType.HIT);
+        Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE ENTER , {takeDamageEvent.source}");
+
         _animationSystem.PlayAnimation("GetHit", "BaseLayer", 0);
 
         _animationSystem.ChangeState((int)EnemyAnimatorStateType.IDLE);
-        
+        Debug.LogWarning($"{EnemyAnimatorStateType.HIT} ANIM STATE EXIT, {takeDamageEvent.source}");
+
         //if(takeDamageEvent.source != null)
         //{
         //    Debug.Log($"{takeDamageEvent.source}, {takeDamageEvent.reason}");

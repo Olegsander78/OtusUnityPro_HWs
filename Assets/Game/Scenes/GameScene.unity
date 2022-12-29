@@ -657,8 +657,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8201978973827703561}
   - {fileID: 1038052573}
+  - {fileID: 8201978973827703561}
   m_Father: {fileID: 1986805187}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4590,7 +4590,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 93643555}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1038052574
 MonoBehaviour:
@@ -4608,7 +4608,7 @@ MonoBehaviour:
   trigger: 0
   respawnTime:
     mode: 0
-    baseValue: 5
+    baseValue: 10
     monoValue: {fileID: 0}
     scriptableValue: {fileID: 0}
   hasRespawnPoint: 1
@@ -4946,6 +4946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1134512724}
   - component: {fileID: 1134512722}
+  - component: {fileID: 1134512725}
   m_Layer: 0
   m_Name: 4.Hit
   m_TagString: Untagged
@@ -4965,7 +4966,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdb7454648c7084daea41295ce1ac87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateComponents: []
+  stateComponents:
+  - {fileID: 1134512725}
 --- !u!4 &1134512724
 Transform:
   m_ObjectHideFlags: 0
@@ -4981,6 +4983,36 @@ Transform:
   m_Father: {fileID: 1783014470}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1134512725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134512721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f267de07a18f7d44b929924f89ea31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1938706074}
+        m_TargetAssemblyTypeName: SoundBehaviour, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LizardHit
+          m_BoolArgument: 0
+        m_CallState: 2
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1140730199
 GameObject:
   m_ObjectHideFlags: 0
@@ -13720,7 +13752,8 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 9132227182522956720}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8318410046688993693, guid: 87636942708de1546995fb240fdc00fe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 87636942708de1546995fb240fdc00fe, type: 3}
 --- !u!114 &3352733683968914573
 MonoBehaviour:
@@ -16580,7 +16613,7 @@ Transform:
   - {fileID: 1783014470}
   - {fileID: 1938706073}
   m_Father: {fileID: 93643555}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8223433199423314732 stripped
 MonoBehaviour:
