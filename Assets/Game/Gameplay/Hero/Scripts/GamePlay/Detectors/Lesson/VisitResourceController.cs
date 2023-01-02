@@ -44,7 +44,7 @@ public sealed class VisitResourceController : MonoBehaviour,
             //_harvestInteractor.TryStartHarvest(entity);
             if (_harvestInteractor.CanHarvest(entity))
             {
-                _harvestInteractor.Harvest(entity);
+                _harvestInteractor.StartHarvest(entity);
             }
         }
     }

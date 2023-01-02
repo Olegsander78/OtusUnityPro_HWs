@@ -12,10 +12,19 @@ public sealed class HarvestResourceInteractor : MonoBehaviour, IGameInitElement
     [SerializeField]
     private float delay = 0.15f;
 
+    [SerializeField]
+    private float _duration = 5f;
+
+    private IEntity _currentResource;
+
+    private ResourceStorage _resourceStorage;
+
     private IComponent_HarvestResource heroComponent;
 
     private Coroutine delayCoroutine;
 
+    [SerializeField]
+    private ScriptableEntityCondition _isResourcesActive;
     void IGameInitElement.InitGame(IGameContext context)
     {
         this.heroComponent = context
@@ -50,13 +59,35 @@ public sealed class HarvestResourceInteractor : MonoBehaviour, IGameInitElement
         this.delayCoroutine = null;
     }
 
-    internal bool CanHarvest(IEntity entity)
+    internal bool CanHarvest(IEntity resource)
     {
+        if (!_isResourcesActive.IsTrue(resource))
+            return false;
+
         return true;
     }
 
-    internal void Harvest(IEntity entity)
+    internal void StartHarvest(IEntity resource)
     {
-        Debug.LogWarning($"Start harvest {entity}");
+        Debug.LogWarning($"Start harvest {resource}");
+
+        _currentResource = resource;
+        StartCoroutine(StartTimerRoutine());
+    }
+
+    private IEnumerator StartTimerRoutine()
+    {
+        yield return new WaitForSeconds(_duration);
+        DestroyResource();
+    }
+    private void DestroyResource()
+    {
+        _currentResource.Get<IComponent_Collect>().Collect();
+    }
+    private void AddResources()
+    {
+        var resourceType = _currentResource.Get<IComponent_GetResourceType>().ResourceType;
+        var resourceAmount = _currentResource.Get<IComponent_GetResourceCount>().ResourceCount;
+        _resourceStorage.AddResource(resourceType, resourceAmount);
     }
 }
