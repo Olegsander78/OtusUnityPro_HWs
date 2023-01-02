@@ -22,6 +22,17 @@ namespace GameElements
         void DetachGame(IGameContext context);
     }
 
+    public interface IGameConstructElement : IGameElement
+    {
+        /// <summary>
+        ///     <para>Called when need to resolve dependencies.</para>
+        ///     <para>Do not use this interface for advanced architecture</para>
+        ///     <seealso cref="GameInjector"/>
+        ///     <seealso cref="GameInjectAttribute"/>
+        /// </summary>
+        void ConstructGame(IGameContext context);
+    }
+
     ///Game lifecycle
     public interface IGameInitElement : IGameElement
     {

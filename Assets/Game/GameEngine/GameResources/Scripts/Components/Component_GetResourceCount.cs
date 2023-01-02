@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("GameEngine/GameResources/Component «Get Resource Count»")]
 public sealed class Component_GetResourceCount : MonoBehaviour, IComponent_GetResourceCount
 {
-    public int Count
+    public int ResourceCount
     {
         get { return this.adapter.Value; }
     }

@@ -1,5 +1,5 @@
 
 public interface IComponent_GetResourceType
 {
-    ResourceType Type { get; }
+    ResourceType ResourceType { get; }
 }
