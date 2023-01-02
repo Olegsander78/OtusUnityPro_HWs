@@ -3,63 +3,62 @@ using UnityEngine;
 using GameElements;
 
 public sealed class VisitResourceController : MonoBehaviour,
-    IGameConstructElement,
     IGameInitElement,
     IGameReadyElement,
     IGameFinishElement
-{
-    private HeroService heroService;
+{   
+    private IEntity _hero;
 
-    private HarvestResourceInteractor harvestInteractor;
+    private HarvestResourceInteractor _harvestInteractor;
 
-    private IComponent_CollisionEvents heroComponent;
+    private IComponent_CollisionEvents _heroComponent;
 
     [SerializeField]
-    private ScriptableEntityCondition isResourceCondition;
-
-    void IGameConstructElement.ConstructGame(IGameContext context)
-    {
-        this.heroService = context.GetService<HeroService>();
-        this.harvestInteractor = context.GetService<HarvestResourceInteractor>();
-    }
+    private ScriptableEntityCondition _isResourceCondition;
 
     void IGameInitElement.InitGame(IGameContext context)
     {
-        var hero = this.heroService.GetHero();
-        this.heroComponent = hero.Get<IComponent_CollisionEvents>();
+        _hero = context.GetService<HeroService>().GetHero();
+        _harvestInteractor = context.GetService<HarvestResourceInteractor>();
+        _heroComponent = _hero.Get<IComponent_CollisionEvents>();
     }
 
     void IGameReadyElement.ReadyGame(IGameContext context)
     {
-        this.heroComponent.OnCollisionEntered += this.OnHeroEntered;
-        this.heroComponent.OnCollisionExited += this.OnHeroExited;
+        _heroComponent.OnCollisionEntered += OnHeroEntered;
+        _heroComponent.OnCollisionExited += OnHeroExited;
     }
 
     void IGameFinishElement.FinishGame(IGameContext context)
     {
-        this.heroComponent.OnCollisionEntered -= this.OnHeroEntered;
-        this.heroComponent.OnCollisionExited -= this.OnHeroExited;
+        _heroComponent.OnCollisionEntered -= OnHeroEntered;
+        _heroComponent.OnCollisionExited -= OnHeroExited;
     }
 
     private void OnHeroEntered(Collision collision)
     {
-        //if (collision.collider.TryGetComponent(out IEntity entity) && this.isResourceCondition.IsTrue(entity))
-        //{
-        //    if (this.harvestInteractor.CanHarvest(entity))
-        //    {
-        //        this.harvestInteractor.StartHarvest(entity);
-        //    }
-        //}
+        if (collision.collider.TryGetComponent(out IEntity entity) && 
+            _isResourceCondition.IsTrue(entity))
+        {
+            Debug.Log("Detect resource");
+            //_harvestInteractor.TryStartHarvest(entity);
+            if (_harvestInteractor.CanHarvest(entity))
+            {
+                _harvestInteractor.Harvest(entity);
+            }
+        }
     }
 
     private void OnHeroExited(Collision collision)
     {
-        //if (collision.collider.TryGetComponent(out IEntity entity) && this.isResourceCondition.IsTrue(entity))
-        //{
-        //    if (this.harvestInteractor.IsHarvesting)
-        //    {
-        //        this.harvestInteractor.CancelHarvest();
-        //    }
-        //}
+        if (collision.collider.TryGetComponent(out IEntity entity) &&
+            _isResourceCondition.IsTrue(entity))
+        {
+            //if (_hero.Get<IComponent_HarvestResource>().IsHarvesting)
+            //{
+            //    Debug.Log("Stop harvest resource");
+            //    _hero.Get<IComponent_HarvestResource>().StopHarvest();
+            //}
+        }
     }
 }

@@ -28,8 +28,8 @@ public sealed class ResourceDetectController : EntityDetectObserver
     {
         if (entities.Count > 0)
         {
-  //          var targetResource = entities[0];
-  //          this.resourceInteractor.TryStartHarvest(targetResource);
+            var targetResource = entities[0];
+            this.resourceInteractor.TryStartHarvest(targetResource);
         }
     }
 }
