@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 5632960618711533433, guid: 1f3a3d8078ec54273b418a7a11fc1be4,
         type: 3}
       propertyPath: m_Name
-      value: ResourcePrefab (Fir Tree)
+      value: Resource (Fir Tree)
       objectReference: {fileID: 0}
     - target: {fileID: 5632960619199877011, guid: 1f3a3d8078ec54273b418a7a11fc1be4,
         type: 3}
@@ -143,6 +143,16 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8903165293186049130, guid: 1f3a3d8078ec54273b418a7a11fc1be4,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2959849171554312078}
+    - target: {fileID: 8903165293186049130, guid: 1f3a3d8078ec54273b418a7a11fc1be4,
+        type: 3}
+      propertyPath: animationName
+      value: Chop
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f3a3d8078ec54273b418a7a11fc1be4, type: 3}
 --- !u!4 &3119531058072450455 stripped
@@ -151,3 +161,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8401169723634662874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4743609926687058461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3837703784464668615, guid: 1f3a3d8078ec54273b418a7a11fc1be4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8401169723634662874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2959849171554312078
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743609926687058461}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2839dade218fa4ae0b9632eb0c1fd487, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

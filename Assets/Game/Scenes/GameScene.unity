@@ -2910,7 +2910,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be92d8661e54e91951a924b1dc1c368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameServices: []
+  gameServices:
+  - {fileID: 2133604558}
+  - {fileID: 2133604557}
 --- !u!1 &727690102
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,8 +4127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.15
-  duration: 5
-  _isResourcesActive: {fileID: 0}
+  _duration: 5
+  _isResourcesActive: {fileID: 11400000, guid: cfe7bf1820f4b41738f4e607749622a4, type: 2}
 --- !u!1 &1010522181
 GameObject:
   m_ObjectHideFlags: 0
@@ -6001,6 +6003,7 @@ MonoBehaviour:
   - {fileID: 25734114}
   - {fileID: 1966956694}
   - {fileID: 1070279614}
+  - {fileID: 723822227}
 --- !u!114 &1687535227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6017,6 +6020,7 @@ MonoBehaviour:
   - {fileID: 25734115}
   - {fileID: 1070279615}
   - {fileID: 1966956695}
+  - {fileID: 723822228}
 --- !u!4 &1697810351
 Transform:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ using UnityEngine;
 [AddComponentMenu("Gameplay/Hero/Hero Interactor «Harvest Resource»")]
 public sealed class HarvestResourceInteractor : MonoBehaviour, IGameInitElement
 {
+    public event Action<IEntity> OnHarvestCompleted;
+    public bool IsHarvesting { get; private set; }
+
     [SerializeField]
     private float delay = 0.15f;
 
@@ -23,14 +26,19 @@ public sealed class HarvestResourceInteractor : MonoBehaviour, IGameInitElement
 
     private Coroutine delayCoroutine;
 
+    private Coroutine _harvestCoroutine;
+
     [SerializeField]
-    private ScriptableEntityCondition _isResourcesActive;
+    private ScriptableEntityCondition _isResourcesActive;    
+
     void IGameInitElement.InitGame(IGameContext context)
     {
         this.heroComponent = context
             .GetService<HeroService>()
             .GetHero()
             .Get<IComponent_HarvestResource>();
+
+        _resourceStorage = context .GetService<ResourceStorage>();
     }
 
     public void TryStartHarvest(IEntity resourceObject)
@@ -69,25 +77,57 @@ public sealed class HarvestResourceInteractor : MonoBehaviour, IGameInitElement
 
     internal void StartHarvest(IEntity resource)
     {
+        if (!CanHarvest(resource))
+        {
+            Debug.LogWarning($"Can't harvest {resource}");
+            return;
+        }
+
         Debug.LogWarning($"Start harvest {resource}");
 
+        IsHarvesting= true;
         _currentResource = resource;
-        StartCoroutine(StartTimerRoutine());
+        _harvestCoroutine = StartCoroutine(StartHarvestRoutine());
     }
 
-    private IEnumerator StartTimerRoutine()
+    private IEnumerator StartHarvestRoutine()
     {
         yield return new WaitForSeconds(_duration);
-        DestroyResource();
+
+        var resource = _currentResource;
+        DestroyResource(resource);
+        AddResourcesToStorage(resource);
+        ResetState();
+
+        Debug.LogWarning($"Completed harvest {resource}");
+        OnHarvestCompleted?.Invoke(resource);
     }
-    private void DestroyResource()
+
+    private void ResetState()
     {
-        _currentResource.Get<IComponent_Collect>().Collect();
+        _currentResource= null;
+        IsHarvesting = false;
+        _harvestCoroutine= null;
     }
-    private void AddResources()
+
+    private void DestroyResource(IEntity resource)
     {
-        var resourceType = _currentResource.Get<IComponent_GetResourceType>().ResourceType;
-        var resourceAmount = _currentResource.Get<IComponent_GetResourceCount>().ResourceCount;
+        resource.Get<IComponent_Collect>().Collect();
+    }
+    private void AddResourcesToStorage(IEntity resource)
+    {
+        var resourceType = resource.Get<IComponent_GetResourceType>().ResourceType;
+        var resourceAmount = resource.Get<IComponent_GetResourceCount>().ResourceCount;
         _resourceStorage.AddResource(resourceType, resourceAmount);
+    }
+
+    internal void CancelHarvest()
+    {
+        if (IsHarvesting)
+        {
+            StopCoroutine(_harvestCoroutine);
+            ResetState();
+            Debug.Log("Cancel harvest resource");
+        }            
     }
 }

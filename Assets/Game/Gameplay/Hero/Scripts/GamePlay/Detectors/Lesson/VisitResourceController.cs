@@ -54,11 +54,10 @@ public sealed class VisitResourceController : MonoBehaviour,
         if (collision.collider.TryGetComponent(out IEntity entity) &&
             _isResourceCondition.IsTrue(entity))
         {
-            //if (_hero.Get<IComponent_HarvestResource>().IsHarvesting)
-            //{
-            //    Debug.Log("Stop harvest resource");
-            //    _hero.Get<IComponent_HarvestResource>().StopHarvest();
-            //}
+            if (_harvestInteractor.IsHarvesting)
+            {                
+                _harvestInteractor.CancelHarvest();
+            }
         }
     }
 }
