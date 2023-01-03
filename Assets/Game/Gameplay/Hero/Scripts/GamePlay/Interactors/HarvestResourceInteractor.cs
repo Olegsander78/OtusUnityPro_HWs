@@ -109,6 +109,15 @@ public sealed class HarvestResourceInteractor : MonoBehaviour, IGameInitElement
         IsHarvesting = false;
         _harvestCoroutine= null;
     }
+    internal void CancelHarvest()
+    {
+        if (IsHarvesting)
+        {
+            StopCoroutine(_harvestCoroutine);
+            ResetState();
+            Debug.Log("Cancel harvest resource");
+        }
+    }
 
     private void DestroyResource(IEntity resource)
     {
@@ -118,16 +127,6 @@ public sealed class HarvestResourceInteractor : MonoBehaviour, IGameInitElement
     {
         var resourceType = resource.Get<IComponent_GetResourceType>().ResourceType;
         var resourceAmount = resource.Get<IComponent_GetResourceCount>().ResourceCount;
-        _resourceStorage.AddResource(resourceType, resourceAmount);
-    }
-
-    internal void CancelHarvest()
-    {
-        if (IsHarvesting)
-        {
-            StopCoroutine(_harvestCoroutine);
-            ResetState();
-            Debug.Log("Cancel harvest resource");
-        }            
+        _resourceStorage.AddResource(resourceType, resourceAmount);        
     }
 }

@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using Elementary;
-
 
 public sealed class EnemyStateResolver : MonoBehaviour
 {
@@ -55,6 +53,17 @@ public sealed class EnemyStateResolver : MonoBehaviour
         //_takeDamageEngine.OnDamageTaken -= OnDamageTakenStarted;
         //_takeDamageEngine.OnDamageTakenFinished -= OnDamageTakenFinished;
     }
+    private void OnDestroyed(DestroyEvent @event)
+    {
+        _stateMachine.SwitchState(EnemyStateType.DIE);
+    }
+    private void OnRespawned()
+    {
+        if (_stateMachine.CurrentState == EnemyStateType.DIE)
+        {
+            _stateMachine.SwitchState(EnemyStateType.IDLE);
+        }
+    }
 
     //private void OnMoveStarted()
     //{
@@ -82,10 +91,6 @@ public sealed class EnemyStateResolver : MonoBehaviour
     //    }
     //}
 
-    private void OnDestroyed(DestroyEvent @event)
-    {
-        _stateMachine.SwitchState(EnemyStateType.DIE);
-    }
 
     //private void OnDamageTakenStarted(TakeDamageEvent obj)
     //{
@@ -112,11 +117,4 @@ public sealed class EnemyStateResolver : MonoBehaviour
     //        _stateMachine.SwitchState(EnemyStateType.IDLE);
     //    }
     //}
-    private void OnRespawned()
-    {
-        if (_stateMachine.CurrentState == EnemyStateType.DIE)
-        {
-            _stateMachine.SwitchState(EnemyStateType.IDLE);
-        }
-    }
 }
