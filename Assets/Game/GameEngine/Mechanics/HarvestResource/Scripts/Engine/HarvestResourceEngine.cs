@@ -2,7 +2,6 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-
 public sealed class HarvestResourceEngine : MonoBehaviour
 {
     public event Action<HarvestResourceOperation> OnHarvestStarted;

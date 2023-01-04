@@ -11,7 +11,7 @@ public class VisitLairController : MonoBehaviour,
 
     private LairInteractor _lairInteractor;
 
-    private IComponent_TriggerEvents _heroTriggerComponent;
+    private IComponent_CollisionEvents _heroComponent;
 
     [SerializeField]
     private ScriptableEntityCondition _isLairCondition;
@@ -20,24 +20,24 @@ public class VisitLairController : MonoBehaviour,
     {
         _hero = context.GetService<HeroService>().GetHero();
         _lairInteractor = context.GetService<LairInteractor>();
-        _heroTriggerComponent = _hero.Get<IComponent_TriggerEvents>();
+        _heroComponent = _hero.Get<IComponent_CollisionEvents>();
     }
 
     void IGameReadyElement.ReadyGame(IGameContext context)
     {
-        _heroTriggerComponent.OnEntered += OnHeroEntered;
-        _heroTriggerComponent.OnExited += OnHeroExited;
+        _heroComponent.OnCollisionEntered += OnHeroEntered;
+        _heroComponent.OnCollisionExited += OnHeroExited;
     }
 
     void IGameFinishElement.FinishGame(IGameContext context)
     {
-        _heroTriggerComponent.OnEntered -= OnHeroEntered;
-        _heroTriggerComponent.OnExited -= OnHeroExited;
+        _heroComponent.OnCollisionEntered -= OnHeroEntered;
+        _heroComponent.OnCollisionExited -= OnHeroExited;
     }
 
-    private void OnHeroEntered(Collider other)
+    private void OnHeroEntered(Collision collision)
     {
-        if (other.TryGetComponent(out IEntity entity) &&
+        if (collision.collider.TryGetComponent(out IEntity entity) &&
             _isLairCondition.IsTrue(entity))
         {
             Debug.Log("Detect Lair");
@@ -48,9 +48,9 @@ public class VisitLairController : MonoBehaviour,
         }
     }
 
-    private void OnHeroExited(Collider other)
+    private void OnHeroExited(Collision collision)
     {
-        if (other.TryGetComponent(out IEntity entity) &&
+        if (collision.collider.TryGetComponent(out IEntity entity) &&
             _isLairCondition.IsTrue(entity))
         {
             if (_lairInteractor.IsSpawningEnemy)

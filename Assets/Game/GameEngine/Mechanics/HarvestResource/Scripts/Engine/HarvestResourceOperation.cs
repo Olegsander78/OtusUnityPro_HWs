@@ -2,34 +2,33 @@ using Entities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-
 public sealed class HarvestResourceOperation
 {
     [ReadOnly]
     [ShowInInspector]
-    public readonly IEntity targetResource;
+    public readonly IEntity TargetResource;
 
     [ReadOnly]
     [ShowInInspector]
-    public readonly ResourceType resourceType;
+    public readonly ResourceType ResourceType;
 
     [ReadOnly]
     [ShowInInspector]
-    public readonly int resourceCount;
+    public readonly int ResourceCount;
 
     [Space]
     [ReadOnly]
     [ShowInInspector]
-    public float progress;
+    public float Progress;
 
     [ReadOnly]
     [ShowInInspector]
-    public bool isCompleted;
+    public bool IsCompleted;
 
     public HarvestResourceOperation(IEntity targetResource)
     {
-        this.targetResource = targetResource;
-        this.resourceType = targetResource.Get<IComponent_GetResourceType>().ResourceType;
-        this.resourceCount = targetResource.Get<IComponent_GetResourceCount>().ResourceCount;
+        TargetResource = targetResource;
+        ResourceType = targetResource.Get<IComponent_GetResourceType>().ResourceType;
+        ResourceCount = targetResource.Get<IComponent_GetResourceCount>().ResourceCount;
     }
 }

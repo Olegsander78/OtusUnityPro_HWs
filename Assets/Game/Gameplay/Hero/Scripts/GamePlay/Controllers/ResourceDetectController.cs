@@ -26,10 +26,10 @@ public sealed class ResourceDetectController : EntityDetectObserver
 
     protected override void OnEntitesChanged(List<IEntity> entities)
     {
-        if (entities.Count > 0)
-        {
-            var targetResource = entities[0];
-            this.resourceInteractor.TryStartHarvest(targetResource);
-        }
+        //if (entities.Count > 0)
+        //{
+        //    var targetResource = entities[0];
+        //    this.resourceInteractor.TryStartHarvest(targetResource);
+        //}
     }
 }

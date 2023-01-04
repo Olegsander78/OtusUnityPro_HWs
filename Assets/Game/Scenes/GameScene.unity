@@ -4163,7 +4163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0.15
   _duration: 5
-  _isLairActive: {fileID: 11400000, guid: 4959ee093d4eb464f912e1aa9620067d, type: 2}
+  _isLairActive: {fileID: 11400000, guid: a8ad5722f274c1346a2f2f80ee8b0418, type: 2}
 --- !u!1 &1010522181
 GameObject:
   m_ObjectHideFlags: 0
@@ -5098,7 +5098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lair: {fileID: 184378486}
   _spawnZoneVisual: {fileID: 4800793720218126063}
-  _enemyPrefab: {fileID: 1756809933}
+  _enemyPrefab: {fileID: 0}
 --- !u!1 &1293597469
 GameObject:
   m_ObjectHideFlags: 0
@@ -6437,12 +6437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
---- !u!1 &1756809933 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3348448301473474990, guid: 87636942708de1546995fb240fdc00fe,
-    type: 3}
-  m_PrefabInstance: {fileID: 3311226878549710064}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1776426439
 GameObject:
   m_ObjectHideFlags: 0
@@ -10545,6 +10539,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 36818999}
     m_Modifications:
+    - target: {fileID: 3311226876894357499, guid: 87636942708de1546995fb240fdc00fe,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3311226876894357499, guid: 87636942708de1546995fb240fdc00fe,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3311226878375964804, guid: 87636942708de1546995fb240fdc00fe,
         type: 3}
       propertyPath: m_Name
