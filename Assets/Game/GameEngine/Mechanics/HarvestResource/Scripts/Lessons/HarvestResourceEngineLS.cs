@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -6,14 +7,13 @@ using UnityEngine;
 
 public sealed class HarvestResourceEngineLS : MonoBehaviour
 {
-    //[SerializeField]
-    //private float _duration = 5f;
 
-    //yield return new WaitForSeconds(this.delay);    
 
-    //private Coroutine _harvestCoroutine;
+    
 
-    //_harvestCoroutine = StartCoroutine(StartHarvestRoutine());
+
+
+
 
     //StopCoroutine(_harvestCoroutine);
 
@@ -21,14 +21,24 @@ public sealed class HarvestResourceEngineLS : MonoBehaviour
 
 
 
-    //public event Action<HarvestResourceOperation> OnStarted;
+    public event Action<HarvestResourceOperation> OnStarted;
 
-    //public event Action<HarvestResourceOperation> OnStopped;
+    public event Action<HarvestResourceOperation> OnStopped;
+    public bool IsHarvesting
+    {
+        get
+        {
+            return _timerCoroutine != null;
+        }
+    }
 
-    //public bool IsHarvesting
-    //{
-    //    get { return this.operation != null; }
-    //}
+    [SerializeField]
+    private float _duration = 5f;
+
+    private HarvestResourceOperation _operation;
+
+    private Coroutine _timerCoroutine;
+
 
     //public HarvestResourceOperation CurrentOperation
     //{
@@ -43,48 +53,70 @@ public sealed class HarvestResourceEngineLS : MonoBehaviour
     //[SerializeReference]
     //private List<IHarvestResourceAction> preactions = new();
 
-    //public bool CanStartHarvest(HarvestResourceOperation operation)
-    //{
-    //    if (this.IsHarvesting)
-    //    {
-    //        return false;
-    //    }
+    public bool CanStartHarvest(HarvestResourceOperation operation)
+    {
+        //if (this.IsHarvesting)
+        //{
+        //    return false;
+        //}
 
-    //    for (int i = 0, count = this.preconditions.Count; i < count; i++)
-    //    {
-    //        var conditions = this.preconditions[i];
-    //        if (!conditions.IsTrue(operation))
-    //        {
-    //            return false;
-    //        }
-    //    }
+        //for (int i = 0, count = this.preconditions.Count; i < count; i++)
+        //{
+        //    var conditions = this.preconditions[i];
+        //    if (!conditions.IsTrue(operation))
+        //    {
+        //        return false;
+        //    }
+        //}
 
-    //    return true;
-    //}
+        return !IsHarvesting;
+    }
 
-    //public void StartHarvest(HarvestResourceOperation operation)
-    //{
-    //    if (!this.CanStartHarvest(operation))
-    //    {
-    //        return;
-    //    }
+    public void StartHarvest(HarvestResourceOperation operation)
+    {
+        if (IsHarvesting)
+            return;
+        
+        _operation = operation;
+        OnStarted?.Invoke(operation);
+        _timerCoroutine = StartCoroutine(StartHarvestRoutine());
 
-    //    this.DoPreactions(operation);
-    //    Debug.Log("Engine: start");
-    //    this.operation = operation;
-    //    this.OnStarted?.Invoke(operation);
-    //}
+        //if (!this.CanStartHarvest(operation))
+        //{
+        //    return;
+        //}
 
-    //public void StopHarvest()
-    //{
-    //    if (this.IsHarvesting)
-    //    {
-    //        Debug.Log("Engine: stop");
-    //        var operation = this.operation;
-    //        this.operation = null;
-    //        this.OnStopped?.Invoke(operation);
-    //    }
-    //}
+        //this.DoPreactions(operation);
+        //Debug.Log("Engine: start");
+        //this.operation = operation;
+        //this.OnStarted?.Invoke(operation);
+    }
+
+    private IEnumerator StartHarvestRoutine()
+    {
+        yield return new WaitForSeconds(_duration);
+        _operation.IsCompleted= true;
+        _timerCoroutine= null;
+        OnStopped?.Invoke(_operation);
+    }
+
+    public void StopHarvest()
+    {
+        if(IsHarvesting)
+        {
+            StopCoroutine(_timerCoroutine);
+            _timerCoroutine = null;
+            OnStopped?.Invoke(_operation);
+        }
+        
+        //if (this.IsHarvesting)
+        //{
+        //    Debug.Log("Engine: stop");
+        //    var operation = this.operation;
+        //    this.operation = null;
+        //    this.OnStopped?.Invoke(operation);
+        //}
+    }
 
     //[Button]
     //private void Complete()

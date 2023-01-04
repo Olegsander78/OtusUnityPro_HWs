@@ -7,14 +7,14 @@ public sealed class Component_HarvestResource : MonoBehaviour, IComponent_Harves
 {
     public event Action<HarvestResourceOperation> OnHarvestStarted
     {
-        add { this.harvestEngine.OnHarvestStarted += value; }
-        remove { this.harvestEngine.OnHarvestStarted -= value; }
+        add { this.harvestEngine.OnStarted += value; }
+        remove { this.harvestEngine.OnStarted -= value; }
     }
 
     public event Action<HarvestResourceOperation> OnHarvestStopped
     {
-        add { this.harvestEngine.OnHarvestStopped += value; }
-        remove { this.harvestEngine.OnHarvestStopped -= value; }
+        add { this.harvestEngine.OnStopped += value; }
+        remove { this.harvestEngine.OnStopped -= value; }
     }
 
     public bool IsHarvesting
@@ -23,7 +23,7 @@ public sealed class Component_HarvestResource : MonoBehaviour, IComponent_Harves
     }
 
     [SerializeField]
-    private HarvestResourceEngine harvestEngine;
+    private HarvestResourceEngineLS harvestEngine;
 
     public bool CanStartHarvest(HarvestResourceOperation operation)
     {

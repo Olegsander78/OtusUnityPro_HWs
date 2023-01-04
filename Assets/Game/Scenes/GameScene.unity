@@ -3164,12 +3164,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 820413464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41a668df0594af5acf786864fcfe7be, type: 3}
+  m_Script: {fileID: 11500000, guid: 2abd6fb5d794a1a4386edbb34b5fa9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preconditions: []
-  startActions: []
-  stopActions: []
+  _duration: 3
 --- !u!1 &825433023
 GameObject:
   m_ObjectHideFlags: 0
@@ -4146,8 +4144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3ae8a33a0457243ac14563b78b843d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.15
-  _duration: 5
   _isResourcesActive: {fileID: 11400000, guid: cfe7bf1820f4b41738f4e607749622a4, type: 2}
 --- !u!114 &1007712503
 MonoBehaviour:
