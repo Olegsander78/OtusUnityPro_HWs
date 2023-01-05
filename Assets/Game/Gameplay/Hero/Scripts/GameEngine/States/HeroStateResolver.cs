@@ -15,6 +15,10 @@ public sealed class HeroStateResolver : MonoBehaviour
 
     [SerializeField]
     private ProjectileEngine _projectileEngine;
+
+    [SerializeField]
+    private HarvestResourceEngineLS _harvestEngine;
+
     //[SerializeField]
     //private MeleeCombatEngine combatEngine;
 
@@ -35,6 +39,9 @@ public sealed class HeroStateResolver : MonoBehaviour
         _rangeAttackEngine.OnRangeAttackStarted += OnShootStarted;
         _rangeAttackEngine.OnRangeAttackFinished += OnShootEnded;
 
+        _harvestEngine.OnStarted += OnHarvestStarted;
+        _harvestEngine.OnStopped += OnHarvestFinished;
+
         //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
 
@@ -52,6 +59,9 @@ public sealed class HeroStateResolver : MonoBehaviour
 
         _rangeAttackEngine.OnRangeAttackStarted -= OnShootStarted;
         _rangeAttackEngine.OnRangeAttackFinished -= OnShootEnded;
+
+        _harvestEngine.OnStarted -= OnHarvestStarted;
+        _harvestEngine.OnStopped -= OnHarvestFinished;
 
         //this.combatEngine.OnCombatStarted -= this.OnCombatStarted;
         //this.combatEngine.OnCombatStopped -= this.OnCombatEnded;
@@ -95,6 +105,22 @@ public sealed class HeroStateResolver : MonoBehaviour
             _stateMachine.SwitchState(HeroStateType.IDLE); 
                 
             //Debug.LogWarning("SHOOT STATE EXIT");
+        }
+    }
+
+    private void OnHarvestStarted(HarvestResourceOperation operation)
+    {
+        if (_stateMachine.CurrentState is HeroStateType.IDLE or HeroStateType.RUN)
+        {
+            _stateMachine.SwitchState(HeroStateType.HARVEST_RESOURCE);
+        }
+    }
+
+    private void OnHarvestFinished(HarvestResourceOperation operation)
+    {
+        if (_stateMachine.CurrentState == HeroStateType.HARVEST_RESOURCE)
+        {
+            _stateMachine.SwitchState(HeroStateType.IDLE);
         }
     }
 
