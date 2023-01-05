@@ -3133,6 +3133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 820413465}
   - component: {fileID: 820413466}
+  - component: {fileID: 820413468}
+  - component: {fileID: 820413467}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -3183,6 +3185,33 @@ MonoBehaviour:
       type: {class: HarvestResourceAction_RotateToResource, ns: , asm: Assembly-CSharp}
       data:
         transformEngine: {fileID: 426329743}
+--- !u!114 &820413467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820413464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0981c7760fe4b22972d257faf5b3a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 3
+--- !u!114 &820413468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820413464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2c6b97fe687c41b740f004fc49f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 820413466}
+  countdown: {fileID: 820413467}
 --- !u!1 &825433023
 GameObject:
   m_ObjectHideFlags: 0
