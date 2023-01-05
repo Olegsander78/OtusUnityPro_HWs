@@ -3164,10 +3164,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 820413464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2abd6fb5d794a1a4386edbb34b5fa9f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 135bf7f85e7b6644484db01cd7a95d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 3
+  preconditions:
+  - rid: 8081145607640580096
+  preactions:
+  - rid: 8081145607640580097
+  references:
+    version: 2
+    RefIds:
+    - rid: 8081145607640580096
+      type: {class: HarvestResourceCondition_CheckDistanceToResource, ns: , asm: Assembly-CSharp}
+      data:
+        transform: {fileID: 426329743}
+        minDistance: 1.25
+    - rid: 8081145607640580097
+      type: {class: HarvestResourceAction_RotateToResource, ns: , asm: Assembly-CSharp}
+      data:
+        transformEngine: {fileID: 426329743}
 --- !u!1 &825433023
 GameObject:
   m_ObjectHideFlags: 0
@@ -4000,9 +4015,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1006810855}
   - component: {fileID: 1006810856}
-  - component: {fileID: 1006810860}
   - component: {fileID: 1006810859}
   - component: {fileID: 1006810858}
+  - component: {fileID: 1006810860}
   m_Layer: 0
   m_Name: 1.Run
   m_TagString: Untagged
