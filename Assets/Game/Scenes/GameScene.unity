@@ -3812,7 +3812,8 @@ MonoBehaviour:
   - {fileID: 146174684}
   - {fileID: 146174686}
   - {fileID: 2117481888}
-  - {fileID: 1007712502}
+  - {fileID: 1007712503}
+  - {fileID: 1007712504}
 --- !u!114 &961791230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3827,7 +3828,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameServices:
   - {fileID: 548840911}
-  - {fileID: 1007712502}
+  - {fileID: 1007712503}
+  - {fileID: 1007712504}
 --- !u!114 &962549464 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4991480938305525709, guid: c743e60f6b4f2ba4ca69f17e48e1d220,
@@ -4254,8 +4256,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1007712501}
-  - component: {fileID: 1007712502}
   - component: {fileID: 1007712503}
+  - component: {fileID: 1007712504}
   m_Layer: 0
   m_Name: Interactors
   m_TagString: Untagged
@@ -4278,19 +4280,6 @@ Transform:
   m_Father: {fileID: 961791228}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1007712502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007712500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b3ae8a33a0457243ac14563b78b843d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isResourcesActive: {fileID: 11400000, guid: cfe7bf1820f4b41738f4e607749622a4, type: 2}
 --- !u!114 &1007712503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4306,6 +4295,19 @@ MonoBehaviour:
   delay: 0.15
   _duration: 5
   _isLairActive: {fileID: 11400000, guid: a8ad5722f274c1346a2f2f80ee8b0418, type: 2}
+--- !u!114 &1007712504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007712500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3ae8a33a0457243ac14563b78b843d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isResourcesActive: {fileID: 11400000, guid: cfe7bf1820f4b41738f4e607749622a4, type: 2}
 --- !u!1 &1010522181
 GameObject:
   m_ObjectHideFlags: 0

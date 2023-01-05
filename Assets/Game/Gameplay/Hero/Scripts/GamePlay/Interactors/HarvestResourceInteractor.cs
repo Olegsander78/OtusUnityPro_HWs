@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Entities;
 using GameElements;
 using UnityEngine;
@@ -16,13 +17,25 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
         get { return _heroComponent.IsHarvesting; }
     }
 
-    private ResourceStorage _resourceStorage;
+    private HeroService _heroService;
+
+    //private ResourceStorage _resourceStorage;
 
     private IComponent_HarvestResource _heroComponent;    
 
     [SerializeField]
-    private ScriptableEntityCondition _isResourcesActive;    
+    private ScriptableEntityCondition _isResourcesActive;
 
+    private readonly List<IHarvestResourceAction> _finishActions = new();
+
+    public void Construct(HeroService heroService)
+    {
+        _heroService = heroService;
+    }
+    public void RegisterFinishAction(IHarvestResourceAction action)
+    {
+        _finishActions.Add(action);
+    }
     void IGameInitElement.InitGame(IGameContext context)
     {
         _heroComponent = context
@@ -30,7 +43,11 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
             .GetHero()
             .Get<IComponent_HarvestResource>();
 
-        _resourceStorage = context .GetService<ResourceStorage>();
+        _finishActions.Add(new HarvestResourceAction_DestroyResource());
+        _finishActions.Add(new HarvestResourceAction_AddResourcesToStorage(
+            context.GetService<ResourceStorage>()));
+
+        //_resourceStorage = context .GetService<ResourceStorage>();
     }
     void IGameReadyElement.ReadyGame(IGameContext context)
     {
@@ -67,7 +84,7 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
     //    Debug.Log($"Start Harvest {resourceObject}");
     //    this.delayCoroutine = null;
     //}
-
+    
     internal bool CanHarvest(IEntity resource)
     {
         if (IsHarvesting)
@@ -96,19 +113,6 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
 
         Debug.LogWarning($"Start harvest {resource}");
     }
-
-    private void OnHarvestFinished(HarvestResourceOperation operation)
-    {
-        if (operation.IsCompleted)
-        {
-            var resource = operation.TargetResource;
-            DestroyResource(resource);
-            AddResourcesToStorage(resource);
-
-            Debug.LogWarning($" Interactor: Completed harvest {resource}");
-        }
-    }
-
     public void CancelHarvest()
     {
         if (IsHarvesting)
@@ -118,14 +122,32 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
         }
     }
 
-    private void DestroyResource(IEntity resource)
+    private void OnHarvestFinished(HarvestResourceOperation operation)
     {
-        resource.Get<IComponent_Collect>().Collect();
-    }
-    private void AddResourcesToStorage(IEntity resource)
-    {
-        var resourceType = resource.Get<IComponent_GetResourceType>().ResourceType;
-        var resourceAmount = resource.Get<IComponent_GetResourceCount>().ResourceCount;
-        _resourceStorage.AddResource(resourceType, resourceAmount);        
+        for (int i = 0, count = _finishActions.Count; i < count; i++)
+        {
+            var action = _finishActions[i];
+            action.Do(operation);
+        }
+
+        //if (operation.IsCompleted)
+        //{
+        //    var resource = operation.TargetResource;
+        //    DestroyResource(resource);
+        //    AddResourcesToStorage(resource);
+
+        //    Debug.LogWarning($" Interactor: Completed harvest {resource}");
+        //}
     }    
+
+    //private void DestroyResource(IEntity resource)
+    //{
+    //    resource.Get<IComponent_Collect>().Collect();
+    //}
+    //private void AddResourcesToStorage(IEntity resource)
+    //{
+    //    var resourceType = resource.Get<IComponent_GetResourceType>().ResourceType;
+    //    var resourceAmount = resource.Get<IComponent_GetResourceCount>().ResourceCount;
+    //    _resourceStorage.AddResource(resourceType, resourceAmount);        
+    //}    
 }
