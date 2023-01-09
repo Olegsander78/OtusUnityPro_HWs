@@ -19,8 +19,8 @@ public sealed class HeroStateResolver : MonoBehaviour
     [SerializeField]
     private HarvestResourceEngineLS _harvestEngine;
 
-    //[SerializeField]
-    //private MeleeCombatEngine combatEngine;
+    [SerializeField]
+    private MeleeCombatEngine _combatEngine;
 
     //[SerializeField]
     //private HarvestResourceEngine harvestEngine;
@@ -42,8 +42,8 @@ public sealed class HeroStateResolver : MonoBehaviour
         _harvestEngine.OnStarted += OnHarvestStarted;
         _harvestEngine.OnStopped += OnHarvestFinished;
 
-        //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
-        //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
+        _combatEngine.OnCombatStarted += OnCombatStarted;
+        _combatEngine.OnCombatStopped += OnCombatEnded;
 
         //this.harvestEngine.OnHarvestStarted += this.OnHarvestStarted;
         //this.harvestEngine.OnHarvestStopped += this.OnHarvestEnded;
@@ -63,8 +63,8 @@ public sealed class HeroStateResolver : MonoBehaviour
         _harvestEngine.OnStarted -= OnHarvestStarted;
         _harvestEngine.OnStopped -= OnHarvestFinished;
 
-        //this.combatEngine.OnCombatStarted -= this.OnCombatStarted;
-        //this.combatEngine.OnCombatStopped -= this.OnCombatEnded;
+        _combatEngine.OnCombatStarted -= OnCombatStarted;
+        _combatEngine.OnCombatStopped -= OnCombatEnded;
 
         //this.harvestEngine.OnHarvestStarted -= this.OnHarvestStarted;
         //this.harvestEngine.OnHarvestStopped -= this.OnHarvestEnded;
@@ -122,6 +122,19 @@ public sealed class HeroStateResolver : MonoBehaviour
         {
             _stateMachine.SwitchState(HeroStateType.IDLE);
         }
+    }    
+
+    private void OnCombatStarted(MeleeCombatOperation operation)
+    {
+        _stateMachine.SwitchState(HeroStateType.MELEE_COMBAT);
+    }
+
+    private void OnCombatEnded(MeleeCombatOperation operation)
+    {
+        if (_stateMachine.CurrentState == HeroStateType.MELEE_COMBAT)
+        {
+            _stateMachine.SwitchState(HeroStateType.IDLE);
+        }
     }
 
     //private void OnHarvestStarted(HarvestResourceOperation operation)
@@ -132,19 +145,6 @@ public sealed class HeroStateResolver : MonoBehaviour
     //private void OnHarvestEnded(HarvestResourceOperation operation)
     //{
     //    if (this.stateMachine.CurrentState == HeroStateType.HARVEST_RESOURCE)
-    //    {
-    //        this.stateMachine.SwitchState(HeroStateType.IDLE);
-    //    }
-    //}
-
-    //private void OnCombatStarted(MeleeCombatOperation operation)
-    //{
-    //    this.stateMachine.SwitchState(HeroStateType.MELEE_COMBAT);
-    //}
-
-    //private void OnCombatEnded(MeleeCombatOperation operation)
-    //{
-    //    if (this.stateMachine.CurrentState == HeroStateType.MELEE_COMBAT)
     //    {
     //        this.stateMachine.SwitchState(HeroStateType.IDLE);
     //    }

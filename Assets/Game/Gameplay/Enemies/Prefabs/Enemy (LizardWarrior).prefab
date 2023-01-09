@@ -3241,7 +3241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1837044179542572022}
   - component: {fileID: 1837044179542572021}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3930,7 +3930,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1963946115130491616}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: COLLISION
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4104,7 +4104,7 @@ GameObject:
   - component: {fileID: 1963946116853620165}
   - component: {fileID: 1963946116853620164}
   - component: {fileID: 1963946116853620166}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4794,7 +4794,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateMachine: {fileID: 8655693823552963211}
   _dieReceiver: {fileID: 2813831496307200596}
-  _takeDamageEngine: {fileID: 8324955934351140636}
   _respawnReceiver: {fileID: 1837044178675259693}
 --- !u!1 &8655693823178038647
 GameObject:

@@ -2,7 +2,7 @@ using Elementary;
 using UnityEngine;
 
 
-public sealed class MeleeCombatState_ControlTargetDestroy : MonoState
+public sealed class MeleeCombatState_ControlTargetDestroy : State
 {
     [Space]
     [SerializeField]

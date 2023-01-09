@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 
-public abstract class State_CheckDistanceToTarget : MonoStateCoroutine
+public abstract class State_CheckDistanceToTarget : StateCoroutine
 {
     [Space]
     [SerializeField]
