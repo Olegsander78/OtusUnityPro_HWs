@@ -5,14 +5,10 @@ using GameElements;
 using UnityEngine;
 
 
-[Serializable]
+[AddComponentMenu("Gameplay/Hero/Hero Interactor «Melee Combat»")]
 public sealed class MeleeCombatInteractor : MonoBehaviour,
     IGameInitElement
 {
-    //private HeroService heroService;
-
-    private MonoBehaviour monoContext;
-
     [SerializeField]
     private float delay = 0.15f;
 
@@ -23,20 +19,7 @@ public sealed class MeleeCombatInteractor : MonoBehaviour,
     public void InitGame(IGameContext context)
     {
         this.heroComponent = context.GetService<HeroService>().GetHero().Get<IComponent_MeleeCombat>();
-    }
-
-    //[GameInject]
-    //public void Construct(HeroService heroService, MonoBehaviour monoContext)
-    //{
-    //    this.heroService = heroService;
-    //    this.monoContext = monoContext;
-    //}
-    //void IGameInitElement.InitGame()
-    //{
-    //    this.heroComponent = this.heroService.GetHero().Get<IComponent_MeleeCombat>();
-    //}
-
-
+    }    
     public void TryStartCombat(IEntity target)
     {
         if (this.heroComponent.IsCombat)
@@ -46,7 +29,7 @@ public sealed class MeleeCombatInteractor : MonoBehaviour,
 
         if (this.delayCoroutine == null)
         {
-            this.delayCoroutine = this.monoContext.StartCoroutine(this.CombatRoutine(target));
+            this.delayCoroutine = this.StartCoroutine(this.CombatRoutine(target));
         }
     }
 

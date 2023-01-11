@@ -19,6 +19,7 @@ public sealed class Gear_RespawnEntityByTimer : MonoBehaviour,
     [SerializeField]
     private FloatAdapter respawnTime;
 
+    [SerializeField]
     private Timer respawnTimer;
 
     [SerializeField]
@@ -28,9 +29,11 @@ public sealed class Gear_RespawnEntityByTimer : MonoBehaviour,
     [SerializeField]
     private Transform respawnPoint;
 
+
     private void Awake()
     {
         this.respawnTimer = new Timer(this, this.respawnTime.Value);
+        
     }
 
     void IGameReadyElement.ReadyGame(IGameContext context)
@@ -125,6 +128,7 @@ public sealed class Gear_RespawnEntityByTimer : MonoBehaviour,
         this.hasRespawnPoint = true;
         this.respawnPoint = this.transform;
     }
+
 #endif
 
     private enum TriggerType
