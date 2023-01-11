@@ -1,6 +1,11 @@
+using GameElements;
+using Services;
 using System;
 
-public abstract class Upgrade
+public abstract class Upgrade:
+    IGameInitElement,
+    IGameStartElement,
+    IGameFinishElement
 {
     public string Id
     {
@@ -33,6 +38,12 @@ public abstract class Upgrade
         get { return _currentLevel == MaxLevel; }
     }
 
+    private HeroService _heroService;
+
+    private IComponent_GetLevel _component_GetLevel;
+    
+    private IComponent_OnLevelChanged _component_OnLevelChanged;
+
     private readonly UpgradeConfig _config;
 
     private int _currentLevel;
@@ -46,6 +57,32 @@ public abstract class Upgrade
         _config = config;
     }
 
+    [Inject]
+    public void Construct(HeroService heroService)
+    {
+        _heroService = heroService;
+    }
+    void IGameInitElement.InitGame(IGameContext context)
+    {
+        _component_OnLevelChanged = _heroService.GetHero().Get<IComponent_OnLevelChanged>();
+        _component_GetLevel = _heroService.GetHero().Get<IComponent_GetLevel>();
+        CurrentMaxLevel = _component_GetLevel.Level;
+    }
+    void IGameStartElement.StartGame(IGameContext context)
+    {
+        _component_OnLevelChanged.OnLevelChanged += UpdateCurrentMaxLevel;
+    }
+
+    void IGameFinishElement.FinishGame(IGameContext context)
+    {
+        _component_OnLevelChanged.OnLevelChanged -= UpdateCurrentMaxLevel;
+    }
+
+    private void UpdateCurrentMaxLevel(int currentLevel)
+    {
+        currentLevel = _component_GetLevel.Level;
+        _currentMaxLevel = currentLevel;
+    }
     public void LevelUp()
     {
         if (IsMaxLevel || IsCurrentMaxLevel)
@@ -58,4 +95,5 @@ public abstract class Upgrade
     }
 
     protected abstract void OnUpgrade(int newLevel);
+
 }
