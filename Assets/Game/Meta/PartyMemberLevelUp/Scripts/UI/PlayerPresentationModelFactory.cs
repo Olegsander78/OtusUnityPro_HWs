@@ -4,13 +4,16 @@ using GameElements;
 
 public sealed class PlayerPresentationModelFactory : MonoBehaviour, IGameInitElement
 {
-    private IEntity _character;
+    [SerializeField]
+    private PartyMember _partyMember;
+
+    private IEntity _character;    
 
     private PlayerLevelUpper _playerLevelUpper;
 
-    public PlayerPresentationModel CreatePresenter(PartyMember player)
+    public PlayerPresentationModel CreatePresenter()
     {
-        return new PlayerPresentationModel(player,_character, _playerLevelUpper);
+        return new PlayerPresentationModel(_partyMember, _character, _playerLevelUpper);
     }
 
     void IGameInitElement.InitGame(IGameContext context)

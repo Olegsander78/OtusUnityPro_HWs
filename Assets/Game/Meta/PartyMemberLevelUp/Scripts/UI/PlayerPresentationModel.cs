@@ -1,7 +1,7 @@
 using Entities;
 using System;
 using UnityEngine;
-public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
+public sealed class PlayerPresentationModel : PlayerLevelUpPopup.IPresentationModel
 {
     public event Action<bool> OnLevelUpButtonStateChanged;
 
@@ -58,15 +58,15 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
         return _character.Get<IComponent_GetLevel>().Level.ToString();
     }
 
-    public string GetMaxHitPointsHero()
-    {
-        return _character.Get<IComponent_GetHitPoints>().MaxHitPoints.ToString();
-    }
+    //public string GetMaxHitPointsHero()
+    //{
+    //    return _character.Get<IComponent_GetHitPoints>().MaxHitPoints.ToString();
+    //}
 
-    public string GetMeleeDamageHero()
-    {
-        return _character.Get<IComponent_GetMeleeDamage>().Damage.ToString();
-    }
+    //public string GetMeleeDamageHero()
+    //{
+    //    return _character.Get<IComponent_GetMeleeDamage>().Damage.ToString();
+    //}
     public string GetCurrentExperience()
     {
         return _character.Get<IComponent_GetExperience>().CurrentExperience.ToString();
@@ -84,7 +84,7 @@ public sealed class PlayerPresentationModel : PlayerPopup.IPresentationModel
 
     public void OnLevelUpClicked()
     {
-        _playerLevelUpper.LevelUp(_partyMember);
+        _playerLevelUpper.LevelUp();
     }
 
     private void OnExpSpended(int exp)

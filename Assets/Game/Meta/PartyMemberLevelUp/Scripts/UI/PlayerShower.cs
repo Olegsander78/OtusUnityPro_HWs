@@ -9,10 +9,10 @@ public sealed class PlayerShower : MonoBehaviour, IGameInitElement
     private PlayerPresentationModelFactory _presenterFactory;
 
     [Button]
-    public void ShowPartyMember(PartyMember partyMember)
+    public void ShowHero()
     {
-        var presentationModel = _presenterFactory.CreatePresenter(partyMember);
-        _popupManager.ShowPopup(PopupName.PARTY_MEMBER, presentationModel);
+        var presentationModel = _presenterFactory.CreatePresenter();
+        _popupManager.ShowPopup(PopupName.HERO, presentationModel);
     }
 
     void IGameInitElement.InitGame(IGameContext context)
