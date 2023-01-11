@@ -4814,9 +4814,9 @@ MonoBehaviour:
   moveEngine: {fileID: 123344437}
   transformEngine: {fileID: 426329743}
   moveSpeed:
-    mode: 0
+    mode: 1
     baseValue: 7
-    monoValue: {fileID: 0}
+    monoValue: {fileID: 1712627702}
     scriptableValue: {fileID: 0}
 --- !u!114 &1006810860
 MonoBehaviour:
@@ -5096,6 +5096,7 @@ Transform:
   m_Children:
   - {fileID: 1583149734}
   - {fileID: 1366807992}
+  - {fileID: 1412259744}
   m_Father: {fileID: 1293597470}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6810,6 +6811,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engine: {fileID: 820413466}
+--- !u!1 &1412259743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1412259744}
+  m_Layer: 0
+  m_Name: Upgrades
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1412259744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412259743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1035551873}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1443145904
 PrefabInstance:
   m_ObjectHideFlags: 0

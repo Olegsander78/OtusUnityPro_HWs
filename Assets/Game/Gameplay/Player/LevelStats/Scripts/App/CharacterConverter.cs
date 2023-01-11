@@ -8,7 +8,7 @@ public static class CharacterConverter
         character.Get<IComponent_SetHitPoints>().SetHitPoints(data.maxHitPoints);
         character.Get<IComponent_SetMeleeDamage>().SetDamage(data.meleeDamage);
         character.Get<IComponent_ProjectileRangeAttack>().SetDamage(data.rangeDamage);
-        character.Get<IComponent_MoveRigidbody>().SetSpeed(data.speed);
+        character.Get<IComponent_SetMoveSpeed>().SetSpeed(data.speed);
         character.Get<IComponent_SetLevel>().SetLevel(data.currentLevel);
         character.Get<IComponent_SetLevel>().SetMaxLevel(data.maxLevel);
         character.Get<IComponent_SetExperience>().SetCurrentExperience(data.currentExp);
@@ -24,7 +24,7 @@ public static class CharacterConverter
             maxHitPoints = character.Get<IComponent_GetHitPoints>().MaxHitPoints,
             meleeDamage = character.Get<IComponent_GetMeleeDamage>().Damage,
             rangeDamage = character.Get<IComponent_ProjectileRangeAttack>().Damage,
-            speed = character.Get<IComponent_MoveRigidbody>().Speed,
+            speed = character.Get<IComponent_GetMoveSpeed>().Speed,
             currentLevel = character.Get<IComponent_GetLevel>().Level,
             maxLevel = character.Get<IComponent_GetLevel>().MaxLevel,
             currentExp = character.Get<IComponent_GetExperience>().CurrentExperience,
