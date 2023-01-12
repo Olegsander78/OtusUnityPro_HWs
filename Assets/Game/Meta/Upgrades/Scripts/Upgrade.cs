@@ -1,6 +1,7 @@
 using GameElements;
 using Services;
 using System;
+using UnityEngine;
 
 public abstract class Upgrade:
     IGameConstructElement,
@@ -72,8 +73,8 @@ public abstract class Upgrade:
     }
     void IGameInitElement.InitGame(IGameContext context)
     {
-        _component_OnLevelChanged = _heroService.GetHero().Get<IComponent_OnLevelChanged>();
-        _component_GetLevel = _heroService.GetHero().Get<IComponent_GetLevel>();
+        _component_OnLevelChanged = context.GetService<HeroService>().GetHero().Get<IComponent_OnLevelChanged>();
+        _component_GetLevel = context.GetService<HeroService>().GetHero().Get<IComponent_GetLevel>();
         CurrentMaxLevel = _component_GetLevel.Level;
     }
     void IGameStartElement.StartGame(IGameContext context)
@@ -88,8 +89,10 @@ public abstract class Upgrade:
 
     private void UpdateCurrentMaxLevel(int currentLevel)
     {
-        currentLevel = _component_GetLevel.Level;
+        //currentLevel = _component_GetLevel.Level;
+        Debug.Log($"Level {currentLevel}");
         _currentMaxLevel = currentLevel;
+        Debug.Log($"Level {_currentMaxLevel}");
     }
     public void LevelUp()
     {

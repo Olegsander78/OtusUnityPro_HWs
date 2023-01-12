@@ -5115,6 +5115,7 @@ MonoBehaviour:
   gameElements:
   - {fileID: 1583149735}
   - {fileID: 1366807994}
+  - {fileID: 1412259745}
 --- !u!114 &1035551875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6820,6 +6821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1412259744}
+  - component: {fileID: 1412259745}
   m_Layer: 0
   m_Name: Upgrades
   m_TagString: Untagged
@@ -6842,6 +6844,19 @@ Transform:
   m_Father: {fileID: 1035551873}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1412259745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412259743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb724d7a8f28ae49af20d0760f2e623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetConfig: {fileID: 11400000, guid: c18b430e830c69b488d08eec36195a5f, type: 2}
 --- !u!1001 &1443145904
 PrefabInstance:
   m_ObjectHideFlags: 0
