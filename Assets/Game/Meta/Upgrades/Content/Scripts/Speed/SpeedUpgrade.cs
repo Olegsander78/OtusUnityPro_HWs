@@ -1,11 +1,11 @@
-using Services;
 using GameElements;
-
+using UnityEngine;
+using Entities;
 
 public sealed class SpeedUpgrade : Upgrade,
     IGameInitElement
 {
-    //private HeroService _heroService;
+    private IEntity _hero;
 
     private readonly SpeedUpgradeConfig _config;
 
@@ -14,21 +14,19 @@ public sealed class SpeedUpgrade : Upgrade,
         _config = config;
     }
 
-    //[Inject]
-    //public void Construct(HeroService heroService)
-    //{
-    //    _heroService = heroService;
-    //}
-
     protected override void OnUpgrade(int newLevel)
     {
         var speed = _config.SpeedTable.GetSpeed(newLevel);
-        HeroService.GetHero().Get<IComponent_SetMoveSpeed>().SetSpeed(speed);
+        _hero.Get<IComponent_SetMoveSpeed>().SetSpeed(speed);        
     }
 
     void IGameInitElement.InitGame(IGameContext context)
-    {
-        var speed = _config.SpeedTable.GetSpeed(Level);
-        HeroService.GetHero().Get<IComponent_SetMoveSpeed>().SetSpeed(speed);
+    {     
+        _hero = context.GetService<HeroService>().GetHero();
+
+        var speed = _config.SpeedTable.GetSpeed(UpgradeLevel);
+         _hero.Get<IComponent_SetMoveSpeed>().SetSpeed(speed);
+
+        Debug.Log("Init speedUpgrade components");
     }
 }

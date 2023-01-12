@@ -1,63 +1,46 @@
 using GameElements;
 using Services;
+using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-public abstract class Upgrade:
-    IGameConstructElement,
-    IGameInitElement,
-    IGameStartElement,
-    IGameFinishElement
+public abstract class Upgrade
 {
     public string Id
     {
         get { return _config.id; }
     }
 
-    public int Level
+    public int UpgradeLevel
     {
-        get { return _currentLevel; }
-        set { _currentLevel = value; }
+        get { return _currentUpgradeLevel; }
+        set { _currentUpgradeLevel = value; }
     }
 
-    public int CurrentMaxLevel
-    {
-        get { return _currentMaxLevel; }
-        set { _currentMaxLevel = value; }
-    }
-    public bool IsCurrentMaxLevel
-    {
-        get { return _currentLevel == CurrentMaxLevel; }
-    }
-
-    public int MaxLevel
+    public int MaxUpgradeLevel
     {
         get { return _config.maxLevel; }
     }
 
-    public bool IsMaxLevel
+    public bool IsMaxUpgradeLevel
     {
-        get { return _currentLevel == MaxLevel; }
+        get { return _currentUpgradeLevel == MaxUpgradeLevel; }
     }
 
-    public HeroService HeroService { get => _heroService; private set => _heroService = value; }
-
-    private HeroService _heroService;
-
-    private IComponent_GetLevel _component_GetLevel;
-    
-    private IComponent_OnLevelChanged _component_OnLevelChanged;
+    [ReadOnly]
+    [ShowInInspector]
+    public int NextPrice
+    {
+        get { return _config.priceTable.GetPrice(UpgradeLevel + 1); }
+    }
 
     private readonly UpgradeConfig _config;
 
-    private int _currentLevel;
-
-    private int _currentMaxLevel;
+    private int _currentUpgradeLevel;
 
     public Upgrade(UpgradeConfig config)
     {
-        _currentLevel = 1;
-        _currentMaxLevel = 1;
+        _currentUpgradeLevel = 1;
         _config = config;
     }
 
@@ -67,42 +50,42 @@ public abstract class Upgrade:
     //    _heroService = heroService;
     //}
 
-    void IGameConstructElement.ConstructGame(IGameContext context)
-    {
-        _heroService = context.GetService<HeroService>();
-    }
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _component_OnLevelChanged = context.GetService<HeroService>().GetHero().Get<IComponent_OnLevelChanged>();
-        _component_GetLevel = context.GetService<HeroService>().GetHero().Get<IComponent_GetLevel>();
-        CurrentMaxLevel = _component_GetLevel.Level;
-    }
-    void IGameStartElement.StartGame(IGameContext context)
-    {
-        _component_OnLevelChanged.OnLevelChanged += UpdateCurrentMaxLevel;
-    }
+    //void IGameConstructElement.ConstructGame(IGameContext context)
+    //{
+    //    _heroService = context.GetService<HeroService>();
+    //}
+    //void IGameInitElement.InitGame(IGameContext context)
+    //{
+    //    _component_OnLevelChanged = context.GetService<HeroService>().GetHero().Get<IComponent_OnLevelChanged>();
+    //    _component_GetLevel = context.GetService<HeroService>().GetHero().Get<IComponent_GetLevel>();
+    //    CurrentMaxLevel = _component_GetLevel.Level;
+    //}
+    //void IGameStartElement.StartGame(IGameContext context)
+    //{
+    //    _component_OnLevelChanged.OnLevelChanged += UpdateCurrentMaxLevel;
+    //}
 
-    void IGameFinishElement.FinishGame(IGameContext context)
-    {
-        _component_OnLevelChanged.OnLevelChanged -= UpdateCurrentMaxLevel;
-    }
+    //void IGameFinishElement.FinishGame(IGameContext context)
+    //{
+    //    _component_OnLevelChanged.OnLevelChanged -= UpdateCurrentMaxLevel;
+    //}
 
-    private void UpdateCurrentMaxLevel(int currentLevel)
-    {
-        //currentLevel = _component_GetLevel.Level;
-        Debug.Log($"Level {currentLevel}");
-        _currentMaxLevel = currentLevel;
-        Debug.Log($"Level {_currentMaxLevel}");
-    }
+    //private void UpdateCurrentMaxLevel(int currentLevel)
+    //{
+    //    //currentLevel = _component_GetLevel.Level;
+    //    Debug.Log($"Level {currentLevel}");
+    //    _currentMaxLevel = currentLevel;
+    //    Debug.Log($"Level {_currentMaxLevel}");
+    //}
     public void LevelUp()
     {
-        if (IsMaxLevel || IsCurrentMaxLevel)
+        if (IsMaxUpgradeLevel)
         {
             throw new Exception("Max level is reached!");
         }
 
-        _currentLevel++;
-        OnUpgrade(_currentLevel);
+        _currentUpgradeLevel++;
+        OnUpgrade(_currentUpgradeLevel);
     }
 
     protected abstract void OnUpgrade(int newLevel);

@@ -1,34 +1,28 @@
-using Services;
 using GameElements;
+using Entities;
 
-
-public sealed class MeleeDamageUpgrade : Upgrade,
+public sealed class MeleeDamageUpgrade : Upgrade,   
     IGameInitElement
 {
-    //private HeroService _heroService;
+    private IEntity _hero;
 
     private readonly MeleeDamageUpgradeConfig _config;
-
     public MeleeDamageUpgrade(MeleeDamageUpgradeConfig config) : base(config)
     {
         _config = config;
     }
 
-    //[Inject]
-    //public void Construct(HeroService heroService)
-    //{
-    //    _heroService = heroService;
-    //}
-
     protected override void OnUpgrade(int newLevel)
     {
         var damage = _config.MeleeDamageTable.GetDamage(newLevel);
-        HeroService.GetHero().Get<IComponent_SetMeleeDamage>().SetDamage(damage);
+        _hero.Get<IComponent_SetMeleeDamage>().SetDamage(damage);        
     }
 
     void IGameInitElement.InitGame(IGameContext context)
     {
-        var damage = _config.MeleeDamageTable.GetDamage(Level);
-        HeroService.GetHero().Get<IComponent_SetMeleeDamage>().SetDamage(damage);
-    }
+        _hero = context.GetService<HeroService>().GetHero();
+
+        var damage = _config.MeleeDamageTable.GetDamage(UpgradeLevel);
+        _hero.Get<IComponent_SetMeleeDamage>().SetDamage(damage);
+    }    
 }
