@@ -5,7 +5,7 @@ using GameElements;
 public sealed class HitPointsUpgrade : Upgrade,
     IGameInitElement
 {
-    private HeroService _heroService;
+    //private HeroService _heroService;
 
     private readonly HitPointsUpgradeConfig _config;
 
@@ -23,14 +23,14 @@ public sealed class HitPointsUpgrade : Upgrade,
     protected override void OnUpgrade(int newLevel)
     {
         var hitpoints = _config.HitPointsTable.GetHitPoints(newLevel);
-        _heroService.GetHero().Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);
-        _heroService.GetHero().Get<IComponent_SetMaxHitPoints>().SetMaxHitPoints(hitpoints);
+        HeroService.GetHero().Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);
+        HeroService.GetHero().Get<IComponent_SetMaxHitPoints>().SetMaxHitPoints(hitpoints);
     }
 
     void IGameInitElement.InitGame(IGameContext context)
     {
         var hitpoints = _config.HitPointsTable.GetHitPoints(Level);
-        _heroService.GetHero().Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);
-        _heroService.GetHero().Get<IComponent_SetMaxHitPoints>().SetMaxHitPoints(hitpoints);
+        HeroService.GetHero().Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);
+        HeroService.GetHero().Get<IComponent_SetMaxHitPoints>().SetMaxHitPoints(hitpoints);
     }
 }

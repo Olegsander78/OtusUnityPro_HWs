@@ -5,7 +5,7 @@ using GameElements;
 public sealed class SpeedUpgrade : Upgrade,
     IGameInitElement
 {
-    private HeroService _heroService;
+    //private HeroService _heroService;
 
     private readonly SpeedUpgradeConfig _config;
 
@@ -23,12 +23,12 @@ public sealed class SpeedUpgrade : Upgrade,
     protected override void OnUpgrade(int newLevel)
     {
         var speed = _config.SpeedTable.GetSpeed(newLevel);
-        _heroService.GetHero().Get<IComponent_SetMoveSpeed>().SetSpeed(speed);
+        HeroService.GetHero().Get<IComponent_SetMoveSpeed>().SetSpeed(speed);
     }
 
     void IGameInitElement.InitGame(IGameContext context)
     {
         var speed = _config.SpeedTable.GetSpeed(Level);
-        _heroService.GetHero().Get<IComponent_SetMoveSpeed>().SetSpeed(speed);
+        HeroService.GetHero().Get<IComponent_SetMoveSpeed>().SetSpeed(speed);
     }
 }

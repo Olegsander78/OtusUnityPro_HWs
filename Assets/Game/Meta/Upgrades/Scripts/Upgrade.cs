@@ -3,6 +3,7 @@ using Services;
 using System;
 
 public abstract class Upgrade:
+    IGameConstructElement,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
@@ -38,6 +39,8 @@ public abstract class Upgrade:
         get { return _currentLevel == MaxLevel; }
     }
 
+    public HeroService HeroService { get => _heroService; private set => _heroService = value; }
+
     private HeroService _heroService;
 
     private IComponent_GetLevel _component_GetLevel;
@@ -57,10 +60,15 @@ public abstract class Upgrade:
         _config = config;
     }
 
-    [Inject]
-    public void Construct(HeroService heroService)
+    //[Inject]
+    //public void Construct(HeroService heroService)
+    //{
+    //    _heroService = heroService;
+    //}
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
-        _heroService = heroService;
+        _heroService = context.GetService<HeroService>();
     }
     void IGameInitElement.InitGame(IGameContext context)
     {
