@@ -64,9 +64,9 @@ public class ExperienceEngine : MonoBehaviour
         _expReceiver.OnEvent -= OnSpendedExpForLevelUpOnClick;
     }
 
-    [Title("Methods")]
-    [GUIColor(0, 1, 0)]
-    [Button]
+    //[Title("Methods")]
+    //[GUIColor(0, 1, 0)]
+    //[Button]
     public void Setup(int curExp, int nextLvlExp, int totalExp)
     {
         _currentExp.Value = curExp;
@@ -75,8 +75,8 @@ public class ExperienceEngine : MonoBehaviour
         OnSetuped?.Invoke();
     }
 
-    [GUIColor(0, 1, 0)]
-    [Button]
+    //[GUIColor(0, 1, 0)]
+    //[Button]
     private void SetExp(int value)
     {        
         _currentExp.Value = value;
@@ -89,16 +89,16 @@ public class ExperienceEngine : MonoBehaviour
         }
     }
 
-    [GUIColor(0, 1, 0)]
-    [Button]
+    //[GUIColor(0, 1, 0)]
+    //[Button]
     private void SetNextLevelExp()
     {
         _nextLevelExp.Value = 100 * _levelUpEngine.CurrentLevel;
         OnNextLvlExpChanged?.Invoke(_nextLevelExp.Value);
     }
 
-    [GUIColor(0, 1, 0)]
-    [Button]
+    //[GUIColor(0, 1, 0)]
+    //[Button]
     private void SetTotalExp(int value)
     {
         _totalExp.Value += value;
@@ -106,8 +106,8 @@ public class ExperienceEngine : MonoBehaviour
 
 
     // Experience auto-calculate levels
-    [GUIColor(0, 1, 0)]
-    [Button]
+    //[GUIColor(0, 1, 0)]
+    //[Button]
     private void OnAddedExpWithAutoLevelUp(int value)
     {
         _totalExp.Value += value;
@@ -134,8 +134,8 @@ public class ExperienceEngine : MonoBehaviour
         OnExpChangedOnClick?.Invoke(_currentExp.Value);
     }
     // Experience calculate levels OnClick
-    [GUIColor(0, 1, 0)]
-    [Button]
+    //[GUIColor(0, 1, 0)]
+    //[Button]
     public void OnSpendedExpForLevelUpOnClick(int value)
     {        
         if (value >= _nextLevelExp.Value)

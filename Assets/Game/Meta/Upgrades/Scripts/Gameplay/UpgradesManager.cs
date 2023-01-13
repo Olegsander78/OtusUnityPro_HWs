@@ -42,22 +42,41 @@ public sealed class UpgradesManager : MonoBehaviour,
 
     private int _currentMaxLevelOnHero;
 
+    [Button]
+    private void DoUpgrade(string keyUpgrade)
+    {
+        foreach (var upgrade in _upgrades.Values)
+        {
+            if (upgrade.Id == keyUpgrade)
+            {
+                LevelUp(upgrade);
+                Debug.Log($"Level Up {upgrade.Id} to {upgrade.UpgradeLevel}");
+            }
+        }
+    }
     public bool CanLevelUp(Upgrade upgrade)
     {
         if (upgrade.IsMaxUpgradeLevel)
         {
+            Debug.Log("Max Upgrade level");
             return false;
         }
 
         if (upgrade.UpgradeLevel >= _currentMaxLevelOnHero)
         {
+            Debug.Log("Upgrade level can't exceed Hero's level");
             return false;
         }
 
         var price = upgrade.NextPrice;
+        if(_moneyStorage.Money < price)
+        {
+            Debug.Log("Need more money!");
+        }
         return _moneyStorage.CanSpendMoney(price);
     }
 
+    
     public void LevelUp(Upgrade upgrade)
     {
         if (!CanLevelUp(upgrade))
@@ -111,19 +130,17 @@ public sealed class UpgradesManager : MonoBehaviour,
     void IGameStartElement.StartGame(IGameContext context)
     {
         _component_OnLevelChanged.OnLevelChanged += UpdateCurrentMaxLevel;
-        Debug.Log("Start Onlevelchanged!");
     }
 
     void IGameFinishElement.FinishGame(IGameContext context)
     {
         _component_OnLevelChanged.OnLevelChanged -= UpdateCurrentMaxLevel;
-        Debug.Log("Stop Onlevelchanged!");
     }
 
     private void UpdateCurrentMaxLevel(int currentLevelHero)
     {        
         _currentMaxLevelOnHero = currentLevelHero;
-        Debug.Log($"Level {_currentMaxLevelOnHero}");
+        Debug.Log($"Max Level for Upgrades: {_currentMaxLevelOnHero}");
     }
 
     void IGameDetachElement.DetachGame(IGameContext context)
@@ -133,18 +150,18 @@ public sealed class UpgradesManager : MonoBehaviour,
 
     private void CreateUpgrades()
     {
-        var configs = this._catalog.GetAllUpgrades();
+        var configs = _catalog.GetAllUpgrades();
         for (int i = 0, count = configs.Length; i < count; i++)
         {
             var config = configs[i];
             var upgrade = config.InstantiateUpgrade();
-            this._upgrades.Add(config.id, upgrade);
+            _upgrades.Add(config.id, upgrade);
         }
     }
 
     private void RegisterUpgrades(IGameContext context)
     {
-        foreach (var upgrade in this._upgrades.Values)
+        foreach (var upgrade in _upgrades.Values)
         {
             if (upgrade is IGameElement gameElement)
             {
@@ -155,7 +172,7 @@ public sealed class UpgradesManager : MonoBehaviour,
 
     private void UnregisterUpgrades(IGameContext context)
     {
-        foreach (var upgrade in this._upgrades.Values)
+        foreach (var upgrade in _upgrades.Values)
         {
             if (upgrade is IGameElement gameElement)
             {

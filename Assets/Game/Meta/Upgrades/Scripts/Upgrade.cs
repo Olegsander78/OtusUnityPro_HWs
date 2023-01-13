@@ -6,22 +6,28 @@ using UnityEngine;
 
 public abstract class Upgrade
 {
+    [ReadOnly]
+    [ShowInInspector]
     public string Id
     {
         get { return _config.id; }
     }
 
+    [ReadOnly]
+    [ShowInInspector]
     public int UpgradeLevel
     {
         get { return _currentUpgradeLevel; }
         set { _currentUpgradeLevel = value; }
     }
-
+    [ReadOnly]
+    [ShowInInspector]
     public int MaxUpgradeLevel
     {
         get { return _config.maxLevel; }
     }
-
+    [ReadOnly]
+    [ShowInInspector]
     public bool IsMaxUpgradeLevel
     {
         get { return _currentUpgradeLevel == MaxUpgradeLevel; }
@@ -34,8 +40,12 @@ public abstract class Upgrade
         get { return _config.priceTable.GetPrice(UpgradeLevel + 1); }
     }
 
+    [ReadOnly]
+    [ShowInInspector]
     private readonly UpgradeConfig _config;
 
+    [ReadOnly]
+    [ShowInInspector]
     private int _currentUpgradeLevel;
 
     public Upgrade(UpgradeConfig config)

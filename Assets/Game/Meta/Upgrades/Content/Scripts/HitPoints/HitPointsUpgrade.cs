@@ -19,7 +19,7 @@ public sealed class HitPointsUpgrade : Upgrade,
     protected override void OnUpgrade(int newLevel)
     {
         var hitpoints = _config.HitPointsTable.GetHitPoints(newLevel);
-        _hero.Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);
+        //_hero.Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);
         _hero.Get<IComponent_SetMaxHitPoints>().SetMaxHitPoints(hitpoints);
     }
 
@@ -28,7 +28,7 @@ public sealed class HitPointsUpgrade : Upgrade,
         _hero = context.GetService<HeroService>().GetHero();
 
         var hitpoints = _config.HitPointsTable.GetHitPoints(UpgradeLevel);
-        _hero.Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);
+        //_hero.Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);
         _hero.Get<IComponent_SetMaxHitPoints>().SetMaxHitPoints(hitpoints);
     }
 }
