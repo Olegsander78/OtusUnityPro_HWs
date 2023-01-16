@@ -124,7 +124,7 @@ public sealed class UpgradesManager : MonoBehaviour,
         _component_OnLevelChanged = _hero.Get<IComponent_OnLevelChanged>();
         _component_GetLevel = _hero.Get<IComponent_GetLevel>();
         _currentMaxLevelOnHero = _component_GetLevel.Level;
-        Debug.Log("Construct Level Hero components");
+        Debug.Log("Constructed Hero's Level components");
     }
 
     void IGameStartElement.StartGame(IGameContext context)

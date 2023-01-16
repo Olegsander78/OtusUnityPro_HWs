@@ -12,7 +12,7 @@ public sealed class PlayerShower : MonoBehaviour, IGameInitElement
     public void ShowHero()
     {
         var presentationModel = _presenterFactory.CreatePresenter();
-        _popupManager.ShowPopup(PopupName.HERO, presentationModel);
+        _popupManager.ShowPopup(PopupName.HERO_LEVELUP, presentationModel);
     }
 
     void IGameInitElement.InitGame(IGameContext context)
