@@ -64,7 +64,7 @@ public class EnemiesRewardsController : MonoBehaviour,
         {
             _entity.Get<IComponent_ExpRewarded>().ExpReward = Mathf.RoundToInt(_baseExp * _levelMultiplier * _rateExp);
             _entity.Get<IComponent_MoneyRewarded>().MoneyReward = Mathf.RoundToInt(_baseMoney * _levelMultiplier * _rateMoney);
-            Debug.Log($"OnUpgrade Rewards {_entity.Get<IComponent_GetEnemyInfo>().EnemyInfo.name}: Exp - {_entity.Get<IComponent_ExpRewarded>().ExpReward} , Money - { _entity.Get<IComponent_MoneyRewarded>().MoneyReward}");
+            Debug.Log($"OnUpgrade Rewards {_entity.Get<IComponent_GetEnemyInfo>().EnemyInfo.EnemyType}: Exp - {_entity.Get<IComponent_ExpRewarded>().ExpReward} , Money - { _entity.Get<IComponent_MoneyRewarded>().MoneyReward}");
         }
     }
 }
