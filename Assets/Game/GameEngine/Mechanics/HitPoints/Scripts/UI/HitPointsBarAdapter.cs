@@ -18,11 +18,13 @@ public sealed class HitPointsBarAdapter : MonoBehaviour
     private void OnEnable()
     {
         this.hitPointsEngine.OnHitPointsChanged += this.OnHitPointsChanged;
+        this.hitPointsEngine.OnMaxHitPointsChanged += this.OnHitPointsChanged;
     }
 
     private void OnDisable()
     {
         this.hitPointsEngine.OnHitPointsChanged -= this.OnHitPointsChanged;
+        this.hitPointsEngine.OnMaxHitPointsChanged -= this.OnHitPointsChanged;
     }
 
     private void OnHitPointsChanged(int hitPoints)

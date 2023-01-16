@@ -3341,6 +3341,8 @@ GameObject:
   - component: {fileID: 1837044179698993030}
   - component: {fileID: 1837044179698993028}
   - component: {fileID: 1837044179698993029}
+  - component: {fileID: 449645558}
+  - component: {fileID: 449645559}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -3397,6 +3399,35 @@ MonoBehaviour:
     scriptableValue: {fileID: 0}
   hasRespawnPoint: 1
   respawnPoint: {fileID: 1837044179698993030}
+--- !u!114 &449645558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837044179698993031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48032ec4f31adc948bc3107aa12c3364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stepHpOnLevel: 5
+  _hitPointsEngine: {fileID: 8655693823698042499}
+--- !u!114 &449645559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837044179698993031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41014814a1b7c54fa0968354e66958d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entity: {fileID: 1837044180642416766}
+  _rateExp: 0.7
+  _rateMoney: 0.7
 --- !u!1 &1837044179723240717
 GameObject:
   m_ObjectHideFlags: 0

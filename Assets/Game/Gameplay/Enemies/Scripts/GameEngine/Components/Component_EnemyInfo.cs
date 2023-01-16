@@ -1,17 +1,34 @@
 using UnityEngine;
 
 public class Component_EnemyInfo : MonoBehaviour,
-    IComponent_GetEnemyType,
-    IComponent_GetExpRewarded,
-    IComponent_GetMoneyRewarded
+    IComponent_ExpRewarded,
+    IComponent_MoneyRewarded,
+    IComponent_GetEnemyInfo
 {
-    public EnemyType EnemyType => _enemyInfo.EnemyType;
+    public ScriptableEnemyInfo EnemyInfo => _enemyInfo;
 
-    public int ExpReward => Random.Range(_enemyInfo.MinExperience, _enemyInfo.MaxExperience);
+    public int ExpReward
+    {
+        get => _expReward;
+        set => _expReward = value;
+    }
 
-    public int MoneyReward => Random.Range(_enemyInfo.MinMoney, _enemyInfo.MaxMoney);
-
+    public int MoneyReward
+    {
+        get => _moneyReward;
+        set => _moneyReward = value;
+    }
 
     [SerializeField]
     private ScriptableEnemyInfo _enemyInfo;
+
+    private int _expReward;
+
+    private int _moneyReward;
+
+    private void Awake()
+    {
+        _expReward = Random.Range(_enemyInfo.MinExperience, _enemyInfo.MaxExperience);
+        _moneyReward = Random.Range(_enemyInfo.MinMoney, _enemyInfo.MaxMoney);
+    }
 }
