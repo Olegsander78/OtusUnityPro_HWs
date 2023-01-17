@@ -22,7 +22,7 @@ public sealed class UpgradeCatalog : ScriptableObject
         for (var i = 0; i < length; i++)
         {
             var config = this.configs[i];
-            if (config.id == id)
+            if (config.Id == id)
             {
                 return config;
             }

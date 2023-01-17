@@ -6,11 +6,13 @@ using UnityEngine;
 
 public abstract class Upgrade
 {
+    public event Action<int> OnUpgradeUp;
+
     [ReadOnly]
     [ShowInInspector]
     public string Id
     {
-        get { return _config.id; }
+        get { return _config.Id; }
     }
 
     [ReadOnly]
@@ -24,7 +26,7 @@ public abstract class Upgrade
     [ShowInInspector]
     public int MaxUpgradeLevel
     {
-        get { return _config.maxLevel; }
+        get { return _config.MaxLevel; }
     }
     [ReadOnly]
     [ShowInInspector]
@@ -33,11 +35,31 @@ public abstract class Upgrade
         get { return _currentUpgradeLevel == MaxUpgradeLevel; }
     }
 
+    public float Progress
+    {
+        get { return (float)_currentUpgradeLevel / _config.MaxLevel; }
+    }
+
+    [ReadOnly]
+    [ShowInInspector]
+    public UpgradeMetadata Metadata
+    {
+        get { return _config.Metadata; }
+    }
+
+    [ReadOnly]
+    [ShowInInspector]
+    public abstract string CurrentStats { get; }
+
+    [ReadOnly]
+    [ShowInInspector]
+    public abstract string NextImprovement { get; }
+
     [ReadOnly]
     [ShowInInspector]
     public int NextPrice
     {
-        get { return _config.priceTable.GetPrice(UpgradeLevel + 1); }
+        get { return _config.PriceTable.GetPrice(UpgradeLevel + 1); }
     }
 
     [ReadOnly]
@@ -54,50 +76,25 @@ public abstract class Upgrade
         _config = config;
     }
 
-    //[Inject]
-    //public void Construct(HeroService heroService)
-    //{
-    //    _heroService = heroService;
-    //}
+    public void SetupLevel(int level)
+    {
+        _currentUpgradeLevel = level;
+    }
 
-    //void IGameConstructElement.ConstructGame(IGameContext context)
-    //{
-    //    _heroService = context.GetService<HeroService>();
-    //}
-    //void IGameInitElement.InitGame(IGameContext context)
-    //{
-    //    _component_OnLevelChanged = context.GetService<HeroService>().GetHero().Get<IComponent_OnLevelChanged>();
-    //    _component_GetLevel = context.GetService<HeroService>().GetHero().Get<IComponent_GetLevel>();
-    //    CurrentMaxLevel = _component_GetLevel.Level;
-    //}
-    //void IGameStartElement.StartGame(IGameContext context)
-    //{
-    //    _component_OnLevelChanged.OnLevelChanged += UpdateCurrentMaxLevel;
-    //}
-
-    //void IGameFinishElement.FinishGame(IGameContext context)
-    //{
-    //    _component_OnLevelChanged.OnLevelChanged -= UpdateCurrentMaxLevel;
-    //}
-
-    //private void UpdateCurrentMaxLevel(int currentLevel)
-    //{
-    //    //currentLevel = _component_GetLevel.Level;
-    //    Debug.Log($"Level {currentLevel}");
-    //    _currentMaxLevel = currentLevel;
-    //    Debug.Log($"Level {_currentMaxLevel}");
-    //}
     public void LevelUp()
     {
-        if (IsMaxUpgradeLevel)
+        if (UpgradeLevel >= MaxUpgradeLevel)
         {
             throw new Exception("Max level is reached!");
         }
 
-        _currentUpgradeLevel++;
-        OnUpgrade(_currentUpgradeLevel);
+        var nextLevel = UpgradeLevel + 1;
+        _currentUpgradeLevel = nextLevel;
+        //_currentUpgradeLevel++;
+        UpgradeUp(_currentUpgradeLevel);
+        OnUpgradeUp?.Invoke(nextLevel);
     }
 
-    protected abstract void OnUpgrade(int newLevel);
+    protected abstract void UpgradeUp(int newLevel);
 
 }

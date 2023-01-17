@@ -155,7 +155,7 @@ public sealed class UpgradesManager : MonoBehaviour,
         {
             var config = configs[i];
             var upgrade = config.InstantiateUpgrade();
-            _upgrades.Add(config.id, upgrade);
+            _upgrades.Add(config.Id, upgrade);
         }
     }
 

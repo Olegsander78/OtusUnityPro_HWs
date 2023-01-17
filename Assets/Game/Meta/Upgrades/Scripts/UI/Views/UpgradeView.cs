@@ -8,44 +8,44 @@ public sealed class UpgradeView : MonoBehaviour
 {
     public UpgradeButton UpgradeButton
     {
-        get { return this.upgradeButton; }
+        get { return _upgradeButton; }
     }
 
     [SerializeField]
-    private Image iconImage;
+    private Image _iconImage;
 
     [Space]
     [SerializeField]
-    private TextMeshProUGUI titleText;
+    private TextMeshProUGUI _titleText;
 
     [FormerlySerializedAs("valueText")]
     [SerializeField]
-    private TextMeshProUGUI statsText;
+    private TextMeshProUGUI _statsText;
 
     [SerializeField]
-    private TextMeshProUGUI levelText;
+    private TextMeshProUGUI _levelText;
 
     [Space]
     [SerializeField]
-    private UpgradeButton upgradeButton;
+    private UpgradeButton _upgradeButton;
 
     public void SetIcon(Sprite icon)
     {
-        this.iconImage.sprite = icon;
+        _iconImage.sprite = icon;
     }
 
     public void SetTitle(string title)
     {
-        this.titleText.text = title;
+        _titleText.text = title;
     }
 
     public void SetStats(string stats)
     {
-        this.statsText.text = stats;
+        _statsText.text = stats;
     }
 
     public void SetLevel(string level)
     {
-        this.levelText.text = level;
+        _levelText.text = level;
     }
 }

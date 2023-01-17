@@ -15,9 +15,9 @@ public sealed class HitPointsUpgradeConfig : UpgradeConfig
         return new HitPointsUpgrade(this);
     }
 
-    protected override void OnValidate()
+    protected override void Validate()
     {
-        base.OnValidate();
-        HitPointsTable.OnValidate(maxLevel);
+        base.Validate();
+        HitPointsTable.OnValidate(MaxLevel);
     }
 }

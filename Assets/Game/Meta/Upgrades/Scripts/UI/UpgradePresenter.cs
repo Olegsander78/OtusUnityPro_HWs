@@ -3,133 +3,135 @@ using UnityEngine;
 
 public sealed class UpgradePresenter
 {
-    private readonly Upgrade upgrade;
+    private readonly Upgrade _upgrade;
 
-    private readonly UpgradeView view;
+    private readonly UpgradeView _view;
 
-    private UpgradesManager upgradesManager;
+    private UpgradesManager _upgradesManager;
 
-    private MoneyStorage moneyStorage;
+    private MoneyStorage _moneyStorage;
 
     public UpgradePresenter(Upgrade upgrade, UpgradeView view)
     {
-        this.upgrade = upgrade;
-        this.view = view;
+        _upgrade = upgrade;
+        _view = view;
     }
 
     public void Construct(UpgradesManager upgradesManager, MoneyStorage moneyStorage)
     {
-        this.upgradesManager = upgradesManager;
-        this.moneyStorage = moneyStorage;
+        _upgradesManager = upgradesManager;
+        _moneyStorage = moneyStorage;
     }
 
     public void Start()
     {
-        this.view.UpgradeButton.AddListener(this.OnButtonClicked);
-       // this.upgrade.OnLevelUp += this.OnLevelUp;
-        this.moneyStorage.OnMoneyChanged += this.OnMoneyChanged;
+        _view.UpgradeButton.AddListener(OnButtonClicked);
+        _upgrade.OnUpgradeUp += OnLevelUp;
+        _moneyStorage.OnMoneyChanged += OnMoneyChanged;
         //LanguageManager.OnLanguageChanged += this.OnLanguageChanged;
 
-        this.UpdateTitle();
-        this.UpdateLevel();
-        this.UpdateIcon();
-        this.UpdateStats();
-        this.UpdateButtonPrice();
-        this.UpdateButtonState();
+        UpdateTitle();
+        UpdateLevel();
+        UpdateIcon();
+        UpdateStats();
+        UpdateButtonPrice();
+        UpdateButtonState();
     }
 
     public void Stop()
     {
-        this.view.UpgradeButton.RemoveListener(this.OnButtonClicked);
-        //this.upgrade.OnLevelUp -= this.OnLevelUp;
-        this.moneyStorage.OnMoneyChanged -= this.OnMoneyChanged;
+        _view.UpgradeButton.RemoveListener(OnButtonClicked);
+        _upgrade.OnUpgradeUp -= OnLevelUp;
+        _moneyStorage.OnMoneyChanged -= OnMoneyChanged;
         //LanguageManager.OnLanguageChanged -= this.OnLanguageChanged;
     }
 
     //Model
     private void OnLevelUp(int newLevel)
     {
-        this.UpdateLevel();
-        this.UpdateStats();
-        this.UpdateButtonState();
-        this.UpdateButtonPrice();
+        UpdateLevel();
+        UpdateStats();
+        UpdateButtonState();
+        UpdateButtonPrice();
     }
 
     //Model
     private void OnMoneyChanged(int money)
     {
-        this.UpdateButtonState();
+        UpdateButtonState();
     }
 
     //Model
-    private void OnLanguageChanged(SystemLanguage system)
-    {
-        this.UpdateTitle();
-    }
+    //private void OnLanguageChanged(SystemLanguage system)
+    //{
+    //    UpdateTitle();
+    //}
 
     //UI
     private void OnButtonClicked()
     {
-        if (this.upgradesManager.CanLevelUp(this.upgrade))
+        if (_upgradesManager.CanLevelUp(_upgrade))
         {
-            this.upgradesManager.LevelUp(this.upgrade);
+            _upgradesManager.LevelUp(_upgrade);
         }
     }
 
     private void UpdateTitle()
     {
         //var localizationKey = this.upgrade.Metadata.localizedTitle;
-       // var language = LanguageManager.CurrentLanguage;
+        // var language = LanguageManager.CurrentLanguage;
         //var text = LocalizationManager.GetText(localizationKey, language);
-        //this.view.SetTitle(text); //TODO... Localization
+
+        var text = _upgrade.Metadata.Title;
+        _view.SetTitle(text); //TODO... Localization
     }
 
     private void UpdateIcon()
     {
-        //this.view.SetIcon(this.upgrade.Metadata.icon);
+        _view.SetIcon(_upgrade.Metadata.Icon);
     }
 
     private void UpdateLevel()
     {
-        //var text = $"Level: {this.upgrade.Level}/{this.upgrade.MaxLevel}";
-        //this.view.SetLevel(text);
+        var text = $"Level: {_upgrade.UpgradeLevel}/{_upgrade.MaxUpgradeLevel}";
+        _view.SetLevel(text);
     }
 
     private void UpdateStats()
     {
-        //var text = $"Value: {this.upgrade.CurrentStats}";
-        //if (!this.upgrade.IsMaxLevel)
-        //{
-        //    text += $" (+{this.upgrade.NextImprovement})";
-        //}
+        var text = $"Value: {_upgrade.CurrentStats}";
+        if (!_upgrade.IsMaxUpgradeLevel)
+        {
+            text += $" (+{_upgrade.NextImprovement})";
+        }
 
-        //this.view.SetStats(text);
+        _view.SetStats(text);
     }
 
     private void UpdateButtonPrice()
     {
-        //if (!this.upgrade.IsMaxLevel)
-        //{
-        //    var price = this.upgrade.NextPrice.ToString();
-        //    this.view.Button.SetPrice(price);
-        //}
+        if (!_upgrade.IsMaxUpgradeLevel)
+        {
+            var price = _upgrade.NextPrice.ToString();
+            _view.UpgradeButton.SetPrice(price);
+        }
     }
 
     private void UpdateButtonState()
     {
-        //if (this.upgrade.IsMaxLevel)
-        //{
-        //    this.view.Button.SetState(UpgradeButton.State.MAX);
-        //    return;
-        //}
+        if (_upgrade.IsMaxUpgradeLevel || (_upgrade.UpgradeLevel >= _upgradesManager.CurrentMaxLevelOnHero))
+        {
+            _view.UpgradeButton.SetState(UpgradeButton.State.MAX);
+            return;
+        }
 
-        //if (this.moneyStorage.Money >= this.upgrade.NextPrice)
-        //{
-        //    this.view.Button.SetState(UpgradeButton.State.AVAILABLE);
-        //}
-        //else
-        //{
-        //    this.view.Button.SetState(UpgradeButton.State.LOCKED);
-        //}
+        if (_moneyStorage.Money >= _upgrade.NextPrice)
+        {
+            _view.UpgradeButton.SetState(UpgradeButton.State.AVAILABLE);
+        }
+        else
+        {
+            _view.UpgradeButton.SetState(UpgradeButton.State.LOCKED);
+        }
     }
 }

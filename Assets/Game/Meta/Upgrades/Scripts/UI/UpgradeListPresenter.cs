@@ -8,34 +8,34 @@ public sealed class UpgradeListPresenter : MonoBehaviour,
     IGameInitElement
 {
     [SerializeField]
-    private UpgradeView viewPrefab;
+    private UpgradeView _viewPrefab;
 
     [SerializeField]
-    private Transform viewContainer;
+    private Transform _viewContainer;
 
-    private UpgradesManager upgradesManager;
+    private UpgradesManager _upgradesManager;
 
-    private MoneyStorage moneyStorage;
+    private MoneyStorage _moneyStorage;
 
-    private readonly List<UpgradeView> activeViews = new();
+    private readonly List<UpgradeView> _activeViews = new();
 
-    private readonly List<UpgradePresenter> activePresenters = new();
+    private readonly List<UpgradePresenter> _activePresenters = new();
 
     [Button]
     public void Show()
     {
-        Upgrade[] upgrades = this.upgradesManager.GetAllUpgrades();
+        Upgrade[] upgrades = _upgradesManager.GetAllUpgrades();
         foreach (var upgrade in upgrades)
         {
-            UpgradeView view = Instantiate(this.viewPrefab, this.viewContainer); //
-            this.activeViews.Add(view);
+            UpgradeView view = Instantiate(_viewPrefab, _viewContainer); 
+            _activeViews.Add(view);
 
             UpgradePresenter presenter = new UpgradePresenter(upgrade, view);
-            presenter.Construct(this.upgradesManager, this.moneyStorage); //DI
-            this.activePresenters.Add(presenter);
+            presenter.Construct(_upgradesManager, this._moneyStorage); //DI
+            _activePresenters.Add(presenter);
         }
 
-        foreach (var presenter in this.activePresenters)
+        foreach (var presenter in _activePresenters)
         {
             presenter.Start();
         }
@@ -44,24 +44,24 @@ public sealed class UpgradeListPresenter : MonoBehaviour,
     [Button]
     public void Hide()
     {
-        foreach (var presenter in this.activePresenters)
+        foreach (var presenter in _activePresenters)
         {
             presenter.Stop();
         }
 
-        this.activePresenters.Clear();
+        _activePresenters.Clear();
 
-        foreach (var view in this.activeViews)
+        foreach (var view in _activeViews)
         {
-            Destroy(view.gameObject); //
+            Destroy(view.gameObject); 
         }
 
-        this.activeViews.Clear();
+        _activeViews.Clear();
     }
 
     void IGameInitElement.InitGame(IGameContext context)
     {
-        this.upgradesManager = context.GetService<UpgradesManager>();
-        this.moneyStorage = context.GetService<MoneyStorage>();
+        _upgradesManager = context.GetService<UpgradesManager>();
+        _moneyStorage = context.GetService<MoneyStorage>();
     }
 }

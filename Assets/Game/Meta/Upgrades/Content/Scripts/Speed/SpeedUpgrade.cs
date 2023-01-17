@@ -13,8 +13,17 @@ public sealed class SpeedUpgrade : Upgrade,
     {
         _config = config;
     }
+    public override string CurrentStats
+    {
+        get { return _config.SpeedTable.GetSpeed(UpgradeLevel).ToString(); }
+    }
 
-    protected override void OnUpgrade(int newLevel)
+    public override string NextImprovement
+    {
+        get { return _config.SpeedTable.SpeedStep.ToString(); }
+    }
+
+    protected override void UpgradeUp(int newLevel)
     {
         var speed = _config.SpeedTable.GetSpeed(newLevel);
         _hero.Get<IComponent_SetMoveSpeed>().SetSpeed(speed);        

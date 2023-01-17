@@ -11,8 +11,19 @@ public sealed class RangeDamageUpgrade : Upgrade,
     public RangeDamageUpgrade(RangeDamageUpgradeConfig config) : base(config)
     {
         _config = config;
-    }   
-    protected override void OnUpgrade(int newLevel)
+    }
+
+    public override string CurrentStats
+    {
+        get { return _config.RangeDamageTable.GetDamage(UpgradeLevel).ToString(); }
+    }
+
+    public override string NextImprovement
+    {
+        get { return _config.RangeDamageTable.DamageStep.ToString(); }
+    }
+
+    protected override void UpgradeUp(int newLevel)
     {
         var damage = _config.RangeDamageTable.GetDamage(newLevel);
         _hero.Get<IComponent_ProjectileRangeAttack>().SetDamage(damage);

@@ -1,7 +1,4 @@
-using Services;
 using GameElements;
-using UnityEngine;
-using System;
 using Entities;
 
 public sealed class HitPointsUpgrade : Upgrade,
@@ -16,7 +13,17 @@ public sealed class HitPointsUpgrade : Upgrade,
         _config = config;
     }
 
-    protected override void OnUpgrade(int newLevel)
+    public override string CurrentStats
+    {
+        get { return _config.HitPointsTable.GetHitPoints(UpgradeLevel).ToString(); }
+    }
+
+    public override string NextImprovement
+    {
+        get { return _config.HitPointsTable.HitPointsStep.ToString(); }
+    }
+
+    protected override void UpgradeUp(int newLevel)
     {
         var hitpoints = _config.HitPointsTable.GetHitPoints(newLevel);
         //_hero.Get<IComponent_SetHitPoints>().SetHitPoints(hitpoints);

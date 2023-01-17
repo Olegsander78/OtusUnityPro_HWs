@@ -15,9 +15,9 @@ public sealed class RangeDamageUpgradeConfig : UpgradeConfig
         return new RangeDamageUpgrade(this);
     }
 
-    protected override void OnValidate()
+    protected override void Validate()
     {
-        base.OnValidate();
-        RangeDamageTable.OnValidate(maxLevel);
+        base.Validate();
+        RangeDamageTable.OnValidate(MaxLevel);
     }
 }

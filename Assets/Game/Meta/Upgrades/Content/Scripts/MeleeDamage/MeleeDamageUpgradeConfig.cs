@@ -15,9 +15,9 @@ public sealed class MeleeDamageUpgradeConfig : UpgradeConfig
         return new MeleeDamageUpgrade(this);
     }
 
-    protected override void OnValidate()
+    protected override void Validate()
     {
-        base.OnValidate();
-        MeleeDamageTable.OnValidate(maxLevel);
+        base.Validate();
+        MeleeDamageTable.OnValidate(MaxLevel);
     }
 }

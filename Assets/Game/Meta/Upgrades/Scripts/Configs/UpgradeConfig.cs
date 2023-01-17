@@ -1,21 +1,40 @@
+using System;
 using UnityEngine;
 
 
 public abstract class UpgradeConfig : ScriptableObject
 {
-    [SerializeField]
-    public string id;
+    protected const float SPACE_HEIGHT = 10.0f;
 
     [SerializeField]
-    public int maxLevel;
+    public string Id;
+
+    [Range(1, 100)]
+    [SerializeField]
+    public int MaxLevel = 1;
+
+    [Space(SPACE_HEIGHT)]
+    [SerializeField]
+    public UpgradeMetadata Metadata;
 
     [SerializeField]
-    public UpgradePriceTable priceTable;
+    public UpgradePriceTable PriceTable;
 
     public abstract Upgrade InstantiateUpgrade();
 
-    protected virtual void OnValidate()
+    private void OnValidate()
     {
-        this.priceTable.OnValidate(this.maxLevel);
+        try
+        {
+            Validate();
+        }
+        catch (Exception)
+        {
+            // ignored
+        }
+    }
+    protected virtual void Validate()
+    {
+        PriceTable.OnValidate(this.MaxLevel);
     }
 }

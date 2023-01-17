@@ -15,9 +15,9 @@ public sealed class SpeedUpgradeConfig : UpgradeConfig
         return new SpeedUpgrade(this);
     }
 
-    protected override void OnValidate()
+    protected override void Validate()
     {
-        base.OnValidate();
-        SpeedTable.OnValidate(maxLevel);
+        base.Validate();
+        SpeedTable.OnValidate(MaxLevel);
     }
 }

@@ -597,11 +597,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96d9095688e3ce4c987bd696ef87d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1893413798757685415}
-  titleText: {fileID: 1893413798206216402}
-  statsText: {fileID: 1893413796893399537}
-  levelText: {fileID: 1893413796815753525}
-  upgradeButton: {fileID: 6813675140330761735}
+  _iconImage: {fileID: 1893413798757685415}
+  _titleText: {fileID: 1893413798206216402}
+  _statsText: {fileID: 1893413796893399537}
+  _levelText: {fileID: 1893413796815753525}
+  _upgradeButton: {fileID: 6813675140330761735}
 --- !u!1 &1893413798757685417
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,6 +824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007250646327113988, guid: a3f4f9ae1a0664af0bc48644989bb236,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2007250646327113990, guid: a3f4f9ae1a0664af0bc48644989bb236,
         type: 3}
