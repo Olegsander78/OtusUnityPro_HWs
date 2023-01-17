@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 5136640488661588185}
   - component: {fileID: 4714092841479702019}
   - component: {fileID: 1997529849995576183}
-  - component: {fileID: 5254266785475975228}
   m_Layer: 5
   m_Name: ButtonUpgrade
   m_TagString: Untagged
@@ -172,7 +171,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2007250644720390439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c62e16bba484e52b66139f68f50b65d, type: 3}
+  m_Script: {fileID: 11500000, guid: 04d955226818c914ea206c6347a7efaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2007250644720390437}
@@ -232,65 +231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8a650240844078a2b8f8da12049468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5254266785475975228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007250644720390439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84e81316abb472643b22ecfb768337de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 2007250645121875484}
-    - {fileID: 5271573841072319478}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: children
-      Entry: 7
-      Data: 0|LocalizationModule.IComponent[], Localization
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 1|Game.Localization.TMProUGUIComponent_TranslationText, Assembly-CSharp
-    - Name: text
-      Entry: 10
-      Data: 0
-    - Name: key
-      Entry: 1
-      Data: Common|UPGRADE
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|Game.Localization.TMProUGUIComponent_TranslationText, Assembly-CSharp
-    - Name: text
-      Entry: 10
-      Data: 1
-    - Name: key
-      Entry: 1
-      Data: Common|MAX
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
 --- !u!1 &2007250644821309958
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,9 +379,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: UPGRADE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ef035577179af4b13b6c10edfbf6586a, type: 2}
-  m_sharedMaterial: {fileID: 7738102052382203216, guid: ef035577179af4b13b6c10edfbf6586a,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -673,9 +612,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100K
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 47f5e33049f4242d7a1ee5d2b03419cc, type: 2}
-  m_sharedMaterial: {fileID: 6070061758891052490, guid: 47f5e33049f4242d7a1ee5d2b03419cc,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

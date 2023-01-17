@@ -6,7 +6,7 @@ using UnityEngine;
 public sealed class HarvestResourceSystemInstaller : MonoBehaviour,
     IGameElementGroup,
     IGameServiceGroup,
-    IGameConstructElement
+    IGameInitElement
 {
     [SerializeField]
     private HarvestResourceInteractor interactor = new();
@@ -21,7 +21,7 @@ public sealed class HarvestResourceSystemInstaller : MonoBehaviour,
         yield return this.interactor;
     }
 
-    void IGameConstructElement.ConstructGame(IGameContext context)
+    void IGameInitElement.InitGame(IGameContext context)
     {
         var heroService = context.GetService<HeroService>();
         this.interactor.Construct(heroService);

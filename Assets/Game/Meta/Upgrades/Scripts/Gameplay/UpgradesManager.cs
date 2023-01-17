@@ -36,9 +36,9 @@ public sealed class UpgradesManager : MonoBehaviour,
 
     private MoneyStorage _moneyStorage;
 
-    private IComponent_GetLevel _component_GetLevel;
+    private IComponent_GetLevel _componentGetLevel;
 
-    private IComponent_OnLevelChanged _component_OnLevelChanged;
+    private IComponent_OnLevelChanged _componentOnLevelChanged;
 
     private int _currentMaxLevelOnHero;
 
@@ -121,20 +121,20 @@ public sealed class UpgradesManager : MonoBehaviour,
         _moneyStorage = context.GetService<MoneyStorage>();
         _hero = context.GetService<HeroService>().GetHero();
 
-        _component_OnLevelChanged = _hero.Get<IComponent_OnLevelChanged>();
-        _component_GetLevel = _hero.Get<IComponent_GetLevel>();
-        _currentMaxLevelOnHero = _component_GetLevel.Level;
+        _componentOnLevelChanged = _hero.Get<IComponent_OnLevelChanged>();
+        _componentGetLevel = _hero.Get<IComponent_GetLevel>();
+        _currentMaxLevelOnHero = _componentGetLevel.Level;
         Debug.Log("Constructed Hero's Level components");
     }
 
     void IGameStartElement.StartGame(IGameContext context)
     {
-        _component_OnLevelChanged.OnLevelChanged += UpdateCurrentMaxLevel;
+        _componentOnLevelChanged.OnLevelChanged += UpdateCurrentMaxLevel;
     }
 
     void IGameFinishElement.FinishGame(IGameContext context)
     {
-        _component_OnLevelChanged.OnLevelChanged -= UpdateCurrentMaxLevel;
+        _componentOnLevelChanged.OnLevelChanged -= UpdateCurrentMaxLevel;
     }
 
     private void UpdateCurrentMaxLevel(int currentLevelHero)
