@@ -31,7 +31,7 @@ public sealed class UpgradeListPresenter : MonoBehaviour,
             _activeViews.Add(view);
 
             UpgradePresenter presenter = new UpgradePresenter(upgrade, view);
-            presenter.Construct(_upgradesManager, this._moneyStorage); //DI
+            presenter.Construct(_upgradesManager, _moneyStorage); //DI
             _activePresenters.Add(presenter);
         }
 

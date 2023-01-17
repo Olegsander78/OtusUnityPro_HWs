@@ -93,7 +93,7 @@ public sealed class UpgradePresenter
 
     private void UpdateLevel()
     {
-        var text = $"Level: {_upgrade.UpgradeLevel}/{_upgrade.MaxUpgradeLevel}";
+        var text = $"Level: {_upgrade.UpgradeLevel}/{_upgradesManager.CurrentMaxLevelOnHero}";
         _view.SetLevel(text);
     }
 
