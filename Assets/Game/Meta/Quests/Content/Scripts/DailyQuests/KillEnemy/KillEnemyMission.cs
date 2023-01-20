@@ -46,13 +46,13 @@ public sealed class KillEnemyMission : Mission,
     protected override void OnStart()
     {
         _heroMeleeCombatComponent.OnCombatStopped += OnCombatFinished;
-        _heroRangeCombatComponent.CurrentProjectile.OnKilledEnemy += OnKilledEnemyOnDistance;
+        //_heroRangeCombatComponent.TryGetCurrentProjectile().OnKilledEnemy += OnKilledEnemyOnDistance;
     }   
 
     protected override void OnStop()
     {
         _heroMeleeCombatComponent.OnCombatStopped -= OnCombatFinished;
-        _heroRangeCombatComponent.CurrentProjectile.OnKilledEnemy -= OnKilledEnemyOnDistance;
+        //_heroRangeCombatComponent.TryGetCurrentProjectile().OnKilledEnemy -= OnKilledEnemyOnDistance;
     }
 
     private void OnCombatFinished(MeleeCombatOperation operation)

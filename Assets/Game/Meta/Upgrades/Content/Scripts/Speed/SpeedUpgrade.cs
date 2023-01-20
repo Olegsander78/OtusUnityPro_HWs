@@ -35,7 +35,5 @@ public sealed class SpeedUpgrade : Upgrade,
 
         var speed = _config.SpeedTable.GetSpeed(UpgradeLevel);
          _hero.Get<IComponent_SetMoveSpeed>().SetSpeed(speed);
-
-        Debug.Log("Init speedUpgrade components");
     }
 }

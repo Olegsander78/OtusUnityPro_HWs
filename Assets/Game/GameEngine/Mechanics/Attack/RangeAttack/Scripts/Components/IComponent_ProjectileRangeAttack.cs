@@ -2,7 +2,9 @@ using System;
 public interface IComponent_ProjectileRangeAttack 
 {
     event Action<int> OnDamageChanged;
-    Projectile CurrentProjectile { get; }
+
+    Projectile TryGetCurrentProjectile();
+
     int Damage { get; }
     void SetDamage(int damage);    
 }

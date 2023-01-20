@@ -17,8 +17,10 @@ public sealed class MissionsManager : MonoBehaviour,
 
     public event Action<Mission> OnMissionChanged;
 
+    [SerializeField]
     private MissionFactory _factory;
-
+    
+    [SerializeField]
     private MissionSelector _selector;
 
     private IEntity _hero;
@@ -30,14 +32,19 @@ public sealed class MissionsManager : MonoBehaviour,
     [ReadOnly, ShowInInspector]
     private readonly Dictionary<MissionDifficulty, Mission> _missions = new();
 
-    [Inject]
-    public void Construct(MissionFactory factory, MissionSelector selector, MoneyStorage moneyStorage)
-    {
-        _factory = factory;
-        _selector = selector;
-        _moneyStorage = moneyStorage;
-        Debug.Log($"{_factory} ,{_selector}, {_moneyStorage} Construct success!");
-    }
+    //[Inject]
+    //public void Construct(MissionFactory factory, MissionSelector selector, MoneyStorage moneyStorage)
+    //{
+    //    _factory = factory;
+    //    _selector = selector;
+    //    _moneyStorage = moneyStorage;
+    //    Debug.Log($"{_factory} ,{_selector}, {_moneyStorage} Construct success!");
+    //}
+
+    //public MissionsManager()
+    //{
+    //    _missions = new Dictionary<MissionDifficulty, Mission>();
+    //}
 
     void IGameInitElement.InitGame(IGameContext context)
     {
@@ -45,6 +52,32 @@ public sealed class MissionsManager : MonoBehaviour,
         _hero = context.GetService<HeroService>().GetHero();
 
         _componentAddExp = _hero.Get<IComponent_AddExperience>();
+    }
+
+    void IGameStartElement.StartGame(IGameContext context)
+    {
+        StartMissions();
+    }
+
+    void IGameFinishElement.FinishGame(IGameContext context)
+    {
+        StopMissions();
+    }
+
+    private void StartMissions()
+    {
+        foreach (var mission in _missions.Values)
+        {
+            mission.Start();
+        }
+    }
+
+    private void StopMissions()
+    {
+        foreach (var mission in _missions.Values)
+        {
+            mission.Stop();
+        }
     }
 
     public bool CanReceiveReward(Mission mission)
@@ -93,33 +126,7 @@ public sealed class MissionsManager : MonoBehaviour,
         var mission = _factory.CreateMission(missionInfo);
         _missions[missionInfo.Difficulty] = mission;
         return mission;
-    }
-
-    void IGameStartElement.StartGame(IGameContext context)
-    {
-        StartMissions();
-    }
-
-    void IGameFinishElement.FinishGame(IGameContext context)
-    {
-        StopMissions();
-    }
-
-    private void StartMissions()
-    {
-        foreach (var mission in _missions.Values)
-        {
-            mission.Start();
-        }
-    }
-
-    private void StopMissions()
-    {
-        foreach (var mission in _missions.Values)
-        {
-            mission.Stop();
-        }
-    }
+    }    
 
     private void GenerateNextMission(MissionDifficulty difficulty, string prevMissionId)
     {

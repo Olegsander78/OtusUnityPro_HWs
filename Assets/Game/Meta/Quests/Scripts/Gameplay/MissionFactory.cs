@@ -1,19 +1,24 @@
 using GameElements;
-using Services;
 using UnityEngine;
 
 
-public sealed class MissionFactory
+public sealed class MissionFactory: MonoBehaviour, IGameAttachElement
 {
-    [Inject]
-    private IGameContext gameContext;
+    //[Inject]
+    private IGameContext _gameContext;
+
+    void IGameAttachElement.AttachGame(IGameContext context)
+    {
+        _gameContext = context;
+    }
 
     public Mission CreateMission(MissionConfig config)
     {
         var mission = config.InstantiateMission();
         if (mission is IGameElement gameMission)
         {
-            this.gameContext.RegisterElement(gameMission);
+            _gameContext.RegisterElement(gameMission);
+            Debug.Log($"{gameMission} registered.");
         }
 
         return mission;
@@ -23,7 +28,7 @@ public sealed class MissionFactory
     {
         if (mission is IGameElement gameMission)
         {
-            this.gameContext.UnregisterElement(gameMission);
+            _gameContext.UnregisterElement(gameMission);
         }
     }
 }
