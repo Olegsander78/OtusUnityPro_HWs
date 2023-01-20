@@ -2,9 +2,11 @@ using UnityEngine;
 using Elementary;
 using Entities;
 using Unity.VisualScripting;
+using System;
 
 public class Projectile: MonoBehaviour
 {
+    public event Action OnKilledEnemy;
     public IntBehaviour Damage { get => _damage; set => value = _damage; }
 
     [SerializeField]
@@ -45,5 +47,11 @@ public class Projectile: MonoBehaviour
             this
         );
         takeDamageComponent.TakeDamage(damageEvent);
+
+        if (_target.Get<IComponent_GetHitPoints>().CurHitPoints <= 0)
+        {
+            Debug.Log("Enemy killed!");
+            OnKilledEnemy?.Invoke();
+        }
     }
 }

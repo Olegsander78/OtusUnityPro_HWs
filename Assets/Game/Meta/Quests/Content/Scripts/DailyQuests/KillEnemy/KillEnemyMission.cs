@@ -1,5 +1,4 @@
 using System;
-using Entities;
 using GameElements;
 using Sirenix.OdinInspector;
 
@@ -18,58 +17,70 @@ public sealed class KillEnemyMission : Mission,
     [ShowInInspector]
     public int RequiredKills
     {
-        get { return this.config.RequiredKills; }
+        get { return _config.RequiredKills; }
     }
 
     public override float NormalizedProgress
     {
-        get { return (float)this.CurrentKills / this.RequiredKills; }
+        get { return (float)CurrentKills / RequiredKills; }
     }
 
     public override string TextProgress
     {
-        get { return $"{this.CurrentKills}/{this.RequiredKills}"; }
+        get { return $"{CurrentKills}/{RequiredKills}"; }
     }
 
-    private readonly KillEnemyMissionConfig config;
+    private readonly KillEnemyMissionConfig _config;
 
-    private HeroService heroService;
+    private HeroService _heroService;
 
-    private IComponent_MeleeCombat heroComponent;
+    private IComponent_MeleeCombat _heroMeleeCombatComponent;
+
+    private IComponent_ProjectileRangeAttack _heroRangeCombatComponent;
 
     public KillEnemyMission(KillEnemyMissionConfig config) : base(config)
     {
-        this.config = config;
+        _config = config;
     }
 
     protected override void OnStart()
     {
-        this.heroComponent.OnCombatStopped += this.OnCombatFinished;
-    }
+        _heroMeleeCombatComponent.OnCombatStopped += OnCombatFinished;
+        _heroRangeCombatComponent.CurrentProjectile.OnKilledEnemy += OnKilledEnemyOnDistance;
+    }   
 
     protected override void OnStop()
     {
-        this.heroComponent.OnCombatStopped -= this.OnCombatFinished;
+        _heroMeleeCombatComponent.OnCombatStopped -= OnCombatFinished;
+        _heroRangeCombatComponent.CurrentProjectile.OnKilledEnemy -= OnKilledEnemyOnDistance;
     }
 
     private void OnCombatFinished(MeleeCombatOperation operation)
     {
         if (operation.targetDestroyed)
         {
-            this.CurrentKills++;
-            this.OnProgressChanged?.Invoke(this);
-            this.TryComplete();
+            CurrentKills++;
+            OnProgressChanged?.Invoke(this);
+            TryComplete();
         }
     }
 
     public void Setup(int currentKills)
     {
-        this.CurrentKills = currentKills;
+        CurrentKills = currentKills;
+    }
+
+    private void OnKilledEnemyOnDistance()
+    {
+        CurrentKills++;
+        OnProgressChanged?.Invoke(this);
+        TryComplete();
     }
 
     void IGameInitElement.InitGame(IGameContext context)
     {
-        this.heroService = context.GetService<HeroService>();
-        this.heroComponent = this.heroService.GetHero().Get<IComponent_MeleeCombat>();
+        _heroService = context.GetService<HeroService>();
+        _heroMeleeCombatComponent = _heroService.GetHero().Get<IComponent_MeleeCombat>();
+        _heroRangeCombatComponent = _heroService.GetHero().Get<IComponent_ProjectileRangeAttack>();
     }
 }

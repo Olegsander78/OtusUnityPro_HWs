@@ -11,9 +11,13 @@ public class Component_RangeAttack : MonoBehaviour,
         add { _damage.OnValueChanged += value; }
         remove { _damage.OnValueChanged -= value; }
     }
+    public Projectile CurrentProjectile => _projectileEngine.CurrentProjectile.GetComponent<Projectile>();
 
     [SerializeField]
     private RangeAttackEngine _rangeAttackEngine;
+
+    [SerializeField]
+    private ProjectileEngine _projectileEngine;
     public int Damage
     {
         get { return _damage.Value; }

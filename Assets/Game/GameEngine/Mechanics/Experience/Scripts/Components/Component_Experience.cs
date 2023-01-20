@@ -7,6 +7,7 @@ public class Component_Experience :MonoBehaviour,
     IComponent_ChangeExperience,
     IComponent_GetExperience,
     IComponent_SetExperience,
+    IComponent_AddExperience,
     IComponent_SpendExperience
 {
     public event Action<int> OnExperienceChanged
@@ -28,6 +29,8 @@ public class Component_Experience :MonoBehaviour,
     }
 
     public event Action<int> OnSpendExperience;
+
+    public event Action<int> OnAddExperience;
 
     [SerializeField]
     private ExperienceEngine _experienceEngine;
@@ -80,5 +83,12 @@ public class Component_Experience :MonoBehaviour,
         _experienceEngine.OnSpendedExpForLevelUpOnClick(exp);
 
         OnSpendExperience?.Invoke(exp);
+    }
+
+    public void AddExperience(int experience)
+    {
+        _experienceEngine.OnAddedExpWithoutAutoSpending(experience);
+
+        OnAddExperience?.Invoke(experience);
     }
 }
