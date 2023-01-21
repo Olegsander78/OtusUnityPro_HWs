@@ -1,3 +1,4 @@
+using Entities;
 using UnityEngine;
 
 
@@ -11,16 +12,19 @@ public sealed class UpgradePresenter
 
     private MoneyStorage _moneyStorage;
 
+    private HeroService _heroService;
+
     public UpgradePresenter(Upgrade upgrade, UpgradeView view)
     {
         _upgrade = upgrade;
         _view = view;
     }
 
-    public void Construct(UpgradesManager upgradesManager, MoneyStorage moneyStorage)
+    public void Construct(UpgradesManager upgradesManager, MoneyStorage moneyStorage, HeroService heroService)
     {
         _upgradesManager = upgradesManager;
         _moneyStorage = moneyStorage;
+        _heroService = heroService;
     }
 
     public void Start()
@@ -28,10 +32,12 @@ public sealed class UpgradePresenter
         _view.UpgradeButton.AddListener(OnButtonClicked);
         _upgrade.OnUpgradeUp += OnLevelUp;
         _moneyStorage.OnMoneyChanged += OnMoneyChanged;
+        _heroService.GetHero().Get<IComponent_OnLevelChanged>().OnLevelChanged += UpdateLevel;
+
         //LanguageManager.OnLanguageChanged += this.OnLanguageChanged;
 
         UpdateTitle();
-        UpdateLevel();
+        UpdateLevel(_upgradesManager.CurrentMaxLevelOnHero);
         UpdateIcon();
         UpdateStats();
         UpdateButtonPrice();
@@ -43,13 +49,15 @@ public sealed class UpgradePresenter
         _view.UpgradeButton.RemoveListener(OnButtonClicked);
         _upgrade.OnUpgradeUp -= OnLevelUp;
         _moneyStorage.OnMoneyChanged -= OnMoneyChanged;
+        _heroService.GetHero().Get<IComponent_OnLevelChanged>().OnLevelChanged -= UpdateLevel;
+
         //LanguageManager.OnLanguageChanged -= this.OnLanguageChanged;
     }
 
     //Model
     private void OnLevelUp(int newLevel)
     {
-        UpdateLevel();
+        UpdateLevel(_upgradesManager.CurrentMaxLevelOnHero);
         UpdateStats();
         UpdateButtonState();
         UpdateButtonPrice();
@@ -91,9 +99,10 @@ public sealed class UpgradePresenter
         _view.SetIcon(_upgrade.Metadata.Icon);
     }
 
-    private void UpdateLevel()
-    {
-        var text = $"Level: {_upgrade.UpgradeLevel}/{_upgradesManager.CurrentMaxLevelOnHero}";
+    private void UpdateLevel(int heroLevel)
+    {        
+        //var text = $"Level: {upgrade.UpgradeLevel}/{_upgradesManager.CurrentMaxLevelOnHero}";
+        var text = $"Level: {_upgrade.UpgradeLevel}/{heroLevel}";
         _view.SetLevel(text);
     }
 

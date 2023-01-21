@@ -17,6 +17,8 @@ public sealed class UpgradeListPresenter : MonoBehaviour,
 
     private MoneyStorage _moneyStorage;
 
+    private HeroService _heroService;
+
     private readonly List<UpgradeView> _activeViews = new();
 
     private readonly List<UpgradePresenter> _activePresenters = new();
@@ -31,7 +33,7 @@ public sealed class UpgradeListPresenter : MonoBehaviour,
             _activeViews.Add(view);
 
             UpgradePresenter presenter = new UpgradePresenter(upgrade, view);
-            presenter.Construct(_upgradesManager, _moneyStorage); //DI
+            presenter.Construct(_upgradesManager, _moneyStorage, _heroService); //DI
             _activePresenters.Add(presenter);
         }
 
@@ -63,5 +65,6 @@ public sealed class UpgradeListPresenter : MonoBehaviour,
     {
         _upgradesManager = context.GetService<UpgradesManager>();
         _moneyStorage = context.GetService<MoneyStorage>();
+        _heroService = context.GetService<HeroService>();
     }
 }
