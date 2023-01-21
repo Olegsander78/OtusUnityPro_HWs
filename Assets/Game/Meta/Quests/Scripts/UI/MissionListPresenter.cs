@@ -8,53 +8,53 @@ public sealed class MissionListPresenter : MonoBehaviour, IGameInitElement
     [SerializeField]
     private MissionItem[] missionItems;
 
-    //private MissionsManager missionsManager;
+    private MissionsManager missionsManager;
 
     public void Show()
     {
-        //this.missionsManager.OnMissionChanged += this.OnMissionChanged;
+        this.missionsManager.OnMissionChanged += this.OnMissionChanged;
 
-        //var missions = this.missionsManager.GetMissions();
-        //for (int i = 0, count = missions.Length; i < count; i++)
-        //{
-        //    var mission = missions[i];
-        //    var presenter = this.GetPresenter(mission.Difficulty);
-        //    presenter.Start(mission);
-        //}
+        var missions = this.missionsManager.GetMissions();
+        for (int i = 0, count = missions.Length; i < count; i++)
+        {
+            var mission = missions[i];
+            var presenter = this.GetPresenter(mission.Difficulty);
+            presenter.Start(mission);
+        }
     }
 
     public void Hide()
     {
-        //this.missionsManager.OnMissionChanged -= this.OnMissionChanged;
+        this.missionsManager.OnMissionChanged -= this.OnMissionChanged;
 
-        //for (int i = 0, count = this.missionItems.Length; i < count; i++)
-        //{
-        //    var presenter = this.missionItems[i].presenter;
-        //    presenter.Stop();
-        //}
+        for (int i = 0, count = this.missionItems.Length; i < count; i++)
+        {
+            var presenter = this.missionItems[i].presenter;
+            presenter.Stop();
+        }
     }
 
     private void OnMissionChanged(Mission mission)
     {
-        //var presenter = this.GetPresenter(mission.Difficulty);
-        //if (presenter.IsShown)
-        //{
-        //    presenter.Stop();
-        //}
+        var presenter = this.GetPresenter(mission.Difficulty);
+        if (presenter.IsShown)
+        {
+            presenter.Stop();
+        }
 
-        //presenter.Start(mission);
+        presenter.Start(mission);
     }
 
     void IGameInitElement.InitGame(IGameContext context)
     {
-       // this.missionsManager = context.GetService<MissionsManager>();
+        this.missionsManager = context.GetService<MissionsManager>();
         //var moneyPanelAnimator = context.GetService<MoneyPanelAnimator_AddMoney>();
 
-        //for (int i = 0, count = this.missionItems.Length; i < count; i++)
-        //{
-        //    var missionItem = this.missionItems[i];
-        //    missionItem.presenter.Construct(this.missionsManager, moneyPanelAnimator);
-        //}
+        for (int i = 0, count = this.missionItems.Length; i < count; i++)
+        {
+            var missionItem = this.missionItems[i];
+            missionItem.presenter.Construct(this.missionsManager);
+        }
     }
 
     private MissionPresenter GetPresenter(MissionDifficulty difficulty)

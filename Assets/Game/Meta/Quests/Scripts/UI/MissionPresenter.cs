@@ -1,6 +1,7 @@
 using System;
 //using Game.Localization;
 using UnityEngine;
+using static Unity.VisualScripting.Icons;
 
 
 [Serializable]
@@ -20,10 +21,8 @@ public sealed class MissionPresenter
 
     //private MoneyPanelAnimator_AddMoney moneyPanelAnimator;
 
-    public void Construct(
-        MissionsManager missionsManager
-       // MoneyPanelAnimator_AddMoney moneyPanelAnimator
-    )
+    public void Construct(MissionsManager missionsManager)
+       // MoneyPanelAnimator_AddMoney moneyPanelAnimator    
     {
         this.missionsManager = missionsManager;
         //this.moneyPanelAnimator = moneyPanelAnimator;
@@ -47,6 +46,8 @@ public sealed class MissionPresenter
         this.view.RewardButton.AddListener(this.OnButtonClicked);
         this.mission.OnProgressChanged += this.OnMissionProgressChanged;
         this.mission.OnCompleted += this.OnMissionCompleted;
+
+        OnUpdateTitle();
 
         //LanguageManager.OnLanguageChanged += this.OnUpdateLanguage;
         //this.OnUpdateLanguage(LanguageManager.CurrentLanguage);
@@ -95,14 +96,14 @@ public sealed class MissionPresenter
         this.view.RewardButton.SetState(MissionRewardButton.State.COMPLETE);
     }
 
-    private void OnUpdateLanguage(SystemLanguage language)
+    private void OnUpdateTitle()
     {
-        //var title = LocalizationManager.GetText(this.mission.Metadata.localizedTitle, language);
-        //this.view.SetTitle(title);
+        var title = this.mission.Metadata.localizedTitle;
+        this.view.SetTitle(title);
 
-        //var difficultyKey = MissionExtensions.GetDifficultyLocalizationKey(this.mission.Difficulty);
-        ////var difficultyText = LocalizationManager.GetText(difficultyKey, language);
-        //this.view.SetDifficulty(difficultyText);
+        var difficultyKey = this.mission.Difficulty;
+        var difficultyText = difficultyKey.ToString();
+        this.view.SetDifficulty(difficultyText);
     }
 
     #endregion
@@ -112,7 +113,9 @@ public sealed class MissionPresenter
         var button = this.view.RewardButton;
 
         var reward = this.mission.MoneyReward.ToString();
-        button.SetReward(reward);
+        var expReward = mission.ExpReward.ToString();
+        button.SetMoneyReward(reward);
+        button.SetExpReward(expReward);
 
         var state = this.mission.State == MissionState.COMPLETED
             ? MissionRewardButton.State.COMPLETE
@@ -134,4 +137,16 @@ public sealed class MissionPresenter
         var reward = mission.MoneyReward;
         //this.moneyPanelAnimator.PlayIncomeFromUI(startUIPosition, reward);
     }
+
+
+
+    //private void OnUpdateLanguage(SystemLanguage language)
+    //{
+    //    var title = LocalizationManager.GetText(this.mission.Metadata.localizedTitle, language);
+    //    this.view.SetTitle(title);
+
+    //    var difficultyKey = MissionExtensions.GetDifficultyLocalizationKey(this.mission.Difficulty);
+    //    //var difficultyText = LocalizationManager.GetText(difficultyKey, language);
+    //    this.view.SetDifficulty(difficultyText);
+    //}
 }

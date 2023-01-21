@@ -47,7 +47,7 @@ public sealed class MissionRewardButton : MonoBehaviour
         this.button.onClick.RemoveListener(action);
     }
 
-    public void SetReward(string reward)
+    public void SetMoneyReward(string reward)
     {
         this.rewardText.text = reward;
     }
