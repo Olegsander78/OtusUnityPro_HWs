@@ -16,7 +16,7 @@ public sealed class ApplicationLoader : MonoBehaviour
 
     [Space]
     [SerializeField]
-    [FormerlySerializedAs("config")]
+    [FormerlySerializedAs("_config")]
     private LoadingPipeline pipeline;
 
     private int taskPointer;

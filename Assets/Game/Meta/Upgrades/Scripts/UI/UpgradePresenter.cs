@@ -104,6 +104,7 @@ public sealed class UpgradePresenter
         //var text = $"Level: {upgrade.UpgradeLevel}/{_upgradesManager.CurrentMaxLevelOnHero}";
         var text = $"Level: {_upgrade.UpgradeLevel}/{heroLevel}";
         _view.SetLevel(text);
+        UpdateButtonState();
     }
 
     private void UpdateStats()
