@@ -3,7 +3,7 @@ using GameElements;
 using Sirenix.OdinInspector;
 
 
-public sealed class ScenarioQuest_StageI : ScenarioQuest,
+public sealed class ScenarioQuest_StageKillEnemy : ScenarioQuest,
     IGameInitElement
 {
     public override event Action<ScenarioQuest> OnProgressChanged;
@@ -30,7 +30,7 @@ public sealed class ScenarioQuest_StageI : ScenarioQuest,
         get { return $"{CurrentKills}/{RequiredKills}"; }
     }
 
-    private readonly ScenarioQuestConfig_StageI _config;
+    private readonly ScenarioQuestConfig_StageKillEnemy _config;
 
     private HeroService _heroService;
 
@@ -38,7 +38,7 @@ public sealed class ScenarioQuest_StageI : ScenarioQuest,
 
     private IComponent_ProjectileRangeAttack _heroRangeCombatComponent;
 
-    public ScenarioQuest_StageI(ScenarioQuestConfig_StageI config) : base(config)
+    public ScenarioQuest_StageKillEnemy(ScenarioQuestConfig_StageKillEnemy config) : base(config)
     {
         _config = config;
     }

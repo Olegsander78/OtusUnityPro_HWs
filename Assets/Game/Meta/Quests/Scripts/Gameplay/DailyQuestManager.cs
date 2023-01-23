@@ -83,7 +83,7 @@ public sealed class DailyQuestManager : MonoBehaviour,
         _componentAddExp.AddExperience(mission.ExpReward);
         OnRewardReceived?.Invoke(mission);
 
-        _factory.DisposeMission(mission);
+        _factory.DisposeQuest(mission);
         GenerateNextDailyQuest(mission.Difficulty, mission.Id);
     }
 
@@ -109,7 +109,7 @@ public sealed class DailyQuestManager : MonoBehaviour,
 
     public DailyQuest InstallDailyQuest(DailyQuestConfig dailyQuestInfo)
     {
-        var dailyQuest = _factory.CreateMission(dailyQuestInfo);
+        var dailyQuest = _factory.CreateQuest(dailyQuestInfo);
         _dailyQuests[dailyQuestInfo.Difficulty] = dailyQuest;
         return dailyQuest;
     }    
@@ -117,7 +117,7 @@ public sealed class DailyQuestManager : MonoBehaviour,
     private void GenerateNextDailyQuest(DailyQuestDifficulty difficulty, string prevDailyQuestId)
     {
         var dailyQuestConfig = _selector.SelectNextDailyQuest(difficulty, prevDailyQuestId);
-        var dailyQuest = _factory.CreateMission(dailyQuestConfig);
+        var dailyQuest = _factory.CreateQuest(dailyQuestConfig);
         _dailyQuests[difficulty] = dailyQuest;
 
         dailyQuest.Start();

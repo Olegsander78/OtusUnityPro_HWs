@@ -12,21 +12,21 @@ public sealed class DailyQuestFactory: MonoBehaviour, IGameAttachElement
         _gameContext = context;
     }
 
-    public DailyQuest CreateMission(DailyQuestConfig config)
+    public DailyQuest CreateQuest(DailyQuestConfig config)
     {
-        var mission = config.InstantiateMission();
-        if (mission is IGameElement gameMission)
+        var quest = config.InstantiateMission();
+        if (quest is IGameElement gameMission)
         {
             _gameContext.RegisterElement(gameMission);
             Debug.Log($"{gameMission} registered.");
         }
 
-        return mission;
+        return quest;
     }
 
-    public void DisposeMission(DailyQuest mission)
+    public void DisposeQuest(DailyQuest quest)
     {
-        if (mission is IGameElement gameMission)
+        if (quest is IGameElement gameMission)
         {
             _gameContext.UnregisterElement(gameMission);
         }
