@@ -1,6 +1,7 @@
 using GameElements;
 using Entities;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class EnemiesLevelController : MonoBehaviour,
     IGameInitElement,
@@ -16,6 +17,10 @@ public class EnemiesLevelController : MonoBehaviour,
     private int _levelMultiplier;
 
     [Header("Stats Enemy")]
+    [ReadOnly]
+    [ShowInInspector]
+    private int _baseHp;
+
     [SerializeField]
     private int _stepHpOnLevel;
 
@@ -47,8 +52,9 @@ public class EnemiesLevelController : MonoBehaviour,
     private void UpdateEnemyStats(int level)
     {
         _levelMultiplier = level;
+        _baseHp = _hitPointsEngine.CurrentHitPoints;
 
-        _hitPointsEngine.MaxHitPoints = _levelMultiplier * _stepHpOnLevel;
+        _hitPointsEngine.MaxHitPoints = _baseHp + (_levelMultiplier - 1) * _stepHpOnLevel;
         _hitPointsEngine.CurrentHitPoints = _hitPointsEngine.CurrentHitPoints;
     }
 }

@@ -68,7 +68,7 @@ public sealed class DailyQuestManager : MonoBehaviour,
 
     public bool CanReceiveReward(DailyQuest mission)
     {
-        return mission.State == DailyQuestState.COMPLETED &&
+        return mission.State == QuestState.COMPLETED &&
                _dailyQuests.ContainsValue(mission);
     }
 

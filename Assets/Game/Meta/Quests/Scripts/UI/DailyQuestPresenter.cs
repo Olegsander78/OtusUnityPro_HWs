@@ -117,7 +117,7 @@ public sealed class DailyQuestPresenter
         button.SetMoneyReward(reward);
         button.SetExpReward(expReward);
 
-        var state = this.dailyQuest.State == DailyQuestState.COMPLETED
+        var state = this.dailyQuest.State == QuestState.COMPLETED
             ? MissionRewardButton.State.COMPLETE
             : MissionRewardButton.State.PROCESSING;
         button.SetState(state);

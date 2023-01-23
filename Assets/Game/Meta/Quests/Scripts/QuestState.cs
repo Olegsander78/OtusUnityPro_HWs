@@ -1,5 +1,5 @@
 
-public enum DailyQuestState
+public enum QuestState
 {
     NOT_STARTED = 0,
     STARTED = 1,

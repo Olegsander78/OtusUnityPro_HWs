@@ -20,7 +20,7 @@ public abstract class DailyQuest
 
     [ReadOnly]
     [ShowInInspector]
-    public DailyQuestState State { get; private set; }
+    public QuestState State { get; private set; }
 
     [ReadOnly]
     [ShowInInspector]
@@ -63,17 +63,17 @@ public abstract class DailyQuest
     public DailyQuest(DailyQuestConfig config)
     {
         this.config = config;
-        this.State = DailyQuestState.NOT_STARTED;
+        this.State = QuestState.NOT_STARTED;
     }
 
     public void Start()
     {
-        if (this.State == DailyQuestState.STARTED)
+        if (this.State == QuestState.STARTED)
         {
             throw new Exception("DailyQuest is already started!");
         }
 
-        this.State = DailyQuestState.STARTED;
+        this.State = QuestState.STARTED;
         this.OnStarted?.Invoke(this);
 
         if (this.NormalizedProgress >= 1.0f)
@@ -87,12 +87,12 @@ public abstract class DailyQuest
 
     public void Stop()
     {
-        if (this.State != DailyQuestState.STARTED)
+        if (this.State != QuestState.STARTED)
         {
             return;
         }
 
-        this.State = DailyQuestState.NOT_STARTED;
+        this.State = QuestState.NOT_STARTED;
         this.OnStop();
     }
 
@@ -114,12 +114,12 @@ public abstract class DailyQuest
 
     private void Complete()
     {
-        if (this.State != DailyQuestState.STARTED)
+        if (this.State != QuestState.STARTED)
         {
             throw new Exception("DailyQuest is not started!");
         }
 
-        this.State = DailyQuestState.COMPLETED;
+        this.State = QuestState.COMPLETED;
         this.OnStop();
         this.OnCompleted?.Invoke(this);
     }

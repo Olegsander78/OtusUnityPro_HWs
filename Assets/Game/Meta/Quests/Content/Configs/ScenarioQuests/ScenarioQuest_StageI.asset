@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec97e59f3d36f242b4a6d9d5f140bd2, type: 3}
+  m_Name: ScenarioQuest_StageI
+  m_EditorClassIdentifier: 
+  _id: scenarioquest_stageI
+  _scenarioQuestStage: 0
+  _moneyReward: 1000
+  _expReward: 500
+  _metadata:
+    localizedTitle: Annoying Lizard Warriors
+    storyScenarioQuestStage: "Adventurer, welcome to our godforsaken village! I see
+      you in good physical shape, but we are not. Not long ago, warrior lizards to
+      the north of the village occupied the old lair and got into the habit of robbing
+      our caravans. If you disperse this gang, the villagers will be very grateful
+      to you.\r"
+    icon: {fileID: 21300000, guid: 614a3704c8f334a40aaba876a96c6193, type: 3}
+  _enemyTypeOnScenarioQuestStage: 1
+  _requiredKills: 25
