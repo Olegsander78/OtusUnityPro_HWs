@@ -121,6 +121,6 @@ public sealed class ScenarioQuestManager : MonoBehaviour,
         _scenarioQuests[stage] = scenarioQuest;
 
         scenarioQuest.Start();
-        OnScenarioQuestChanged?.Invoke(scenarioQuest);
+        OnScenarioQuestChanged?.Invoke(scenarioQuest); // Event for GameStageSystem
     }
 }
