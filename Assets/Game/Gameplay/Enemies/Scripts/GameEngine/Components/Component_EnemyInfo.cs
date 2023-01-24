@@ -3,7 +3,8 @@ using UnityEngine;
 public class Component_EnemyInfo : MonoBehaviour,
     IComponent_ExpRewarded,
     IComponent_MoneyRewarded,
-    IComponent_GetEnemyInfo
+    IComponent_GetEnemyInfo,
+    IComponent_GetEnemyType
 {
     public ScriptableEnemyInfo EnemyInfo => _enemyInfo;
 
@@ -18,6 +19,8 @@ public class Component_EnemyInfo : MonoBehaviour,
         get => _moneyReward;
         set => _moneyReward = value;
     }
+
+    EnemyType IComponent_GetEnemyType.EnemyType => _enemyInfo.EnemyType;
 
     [SerializeField]
     private ScriptableEnemyInfo _enemyInfo;

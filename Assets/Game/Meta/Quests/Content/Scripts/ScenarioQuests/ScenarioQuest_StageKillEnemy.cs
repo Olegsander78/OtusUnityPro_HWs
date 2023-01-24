@@ -57,11 +57,14 @@ public sealed class ScenarioQuest_StageKillEnemy : ScenarioQuest,
 
     private void OnCombatFinished(MeleeCombatOperation operation)
     {
-        if (operation.targetDestroyed)
+        if(operation.targetEntity.Get<IComponent_GetEnemyType>().EnemyType == _config.EnemyTypeOnScenarioQuestStage)
         {
-            CurrentKills++;
-            OnProgressChanged?.Invoke(this);
-            TryComplete();
+            if (operation.targetDestroyed)
+            {
+                CurrentKills++;
+                OnProgressChanged?.Invoke(this);
+                TryComplete();
+            }
         }
     }
 

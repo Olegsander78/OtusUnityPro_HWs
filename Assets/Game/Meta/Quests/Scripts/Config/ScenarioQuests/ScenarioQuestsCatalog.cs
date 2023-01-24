@@ -31,6 +31,20 @@ public sealed class ScenarioQuestsCatalog : ScriptableObject
         throw new Exception($"ScenarioQuest with id {id} is not found!");
     }
 
+    public ScenarioQuestConfig FindQuest(ScenarioQuestStage stage)
+    {
+        for (int i = 0, count = _quests.Length; i < count; i++)
+        {
+            var quest = _quests[i];
+            if (quest.ScenarioQuestStage == stage)
+            {
+                return quest;
+            }
+        }
+
+        throw new Exception($"ScenarioQuest with id {stage} is not found!");
+    }
+
     public ScenarioQuestConfig[] FindQuests(ScenarioQuestStage stage)
     {
         var quests = new List<ScenarioQuestConfig>();
