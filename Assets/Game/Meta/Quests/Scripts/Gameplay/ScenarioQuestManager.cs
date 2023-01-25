@@ -84,7 +84,16 @@ public sealed class ScenarioQuestManager : MonoBehaviour,
         OnRewardReceived?.Invoke(quest);
 
         _factory.DisposeQuest(quest);
-        GenerateNextDailyQuest(quest.StageScenarioQuest);
+
+        var nextStage = quest.StageScenarioQuest + 1;
+        if(Enum.IsDefined(typeof(ScenarioQuestStage), nextStage))
+        {
+            GenerateNextScenarioQuest(nextStage);
+        }
+        else
+        {
+            throw new Exception($"Scenario Quest {nextStage} is absent. Scenario Quests finished!");
+        }        
     }
 
     public ScenarioQuest GetScenarioQuest(ScenarioQuestStage stage)
@@ -114,7 +123,7 @@ public sealed class ScenarioQuestManager : MonoBehaviour,
         return scenarioQuest;
     }    
 
-    private void GenerateNextDailyQuest(ScenarioQuestStage stage)
+    private void GenerateNextScenarioQuest(ScenarioQuestStage stage)
     {
         var scenarioQuestConfig = _selector.SelectNextScenarioQuest(stage);
         var scenarioQuest = _factory.CreateQuest(scenarioQuestConfig);

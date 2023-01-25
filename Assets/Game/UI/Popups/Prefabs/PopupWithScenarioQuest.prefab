@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -13}
+  m_AnchoredPosition: {x: 0, y: -9}
   m_SizeDelta: {x: -29, y: 140}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3471892560988709943
@@ -1147,6 +1147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scenarioQuestItems:
   - Stage: 0
+    Presenter:
+      _view: {fileID: 7320651407561323103}
+  - Stage: 1
     Presenter:
       _view: {fileID: 7320651407561323103}
 --- !u!1 &7725684850117779269

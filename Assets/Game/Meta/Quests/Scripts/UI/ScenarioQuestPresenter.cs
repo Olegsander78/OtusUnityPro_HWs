@@ -86,11 +86,8 @@ public sealed class ScenarioQuestPresenter
     }
 
     private void OnScenarioQuestCompleted(ScenarioQuest quest)
-    {
+    { 
         _view.RewardButton.SetState(MissionRewardButton.State.COMPLETE);
-
-        var completedQuestText = quest.Metadata.storyScenarioQuestStageOnCompleted;
-        _view.SetScenarioQuestText(completedQuestText);
     }
 
     private void OnUpdateTitle()
@@ -98,8 +95,18 @@ public sealed class ScenarioQuestPresenter
         var title = _scenarioQuest.Metadata.localizedTitle;
         _view.SetTitle(title);
 
-        var startQuestText = _scenarioQuest.Metadata.storyScenarioQuestStage;
-        _view.SetScenarioQuestText(startQuestText);
+        if(_scenarioQuest.State == QuestState.COMPLETED)
+        {
+            var startQuestText = _scenarioQuest.Metadata.storyScenarioQuestStageOnCompleted;
+            _view.SetScenarioQuestText(startQuestText);
+            Debug.Log(startQuestText);
+        }
+        else
+        {
+            var startQuestText = _scenarioQuest.Metadata.storyScenarioQuestStage;
+            _view.SetScenarioQuestText(startQuestText);
+            Debug.Log(startQuestText);
+        }
 
         var stageKey = _scenarioQuest.StageScenarioQuest;
         var stageText = stageKey.ToString();

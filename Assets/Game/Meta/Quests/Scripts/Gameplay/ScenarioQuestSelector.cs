@@ -9,7 +9,7 @@ public sealed class ScenarioQuestSelector: MonoBehaviour
 
     public ScenarioQuestConfig SelectNextScenarioQuest(ScenarioQuestStage stage)
     {
-        stage++;
+        //stage++;
         
         var scenarioQuestconfig = _catalog.FindQuest(stage);
 

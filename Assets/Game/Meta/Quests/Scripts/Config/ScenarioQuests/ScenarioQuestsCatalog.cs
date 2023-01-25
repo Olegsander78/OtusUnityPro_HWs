@@ -42,7 +42,7 @@ public sealed class ScenarioQuestsCatalog : ScriptableObject
             }
         }
 
-        throw new Exception($"ScenarioQuest with id {stage} is not found!");
+        throw new Exception($"Scenario Quest with id {stage} is not found!");
     }
 
     public ScenarioQuestConfig[] FindQuests(ScenarioQuestStage stage)
