@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 
-public sealed class ChestManager : MonoBehaviour, IGameInitElement
+public sealed class ChestManagerTest : MonoBehaviour, IGameInitElement
 {
     [ShowInInspector, ReadOnly]
     private Chest _chest;
