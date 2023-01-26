@@ -42,6 +42,12 @@ public abstract class Chest
         get { return _config.ChestMetadata.PriceOpen; }
     }
 
+    //[ShowInInspector, ReadOnly]
+    //public ChestConfig Config
+    //{
+    //    get { return _config; }
+    //}
+
     private readonly ChestConfig _config;
 
     private readonly Countdown _countdown;
@@ -72,6 +78,33 @@ public abstract class Chest
     protected abstract void OnStart();
 
     protected abstract void OnStop();
+    
+    [Button]
+    protected virtual ChestRewardConfig GetReward()
+    {
+        int totalDropWeight = 0;
+
+        foreach (var dropWeigt in _config.ChestRewardConfigs)
+        {
+            totalDropWeight += dropWeigt.DropChance;
+        }
+
+        int randomPoint = (int)UnityEngine.Random.value * totalDropWeight;
+
+        for (int i = 0; i < _config.ChestRewardConfigs.Length; i++)
+        {
+            if (randomPoint < _config.ChestRewardConfigs[i].DropChance)
+            {
+                return _config.ChestRewardConfigs[i].RewardConfig;
+            }
+            else
+            {
+                randomPoint -= _config.ChestRewardConfigs[i].DropChance;
+            }
+        }
+
+        return _config.ChestRewardConfigs[_config.ChestRewardConfigs.Length - 1].RewardConfig;
+    }
 
     private void OnChangeTime()
     {
