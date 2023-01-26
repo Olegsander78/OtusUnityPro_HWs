@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a4d6cf0f627e144b7f583b454926fc, type: 3}
+  m_Name: Wooden Chest
+  m_EditorClassIdentifier: 
+  Id: woodenchest
+  DurationSeconds: 10
+  ChestMetadata:
+    icon: {fileID: -1800519215, guid: 5e366f340c637ca4f89e85adc289c067, type: 3}
+    DisplayName: Wooden Chest
+    Description: 'Gold:  150-250 , chance 50%
+
+      Simple Resorces: 5-10, chance
+      50%'
+    ChestType: 0
+    PriceOpen: 200
+  ChestRewardConfigs:
+  - {fileID: 11400000, guid: 06192749e18d03747a4e453cb7e97586, type: 2}
+  - {fileID: 11400000, guid: dca9b2dbacb255044a94ed29891636a5, type: 2}

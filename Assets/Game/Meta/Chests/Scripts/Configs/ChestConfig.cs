@@ -4,13 +4,16 @@ using UnityEngine;
 public abstract class ChestConfig : ScriptableObject
 {
     [SerializeField]
-    public string id;
+    public string Id;
 
     [SerializeField]
-    public float durationSeconds;
+    public float DurationSeconds;
 
     [SerializeField]
-    public int chestRewards;
+    public ChestMetadata ChestMetadata;
+
+    [SerializeField]
+    public ChestRewardConfig[] ChestRewardConfigs;
 
     public abstract Chest InstantiateChest(MonoBehaviour context);
 }

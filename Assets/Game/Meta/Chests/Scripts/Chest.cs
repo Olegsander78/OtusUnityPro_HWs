@@ -15,31 +15,31 @@ public abstract class Chest
     [ShowInInspector, ReadOnly]
     public string Id
     {
-        get { return this._config.id; }
+        get { return _config.Id; }
     }
 
     [ShowInInspector, ReadOnly]
     public bool IsActive
     {
-        get { return this._countdown.IsPlaying; }
+        get { return _countdown.IsPlaying; }
     }
 
     [ShowInInspector, ReadOnly]
     public float RemainingSeconds
     {
-        get { return this._countdown.RemainingTime; }
+        get { return _countdown.RemainingTime; }
     }
 
     [ShowInInspector, ReadOnly]
     public float DurationSeconds
     {
-        get { return this._config.durationSeconds; }
+        get { return _config.DurationSeconds; }
     }
 
     [ShowInInspector, ReadOnly]
-    public int MoneyPrice
+    public int EarlyOpeningPrice
     {
-        get { return _config.chestRewards; }
+        get { return _config.ChestMetadata.PriceOpen; }
     }
 
     private readonly ChestConfig _config;
@@ -48,25 +48,25 @@ public abstract class Chest
 
     public Chest(ChestConfig config, MonoBehaviour context)
     {
-        this._config = config;
-        this._countdown = new Countdown(context, config.durationSeconds);
+        _config = config;
+        _countdown = new Countdown(context, config.DurationSeconds);
     }
 
     public void Start()
     {
-        if (this.IsActive)
+        if (IsActive)
         {
-            throw new Exception("Already playing!");
+            throw new Exception("It's not time yet!");
         }
 
-        this._countdown.OnTimeChanged += this.OnChangeTime;
-        this._countdown.OnEnded += this.OnEndTime;
+        _countdown.OnTimeChanged += OnChangeTime;
+        _countdown.OnEnded += OnEndTime;
 
-        this.OnStart();
-        this.OnStarted?.Invoke(this);
+        OnStart();
+        OnStarted?.Invoke(this);
 
-        //this._countdown.ResetTime();
-        this._countdown.Play();
+        _countdown.Reset();
+        _countdown.Play();
     }
 
     protected abstract void OnStart();
@@ -75,15 +75,15 @@ public abstract class Chest
 
     private void OnChangeTime()
     {
-        this.OnTimeChanged?.Invoke(this, this.RemainingSeconds);
+        OnTimeChanged?.Invoke(this, RemainingSeconds);
     }
 
     private void OnEndTime()
     {
-        this._countdown.OnEnded -= this.OnEndTime;
-        this._countdown.OnTimeChanged -= this.OnChangeTime;
+        _countdown.OnEnded -= OnEndTime;
+        _countdown.OnTimeChanged -= OnChangeTime;
 
-        this.OnStop();
-        this.OnCompleted?.Invoke(this);
+        OnStop();
+        OnCompleted?.Invoke(this);
     }
 }

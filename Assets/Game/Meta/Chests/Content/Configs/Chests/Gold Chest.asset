@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0bcefe36f58454eaedeb4fa990c65c, type: 3}
+  m_Name: Gold Chest
+  m_EditorClassIdentifier: 
+  Id: goldchest
+  DurationSeconds: 45
+  ChestMetadata:
+    icon: {fileID: 253310292, guid: 5e366f340c637ca4f89e85adc289c067, type: 3}
+    DisplayName: Gold Chest
+    Description: 'Gold:  1500-2500 , chance 33%
+
+      Simple Resorces: 25-50, chance
+      33%
+
+      Crystals: 2-5, chance 33%'
+    ChestType: 0
+    PriceOpen: 2500
+  ChestRewardConfigs:
+  - {fileID: 11400000, guid: 1e7b442b001d9c344af45aa3a9f6433d, type: 2}
+  - {fileID: 11400000, guid: 8c1a935659645e44c9fe0be971298beb, type: 2}
+  - {fileID: 11400000, guid: b8f5b3dbfd9b0534486839d28ae59556, type: 2}
