@@ -78,8 +78,6 @@ public abstract class Chest
         _countdown.OnEnded += OnEndTime;
 
         OnStart();
-        //_reward = GenerateReward();
-        //Debug.Log($"{_reward} generated!");
 
         OnStarted?.Invoke(this);
 
