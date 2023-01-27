@@ -31,4 +31,18 @@ public sealed class ChestCatalog : ScriptableObject
 
         throw new Exception($"Chest with id {id} is not found!");
     }
+
+    public ChestConfig FindChest(ChestType typeChest)
+    {
+        for (int i = 0, count = Chests.Length; i < count; i++)
+        {
+            var chest = Chests[i];
+            if (chest.ChestMetadata.ChestType == typeChest)
+            {
+                return chest;
+            }
+        }
+
+        throw new Exception($"Chest with id {typeChest} is not found!");
+    }
 }

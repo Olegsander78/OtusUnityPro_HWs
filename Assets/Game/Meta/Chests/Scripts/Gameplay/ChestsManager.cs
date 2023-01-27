@@ -19,6 +19,10 @@ public sealed class ChestsManager : MonoBehaviour,
 
     public event Action<Chest> OnChestActivated;
 
+    public event Action<Chest> OnRewardReceived;
+
+    public event Action<Chest> OnChestChanged;
+
     [SerializeField]
     private ChestFactory _factory;
 
@@ -33,6 +37,9 @@ public sealed class ChestsManager : MonoBehaviour,
     [ReadOnly]
     [ShowInInspector]
     private readonly Dictionary<ChestType, Chest> _chests = new();
+
+    [SerializeField]
+    private ChestCatalog _catalog;
 
     private IEntity _hero;
 
@@ -59,9 +66,9 @@ public sealed class ChestsManager : MonoBehaviour,
         StopAllChests();
     }
 
-    [Title("Methods")]
-    [Button]
-    [GUIColor(0, 1, 0)]
+    //[Title("Methods")]
+    //[Button]
+    //[GUIColor(0, 1, 0)]
     public void ActivateChest(ChestConfig config)
     {
         var chest = _factory.CreateChest(config);
@@ -73,6 +80,22 @@ public sealed class ChestsManager : MonoBehaviour,
         OnChestCountdownStarted?.Invoke(chest);
         OnChestActivated?.Invoke(chest);
     }
+
+
+    // Generator for multiple chest options
+
+    //private void GenerateNextChest(string chestId)
+    //{
+    //    var chestConfig = _catalog.FindChest(chestId);
+
+    //    var nextChest = _factory.CreateChest(chestConfig);
+    //    nextChest.OnCompleted += OnEndChestCoundown;
+
+    //    _chests[chestConfig.ChestMetadata.ChestType] = nextChest;
+
+    //    nextChest.Start();
+    //    OnChestChanged?.Invoke(nextChest);
+    //}
 
     public Chest InstallChest(ChestConfig config)
     {
@@ -114,21 +137,6 @@ public sealed class ChestsManager : MonoBehaviour,
             chest.Start();
             OnChestCountdownStarted?.Invoke(chest);
         }
-
-        //_buffer.Clear();
-        //_buffer.AddRange(_chests);
-
-        //for (int i = 0, count = _buffer.Count; i < count; i++)
-        //{
-        //    var chest = _buffer[i];
-        //    if (chest.IsActive)
-        //    {
-        //        continue;
-        //    }
-
-        //    chest.Start();
-        //    OnChestCountdownStarted?.Invoke(chest);
-        //}
     }
 
     private void StopAllChests()
@@ -140,36 +148,64 @@ public sealed class ChestsManager : MonoBehaviour,
                 continue;
             }
             chest.OnCompleted -= OnEndChestCoundown;
-            chest.Stop();
+            //chest.Stop();
         }
-
-        //_buffer.Clear();
-        //_buffer.AddRange(_chests);
-
-        //for (int i = 0, count = _buffer.Count; i < count; i++)
-        //{
-        //    var chest = _buffer[i];
-        //    if (!chest.IsActive)
-        //    {
-        //        continue;
-        //    }
-
-        //    chest.OnCompleted -= OnEndChestCoundown;
-        //    //chest.Stop();
-        //}
     }
 
     private void OnEndChestCoundown(Chest chest)
     {
         chest.OnCompleted -= OnEndChestCoundown;
         StartCoroutine(EndChestInNextFrame(chest));
+        ReceiveReward(chest);
     }
 
     private IEnumerator EndChestInNextFrame(Chest chest)
     {
         yield return new WaitForEndOfFrame();
-        _chests.Remove(chest.Config.ChestMetadata.ChestType);
+        //_chests.Remove(chest.Config.ChestMetadata.ChestType);
         OnChestCountdownEnded?.Invoke(chest);
+        //_factory.DisposeChest(chest);
+    }
+
+
+    public bool CanReceiveReward(Chest chest)
+    {
+        return chest.IsActive == false &&
+               _chests.ContainsValue(chest);
+    }
+
+    [Button]
+    public void ReceiveReward(Chest chest)
+    {
+        if (!CanReceiveReward(chest))
+        {
+            throw new Exception($"Can not receive reward from Chest {chest.Id}!");
+        }
+
+        if(chest.Reward is ChestRewardConfig_SoftMoney)
+        {
+            _moneyStorage.EarnMoney(chest.Reward.Amount);
+            Debug.Log("Money Reward recieved.");
+        }
+        else if (chest.Reward is ChestRewardConfig_Resource)
+        {
+            Debug.Log("Resources Reward recieved.");
+        }
+        else if (chest.Reward is ChestRewardConfig_HardMoney)
+        {
+            Debug.Log("Crystals Reward recieved.");
+        }
+        else if (chest.Reward is ChestRewardConfig_Experience)
+        {
+            Debug.Log("Experience Reward recieved.");
+            _componentAddExp.AddExperience(chest.Reward.Amount);
+        }
+
+        OnRewardReceived?.Invoke(chest);
+
         _factory.DisposeChest(chest);
+        //GenerateNextChest(chest.Config.ChestMetadata.ChestType);
+        ActivateChest(chest.Config);
+        //GenerateNextChest(chest.Id);
     }
 }

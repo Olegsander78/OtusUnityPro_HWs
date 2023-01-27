@@ -17,14 +17,18 @@ MonoBehaviour:
   ChestMetadata:
     icon: {fileID: -1800519215, guid: 5e366f340c637ca4f89e85adc289c067, type: 3}
     DisplayName: Wooden Chest
-    Description: 'Gold:  150-250 , chance 60%
+    Description: 'Gold:  150-250 , chance 40%
 
       Simple Resorces: 5-10, chance
-      40%'
+      30%
+
+      Experience: 50-100, chance 30%'
     ChestType: 0
     PriceOpen: 200
   ChestRewardConfigs:
   - RewardConfig: {fileID: 11400000, guid: 06192749e18d03747a4e453cb7e97586, type: 2}
-    DropChance: 60
-  - RewardConfig: {fileID: 11400000, guid: dca9b2dbacb255044a94ed29891636a5, type: 2}
     DropChance: 40
+  - RewardConfig: {fileID: 11400000, guid: dca9b2dbacb255044a94ed29891636a5, type: 2}
+    DropChance: 30
+  - RewardConfig: {fileID: 11400000, guid: e91ce865a86051049b6ea01e4b1584c7, type: 2}
+    DropChance: 30

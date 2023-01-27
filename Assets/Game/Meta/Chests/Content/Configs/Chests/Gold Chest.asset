@@ -17,18 +17,22 @@ MonoBehaviour:
   ChestMetadata:
     icon: {fileID: 253310292, guid: 5e366f340c637ca4f89e85adc289c067, type: 3}
     DisplayName: Gold Chest
-    Description: 'Gold:  1500-2500 , chance 50%
+    Description: 'Gold:  1500-2500 , chance 40%
 
       Simple Resorces: 25-50, chance
-      40%
+      25%
+
+      Experience: 250-500, chance 25%
 
       Crystals: 2-5, chance 10%'
     ChestType: 2
     PriceOpen: 2500
   ChestRewardConfigs:
   - RewardConfig: {fileID: 11400000, guid: b8f5b3dbfd9b0534486839d28ae59556, type: 2}
-    DropChance: 50
-  - RewardConfig: {fileID: 11400000, guid: 8c1a935659645e44c9fe0be971298beb, type: 2}
     DropChance: 40
+  - RewardConfig: {fileID: 11400000, guid: 8c1a935659645e44c9fe0be971298beb, type: 2}
+    DropChance: 25
+  - RewardConfig: {fileID: 11400000, guid: 96d35a1bc9e6bd54f8c59526fa9ea687, type: 2}
+    DropChance: 25
   - RewardConfig: {fileID: 11400000, guid: 1e7b442b001d9c344af45aa3a9f6433d, type: 2}
     DropChance: 10

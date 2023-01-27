@@ -48,14 +48,23 @@ public abstract class Chest
         get { return _config; }
     }
 
+    [ShowInInspector, ReadOnly]
+    public ChestRewardConfig Reward
+    {
+        get { return _reward; }
+        set { _reward = value; }
+    }
+
     private readonly ChestConfig _config;
 
     private readonly Countdown _countdown;
 
+    private ChestRewardConfig _reward;
+
     public Chest(ChestConfig config, MonoBehaviour context)
     {
         _config = config;
-        _countdown = new Countdown(context, config.DurationSeconds);
+        _countdown = new Countdown(context, config.DurationSeconds);        
     }
 
     public void Start()
@@ -69,6 +78,9 @@ public abstract class Chest
         _countdown.OnEnded += OnEndTime;
 
         OnStart();
+        //_reward = GenerateReward();
+        //Debug.Log($"{_reward} generated!");
+
         OnStarted?.Invoke(this);
 
         _countdown.Reset();
@@ -78,19 +90,19 @@ public abstract class Chest
     protected abstract void OnStart();
 
     protected abstract void OnStop();
-    
-    [Button]
-    protected virtual ChestRewardConfig GetReward()
+        
+    public virtual ChestRewardConfig GenerateReward()
     {
         int totalDropWeight = 0;
 
         foreach (var dropWeigt in _config.ChestRewardConfigs)
         {
-            totalDropWeight += dropWeigt.DropChance;
+            totalDropWeight += dropWeigt.DropChance;            
         }
+        Debug.Log($"{totalDropWeight} totalDropWeight!");
 
-        int randomPoint = (int)UnityEngine.Random.value * totalDropWeight;
-
+        int randomPoint = (int)(UnityEngine.Random.value * totalDropWeight);
+        Debug.Log($"{randomPoint} randompoint!");
         for (int i = 0; i < _config.ChestRewardConfigs.Length; i++)
         {
             if (randomPoint < _config.ChestRewardConfigs[i].DropChance)
@@ -116,12 +128,12 @@ public abstract class Chest
         _countdown.OnEnded -= OnEndTime;
         _countdown.OnTimeChanged -= OnChangeTime;
 
-        OnStop();
+        //OnStop();
         OnCompleted?.Invoke(this);
     }
 
-    internal void Stop()
-    {
-        throw new NotImplementedException();
-    }
+    //internal void Stop()
+    //{
+        
+    //}
 }
