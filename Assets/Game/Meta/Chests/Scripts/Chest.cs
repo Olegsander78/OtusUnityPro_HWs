@@ -42,11 +42,11 @@ public abstract class Chest
         get { return _config.ChestMetadata.PriceOpen; }
     }
 
-    //[ShowInInspector, ReadOnly]
-    //public ChestConfig Config
-    //{
-    //    get { return _config; }
-    //}
+    [ShowInInspector, ReadOnly]
+    public ChestConfig Config
+    {
+        get { return _config; }
+    }
 
     private readonly ChestConfig _config;
 
@@ -118,5 +118,10 @@ public abstract class Chest
 
         OnStop();
         OnCompleted?.Invoke(this);
+    }
+
+    internal void Stop()
+    {
+        throw new NotImplementedException();
     }
 }

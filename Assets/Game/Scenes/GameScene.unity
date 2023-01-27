@@ -434,6 +434,7 @@ MonoBehaviour:
   gameElements:
   - {fileID: 1623384894}
   - {fileID: 1623384893}
+  - {fileID: 1623384895}
 --- !u!114 &36297027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +450,7 @@ MonoBehaviour:
   gameServices:
   - {fileID: 1623384894}
   - {fileID: 1623384893}
+  - {fileID: 1623384895}
 --- !u!1 &36818998
 GameObject:
   m_ObjectHideFlags: 0
@@ -7694,6 +7696,7 @@ GameObject:
   - component: {fileID: 1623384892}
   - component: {fileID: 1623384894}
   - component: {fileID: 1623384893}
+  - component: {fileID: 1623384895}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -7741,6 +7744,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factory: {fileID: 1623384893}
+--- !u!114 &1623384895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623384891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96fa006c420ee646940430f18e33b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _woodenChest: {fileID: 11400000, guid: e6cf39efde945e34e9dddc7958e6a4b8, type: 2}
+  _steelChest: {fileID: 11400000, guid: a0aadba1320ca2b4cad6e8334794d193, type: 2}
+  _goldenChest: {fileID: 11400000, guid: c8aa933768795194892ca8e5e5439016, type: 2}
 --- !u!1 &1629863447
 GameObject:
   m_ObjectHideFlags: 0
