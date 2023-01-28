@@ -78,18 +78,15 @@ public sealed class ChestPresenter
             _chestsManager.ReceiveReward(chest);
             AnimateIncome(chest);
 
-            _view.RewardButton.SetState(ChestRewardButton.State.PROCESSING);
+            //_view.RewardButton.SetState(ChestRewardButton.State.PROCESSING);
             SetupProgressBar();
-            //SetupRewardButton();
+            SetupRewardButton();
         }        
     }
 
     private void OnChestProgressChanged(Chest chest, float remainingSec)
     {
         var progress = remainingSec/chest.DurationSeconds;
-        //var text = remainingSec.ToString();
-        //float progress = (float)remainingSec / chest.DurationSeconds;
-        //var text = remainingSec.ToString();
         _view.ProgressBar.SetProgress(progress, chest.TextProgress);
     }
 
@@ -110,11 +107,21 @@ public sealed class ChestPresenter
 
     private void SetupRewardButton()
     {
-        var button = _view.RewardButton;
+        //var button = _view.RewardButton;
 
-        var state = _chest.IsActive == _chest.IsActive ? ChestRewardButton.State.PROCESSING : ChestRewardButton.State.COMPLETE;
+        //var state = _chest.IsActive == _chest.IsActive ? ChestRewardButton.State.PROCESSING : ChestRewardButton.State.COMPLETE;
 
-        button.SetState(state);
+        //button.SetState(state);
+
+        if (!_chest.IsActive)
+        {
+            _view.RewardButton.SetState(ChestRewardButton.State.COMPLETE);
+        }
+        else
+        {
+            _view.RewardButton.SetState(ChestRewardButton.State.PROCESSING);
+        }
+
     }
 
     private void SetupProgressBar()
