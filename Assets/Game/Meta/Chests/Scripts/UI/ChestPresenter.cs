@@ -43,6 +43,7 @@ public sealed class ChestPresenter
         SetupProgressBar();
         SetupRewardButton();
 
+        Debug.Log("Setup Progress and button reward");
         _view.RewardButton.AddListener(OnButtonClicked);
         _chest.OnTimeChanged += OnChestProgressChanged;
         _chest.OnCompleted += OnChestCompleted;
@@ -77,17 +78,18 @@ public sealed class ChestPresenter
             _chestsManager.ReceiveReward(chest);
             AnimateIncome(chest);
 
-            SetupRewardButton();
-        }
-        
+            _view.RewardButton.SetState(ChestRewardButton.State.PROCESSING);
+            SetupProgressBar();
+            //SetupRewardButton();
+        }        
     }
 
     private void OnChestProgressChanged(Chest chest, float remainingSec)
     {
-        //var progress = chest.NormalizedProgress;
-        //var text = chest.TextProgress;
-        float progress = (float)remainingSec / chest.DurationSeconds;
+        var progress = remainingSec/chest.DurationSeconds;
         var text = remainingSec.ToString();
+        //float progress = (float)remainingSec / chest.DurationSeconds;
+        //var text = remainingSec.ToString();
         _view.ProgressBar.SetProgress(progress, text);
     }
 

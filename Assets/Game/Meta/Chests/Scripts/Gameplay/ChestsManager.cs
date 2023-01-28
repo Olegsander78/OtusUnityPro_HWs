@@ -79,6 +79,7 @@ public sealed class ChestsManager : MonoBehaviour,
         chest.Start();
         OnChestCountdownStarted?.Invoke(chest);
         OnChestActivated?.Invoke(chest);
+        OnChestChanged?.Invoke(chest);
     }
 
 
