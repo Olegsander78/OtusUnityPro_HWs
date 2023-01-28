@@ -76,7 +76,7 @@ public sealed class DailyQuestManager : MonoBehaviour,
     {
         if (!CanReceiveReward(mission))
         {
-            throw new Exception($"Can not receive reward from dailyQuest {mission.Id}!");
+            throw new Exception($"Can not receive reward from _chest {mission.Id}!");
         }
 
         _moneyStorage.EarnMoney(mission.MoneyReward);

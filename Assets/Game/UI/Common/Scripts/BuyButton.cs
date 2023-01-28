@@ -73,7 +73,7 @@ public sealed class BuyButton : MonoBehaviour
         }
         else
         {
-            throw new Exception($"Undefined button state {state}!");
+            throw new Exception($"Undefined _buttonReward state {state}!");
         }
     }
 

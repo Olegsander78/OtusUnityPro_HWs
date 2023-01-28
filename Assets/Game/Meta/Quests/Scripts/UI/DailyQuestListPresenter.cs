@@ -68,7 +68,7 @@ public sealed class DailyQuestListPresenter : MonoBehaviour, IGameInitElement
             }
         }
 
-        throw new Exception($"DailyQuest with difficulty {difficulty} is not found"!);
+        throw new Exception($"DailyQuest with TypeChest {difficulty} is not found"!);
     }
 
     [Serializable]

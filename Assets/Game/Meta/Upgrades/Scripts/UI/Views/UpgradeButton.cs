@@ -89,7 +89,7 @@ public sealed class UpgradeButton : MonoBehaviour
         }
         else
         {
-            throw new Exception($"Undefined button state {state}!");
+            throw new Exception($"Undefined _buttonReward state {state}!");
         }
     }
 

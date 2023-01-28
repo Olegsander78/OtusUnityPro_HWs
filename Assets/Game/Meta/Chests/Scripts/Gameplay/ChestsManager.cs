@@ -156,7 +156,7 @@ public sealed class ChestsManager : MonoBehaviour,
     {
         chest.OnCompleted -= OnEndChestCoundown;
         StartCoroutine(EndChestInNextFrame(chest));
-        ReceiveReward(chest);
+        //ReceiveReward(chest);
     }
 
     private IEnumerator EndChestInNextFrame(Chest chest)

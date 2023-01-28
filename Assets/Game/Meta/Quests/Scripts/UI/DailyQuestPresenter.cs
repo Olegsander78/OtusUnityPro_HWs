@@ -32,7 +32,7 @@ public sealed class DailyQuestPresenter
     {
         if (this.dailyQuest != null)
         {
-            throw new Exception("DailyQuest presenter is already shown!");
+            throw new Exception("DailyQuest Presenter is already shown!");
         }
 
         this.dailyQuest = mission;

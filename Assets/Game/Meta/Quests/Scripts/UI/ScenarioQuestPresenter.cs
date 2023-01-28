@@ -32,7 +32,7 @@ public sealed class ScenarioQuestPresenter
     {
         if (_scenarioQuest != null)
         {
-            throw new Exception("Scenario Quest presenter is already shown!");
+            throw new Exception("Scenario Quest Presenter is already shown!");
         }
 
         _scenarioQuest = quest;

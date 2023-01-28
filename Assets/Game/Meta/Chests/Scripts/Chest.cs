@@ -55,6 +55,16 @@ public abstract class Chest
         set { _reward = value; }
     }
 
+    public float NormalizedProgress
+    {
+        get { return (float)RemainingSeconds / DurationSeconds; }
+    }
+
+    public string TextProgress
+    {
+        get { return $"{RemainingSeconds}"; }
+    }
+
     private readonly ChestConfig _config;
 
     private readonly Countdown _countdown;
