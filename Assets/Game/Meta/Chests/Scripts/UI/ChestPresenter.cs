@@ -87,10 +87,10 @@ public sealed class ChestPresenter
     private void OnChestProgressChanged(Chest chest, float remainingSec)
     {
         var progress = remainingSec/chest.DurationSeconds;
-        var text = remainingSec.ToString();
+        //var text = remainingSec.ToString();
         //float progress = (float)remainingSec / chest.DurationSeconds;
         //var text = remainingSec.ToString();
-        _view.ProgressBar.SetProgress(progress, text);
+        _view.ProgressBar.SetProgress(progress, chest.TextProgress);
     }
 
     private void OnChestCompleted(Chest chest)

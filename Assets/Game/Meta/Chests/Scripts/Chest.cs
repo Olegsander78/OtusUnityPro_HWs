@@ -57,14 +57,21 @@ public abstract class Chest
 
     public float NormalizedProgress
     {
-        get {
-            Debug.Log(_countdown.RemainingTime / _config.DurationSeconds);
-            return _countdown.RemainingTime / _config.DurationSeconds; }
+        get {return _countdown.RemainingTime / _config.DurationSeconds; }
     }
 
     public string TextProgress
     {
-        get { return $"{RemainingSeconds}"; }
+        get
+        {
+            var timeSpan = TimeSpan.FromSeconds(_countdown.RemainingTime);
+            var timerText = string.Format("{0:D1}h:{1:D2}m:{2:D2}s",
+                timeSpan.Hours,
+                timeSpan.Minutes,
+                timeSpan.Seconds
+            );
+            return timerText; 
+        }
     }
 
     private readonly ChestConfig _config;
