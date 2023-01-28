@@ -57,7 +57,9 @@ public abstract class Chest
 
     public float NormalizedProgress
     {
-        get { return (float)RemainingSeconds / DurationSeconds; }
+        get {
+            Debug.Log(_countdown.RemainingTime / _config.DurationSeconds);
+            return _countdown.RemainingTime / _config.DurationSeconds; }
     }
 
     public string TextProgress

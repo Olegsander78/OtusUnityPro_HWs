@@ -76,8 +76,10 @@ public sealed class ChestPresenter
         {
             _chestsManager.ReceiveReward(chest);
             AnimateIncome(chest);
+
             SetupRewardButton();
         }
+        
     }
 
     private void OnChestProgressChanged(Chest chest, float remainingSec)
@@ -115,8 +117,8 @@ public sealed class ChestPresenter
 
     private void SetupProgressBar()
     {
-        var progress = _chest.NormalizedProgress;
-        var text = _chest.TextProgress;
+        float progress = _chest.NormalizedProgress;
+        string text = _chest.TextProgress;
         _view.ProgressBar.SetProgress(progress, text);
     }
 

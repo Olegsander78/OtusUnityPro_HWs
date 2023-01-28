@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public sealed class ChestView : MonoBehaviour
 {
-    public ChestProgressBar ProgressBar
+    public MissionProgressBar ProgressBar
     {
         get { return _progressBar; }
+        set { _progressBar = value; }
     }
 
     public ChestRewardButton RewardButton
@@ -29,7 +30,7 @@ public sealed class ChestView : MonoBehaviour
     private TextMeshProUGUI _description;
 
     [SerializeField]
-    private ChestProgressBar _progressBar;
+    private MissionProgressBar _progressBar;
 
     [SerializeField]
     private ChestRewardButton _buttonReward;
