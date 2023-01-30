@@ -77,7 +77,6 @@ public sealed class ChestPresenter
             _chestsManager.ReceiveReward(chest);
             AnimateIncome(chest);
 
-            //_view.RewardButton.SetState(ChestRewardButton.State.PROCESSING);
             SetupProgressBar();
             SetupRewardButton();
         }        
@@ -114,11 +113,6 @@ public sealed class ChestPresenter
 
     private void SetupRewardButton()
     {
-        //var button = _view.RewardButton;
-
-        //var state = _chest.IsActive == _chest.IsActive ? ChestRewardButton.State.PROCESSING : ChestRewardButton.State.COMPLETE;
-
-        //button.SetState(state);
 
         if (!_chest.IsActive)
         {
