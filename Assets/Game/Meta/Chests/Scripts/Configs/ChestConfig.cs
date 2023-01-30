@@ -1,7 +1,10 @@
 using System;
 using UnityEngine;
 
-
+[CreateAssetMenu(
+    fileName = "Chest",
+    menuName = "Meta/Chests/New Chest"
+)]
 public class ChestConfig : ScriptableObject
 {
     [SerializeField]
@@ -35,10 +38,9 @@ public class ChestConfig : ScriptableObject
         {
             totalDropWeight += dropWeigt.DropChance;
         }
-        Debug.Log($"{totalDropWeight} totalDropWeight!");
 
         int randomPoint = (int)(UnityEngine.Random.value * totalDropWeight);
-        Debug.Log($"{randomPoint} randompoint!");
+
         for (int i = 0; i < _chestRewardConfigs.Length; i++)
         {
             if (randomPoint < _chestRewardConfigs[i].DropChance)

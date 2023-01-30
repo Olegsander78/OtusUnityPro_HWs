@@ -140,7 +140,6 @@ public sealed class ChestsManager : MonoBehaviour,
                 continue;
             }
             chest.OnCompleted -= OnEndChestCoundown;
-            //chest.Stop();
         }
     }
 
@@ -148,7 +147,6 @@ public sealed class ChestsManager : MonoBehaviour,
     {
         chest.OnCompleted -= OnEndChestCoundown;
         StartCoroutine(EndChestInNextFrame(chest));
-        //ReceiveReward(chest);
     }
 
     private IEnumerator EndChestInNextFrame(Chest chest)
@@ -178,13 +176,16 @@ public sealed class ChestsManager : MonoBehaviour,
 
         if(reward is ChestRewardConfig_SoftMoney)
         {
-            _moneyStorage.EarnMoney(reward.GenerateAmount());
+            _moneyStorage.EarnMoney(reward.GenerateAmountReward());
             Debug.Log("Money Reward recieved.");
         }
         else if (reward is ChestRewardConfig_Resource)
         {
-            //reward.
-            Debug.Log("Resources Reward recieved.");
+            var resource = (ChestRewardConfig_Resource)reward;
+            var amount = resource.GenerateAmountReward();
+            var restype = resource.GenerateResourceType();
+            
+            Debug.Log($"{restype} = {amount} Resources Reward recieved.");
         }
         else if (reward is ChestRewardConfig_HardMoney)
         {
@@ -193,7 +194,7 @@ public sealed class ChestsManager : MonoBehaviour,
         else if (reward is ChestRewardConfig_Experience)
         {
             Debug.Log("Experience Reward recieved.");
-            _componentAddExp.AddExperience(reward.GenerateAmount());
+            _componentAddExp.AddExperience(reward.GenerateAmountReward());
         }
 
         OnRewardReceived?.Invoke(chest);

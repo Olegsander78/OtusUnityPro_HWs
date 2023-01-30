@@ -2,9 +2,8 @@ using UnityEngine;
 
 
 public abstract class ChestRewardConfig : ScriptableObject
-{
-    [SerializeField]
-    private RewardMetadata _rewardMetadata;
+{    
+    public RewardMetadata RewardMetadata;
 
     [SerializeField]
     private int _minAmount;
@@ -12,7 +11,7 @@ public abstract class ChestRewardConfig : ScriptableObject
     [SerializeField]
     private int _maxAmount;
 
-    public int GenerateAmount()
+    public int GenerateAmountReward()
     {
         return Random.Range(_minAmount, _maxAmount);
     }

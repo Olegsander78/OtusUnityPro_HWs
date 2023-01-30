@@ -9,25 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d0bcefe36f58454eaedeb4fa990c65c, type: 3}
-  m_Name: Gold Chest
+  m_Script: {fileID: 11500000, guid: 1ab4a3656a5a1b641bbc13ae9935ac89, type: 3}
+  m_Name: Golden Chest
   m_EditorClassIdentifier: 
-  Id: goldchest
+  Id: golden_chest
   DurationSeconds: 45
+  ChestType: 2
+  PriceOpen: 2500
   ChestMetadata:
     icon: {fileID: 253310292, guid: 5e366f340c637ca4f89e85adc289c067, type: 3}
-    DisplayName: Gold Chest
-    Description: 'Gold:  1500-2500 , chance 40%
+    DisplayName: Golden Chest
+    Description: 'Gold: 1500 - 2500 , chance 40 %
 
-      Simple Resources: 25-50, chance
-      25%
+      Simple Resources: 25 -
+      50, chance 25 %
 
-      Experience: 250-500, chance 25%
+      Experience: 250 - 500, chance 25 %
 
-      Crystals: 2-5, chance 10%'
-    ChestType: 2
-    PriceOpen: 2500
-  ChestRewardConfigs:
+      Crystals:
+      2 - 5, chance 10 %'
+  _chestRewardConfigs:
   - RewardConfig: {fileID: 11400000, guid: b8f5b3dbfd9b0534486839d28ae59556, type: 2}
     DropChance: 40
   - RewardConfig: {fileID: 11400000, guid: 8c1a935659645e44c9fe0be971298beb, type: 2}

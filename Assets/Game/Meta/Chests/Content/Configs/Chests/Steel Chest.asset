@@ -9,23 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e81f731337282574c9c8e430db79afec, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ab4a3656a5a1b641bbc13ae9935ac89, type: 3}
   m_Name: Steel Chest
   m_EditorClassIdentifier: 
-  Id: steelchest
+  Id: steel_chest
   DurationSeconds: 25
+  ChestType: 1
+  PriceOpen: 1000
   ChestMetadata:
     icon: {fileID: -1198897863, guid: 5e366f340c637ca4f89e85adc289c067, type: 3}
     DisplayName: Steel Chest
-    Description: 'Gold:  500-1000 , chance 40%
+    Description: 'Gold: 500 - 1000 , chance 40 %
 
-      Simple Resources: 15-25, chance
-      30%
+      Simple Resources: 15 - 25,
+      chance 30 %
 
-      Experience: 100-250, chance 30%'
-    ChestType: 1
-    PriceOpen: 1000
-  ChestRewardConfigs:
+      Experience: 100 - 250, chance 30 %'
+  _chestRewardConfigs:
   - RewardConfig: {fileID: 11400000, guid: bcc6e367b92c07e41bada0dbec394626, type: 2}
     DropChance: 40
   - RewardConfig: {fileID: 11400000, guid: 24cc2030831c74349919c27cb52b6364, type: 2}

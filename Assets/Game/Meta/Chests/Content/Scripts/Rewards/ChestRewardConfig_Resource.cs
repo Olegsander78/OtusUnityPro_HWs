@@ -8,15 +8,13 @@ using UnityEngine;
 )]
 public class ChestRewardConfig_Resource : ChestRewardConfig
 {
-    [ShowInInspector, ReadOnly]
-    public ResourceType ResourceType => _resourceType;
+    public ResourceType Resource { get; private set; }
+       
 
-    private ResourceType _resourceType;
-
-    public ResourceType GenerateResourceType()
+    public  ResourceType GenerateResourceType()
     {
         var rnd = new System.Random();
-        _resourceType = (ResourceType)rnd.Next(Enum.GetNames(typeof(ResourceType)).Length);
-        return _resourceType;
+        Resource = (ResourceType)rnd.Next(Enum.GetNames(typeof(ResourceType)).Length);
+        return Resource;
     }
 }

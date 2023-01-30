@@ -43,7 +43,6 @@ public sealed class ChestPresenter
         SetupProgressBar();
         SetupRewardButton();
 
-        Debug.Log("Setup Progress and button reward");
         _view.RewardButton.AddListener(OnButtonClicked);
         _chest.OnTimeChanged += OnChestProgressChanged;
         _chest.OnCompleted += OnChestCompleted;
