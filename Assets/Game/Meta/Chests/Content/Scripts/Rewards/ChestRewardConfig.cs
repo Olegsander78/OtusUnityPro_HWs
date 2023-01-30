@@ -1,27 +1,19 @@
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 
 public abstract class ChestRewardConfig : ScriptableObject
 {
     [SerializeField]
-    public string Id;
+    private RewardMetadata _rewardMetadata;
 
     [SerializeField]
-    public string DisplayName;
+    private int _minAmount;
 
     [SerializeField]
-    public string Description;
+    private int _maxAmount;
 
-    [ShowInInspector, ReadOnly]
-    public int Amount
+    public int GenerateAmount()
     {
-        get { return Random.Range(minAmount, maxAmount); }
+        return Random.Range(_minAmount, _maxAmount);
     }
-
-    [SerializeField]
-    private int minAmount;
-
-    [SerializeField]
-    private int maxAmount;
 }

@@ -23,15 +23,6 @@ public sealed class ChestsManager : MonoBehaviour,
 
     public event Action<Chest> OnChestChanged;
 
-    [SerializeField]
-    private ChestFactory _factory;
-
-    //[PropertySpace(8)]
-    //[ReadOnly]
-    //[ShowInInspector]
-    //private readonly List<Chest> _chests = new();
-
-    //private readonly List<Chest> _buffer = new();
 
     [PropertySpace(8)]
     [ReadOnly]
@@ -71,10 +62,10 @@ public sealed class ChestsManager : MonoBehaviour,
     //[GUIColor(0, 1, 0)]
     public void ActivateChest(ChestConfig config)
     {
-        var chest = _factory.CreateChest(config);
+        var chest = config.InstantiateChest(context: this);
         chest.OnCompleted += OnEndChestCoundown;
 
-        _chests[config.ChestMetadata.ChestType] = chest;
+        _chests[config.ChestType] = chest;
 
         chest.Start();
         OnChestCountdownStarted?.Invoke(chest);
@@ -100,10 +91,10 @@ public sealed class ChestsManager : MonoBehaviour,
 
     public Chest InstallChest(ChestConfig config)
     {
-        var chest = _factory.CreateChest(config);
+        var chest = config.InstantiateChest(context: this);
         chest.OnCompleted += OnEndChestCoundown;
 
-        _chests[config.ChestMetadata.ChestType] = chest;
+        _chests[config.ChestType] = chest;
         return chest;
     }
 
@@ -183,28 +174,30 @@ public sealed class ChestsManager : MonoBehaviour,
             throw new Exception($"Can not receive reward from Chest {chest.Id}!");
         }
 
-        if(chest.Reward is ChestRewardConfig_SoftMoney)
+        var reward = chest.Config.GenerateReward();
+
+        if(reward is ChestRewardConfig_SoftMoney)
         {
-            _moneyStorage.EarnMoney(chest.Reward.Amount);
+            _moneyStorage.EarnMoney(reward.GenerateAmount());
             Debug.Log("Money Reward recieved.");
         }
-        else if (chest.Reward is ChestRewardConfig_Resource)
+        else if (reward is ChestRewardConfig_Resource)
         {
+            //reward.
             Debug.Log("Resources Reward recieved.");
         }
-        else if (chest.Reward is ChestRewardConfig_HardMoney)
+        else if (reward is ChestRewardConfig_HardMoney)
         {
             Debug.Log("Crystals Reward recieved.");
         }
-        else if (chest.Reward is ChestRewardConfig_Experience)
+        else if (reward is ChestRewardConfig_Experience)
         {
             Debug.Log("Experience Reward recieved.");
-            _componentAddExp.AddExperience(chest.Reward.Amount);
+            _componentAddExp.AddExperience(reward.GenerateAmount());
         }
 
         OnRewardReceived?.Invoke(chest);
-
-        _factory.DisposeChest(chest);
+                
         //GenerateNextChest(chest.Config.ChestMetadata.ChestType);
         ActivateChest(chest.Config);
         //GenerateNextChest(chest.Id);

@@ -18,7 +18,7 @@ public sealed class ChestListPresenter : MonoBehaviour, IGameInitElement
         for (int i = 0, count = chests.Length; i < count; i++)
         {
             var chest = chests[i];
-            var presenter = GetPresenter(chest.Config.ChestMetadata.ChestType);
+            var presenter = GetPresenter(chest.Config.ChestType);
             presenter.Start(chest);
         }
     }
@@ -36,7 +36,7 @@ public sealed class ChestListPresenter : MonoBehaviour, IGameInitElement
 
     private void OnChestChanged(Chest chest)
     {
-        var presenter = GetPresenter(chest.Config.ChestMetadata.ChestType);
+        var presenter = GetPresenter(chest.Config.ChestType);
         if (presenter.IsShown)
         {
             presenter.Stop();

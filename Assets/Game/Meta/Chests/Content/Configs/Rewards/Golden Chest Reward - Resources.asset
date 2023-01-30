@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d4fe83ebc50de40be7a01aec5b72c8, type: 3}
   m_Name: Golden Chest Reward - Resources
   m_EditorClassIdentifier: 
-  Id: resources_goldenchest
-  DisplayName: Resources
-  Description: Gold chest set
-  minAmount: 25
-  maxAmount: 50
+  _rewardMetadata:
+    Id: 
+    icon: {fileID: 0}
+    DisplayName: Resources
+    Description: 
+  _minAmount: 25
+  _maxAmount: 50

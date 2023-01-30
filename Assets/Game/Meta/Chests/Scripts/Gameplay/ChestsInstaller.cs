@@ -5,13 +5,13 @@ using UnityEngine;
 public sealed class ChestsInstaller : MonoBehaviour, IGameInitElement
 {   
     [SerializeField]
-    private WoodenChestConfig _woodenChest;
+    private ChestConfig _woodenChest;
 
     [SerializeField]
-    private SteelChestConfig _steelChest;
+    private ChestConfig _steelChest;
 
     [SerializeField]
-    private GoldChestConfig _goldenChest;
+    private ChestConfig _goldenChest;
 
     void IGameInitElement.InitGame(IGameContext context)
     {        

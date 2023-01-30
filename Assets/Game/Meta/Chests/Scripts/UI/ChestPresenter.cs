@@ -87,7 +87,15 @@ public sealed class ChestPresenter
     private void OnChestProgressChanged(Chest chest, float remainingSec)
     {
         var progress = remainingSec/chest.DurationSeconds;
-        _view.ProgressBar.SetProgress(progress, chest.TextProgress);
+
+        var timeSpan = TimeSpan.FromSeconds(remainingSec);
+        var timerText = string.Format("{0:D1}h:{1:D2}m:{2:D2}s",
+            timeSpan.Hours,
+            timeSpan.Minutes,
+            timeSpan.Seconds
+        );
+
+        _view.ProgressBar.SetProgress(progress, timerText);
     }
 
     private void OnChestCompleted(Chest chest)
@@ -127,8 +135,14 @@ public sealed class ChestPresenter
     private void SetupProgressBar()
     {
         float progress = _chest.NormalizedProgress;
-        string text = _chest.TextProgress;
-        _view.ProgressBar.SetProgress(progress, text);
+
+        var timeSpan = TimeSpan.FromSeconds(_chest.RemainingSeconds);
+        var timerText = string.Format("{0:D1}h:{1:D2}m:{2:D2}s",
+            timeSpan.Hours,
+            timeSpan.Minutes,
+            timeSpan.Seconds
+        );
+        _view.ProgressBar.SetProgress(progress, timerText);
     }
 
     private void AnimateIncome(Chest chest)

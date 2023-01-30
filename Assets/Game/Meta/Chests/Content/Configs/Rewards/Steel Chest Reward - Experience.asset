@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b91c523cd7d9343b72dc58da5ae77a, type: 3}
   m_Name: Steel Chest Reward - Experience
   m_EditorClassIdentifier: 
-  Id: exp_steelchest
-  DisplayName: Experience
-  Description: Steel chest set
-  minAmount: 100
-  maxAmount: 250
+  _rewardMetadata:
+    Id: 
+    icon: {fileID: 0}
+    DisplayName: Expereince
+    Description: 
+  _minAmount: 100
+  _maxAmount: 250

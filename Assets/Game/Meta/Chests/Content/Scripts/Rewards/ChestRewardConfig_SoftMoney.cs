@@ -7,15 +7,5 @@ using UnityEngine;
 )]
 public class ChestRewardConfig_SoftMoney : ChestRewardConfig
 {
-    //[ReadOnly]
-    //public int AmountMoney
-    //{
-    //    get { return Random.Range(minAmountMoney, maxAmountMoney); }
-    //}
 
-    //[SerializeField]
-    //private int minAmountMoney;
-
-    //[SerializeField]
-    //private int maxAmountMoney;
 }

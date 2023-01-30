@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b91c523cd7d9343b72dc58da5ae77a, type: 3}
   m_Name: Wooden Chest Reward - Experience
   m_EditorClassIdentifier: 
-  Id: exp_woodchest
-  DisplayName: Experience
-  Description: Wooden chest set
-  minAmount: 50
-  maxAmount: 100
+  _rewardMetadata:
+    Id: 
+    icon: {fileID: 0}
+    DisplayName: Expereince
+    Description: 
+  _minAmount: 50
+  _maxAmount: 100

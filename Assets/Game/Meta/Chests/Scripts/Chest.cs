@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 
-public abstract class Chest
+public class Chest
 {
     public event Action<Chest> OnStarted;
 
@@ -39,7 +39,7 @@ public abstract class Chest
     [ShowInInspector, ReadOnly]
     public int EarlyOpeningPrice
     {
-        get { return _config.ChestMetadata.PriceOpen; }
+        get { return _config.PriceOpen; }
     }
 
     [ShowInInspector, ReadOnly]
@@ -58,20 +58,6 @@ public abstract class Chest
     public float NormalizedProgress
     {
         get {return _countdown.RemainingTime / _config.DurationSeconds; }
-    }
-
-    public string TextProgress
-    {
-        get
-        {
-            var timeSpan = TimeSpan.FromSeconds(_countdown.RemainingTime);
-            var timerText = string.Format("{0:D1}h:{1:D2}m:{2:D2}s",
-                timeSpan.Hours,
-                timeSpan.Minutes,
-                timeSpan.Seconds
-            );
-            return timerText; 
-        }
     }
 
     private readonly ChestConfig _config;
@@ -104,35 +90,12 @@ public abstract class Chest
         _countdown.Play();
     }
 
-    protected abstract void OnStart();
+    protected virtual void OnStart() { 
+    }
 
-    protected abstract void OnStop();
-        
-    public virtual ChestRewardConfig GenerateReward()
+    protected virtual void OnStop()
     {
-        int totalDropWeight = 0;
 
-        foreach (var dropWeigt in _config.ChestRewardConfigs)
-        {
-            totalDropWeight += dropWeigt.DropChance;            
-        }
-        Debug.Log($"{totalDropWeight} totalDropWeight!");
-
-        int randomPoint = (int)(UnityEngine.Random.value * totalDropWeight);
-        Debug.Log($"{randomPoint} randompoint!");
-        for (int i = 0; i < _config.ChestRewardConfigs.Length; i++)
-        {
-            if (randomPoint < _config.ChestRewardConfigs[i].DropChance)
-            {
-                return _config.ChestRewardConfigs[i].RewardConfig;
-            }
-            else
-            {
-                randomPoint -= _config.ChestRewardConfigs[i].DropChance;
-            }
-        }
-
-        return _config.ChestRewardConfigs[_config.ChestRewardConfigs.Length - 1].RewardConfig;
     }
 
     private void OnChangeTime()
@@ -145,12 +108,6 @@ public abstract class Chest
         _countdown.OnEnded -= OnEndTime;
         _countdown.OnTimeChanged -= OnChangeTime;
 
-        //OnStop();
         OnCompleted?.Invoke(this);
     }
-
-    //internal void Stop()
-    //{
-        
-    //}
 }

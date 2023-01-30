@@ -1,7 +1,6 @@
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
-using Random = System.Random;
 
 [CreateAssetMenu(
     fileName = "Chest Reward - Resources",
@@ -10,25 +9,14 @@ using Random = System.Random;
 public class ChestRewardConfig_Resource : ChestRewardConfig
 {
     [ShowInInspector, ReadOnly]
-    public ResourceType ResourceType
+    public ResourceType ResourceType => _resourceType;
+
+    private ResourceType _resourceType;
+
+    public ResourceType GenerateResourceType()
     {
-        get
-        {
-            var rnd = new Random();
-            return (ResourceType)rnd.Next(Enum.GetNames(typeof(ResourceType)).Length);
-        }
-    }    
-
-
-    //[ReadOnly]
-    //public int AmountResource
-    //{
-    //    get { return Random.Range(minAmountResource, maxAmountResource); }
-    //}
-
-    //[SerializeField]
-    //private int minAmountResource;
-
-    //[SerializeField]
-    //private int maxAmountResource;
+        var rnd = new System.Random();
+        _resourceType = (ResourceType)rnd.Next(Enum.GetNames(typeof(ResourceType)).Length);
+        return _resourceType;
+    }
 }

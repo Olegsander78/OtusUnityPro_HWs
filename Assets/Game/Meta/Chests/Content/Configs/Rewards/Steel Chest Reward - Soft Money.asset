@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ed0ea0982c4794890baa94b75e9991, type: 3}
   m_Name: Steel Chest Reward - Soft Money
   m_EditorClassIdentifier: 
-  Id: money_steelchest
-  DisplayName: 'Money '
-  Description: Steel chest set
-  minAmount: 500
-  maxAmount: 1000
+  _rewardMetadata:
+    Id: 
+    icon: {fileID: 0}
+    DisplayName: Money
+    Description: 
+  _minAmount: 500
+  _maxAmount: 1000

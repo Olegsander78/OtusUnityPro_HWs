@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ed0ea0982c4794890baa94b75e9991, type: 3}
   m_Name: Wooden Chest Reward - Soft Money
   m_EditorClassIdentifier: 
-  Id: money_woodchest
-  DisplayName: 'Money '
-  Description: Wooden chest set
-  minAmount: 100
-  maxAmount: 250
+  _rewardMetadata:
+    Id: 
+    icon: {fileID: 0}
+    DisplayName: Money
+    Description: 
+  _minAmount: 150
+  _maxAmount: 250

@@ -1,19 +1,15 @@
+﻿using Sirenix.OdinInspector;
 using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-
 [Serializable]
-public sealed class ChestMetadata
+public sealed class RewardMetadata
 {
-    [PreviewField]
-    [SerializeField]
-    public Sprite icon;
 
     [SerializeField]
     public string DisplayName;
 
-    [TextArea]
     [SerializeField]
     public string Description;
 }
+

@@ -37,7 +37,7 @@ public sealed class ChestCatalog : ScriptableObject
         for (int i = 0, count = Chests.Length; i < count; i++)
         {
             var chest = Chests[i];
-            if (chest.ChestMetadata.ChestType == typeChest)
+            if (chest.ChestType == typeChest)
             {
                 return chest;
             }
