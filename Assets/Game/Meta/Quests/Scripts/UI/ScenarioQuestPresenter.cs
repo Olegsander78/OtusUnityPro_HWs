@@ -105,7 +105,6 @@ public sealed class ScenarioQuestPresenter
         {
             var startQuestText = _scenarioQuest.Metadata.storyScenarioQuestStage;
             _view.SetScenarioQuestText(startQuestText);
-            Debug.Log(startQuestText);
         }
 
         var stageKey = _scenarioQuest.StageScenarioQuest;

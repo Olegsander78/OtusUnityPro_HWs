@@ -82,7 +82,7 @@ public class Chest
         _countdown.OnTimeChanged += OnChangeTime;
         _countdown.OnEnded += OnEndTime;
 
-        OnStart();
+        //OnStart();
 
         OnStarted?.Invoke(this);
 
@@ -90,13 +90,13 @@ public class Chest
         _countdown.Play();
     }
 
-    protected virtual void OnStart() { 
-    }
+    //protected virtual void OnStart() { 
+    //}
 
-    protected virtual void OnStop()
-    {
+    //protected virtual void OnStop()
+    //{
 
-    }
+    //}
 
     private void OnChangeTime()
     {
