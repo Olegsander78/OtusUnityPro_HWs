@@ -4,13 +4,15 @@ using UnityEngine;
 
 
 [Serializable]
-public class ChestGetReward_Resource : IChestGetReward
+public class ChestGetReward_Resource : IChestGetReward, IGameInitElement
 
 {
-    public ChestGetReward_Resource()
-    {
+    private ResourceStorage _resourceStorage;
 
-    }
+    //public ChestGetReward_Resource()
+    //{
+
+    //}
 
     public void OnRewardRecieved(Chest chest, ChestRewardConfig reward)
     {
@@ -20,8 +22,14 @@ public class ChestGetReward_Resource : IChestGetReward
             var amount = resource.GenerateAmountReward();
             var restype = resource.GenerateResourceType();
 
+            _resourceStorage.AddResource(restype, amount);
             Debug.Log($"{restype} = {amount} Resources Reward recieved.");
         }
+    }
+
+    void IGameInitElement.InitGame(IGameContext context)
+    {
+        _resourceStorage = context.GetService<ResourceStorage>();
     }
 }
 

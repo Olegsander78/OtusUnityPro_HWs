@@ -395,7 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 36297025}
   - component: {fileID: 36297027}
-  - component: {fileID: 36297026}
+  - component: {fileID: 36297028}
   m_Layer: 0
   m_Name: Chests
   m_TagString: Untagged
@@ -420,22 +420,6 @@ Transform:
   m_Father: {fileID: 1035551873}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &36297026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36297024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameElements:
-  - {fileID: 1623384894}
-  - {fileID: 1623384895}
-  - {fileID: 1982561666}
 --- !u!114 &36297027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +433,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameServices:
+  - {fileID: 1623384894}
+  - {fileID: 1623384895}
+  - {fileID: 1982561666}
+--- !u!114 &36297028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36297024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameElements:
   - {fileID: 1623384894}
   - {fileID: 1623384895}
   - {fileID: 1982561666}
@@ -5379,7 +5379,7 @@ MonoBehaviour:
   - {fileID: 1366807994}
   - {fileID: 1412259746}
   - {fileID: 1987645974}
-  - {fileID: 36297026}
+  - {fileID: 36297028}
 --- !u!114 &1035551875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9185,21 +9185,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chestsManager: {fileID: 1623384894}
   _chestGetRewardsHandler:
-  - rid: 6937605041694179328
-  - rid: 6937605041694179329
-  - rid: 6937605041694179330
-  - rid: 6937605041694179331
+  - rid: 6937605041694179333
+  - rid: 6937605041694179334
+  - rid: 6937605041694179335
+  - rid: 6937605041694179336
   references:
     version: 2
     RefIds:
-    - rid: 6937605041694179328
-      type: {class: ChestGetReward_Experience, ns: , asm: Assembly-CSharp}
-    - rid: 6937605041694179329
-      type: {class: ChestGetReward_HardMoney, ns: , asm: Assembly-CSharp}
-    - rid: 6937605041694179330
-      type: {class: ChestGetReward_Resource, ns: , asm: Assembly-CSharp}
-    - rid: 6937605041694179331
+    - rid: 6937605041694179333
       type: {class: ChestGetReward_SoftMoney, ns: , asm: Assembly-CSharp}
+    - rid: 6937605041694179334
+      type: {class: ChestGetReward_HardMoney, ns: , asm: Assembly-CSharp}
+    - rid: 6937605041694179335
+      type: {class: ChestGetReward_Experience, ns: , asm: Assembly-CSharp}
+    - rid: 6937605041694179336
+      type: {class: ChestGetReward_Resource, ns: , asm: Assembly-CSharp}
 --- !u!1 &1986805186
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,13 +3,13 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ChestGetReward_HardMoney : IChestGetReward
+public class ChestGetReward_HardMoney : IChestGetReward, IGameInitElement
 
 {
-    public ChestGetReward_HardMoney()
-    {
+    //public ChestGetReward_HardMoney()
+    //{
             
-    }
+    //}
 
     public void OnRewardRecieved(Chest chest, ChestRewardConfig reward)
     {
@@ -17,6 +17,11 @@ public class ChestGetReward_HardMoney : IChestGetReward
         {
             Debug.Log("Crystals Reward recieved.");
         }        
+    }
+
+    void IGameInitElement.InitGame(IGameContext context)
+    {
+        
     }
 }
 
