@@ -2,26 +2,24 @@ using Entities;
 using GameElements;
 using UnityEngine;
 
-public class ChestGetReward_Experience : IChestGetReward,
-    IGameInitElement
+public class ChestGetReward_Experience : IChestGetReward
 {
-    private IEntity _hero;
-
-    private IComponent_AddExperience _componentAddExp;
+    private HeroService _heroService;
 
 
-    void IGameInitElement.InitGame(IGameContext context)
+    public ChestGetReward_Experience(HeroService heroService)
     {
-        _hero = context.GetService<HeroService>().GetHero();
-
-        _componentAddExp = _hero.Get<IComponent_AddExperience>();
+        _heroService = heroService;
     }
 
-
-
     public void OnRewardRecieved(Chest chest, ChestRewardConfig reward)
-    {        
-        _componentAddExp.AddExperience(reward.GenerateAmountReward());
+    {
+        if(!_heroService.GetHero().TryGet(out IComponent_AddExperience component_AddExperience))
+        {
+            return;
+        }
+                
+        component_AddExperience.AddExperience(reward.GenerateAmountReward());
         Debug.Log("Experience Reward recieved.");
     }
 }

@@ -1,4 +1,5 @@
 using GameElements;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChestGetRewardObserver : MonoBehaviour,
@@ -9,7 +10,8 @@ public class ChestGetRewardObserver : MonoBehaviour,
     [SerializeField]
     private ChestsManager _chestsManager;
 
-    private IChestGetReward _chestGetReward;
+    [SerializeField]
+    private List<IChestGetReward> _chestGetRewardsHandler = new();
 
     void IGameInitElement.InitGame(IGameContext context)
     {
@@ -28,6 +30,12 @@ public class ChestGetRewardObserver : MonoBehaviour,
 
     public void OnRewardRecieved(Chest chest, ChestRewardConfig chestRewardConfig)
     {
-        throw new System.NotImplementedException();
+        foreach (var reward in _chestGetRewardsHandler)
+        {
+            //if (reward is chestRewardConfig)
+            //{
+            //    reward.OnRewardRecieved(chest, chestRewardConfig);
+            //}
+        }
     }
 }

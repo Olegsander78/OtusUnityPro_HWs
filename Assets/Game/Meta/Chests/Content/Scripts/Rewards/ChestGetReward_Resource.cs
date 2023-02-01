@@ -4,6 +4,11 @@ using UnityEngine;
 public class ChestGetReward_Resource : IChestGetReward
 
 {
+    public ChestGetReward_Resource()
+    {
+
+    }
+
     public void OnRewardRecieved(Chest chest, ChestRewardConfig reward)
     {
         var resource = (ChestRewardConfig_Resource)reward;
