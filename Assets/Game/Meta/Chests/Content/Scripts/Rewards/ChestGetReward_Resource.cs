@@ -1,18 +1,9 @@
 using GameElements;
 using UnityEngine;
 
-public class ChestGetReward_Resource : IChestGetRewardObserver,
-    IGameInitElement
+public class ChestGetReward_Resource : IChestGetReward
+
 {
-    private ChestsManager _chestsManager;
-
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _chestsManager = context.GetService<ChestsManager>();
-    }
-
-
-
     public void OnRewardRecieved(Chest chest, ChestRewardConfig reward)
     {
         var resource = (ChestRewardConfig_Resource)reward;

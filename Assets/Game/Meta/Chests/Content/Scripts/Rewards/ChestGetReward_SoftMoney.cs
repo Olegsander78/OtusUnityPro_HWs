@@ -1,19 +1,15 @@
 using GameElements;
 using UnityEngine;
 
-public class ChestGetReward_SoftMoney : IChestGetRewardObserver,
+public class ChestGetReward_SoftMoney : IChestGetReward,
     IGameInitElement
 {
     private MoneyStorage _moneyStorage;
 
-    private ChestsManager _chestsManager;
-
     void IGameInitElement.InitGame(IGameContext context)
     {
-        _chestsManager = context.GetService<ChestsManager>();
         _moneyStorage = context.GetService<MoneyStorage>();
     }
-
  
 
     public void OnRewardRecieved(Chest chest, ChestRewardConfig reward)

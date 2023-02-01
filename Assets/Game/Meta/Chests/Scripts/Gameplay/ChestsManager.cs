@@ -38,8 +38,6 @@ public sealed class ChestsManager : MonoBehaviour,
 
     private MoneyStorage _moneyStorage;
 
-    private IChestGetRewardObserver _chestGetRewardObserver;
-
 
     void IGameInitElement.InitGame(IGameContext context)
     {

@@ -1,12 +1,15 @@
 using GameElements;
 using UnityEngine;
 
-public class ChestGetRewardObserver : MonoBehaviour, IChestGetRewardObserver,
+public class ChestGetRewardObserver : MonoBehaviour,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
 {
+    [SerializeField]
     private ChestsManager _chestsManager;
+
+    private IChestGetReward _chestGetReward;
 
     void IGameInitElement.InitGame(IGameContext context)
     {
