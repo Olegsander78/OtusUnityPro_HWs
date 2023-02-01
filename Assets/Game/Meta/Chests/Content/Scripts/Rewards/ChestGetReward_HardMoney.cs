@@ -1,6 +1,8 @@
 using GameElements;
+using System;
 using UnityEngine;
 
+[Serializable]
 public class ChestGetReward_HardMoney : IChestGetReward
 
 {
@@ -11,7 +13,10 @@ public class ChestGetReward_HardMoney : IChestGetReward
 
     public void OnRewardRecieved(Chest chest, ChestRewardConfig reward)
     {
-        Debug.Log("Crystals Reward recieved.");
+        if(reward is ChestRewardConfig_HardMoney)
+        {
+            Debug.Log("Crystals Reward recieved.");
+        }        
     }
 }
 

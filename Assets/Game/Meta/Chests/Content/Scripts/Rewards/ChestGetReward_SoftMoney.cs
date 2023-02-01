@@ -1,6 +1,9 @@
 using GameElements;
+using System;
 using UnityEngine;
 
+
+[Serializable]
 public class ChestGetReward_SoftMoney : IChestGetReward
 {
     private MoneyStorage _moneyStorage;
@@ -13,8 +16,11 @@ public class ChestGetReward_SoftMoney : IChestGetReward
 
     void IChestGetReward.OnRewardRecieved(Chest chest, ChestRewardConfig reward)
     {
-        _moneyStorage.EarnMoney(reward.GenerateAmountReward());
-        Debug.Log("Money Reward recieved.");
+        if (reward is ChestRewardConfig_SoftMoney)
+        {
+            _moneyStorage.EarnMoney(reward.GenerateAmountReward());
+            Debug.Log("Money Reward recieved.");
+        }
     }
 }
 

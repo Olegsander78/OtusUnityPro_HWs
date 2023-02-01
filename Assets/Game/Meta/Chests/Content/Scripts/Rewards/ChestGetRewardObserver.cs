@@ -2,21 +2,21 @@ using GameElements;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChestGetRewardObserver : MonoBehaviour,
-    IGameInitElement,
+public class ChestGetRewardObserver : MonoBehaviour,    
     IGameStartElement,
     IGameFinishElement
 {
     [SerializeField]
     private ChestsManager _chestsManager;
 
-    [SerializeField]
-    private List<IChestGetReward> _chestGetRewardsHandler = new();
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    [SerializeReference]
+    private List<IChestGetReward> _chestGetRewardsHandler;
+
+    //void IGameInitElement.InitGame(IGameContext context)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 
     void IGameStartElement.StartGame(IGameContext context)
     {
@@ -36,6 +36,7 @@ public class ChestGetRewardObserver : MonoBehaviour,
             //{
             //    reward.OnRewardRecieved(chest, chestRewardConfig);
             //}
+            reward.OnRewardRecieved(chest, chestRewardConfig);
         }
     }
 }
