@@ -5,21 +5,25 @@ using UnityEngine;
 
 
 [Serializable]
-public class ChestGetReward_SoftMoney : IChestGetReward,
-    IGameInitElement
+public class ChestGetReward_SoftMoney : IChestGetReward
 {
-    
+    [Inject]
     private MoneyStorage _moneyStorage;
 
-    public ChestGetReward_SoftMoney(MoneyStorage moneyStorage)
+    //public ChestGetReward_SoftMoney(MoneyStorage moneyStorage)
+    //{
+    //    _moneyStorage = moneyStorage;
+    //}
+
+    [Inject]
+    public void Construct(MoneyStorage moneyStorage)
     {
         _moneyStorage = moneyStorage;
     }
-
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _moneyStorage = context.GetService<MoneyStorage>();
-    }
+    //void IGameInitElement.InitGame(IGameContext context)
+    //{
+    //    _moneyStorage = context.GetService<MoneyStorage>();
+    //}
 
     void IChestGetReward.OnRewardRecieved(Chest chest, ChestRewardConfig reward)
     {

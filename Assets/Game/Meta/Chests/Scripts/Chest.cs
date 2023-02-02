@@ -28,6 +28,7 @@ public class Chest
     public float RemainingSeconds
     {
         get { return _countdown.RemainingTime; }
+        set { _countdown.RemainingTime = value; }
     }
 
     [ShowInInspector, ReadOnly]
