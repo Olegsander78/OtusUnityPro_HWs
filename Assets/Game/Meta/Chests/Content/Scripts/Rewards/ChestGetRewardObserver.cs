@@ -1,46 +1,29 @@
 using GameElements;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChestGetRewardObserver : MonoBehaviour,
-    IGameInitElement,
-    IGameStartElement,
-    IGameFinishElement
+public class ChestGetRewardObserver : MonoBehaviour
 {
-    [SerializeField]
-    private ChestsManager _chestsManager;
-
-
-    [SerializeReference]
-    private List<IChestGetReward> _chestGetRewardsHandler;
-
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        //foreach (var rewardHandler in _chestGetRewardsHandler)
-        //{
-            
-        //}
-    }
-
-    void IGameStartElement.StartGame(IGameContext context)
-    {
-        _chestsManager.OnRewardReceived += OnRewardRecieved;
-    }
-
-    void IGameFinishElement.FinishGame(IGameContext context)
-    {
-        _chestsManager.OnRewardReceived -= OnRewardRecieved;
-    }
+    [ReadOnly]
+    [ShowInInspector]
+    private List<IChestGetReward> _rewardListeners =new();
 
     public void OnRewardRecieved(Chest chest, ChestRewardConfig chestRewardConfig)
     {
-        foreach (var rewardHandler in _chestGetRewardsHandler)
+        foreach (var rewardHandler in _rewardListeners)
         {
-            //if (reward is chestRewardConfig)
-            //{
-            //    reward.OnRewardRecieved(chest, chestRewardConfig);
-            //}
             rewardHandler.OnRewardRecieved(chest, chestRewardConfig);
         }
+    }
+
+    public void AddListener(IChestGetReward rewardListener)
+    {
+        _rewardListeners.Add(rewardListener);
+    }
+
+    public void RemoveListener(IChestGetReward rewardListener)
+    {
+        _rewardListeners.Remove(rewardListener);
     }
 }

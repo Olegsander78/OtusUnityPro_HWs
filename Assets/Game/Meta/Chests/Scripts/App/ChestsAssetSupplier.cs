@@ -5,6 +5,7 @@ public sealed class ChestsAssetSupplier : IAppConfigsLoader
 {
     private ChestCatalog _catalog;
 
+
     public ChestConfig GetChest(string id)
     {
         return _catalog.FindChest(id);

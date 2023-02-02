@@ -417,6 +417,7 @@ Transform:
   m_Children:
   - {fileID: 1623384892}
   - {fileID: 1982561665}
+  - {fileID: 1528294180}
   m_Father: {fileID: 1035551873}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -436,6 +437,8 @@ MonoBehaviour:
   - {fileID: 1623384894}
   - {fileID: 1623384895}
   - {fileID: 1982561666}
+  - {fileID: 1528294181}
+  - {fileID: 1528294182}
 --- !u!114 &36297028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +454,7 @@ MonoBehaviour:
   gameElements:
   - {fileID: 1623384894}
   - {fileID: 1623384895}
-  - {fileID: 1982561666}
+  - {fileID: 1528294181}
 --- !u!1 &36818998
 GameObject:
   m_ObjectHideFlags: 0
@@ -7483,6 +7486,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb5023b9ae779f4081d5108cd4b0e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1528294179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528294180}
+  - component: {fileID: 1528294181}
+  - component: {fileID: 1528294182}
+  m_Layer: 0
+  m_Name: TimeShifter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1528294180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528294179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 36297025}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1528294181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528294179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20b842b9c48ecb4b8c92ab9a5b515c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1528294182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528294179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30cef431fa372434e9ee973ac364b7ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1580759284
 GameObject:
   m_ObjectHideFlags: 0
@@ -9183,23 +9243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a5c07710038244c8eef7e5c75f2257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chestsManager: {fileID: 1623384894}
-  _chestGetRewardsHandler:
-  - rid: 6937605041694179333
-  - rid: 6937605041694179334
-  - rid: 6937605041694179335
-  - rid: 6937605041694179336
-  references:
-    version: 2
-    RefIds:
-    - rid: 6937605041694179333
-      type: {class: ChestGetReward_SoftMoney, ns: , asm: Assembly-CSharp}
-    - rid: 6937605041694179334
-      type: {class: ChestGetReward_HardMoney, ns: , asm: Assembly-CSharp}
-    - rid: 6937605041694179335
-      type: {class: ChestGetReward_Experience, ns: , asm: Assembly-CSharp}
-    - rid: 6937605041694179336
-      type: {class: ChestGetReward_Resource, ns: , asm: Assembly-CSharp}
 --- !u!1 &1986805186
 GameObject:
   m_ObjectHideFlags: 0
