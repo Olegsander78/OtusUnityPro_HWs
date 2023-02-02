@@ -8,7 +8,7 @@ using UnityEngine;
 [Serializable]
 public class ChestGetReward_Experience : IChestGetReward, IGameInitElement
 {
-    
+    [Inject]
     private HeroService _heroService;
 
 

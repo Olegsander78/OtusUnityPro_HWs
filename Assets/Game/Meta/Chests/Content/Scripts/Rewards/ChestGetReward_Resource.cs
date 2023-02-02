@@ -1,13 +1,30 @@
 using GameElements;
+using Services;
 using System;
 using UnityEngine;
 
 
 [Serializable]
-public class ChestGetReward_Resource : IChestGetReward, IGameInitElement
+public class ChestGetReward_Resource : IChestGetReward, 
+    IGameConstructElement,
+    IGameInitElement
 
 {
+    [Inject]
     private ResourceStorage _resourceStorage;
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _resourceStorage = context.GetService<ResourceStorage>();
+        Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
+    }
+
+    [Inject]
+    public void Construct(ResourceStorage resourceStorage)
+    {
+        _resourceStorage = resourceStorage;
+        Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
+    }
 
     //public ChestGetReward_Resource()
     //{
@@ -27,9 +44,11 @@ public class ChestGetReward_Resource : IChestGetReward, IGameInitElement
         }
     }
 
+
+
     void IGameInitElement.InitGame(IGameContext context)
     {
-        _resourceStorage = context.GetService<ResourceStorage>();
+        //_resourceStorage = context.GetService<ResourceStorage>();
     }
 }
 

@@ -19,7 +19,15 @@ public class ChestGetReward_SoftMoney : IChestGetReward
     public void Construct(MoneyStorage moneyStorage)
     {
         _moneyStorage = moneyStorage;
+        Debug.Log("<color=red>MoneyStorage injected in getreward_softmoney</color>");
     }
+
+    //void IGameConstructElement.ConstructGame(IGameContext context)
+    //{
+    //    _moneyStorage = context.GetService<MoneyStorage>();
+    //    Debug.Log("<color=red>MoneyStorage injected in getreward_softMoney</color>");
+    //}
+
     //void IGameInitElement.InitGame(IGameContext context)
     //{
     //    _moneyStorage = context.GetService<MoneyStorage>();

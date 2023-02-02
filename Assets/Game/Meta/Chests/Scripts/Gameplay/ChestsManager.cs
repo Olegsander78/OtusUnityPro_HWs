@@ -198,7 +198,8 @@ public sealed class ChestsManager : MonoBehaviour,
         //}
 
         OnRewardReceived?.Invoke(chest, reward);
-                
+        Debug.Log($"<color=red>Reward generated: {reward.RewardMetadata.DisplayName} </color>");
+
         //GenerateNextChest(chest.Config.ChestMetadata.ChestType);
         ActivateChest(chest.Config);
         //GenerateNextChest(chest.Id);
