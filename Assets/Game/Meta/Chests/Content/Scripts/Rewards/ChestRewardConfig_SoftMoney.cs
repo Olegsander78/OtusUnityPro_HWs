@@ -7,5 +7,5 @@ using UnityEngine;
 )]
 public class ChestRewardConfig_SoftMoney : ChestRewardConfig
 {
-
+ 
 }

@@ -38,6 +38,15 @@ public sealed class ChestsManager : MonoBehaviour,
 
     private MoneyStorage _moneyStorage;
 
+    //[PropertySpace(8)]
+    //[ReadOnly]
+    [ShowInInspector]
+    private Dictionary<Type, IChestGetReward_Observer> _observers = new();
+
+    public void AddObserver(Type rewardType, IChestGetReward_Observer observer)
+    {
+        _observers[rewardType] = observer;
+    }
 
     void IGameInitElement.InitGame(IGameContext context)
     {
@@ -56,6 +65,8 @@ public sealed class ChestsManager : MonoBehaviour,
     {
         StopAllChests();
     }
+
+
 
     //[Title("Methods")]
     //[Button]
@@ -173,6 +184,12 @@ public sealed class ChestsManager : MonoBehaviour,
         }
 
         var reward = chest.Config.GenerateReward();
+        Debug.Log($"<color=red>Reward generated: {reward.RewardMetadata.DisplayName} </color>");
+        Type type = reward.GetType();
+        Debug.Log($"<color=red>Type: {type} </color>");
+        IChestGetReward_Observer chestGetReward_Observer = _observers[type];
+        Debug.Log($"<color=red>Type: {chestGetReward_Observer} </color>");
+        chestGetReward_Observer.OnRewardRecieved(reward);
 
         //if(reward is ChestRewardConfig_SoftMoney)
         //{

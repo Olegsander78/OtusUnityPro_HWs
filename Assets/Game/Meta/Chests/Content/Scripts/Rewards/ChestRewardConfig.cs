@@ -15,4 +15,6 @@ public abstract class ChestRewardConfig : ScriptableObject
     {
         return Random.Range(_minAmount, _maxAmount);
     }
+
+    //public abstract ChestRewardConfig InstantiateReward();
 }
