@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ChestGetReward_HardMoney : IChestGetReward_Observer, IGameInitElement
+public class ChestGetRewardObserver_HardMoney : IChestGetReward_Observer, IGameInitElement
 
 {
     [Inject]
@@ -12,7 +12,7 @@ public class ChestGetReward_HardMoney : IChestGetReward_Observer, IGameInitEleme
 
     void IGameInitElement.InitGame(IGameContext context)
     {
-        _chestsManager.AddObserver(typeof(ChestGetReward_HardMoney), this);
+        _chestsManager.AddObserver(typeof(ChestGetRewardObserver_HardMoney), this);
     }
 
     public void OnRewardRecieved(ChestRewardConfig chestRewardConfig)

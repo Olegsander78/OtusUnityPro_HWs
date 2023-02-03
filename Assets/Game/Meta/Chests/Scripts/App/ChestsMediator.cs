@@ -34,7 +34,6 @@ public sealed class ChestsMediator :
             var data = chestsData[i];
             var config = _assetSupplier.GetChest(data.id);
             var chest = _chestsManager.InstallChest(config);
-            //_chestsManager.ActivateChest(chest.Config);
             chest.Start();
             chest.RemainingSeconds = data.remainingTime;            
         }

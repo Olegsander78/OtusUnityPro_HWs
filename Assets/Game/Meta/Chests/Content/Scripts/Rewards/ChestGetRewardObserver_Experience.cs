@@ -6,7 +6,8 @@ using UnityEngine;
 
 
 [Serializable]
-public class ChestGetReward_Experience : IChestGetReward_Observer, IGameInitElement
+public class ChestGetRewardObserver_Experience : IChestGetReward_Observer,
+    IGameInitElement
 {
     [Inject]
     private HeroService _heroService;

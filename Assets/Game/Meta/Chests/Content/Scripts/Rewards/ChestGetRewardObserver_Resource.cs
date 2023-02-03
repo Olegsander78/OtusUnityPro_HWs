@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [Serializable]
-public class ChestGetReward_Resource : IChestGetReward_Observer, 
+public class ChestGetRewardObserver_Resource : IChestGetReward_Observer, 
     IGameConstructElement,
     IGameInitElement
 
@@ -21,7 +21,7 @@ public class ChestGetReward_Resource : IChestGetReward_Observer,
     {
         _resourceStorage = context.GetService<ResourceStorage>();
         Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
-        _chestsManager.AddObserver(typeof(ChestGetReward_Resource), this);
+        _chestsManager.AddObserver(typeof(ChestGetRewardObserver_Resource), this);
         Debug.Log("<color=red>ChestMan injected in getreward_res</color>");
     }
 
@@ -30,7 +30,7 @@ public class ChestGetReward_Resource : IChestGetReward_Observer,
     {
         _resourceStorage = resourceStorage;
         Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
-        _chestsManager.AddObserver(typeof(ChestGetReward_Resource), this);
+        _chestsManager.AddObserver(typeof(ChestGetRewardObserver_Resource), this);
         Debug.Log("<color=red>ChestMan injected in getreward_res</color>");
     }
 

@@ -19,6 +19,8 @@ public sealed class ChestsManager : MonoBehaviour,
 
     public event Action<Chest> OnChestActivated;
 
+    public event Action<ChestRewardConfig> OnRewardGenerated;
+
     public event Action<Chest, ChestRewardConfig> OnRewardReceived;
 
     public event Action<Chest> OnChestChanged;
@@ -40,13 +42,16 @@ public sealed class ChestsManager : MonoBehaviour,
 
     //[PropertySpace(8)]
     //[ReadOnly]
-    [ShowInInspector]
-    private Dictionary<Type, IChestGetReward_Observer> _observers = new();
+    //[ShowInInspector]
+    [SerializeReference]
+    private Dictionary<Type, IChestGetReward_Observer> _observers;
 
     public void AddObserver(Type rewardType, IChestGetReward_Observer observer)
     {
         _observers[rewardType] = observer;
     }
+
+    public void RemoveObserver(Type rewardType) => _observers.Remove(rewardType);
 
     void IGameInitElement.InitGame(IGameContext context)
     {
@@ -174,8 +179,7 @@ public sealed class ChestsManager : MonoBehaviour,
         return chest.IsActive == false &&
                _chests.ContainsValue(chest);
     }
-
-    [Button]
+        
     public void ReceiveReward(Chest chest)
     {
         if (!CanReceiveReward(chest))
@@ -184,12 +188,21 @@ public sealed class ChestsManager : MonoBehaviour,
         }
 
         var reward = chest.Config.GenerateReward();
+        OnRewardGenerated?.Invoke(reward);
+
         Debug.Log($"<color=red>Reward generated: {reward.RewardMetadata.DisplayName} </color>");
-        Type type = reward.GetType();
-        Debug.Log($"<color=red>Type: {type} </color>");
-        IChestGetReward_Observer chestGetReward_Observer = _observers[type];
-        Debug.Log($"<color=red>Type: {chestGetReward_Observer} </color>");
-        chestGetReward_Observer.OnRewardRecieved(reward);
+        //Type type = reward.GetType();
+        //Debug.Log($"<color=red>Type: {type} </color>");
+
+        //IChestGetReward_Observer chestGetReward_Observer = _observers[type];
+        //Debug.Log($"<color=red>Type: {chestGetReward_Observer} </color>");
+        //chestGetReward_Observer.OnRewardRecieved(reward);
+
+        OnRewardReceived?.Invoke(chest, reward);
+        Debug.Log($"<color=red>Reward generated: {reward.RewardMetadata.DisplayName} </color>");
+
+        ActivateChest(chest.Config);
+
 
         //if(reward is ChestRewardConfig_SoftMoney)
         //{
@@ -201,7 +214,7 @@ public sealed class ChestsManager : MonoBehaviour,
         //    var resource = (ChestRewardConfig_Resource)reward;
         //    var amount = resource.GenerateAmountReward();
         //    var restype = resource.GenerateResourceType();
-            
+
         //    Debug.Log($"{restype} = {amount} Resources Reward recieved.");
         //}
         //else if (reward is ChestRewardConfig_HardMoney)
@@ -214,11 +227,10 @@ public sealed class ChestsManager : MonoBehaviour,
         //    _componentAddExp.AddExperience(reward.GenerateAmountReward());
         //}
 
-        OnRewardReceived?.Invoke(chest, reward);
-        Debug.Log($"<color=red>Reward generated: {reward.RewardMetadata.DisplayName} </color>");
+
 
         //GenerateNextChest(chest.Config.ChestMetadata.ChestType);
-        ActivateChest(chest.Config);
+
         //GenerateNextChest(chest.Id);
     }
 }
