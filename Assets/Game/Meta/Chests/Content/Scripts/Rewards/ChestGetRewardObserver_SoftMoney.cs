@@ -16,6 +16,16 @@ public class ChestGetRewardObserver_SoftMoney : ChestRewardObserver
         _moneyStorage = context.GetService<MoneyStorage>();
     }
 
+    protected override void OnRewardRecieved(ChestRewardConfig chestRewardConfig)
+    {
+        if (chestRewardConfig is ChestRewardConfig_SoftMoney)
+        {
+            _moneyStorage.EarnMoney(chestRewardConfig.GenerateAmountReward());
+            Debug.Log("Money Reward recieved.");
+        }
+    }
+
+
     //[Inject]
     //private ChestsManager _chestsManager;
 
@@ -51,14 +61,7 @@ public class ChestGetRewardObserver_SoftMoney : ChestRewardObserver
     //    }
     //}
 
-    protected override void OnRewardRecieved(ChestRewardConfig chestRewardConfig)
-    {
-        if (chestRewardConfig is ChestRewardConfig_SoftMoney)
-        {
-            _moneyStorage.EarnMoney(chestRewardConfig.GenerateAmountReward());
-            Debug.Log("Money Reward recieved.");
-        }
-    }
+
 
 
 

@@ -4,42 +4,22 @@ using System;
 using UnityEngine;
 
 
-[Serializable]
-public class ChestGetRewardObserver_Resource : IChestGetReward_Observer, 
-    IGameConstructElement,
-    IGameInitElement
+//[Serializable]
+public class ChestGetRewardObserver_Resource : ChestRewardObserver
+    //IChestGetReward_Observer
 
 {
-    [Inject]
+    //[Inject]
     private ResourceStorage _resourceStorage;
 
-    [Inject]
-    private ChestsManager _chestsManager;
 
-    [Inject]
-    void IGameConstructElement.ConstructGame(IGameContext context)
+    public override void InitGame(IGameContext context)
     {
+        base.InitGame(context);
         _resourceStorage = context.GetService<ResourceStorage>();
-        Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
-        _chestsManager.AddObserver(typeof(ChestGetRewardObserver_Resource), this);
-        Debug.Log("<color=red>ChestMan injected in getreward_res</color>");
     }
 
-    [Inject]
-    public void Construct(ResourceStorage resourceStorage)
-    {
-        _resourceStorage = resourceStorage;
-        Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
-        _chestsManager.AddObserver(typeof(ChestGetRewardObserver_Resource), this);
-        Debug.Log("<color=red>ChestMan injected in getreward_res</color>");
-    }
-
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        //_resourceStorage = context.GetService<ResourceStorage>();
-    }
-
-    public void OnRewardRecieved(ChestRewardConfig chestRewardConfig)
+    protected override void OnRewardRecieved(ChestRewardConfig chestRewardConfig)
     {
         if (chestRewardConfig is ChestRewardConfig_Resource)
         {
@@ -51,6 +31,33 @@ public class ChestGetRewardObserver_Resource : IChestGetReward_Observer,
             Debug.Log($"{restype} = {amount} Resources Reward recieved.");
         }
     }
+
+    //[Inject]
+    //private ChestsManager _chestsManager;
+
+    //[Inject]
+    //void IGameConstructElement.ConstructGame(IGameContext context)
+    //{
+    //    _resourceStorage = context.GetService<ResourceStorage>();
+    //    Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
+    //    _chestsManager.AddObserver(typeof(ChestGetRewardObserver_Resource), this);
+    //    Debug.Log("<color=red>ChestMan injected in getreward_res</color>");
+    //}
+
+    //[Inject]
+    //public void Construct(ResourceStorage resourceStorage)
+    //{
+    //    _resourceStorage = resourceStorage;
+    //    Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
+    //    _chestsManager.AddObserver(typeof(ChestGetRewardObserver_Resource), this);
+    //    Debug.Log("<color=red>ChestMan injected in getreward_res</color>");
+    //}
+
+    //void IGameInitElement.InitGame(IGameContext context)
+    //{
+    //    _resourceStorage = context.GetService<ResourceStorage>();
+    //}
+
 }
 
  
