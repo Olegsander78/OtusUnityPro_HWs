@@ -1,29 +1,21 @@
-using GameElements;
-using Services;
-using System;
 using UnityEngine;
 
 
-//[Serializable]
-public class ChestGetRewardObserver_Resource : ChestRewardObserver
-    //IChestGetReward_Observer
+public class ChestGetRewardObserver_Resource : IChestRewardObserver
 
 {
-    //[Inject]
     private ResourceStorage _resourceStorage;
 
-
-    public override void InitGame(IGameContext context)
+    public ChestGetRewardObserver_Resource(ResourceStorage resourceStorage)
     {
-        base.InitGame(context);
-        _resourceStorage = context.GetService<ResourceStorage>();
+        _resourceStorage = resourceStorage;
     }
-
-    protected override void OnRewardRecieved(ChestRewardConfig chestRewardConfig)
+ 
+    void IChestRewardObserver.OnRewardReceived(ChestRewardConfig reward)
     {
-        if (chestRewardConfig is ChestRewardConfig_Resource)
+        if (reward is ChestRewardConfig_Resource)
         {
-            var resource = (ChestRewardConfig_Resource)chestRewardConfig;
+            var resource = (ChestRewardConfig_Resource)reward;
             var amount = resource.GenerateAmountReward();
             var restype = resource.GenerateResourceType();
 
@@ -31,33 +23,6 @@ public class ChestGetRewardObserver_Resource : ChestRewardObserver
             Debug.Log($"{restype} = {amount} Resources Reward recieved.");
         }
     }
-
-    //[Inject]
-    //private ChestsManager _chestsManager;
-
-    //[Inject]
-    //void IGameConstructElement.ConstructGame(IGameContext context)
-    //{
-    //    _resourceStorage = context.GetService<ResourceStorage>();
-    //    Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
-    //    _chestsManager.AddObserver(typeof(ChestGetRewardObserver_Resource), this);
-    //    Debug.Log("<color=red>ChestMan injected in getreward_res</color>");
-    //}
-
-    //[Inject]
-    //public void Construct(ResourceStorage resourceStorage)
-    //{
-    //    _resourceStorage = resourceStorage;
-    //    Debug.Log("<color=red>ResStorage injected in getreward_res</color>");
-    //    _chestsManager.AddObserver(typeof(ChestGetRewardObserver_Resource), this);
-    //    Debug.Log("<color=red>ChestMan injected in getreward_res</color>");
-    //}
-
-    //void IGameInitElement.InitGame(IGameContext context)
-    //{
-    //    _resourceStorage = context.GetService<ResourceStorage>();
-    //}
-
 }
 
  

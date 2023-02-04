@@ -1,31 +1,18 @@
-using GameElements;
-using Services;
-using System;
 using UnityEngine;
 
-//[Serializable]
-public class ChestGetRewardObserver_HardMoney : ChestRewardObserver
-    //IChestGetReward_Observer
+public class ChestGetRewardObserver_HardMoney : IChestRewardObserver
 
 {
+    public ChestGetRewardObserver_HardMoney() { } 
 
-    protected override void OnRewardRecieved(ChestRewardConfig chestRewardConfig)
+
+    void IChestRewardObserver.OnRewardReceived(ChestRewardConfig reward)
     {
-        if (chestRewardConfig is ChestRewardConfig_HardMoney)
+        if (reward is ChestRewardConfig_HardMoney)
         {
             Debug.Log("Crystals Reward recieved.");
         }
     }
-
-    //[Inject]
-    //private ChestsManager _chestsManager;
-
-    //void IGameInitElement.InitGame(IGameContext context)
-    //{
-    //    _chestsManager.AddObserver(typeof(ChestGetRewardObserver_HardMoney), this);
-    //}
-
-
 }
 
  

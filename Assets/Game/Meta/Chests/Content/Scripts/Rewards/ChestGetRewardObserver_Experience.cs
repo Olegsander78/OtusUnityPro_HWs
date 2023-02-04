@@ -1,56 +1,30 @@
-using Entities;
-using GameElements;
-using Services;
 using System;
 using UnityEngine;
 
 
-[Serializable]
-public class ChestGetRewardObserver_Experience : ChestRewardObserver
-    //IChestGetReward_Observer
+public class ChestGetRewardObserver_Experience : IChestRewardObserver
 {
-    //[Inject]
     private HeroService _heroService;
 
-    
-    public override void InitGame(IGameContext context)
+    public ChestGetRewardObserver_Experience(HeroService heroService)
     {
-        base.InitGame(context);
-        _heroService = context.GetService<HeroService>();
+        _heroService = heroService;
     }
+     
 
-    protected override void OnRewardRecieved(ChestRewardConfig chestRewardConfig)
+    void IChestRewardObserver.OnRewardReceived(ChestRewardConfig reward)
     {
-        if (chestRewardConfig is ChestRewardConfig_Experience)
+        if (reward is ChestRewardConfig_Experience)
         {
             if (!_heroService.GetHero().TryGet(out IComponent_AddExperience component_AddExperience))
             {
                 return;
             }
 
-            component_AddExperience.AddExperience(chestRewardConfig.GenerateAmountReward());
+            component_AddExperience.AddExperience(reward.GenerateAmountReward());
             Debug.Log("Experience Reward recieved.");
         }
     }
-
-    //[Inject]
-    //private ChestsManager _chestsManager;
-
-    //public ChestGetReward_Experience(HeroService heroService)
-    //{
-    //    _heroService = heroService;
-    //}
-
-
-
-    //void IGameInitElement.InitGame(IGameContext context)
-    //{
-    //    _heroService = context.GetService<HeroService>();
-    //    _chestsManager = context.GetService<ChestsManager>();
-    //    _chestsManager.AddObserver(typeof(ChestRewardConfig_Experience), this);
-    //}
-
-
 }
 
 

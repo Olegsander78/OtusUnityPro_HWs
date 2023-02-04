@@ -140,12 +140,10 @@ namespace GameElements
                     this.AddRecursively(child, ref addedElements);
                 }
             }
-            else
+
+            if (this.gameElements.Add(element))
             {
-                if (this.gameElements.Add(element))
-                {
-                    addedElements.Add(element);
-                }
+                addedElements.Add(element);
             }
         }
 
