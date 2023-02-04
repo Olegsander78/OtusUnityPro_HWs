@@ -3,10 +3,11 @@ namespace GameElements
     public enum GameState
     {
         IDLE = 1,
-        INIT = 2,
-        READY = 3,
-        PLAY = 4,
-        PAUSE = 5,
-        FINISH = 6
+        CONSTRUCT = 2,
+        INIT = 3,
+        READY = 4,
+        PLAY = 5,
+        PAUSE = 6,
+        FINISH = 7
     }
 }

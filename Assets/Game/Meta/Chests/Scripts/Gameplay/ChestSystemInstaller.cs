@@ -25,17 +25,29 @@ public sealed class ChestSystemInstaller: MonoBehaviour,
 
     public IEnumerable<object> GetServices()
     {
+        Debug.Log("GET SERVICES");
         yield return _chestsManager;
     }
 
     public IEnumerable<IGameElement> GetElements()
     {
+        Debug.Log("GET ELEMENTS");
         yield return _chestsManager;
+    }
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        Debug.Log("CONSTRUCT");
+        _chestsManager.Construct(monoContext: this);
+        _chestsManager.AddObserver(new ChestGetRewardObserver_SoftMoney(context.GetService<MoneyStorage>()));
+        _chestsManager.AddObserver(new ChestGetRewardObserver_Experience(context.GetService<HeroService>()));
+        _chestsManager.AddObserver(new ChestGetRewardObserver_Resource(context.GetService<ResourceStorage>()));
+        _chestsManager.AddObserver(new ChestGetRewardObserver_HardMoney());
     }
 
     void IGameInitElement.InitGame(IGameContext context)
     {
- 
+        Debug.Log("INIT");
         if (!_chestsManager.IsChestExists(ChestType.WOODEN_CHEST))
         {
             _chestsManager.InstallChest(_woodenChest);
@@ -50,14 +62,5 @@ public sealed class ChestSystemInstaller: MonoBehaviour,
         {
             _chestsManager.InstallChest(_goldenChest);
         }
-    }
-       
-    void IGameConstructElement.ConstructGame(IGameContext context)
-    {
-        _chestsManager.Construct(monoContext: this);
-        _chestsManager.AddObserver(new ChestGetRewardObserver_SoftMoney(context.GetService<MoneyStorage>()));
-        _chestsManager.AddObserver(new ChestGetRewardObserver_Experience(context.GetService<HeroService>()));
-        _chestsManager.AddObserver(new ChestGetRewardObserver_Resource(context.GetService<ResourceStorage>()));
-        _chestsManager.AddObserver(new ChestGetRewardObserver_HardMoney());
     }
 }

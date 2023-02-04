@@ -92,7 +92,12 @@ namespace GameElements.Unity
             this.isLoaded = true;
             this.OnLoaded?.Invoke();
         }
-        
+
+        public void ConstructGame()
+        {
+            this.gameContext.ConstructGame();
+        }
+
         [ContextMenu("Init Game")]
         public void InitGame()
         {
@@ -180,6 +185,7 @@ namespace GameElements.Unity
             {
                 yield return new WaitForEndOfFrame();
                 this.LoadGame();
+                this.ConstructGame();
                 this.InitGame();
                 this.ReadyGame();
                 this.StartGame();

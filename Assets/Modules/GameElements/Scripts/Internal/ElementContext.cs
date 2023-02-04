@@ -40,6 +40,21 @@ namespace GameElements
                 this.RemoveRecursively(element);
             }
         }
+        
+        internal void ConstructGsame()
+        {
+            this.cache.Clear();
+            this.cache.AddRange(this.gameElements);
+
+            for (int i = 0, count = this.cache.Count; i < count; i++)
+            {
+                var element = this.cache[i];
+                if (element is IGameConstructElement constructElement)
+                {
+                    constructElement.ConstructGame(this.gameContext);
+                }
+            }
+        }
 
         internal void InitGame()
         {
@@ -177,6 +192,15 @@ namespace GameElements
             if (gameState >= GameState.FINISH)
             {
                 return;
+            }
+            if (gameState < GameState.CONSTRUCT)
+            {
+                return;
+            }
+
+            if (element is IGameConstructElement constructElement)
+            {
+                constructElement.ConstructGame(this.gameContext);
             }
 
             if (gameState < GameState.INIT)

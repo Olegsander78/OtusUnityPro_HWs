@@ -68,12 +68,21 @@ namespace GameElements.UnityEditor
 
         private void AddByMonoBehaviour(MonoBehaviour monoBehaviour)
         {
-            if (monoBehaviour is IGameElementGroup || ReferenceEquals(monoBehaviour, this.serviceGroup))
+            if (ReferenceEquals(monoBehaviour, this.serviceGroup))
             {
                 return;
             }
 
-            this.serviceGroup.Editor_AddService(monoBehaviour);
+            if (monoBehaviour is IGameServiceGroup)
+            {
+                this.serviceGroup.Editor_AddService(monoBehaviour);
+                return;
+            }
+
+            if (monoBehaviour is not IGameElementGroup)
+            {
+                this.serviceGroup.Editor_AddService(monoBehaviour);
+            }
         }
     }
 }

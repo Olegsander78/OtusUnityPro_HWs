@@ -17,8 +17,10 @@ namespace GameElements
         event Action OnGameFinished;
 
         GameState State { get; }
-        
+
         ///Lifecycle:
+        void ConstructGame();
+        
         void InitGame();
 
         void ReadyGame();

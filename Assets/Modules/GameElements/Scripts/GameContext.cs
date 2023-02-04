@@ -34,12 +34,26 @@ namespace GameElements
             this.serviceContext = new ServiceContext();
         }
 
-        public void InitGame()
+        public void ConstructGame()
         {
             if (this.State != GameState.IDLE)
             {
                 LogWarning($"Can't initialize the game from the {this.State} state, " +
                            $"only from {nameof(GameState.IDLE)}");
+                return;
+            }
+
+            this.State = GameState.CONSTRUCT;
+            this.elementContext.ConstructGsame();
+            Debug.Log(" The game elements was Construct!");
+        }
+
+        public void InitGame()
+        {
+            if (this.State != GameState.CONSTRUCT)
+            {
+                LogWarning($"Can't initialize the game from the {this.State} state, " +
+                           $"only from {nameof(GameState.CONSTRUCT)}");
                 return;
             }
 
