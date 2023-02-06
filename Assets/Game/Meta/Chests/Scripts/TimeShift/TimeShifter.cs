@@ -8,11 +8,11 @@ public sealed class TimeShifter: MonoBehaviour
     private List<ITimeShiftListener> _listeners = new();
 
     [Button]
-    public void ShiftTime(float secondsOffset)
+    public void ShiftTime(TimeShiftReason reason, float secondsOffset)
     {
         foreach (var shiftTimer in _listeners)
         {
-            shiftTimer.OnTimeShifted(secondsOffset);
+            shiftTimer.OnTimeShifted(reason, secondsOffset);
 
             Debug.Log($"{secondsOffset} - Time shifted ");
         }

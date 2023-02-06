@@ -1,5 +1,5 @@
 
-public interface ITimeShiftListener 
+public interface ITimeShiftListenerHW
 {
     void OnTimeShifted(float secondOffset);  
 }

@@ -254,11 +254,100 @@ MonoBehaviour:
   installOnAwake: 1
   monoServices:
   - {fileID: 1867108295}
+  - {fileID: 1106819961}
   servicePacks:
+  - {fileID: 11400000, guid: 51d3dbddf6940aa42a168a131b75c17c, type: 2}
+  - {fileID: 11400000, guid: ab47d453b8d884e1bbbbfd2c678abfde, type: 2}
   - {fileID: 11400000, guid: 5766c27b53a33e54d8c242e062c40a74, type: 2}
   - {fileID: 11400000, guid: ee9b3cbe40c39e248be49ef7b0e8aa2c, type: 2}
-  - {fileID: 11400000, guid: 51d3dbddf6940aa42a168a131b75c17c, type: 2}
   - {fileID: 11400000, guid: 855c65dc18728404699409a8c15a6cf9, type: 2}
+--- !u!1001 &1106819960
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1789743245}
+    m_Modifications:
+    - target: {fileID: 2793373092189014473, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_Name
+      value: RealtimeManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9b19318ba27446ce844630701ea3192, type: 3}
+--- !u!114 &1106819961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 912180358916594071, guid: a9b19318ba27446ce844630701ea3192,
+    type: 3}
+  m_PrefabInstance: {fileID: 1106819960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d8c49b4e224104aae14f7a504cd616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1106819962 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2793373092189014474, guid: a9b19318ba27446ce844630701ea3192,
+    type: 3}
+  m_PrefabInstance: {fileID: 1106819960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1789743244
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +378,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1867108294}
+  - {fileID: 1106819962}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

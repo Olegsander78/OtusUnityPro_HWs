@@ -20,14 +20,14 @@ public class ChestTimeSinchronizer : MonoBehaviour,
         _timeShifter = context.GetService<TimeShifter>();
     }
 
-    void ITimeShiftListener.OnTimeShifted(float secondOffset)
-    {
-        foreach (var chest in _chestsManager.GetActiveChests())
-        {
-            chest.RemainingSeconds -= secondOffset;
-            Debug.Log($"{chest.Id} shifted ");
-        }
-    }
+    //void ITimeShiftListener.OnTimeShifted(float secondOffset)
+    //{
+    //    foreach (var chest in _chestsManager.GetActiveChests())
+    //    {
+    //        chest.RemainingSeconds -= secondOffset;
+    //        Debug.Log($"{chest.Id} shifted ");
+    //    }
+    //}
 
     void IGameReadyElement.ReadyGame(IGameContext context)
     {
@@ -37,5 +37,14 @@ public class ChestTimeSinchronizer : MonoBehaviour,
     void IGameFinishElement.FinishGame(IGameContext context)
     {
         _timeShifter.RemoveListener(this);
+    }
+
+    void ITimeShiftListener.OnTimeShifted(TimeShiftReason reason, float shiftSeconds)
+    {
+        foreach (var chest in _chestsManager.GetActiveChests())
+        {
+            chest.RemainingSeconds -= shiftSeconds;
+            Debug.Log($"{chest.Id} shifted ");
+        }
     }
 }
