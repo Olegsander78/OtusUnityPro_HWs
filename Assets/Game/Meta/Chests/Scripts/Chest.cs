@@ -70,7 +70,8 @@ public class Chest
     public Chest(ChestConfig config, MonoBehaviour context)
     {
         _config = config;
-        _countdown = new Countdown(context, config.DurationSeconds);        
+        _countdown = new Countdown(context, config.DurationSeconds);
+        Debug.Log($"{context} - context, {config.DurationSeconds}");
     }
 
     public void Start()
@@ -87,7 +88,7 @@ public class Chest
 
         OnStarted?.Invoke(this);
 
-        _countdown.Reset();
+        _countdown.ResetTime();
         _countdown.Play();
     }
 
