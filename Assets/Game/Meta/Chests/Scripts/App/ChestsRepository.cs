@@ -12,7 +12,7 @@ public sealed class ChestsRepository : DataArrayRepository<ChestData>
         if (result)
         {
             foreach (var item in chestsData)
-            {
+            {                
                 var id = item.id;
                 var time = item.remainingTime;
                 Debug.Log($"<color=red>LOAD Chests DATA: {id}:{time}</color>");

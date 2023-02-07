@@ -28,7 +28,7 @@ public class Chest
     public float RemainingSeconds
     {
         get { return _countdown.RemainingTime; }
-        set { _countdown.RemainingTime = value; }
+        set { _countdown.RemainingTime = Math.Max(0,value); }
     }
 
     [ShowInInspector, ReadOnly]

@@ -7,21 +7,21 @@ public abstract class TimeShiftObserver : MonoBehaviour,
     IGameReadyElement,
     IGameFinishElement
 {
-    private TimeShiftEmitter emitter;
+    private TimeShiftEmitter _emitter;
 
     public virtual void ConstructGame(IGameContext context)
     {
-        this.emitter = context.GetService<TimeShiftEmitter>();
+        _emitter = context.GetService<TimeShiftEmitter>();
     }
 
     public virtual void ReadyGame(IGameContext context)
     {
-        this.emitter.OnTimeShifted += this.OnTimeShifted;
+        _emitter.OnTimeShifted += this.OnTimeShifted;
     }
 
     public virtual void FinishGame(IGameContext context)
     {
-        this.emitter.OnTimeShifted -= this.OnTimeShifted;
+        _emitter.OnTimeShifted -= this.OnTimeShifted;
     }
 
     protected abstract void OnTimeShifted(TimeShiftReason reason, float shiftSeconds);

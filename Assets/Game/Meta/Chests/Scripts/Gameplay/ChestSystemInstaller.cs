@@ -39,6 +39,9 @@ public sealed class ChestSystemInstaller: MonoBehaviour,
     {
         Debug.Log("CONSTRUCT");
         _chestsManager.Construct(monoContext: this);
+
+        ConstructControllers(context);
+
         _chestsManager.AddObserver(new ChestGetRewardObserver_SoftMoney(context.GetService<MoneyStorage>()));
         _chestsManager.AddObserver(new ChestGetRewardObserver_Experience(context.GetService<HeroService>()));
         _chestsManager.AddObserver(new ChestGetRewardObserver_Resource(context.GetService<ResourceStorage>()));
@@ -62,5 +65,12 @@ public sealed class ChestSystemInstaller: MonoBehaviour,
         {
             _chestsManager.InstallChest(_goldenChest);
         }
+    }
+
+    private void ConstructControllers(IGameContext context)
+    {
+        var timeShiftEmitter = context.GetService<TimeShiftEmitter>();
+        timeShiftEmitter.AddListener(new TimeShiftObserver_SyncChests(_chestsManager));
+        Debug.Log($"{timeShiftEmitter} for chests added!");
     }
 }
