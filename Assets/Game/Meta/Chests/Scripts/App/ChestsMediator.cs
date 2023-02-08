@@ -10,7 +10,7 @@ public sealed class ChestsMediator :
 
     [Inject]
     private ChestsAssetSupplier _assetSupplier;
-
+    
     private ChestsManager _chestsManager;
 
     [Inject]

@@ -8,14 +8,21 @@ using UnityEngine;
 public sealed class RealtimeSessionStarter
 {
     [Inject]
-    private RealtimeManager realtimeManager;
+    private RealtimeManager _realtimeManager;
 
     [Inject]
-    private RealtimeRepository repository;
+    private RealtimeRepository _repository;
+
+    //[Inject]
+    //public void Construct(RealtimeManager realtimeManager, RealtimeRepository repository)
+    //{
+    //    _realtimeManager= realtimeManager;
+    //    _repository = repository;
+    //}
 
     public async Task StartSessionAsync()
     {
-        if (this.repository.LoadSession(out RealtimeData previousSession))
+        if (this._repository.LoadSession(out RealtimeData previousSession))
         {
             await this.StartSessionByPrevious(previousSession.nowSeconds);
         }
@@ -30,7 +37,7 @@ public sealed class RealtimeSessionStarter
         yield return OnlineTime.RequestNowSeconds(nowSeconds =>
         {
             var pauseTime = nowSeconds - previousSeconds;
-            this.realtimeManager.Begin(nowSeconds, pauseTime);
+            this._realtimeManager.Begin(nowSeconds, pauseTime);
             Debug.Log($"{nowSeconds}, {pauseTime} - time session by previous");
         });
     }
@@ -39,7 +46,7 @@ public sealed class RealtimeSessionStarter
     {
         yield return OnlineTime.RequestNowSeconds(nowSeconds =>
         {            
-            this.realtimeManager.Begin(nowSeconds);
+            this._realtimeManager.Begin(nowSeconds);
             Debug.Log($"{nowSeconds} - time first session");
         });
     }
