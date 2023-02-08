@@ -44,7 +44,7 @@ namespace GameElements
             }
 
             this.State = GameState.CONSTRUCT;
-            this.elementContext.ConstructGsame();
+            this.elementContext.ConstructGame();
             Debug.Log(" The game elements was Construct!");
         }
 

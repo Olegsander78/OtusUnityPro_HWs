@@ -6701,22 +6701,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d81c3c6418194b6290affd2c186ac72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoRun: 1
+  autoRun: 0
   gameServices:
   - {fileID: 1654087719}
-  - {fileID: 1372362494}
   - {fileID: 1687535227}
-  - {fileID: 961791230}
   - {fileID: 1035551875}
+  - {fileID: 1372362494}
+  - {fileID: 961791230}
   - {fileID: 256818654}
   gameElements:
-  - {fileID: 1687535226}
-  - {fileID: 961791229}
-  - {fileID: 1035551874}
-  - {fileID: 256818653}
-  - {fileID: 1372362493}
-  - {fileID: 399230259}
   - {fileID: 1654087721}
+  - {fileID: 1687535226}
+  - {fileID: 1035551874}
+  - {fileID: 399230259}
+  - {fileID: 1372362493}
+  - {fileID: 961791229}
+  - {fileID: 256818653}
 --- !u!114 &1293597476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6731,12 +6731,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   installOnAwake: 1
   monoServices:
+  - {fileID: 1654087719}
+  - {fileID: 1372362494}
   - {fileID: 961791230}
   - {fileID: 1687535227}
   - {fileID: 1035551875}
   - {fileID: 256818654}
-  - {fileID: 1372362494}
-  - {fileID: 1654087719}
   - {fileID: 399230258}
   servicePacks: []
 --- !u!4 &1323004339 stripped

@@ -41,7 +41,7 @@ namespace GameElements
             }
         }
         
-        internal void ConstructGsame()
+        internal void ConstructGame()
         {
             this.cache.Clear();
             this.cache.AddRange(this.gameElements);
