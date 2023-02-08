@@ -28,7 +28,7 @@ public class Chest
     public float RemainingSeconds
     {
         get { return _countdown.RemainingTime; }
-        set { _countdown.RemainingTime = Math.Max(0,value); }
+        set { _countdown.RemainingTime = value; }
     }
 
     [ShowInInspector, ReadOnly]
@@ -71,7 +71,7 @@ public class Chest
     {
         _config = config;
         _countdown = new Countdown(context, config.DurationSeconds);
-        Debug.Log($"{context} - context, {config.DurationSeconds}");
+        Debug.Log($"{context.name} - context, {_countdown.RemainingTime}");
     }
 
     public void Start()

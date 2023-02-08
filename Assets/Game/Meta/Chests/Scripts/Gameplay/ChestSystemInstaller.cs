@@ -37,7 +37,7 @@ public sealed class ChestSystemInstaller: MonoBehaviour,
 
     void IGameConstructElement.ConstructGame(IGameContext context)
     {
-        Debug.Log("CONSTRUCT");
+        Debug.Log("CONSTRUCT CHEST MANAGER");
         _chestsManager.Construct(monoContext: this);
 
         ConstructControllers(context);
@@ -50,20 +50,23 @@ public sealed class ChestSystemInstaller: MonoBehaviour,
 
     void IGameInitElement.InitGame(IGameContext context)
     {
-        Debug.Log("INIT");
+        
         if (!_chestsManager.IsChestExists(ChestType.WOODEN_CHEST))
         {
             _chestsManager.InstallChest(_woodenChest);
+            Debug.Log("INIT Wooden Chets");
         }
 
         if (!_chestsManager.IsChestExists(ChestType.STEEL_CHEST))
         {
             _chestsManager.InstallChest(_steelChest);
+            Debug.Log("INIT Steel Chest");
         }
 
         if (!_chestsManager.IsChestExists(ChestType.GOLD_CHEST))
         {
             _chestsManager.InstallChest(_goldenChest);
+            Debug.Log("INIT Golden Chest");
         }
     }
 

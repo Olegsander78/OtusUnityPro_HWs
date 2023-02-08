@@ -15,7 +15,7 @@ public sealed class ChestsRepository : DataArrayRepository<ChestData>
             {                
                 var id = item.id;
                 var time = item.remainingTime;
-                Debug.Log($"<color=red>LOAD Chests DATA: {id}:{time}</color>");
+                Debug.Log($"<color=yellow>LOAD Chests DATA: {id}:{time}</color>");
             }
         }
             

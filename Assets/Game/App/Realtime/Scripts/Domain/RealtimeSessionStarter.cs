@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Asyncoroutine;
 using Services;
 using SystemTime;
-
+using UnityEngine;
 
 public sealed class RealtimeSessionStarter
 {
@@ -31,14 +31,16 @@ public sealed class RealtimeSessionStarter
         {
             var pauseTime = nowSeconds - previousSeconds;
             this.realtimeManager.Begin(nowSeconds, pauseTime);
+            Debug.Log($"{nowSeconds}, {pauseTime} - time session by previous");
         });
     }
 
     private IEnumerator StartSessionAsFirst()
     {
         yield return OnlineTime.RequestNowSeconds(nowSeconds =>
-        {
+        {            
             this.realtimeManager.Begin(nowSeconds);
+            Debug.Log($"{nowSeconds} - time first session");
         });
     }
 }

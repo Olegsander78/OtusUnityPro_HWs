@@ -1,5 +1,5 @@
 using Services;
-
+using UnityEngine;
 
 public sealed class ChestsMediator :
     IGameSetupListener,
@@ -12,6 +12,13 @@ public sealed class ChestsMediator :
     private ChestsAssetSupplier _assetSupplier;
 
     private ChestsManager _chestsManager;
+
+    [Inject]
+    public void Construct(ChestsRepository repository, ChestsAssetSupplier chestsAssetSupplier)
+    {
+        _repository = repository;
+        _assetSupplier = chestsAssetSupplier;
+    }
 
     void IGameSetupListener.OnSetupGame(GameManager gameManager)
     {
@@ -29,13 +36,16 @@ public sealed class ChestsMediator :
 
     private void SetupChests(ChestData[] chestsData)
     {
+        Debug.Log("START SETUP CHEST");
         for (int i = 0, count = chestsData.Length; i < count; i++)
         {
             var data = chestsData[i];
             var config = _assetSupplier.GetChest(data.id);
+            Debug.Log($"Chest Id - {config.Id}. ¹ Chests - {chestsData.Length}");
             var chest = _chestsManager.InstallChest(config);
             chest.Start();
-            chest.RemainingSeconds = data.remainingTime;            
+            chest.RemainingSeconds = data.remainingTime;
+            //_chestsManager.ActivateChest(chest.Config);
         }
     }
 
