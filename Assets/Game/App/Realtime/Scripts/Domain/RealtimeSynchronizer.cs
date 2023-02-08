@@ -9,7 +9,7 @@ public sealed class RealtimeSynchronizer :
 {
     [Inject]
     private RealtimeManager realtimeManager;
-
+        
     private TimeShiftEmitter timeShiftEmitter;
 
     void IAppStartListener.Start()

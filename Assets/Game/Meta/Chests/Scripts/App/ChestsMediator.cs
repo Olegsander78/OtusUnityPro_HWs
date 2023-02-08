@@ -5,10 +5,10 @@ public sealed class ChestsMediator :
     IGameSetupListener,
     IGameSaveListener
 {
-    [Inject]
+    //[Inject]
     private ChestsRepository _repository;
 
-    [Inject]
+    //[Inject]
     private ChestsAssetSupplier _assetSupplier;
     
     private ChestsManager _chestsManager;
@@ -23,6 +23,7 @@ public sealed class ChestsMediator :
     void IGameSetupListener.OnSetupGame(GameManager gameManager)
     {
         _chestsManager = gameManager.GetService<ChestsManager>();
+
         if (_repository.LoadChests(out var chestsData))
         {
             SetupChests(chestsData);
@@ -37,6 +38,7 @@ public sealed class ChestsMediator :
     private void SetupChests(ChestData[] chestsData)
     {
         Debug.Log("START SETUP CHEST");
+
         for (int i = 0, count = chestsData.Length; i < count; i++)
         {
             var data = chestsData[i];
@@ -44,8 +46,9 @@ public sealed class ChestsMediator :
             Debug.Log($"Chest Id - {config.Id}. ¹ Chests - {chestsData.Length}");
             var chest = _chestsManager.InstallChest(config);
             chest.Start();
-            chest.RemainingSeconds = data.remainingTime;
+            
             //_chestsManager.ActivateChest(chest.Config);
+            chest.RemainingSeconds = data.remainingTime;
         }
     }
 

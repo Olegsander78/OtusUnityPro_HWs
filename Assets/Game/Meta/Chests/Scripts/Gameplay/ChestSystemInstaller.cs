@@ -27,6 +27,7 @@ public sealed class ChestSystemInstaller: MonoBehaviour,
     {
         Debug.Log("GET SERVICES");
         yield return _chestsManager;
+        //_chestsManager.Construct(monoContext: this);
     }
 
     public IEnumerable<IGameElement> GetElements()

@@ -16,7 +16,7 @@ public sealed class RealtimeSessionStarter
     //[Inject]
     //public void Construct(RealtimeManager realtimeManager, RealtimeRepository repository)
     //{
-    //    _realtimeManager= realtimeManager;
+    //    _realtimeManager = realtimeManager;
     //    _repository = repository;
     //}
 
