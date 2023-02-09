@@ -2,8 +2,9 @@ using Entities;
 using Services;
 
 public sealed class CharacterMediator :
-    IGameSetupListener,
-    IGameSaveListener
+    //IGameSetupListener,
+    IGameSaveListener,
+    IGameLoadDataListener
     
 {
     private CharacterRepository _repository;
@@ -15,7 +16,24 @@ public sealed class CharacterMediator :
     {
         _repository = repository;
     }
-    void IGameSetupListener.OnSetupGame(GameManager gameManager)
+    //void IGameSetupListener.OnSetupGame(GameManager gameManager)
+    //{
+    //    _character = gameManager.GetService<HeroService>().GetHero();
+
+    //    if (_repository.LoadCharacter(out CharacterData data))
+    //    {
+    //        _character = gameManager.GetService<HeroService>().GetHero();
+    //        CharacterConverter.SetupStats(_character, data);
+    //    }
+    //}
+
+    void IGameSaveListener.OnSaveGame(GameSaveReason reason)
+    {
+        var data = CharacterConverter.ConvertToData(_character);
+        _repository.SaveCharacter(data);
+    }
+
+    void IGameLoadDataListener.OnLoadData(GameManager gameManager)
     {
         _character = gameManager.GetService<HeroService>().GetHero();
 
@@ -24,11 +42,5 @@ public sealed class CharacterMediator :
             _character = gameManager.GetService<HeroService>().GetHero();
             CharacterConverter.SetupStats(_character, data);
         }
-    }
-
-    void IGameSaveListener.OnSaveGame(GameSaveReason reason)
-    {
-        var data = CharacterConverter.ConvertToData(_character);
-        _repository.SaveCharacter(data);
     }
 }

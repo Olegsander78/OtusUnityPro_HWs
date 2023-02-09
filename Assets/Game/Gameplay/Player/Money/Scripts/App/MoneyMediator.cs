@@ -1,8 +1,9 @@
 using Services;
 
 public sealed class MoneyMediator :
-    IGameSetupListener,
-    IGameSaveListener
+    //IGameSetupListener,
+    IGameSaveListener,
+    IGameLoadDataListener
 {
     [Inject]
     private MoneyRepository _repository;
@@ -14,11 +15,11 @@ public sealed class MoneyMediator :
     {
         _repository = repository;
     }
-    void IGameSetupListener.OnSetupGame(GameManager gameManager)
-    {
-        _storage = gameManager.GetService<MoneyStorage>();
-        LoadMoney();
-    }
+    //void IGameSetupListener.OnSetupGame(GameManager gameManager)
+    //{
+    //    _storage = gameManager.GetService<MoneyStorage>();
+    //    LoadMoney();
+    //}
 
     void IGameSaveListener.OnSaveGame(GameSaveReason reason)
     {
@@ -29,5 +30,11 @@ public sealed class MoneyMediator :
     {
         if (_repository.LoadMoney(out var money))
             _storage.SetupMoney(money);
+    }
+
+    void IGameLoadDataListener.OnLoadData(GameManager gameManager)
+    {
+        _storage = gameManager.GetService<MoneyStorage>();
+        LoadMoney();
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3708985, g: 0.3783704, b: 0.35722548, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -251,16 +251,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508d1e5ed99c4f499d4d65e7b83da2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  installOnAwake: 1
+  installOnAwake: 0
   monoServices:
   - {fileID: 1867108295}
   - {fileID: 1106819961}
   servicePacks:
   - {fileID: 11400000, guid: 51d3dbddf6940aa42a168a131b75c17c, type: 2}
   - {fileID: 11400000, guid: ab47d453b8d884e1bbbbfd2c678abfde, type: 2}
-  - {fileID: 11400000, guid: 5766c27b53a33e54d8c242e062c40a74, type: 2}
   - {fileID: 11400000, guid: ee9b3cbe40c39e248be49ef7b0e8aa2c, type: 2}
   - {fileID: 11400000, guid: 855c65dc18728404699409a8c15a6cf9, type: 2}
+  - {fileID: 11400000, guid: 5766c27b53a33e54d8c242e062c40a74, type: 2}
 --- !u!1001 &1106819960
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,12 +13,12 @@ public sealed class RealtimeSessionStarter
     [Inject]
     private RealtimeRepository _repository;
 
-    //[Inject]
-    //public void Construct(RealtimeManager realtimeManager, RealtimeRepository repository)
-    //{
-    //    _realtimeManager = realtimeManager;
-    //    _repository = repository;
-    //}
+    [Inject]
+    public void Construct(RealtimeManager realtimeManager, RealtimeRepository repository)
+    {
+        _realtimeManager = realtimeManager;
+        _repository = repository;
+    }
 
     public async Task StartSessionAsync()
     {

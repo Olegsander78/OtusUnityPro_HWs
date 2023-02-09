@@ -6645,9 +6645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1293597470}
-  - component: {fileID: 1293597474}
   - component: {fileID: 1293597475}
-  - component: {fileID: 1293597476}
   m_Layer: 0
   m_Name: GAME_CONTEXT
   m_TagString: GameContext
@@ -6675,20 +6673,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1293597474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293597469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0e36a04fb77ce4b9a1e5ef2e0c1ea9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _delay: 3
-  _countdown: 1
 --- !u!114 &1293597475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6701,7 +6685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d81c3c6418194b6290affd2c186ac72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoRun: 0
+  autoRun: 1
   gameServices:
   - {fileID: 1654087719}
   - {fileID: 1687535227}
@@ -6717,28 +6701,6 @@ MonoBehaviour:
   - {fileID: 1372362493}
   - {fileID: 961791229}
   - {fileID: 256818653}
---- !u!114 &1293597476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293597469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508d1e5ed99c4f499d4d65e7b83da2dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  installOnAwake: 1
-  monoServices:
-  - {fileID: 1654087719}
-  - {fileID: 1372362494}
-  - {fileID: 961791230}
-  - {fileID: 1687535227}
-  - {fileID: 1035551875}
-  - {fileID: 256818654}
-  - {fileID: 399230258}
-  servicePacks: []
 --- !u!4 &1323004339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 448666, guid: f217d1d708cdaf14e8cfa730ff75126e,

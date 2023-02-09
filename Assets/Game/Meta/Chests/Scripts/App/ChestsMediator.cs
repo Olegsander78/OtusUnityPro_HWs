@@ -4,11 +4,12 @@ using UnityEngine;
 public sealed class ChestsMediator :
     IGameSetupListener,
     IGameSaveListener
+    //IGameLoadDataListener
 {
-    //[Inject]
+    [Inject]
     private ChestsRepository _repository;
 
-    //[Inject]
+    [Inject]
     private ChestsAssetSupplier _assetSupplier;
     
     private ChestsManager _chestsManager;
@@ -72,4 +73,14 @@ public sealed class ChestsMediator :
 
         _repository.SaveChests(chestsData);
     }
+
+    //void IGameLoadDataListener.OnLoadData(GameManager gameManager)
+    //{
+    //    _chestsManager = gameManager.GetService<ChestsManager>();
+
+    //    if (_repository.LoadChests(out var chestsData))
+    //    {
+    //        SetupChests(chestsData);
+    //    }
+    //}
 }
