@@ -1,8 +1,8 @@
-using GameElements;
+using GameSystem;
 using Entities;
 
 public sealed class RangeDamageUpgrade : Upgrade,
-    IGameInitElement
+    IGameConstructElement
 {
     private IEntity _hero;
 
@@ -29,7 +29,7 @@ public sealed class RangeDamageUpgrade : Upgrade,
         _hero.Get<IComponent_ProjectileRangeAttack>().SetDamage(damage);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _hero = context.GetService<HeroService>().GetHero();
 

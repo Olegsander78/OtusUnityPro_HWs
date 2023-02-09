@@ -1,9 +1,12 @@
 using System;
+using GameSystem;
 using Sirenix.OdinInspector;
 
 
 [Serializable]
-public abstract class ScenarioQuest
+public abstract class ScenarioQuest:
+    IGameConstructElement,
+    IGameInitElement
 {
     public event Action<ScenarioQuest> OnStarted;
 
@@ -123,4 +126,7 @@ public abstract class ScenarioQuest
         OnStop();
         OnCompleted?.Invoke(this);
     }
+
+    public abstract void InitGame();
+    public abstract void ConstructGame(IGameContext context);
 }

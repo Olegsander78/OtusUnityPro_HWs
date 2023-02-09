@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entities;
-using GameElements;
+using GameSystem;
 using Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 
 public sealed class ScenarioQuestManager : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
@@ -32,20 +33,23 @@ public sealed class ScenarioQuestManager : MonoBehaviour,
     [ReadOnly, ShowInInspector]
     private readonly Dictionary<ScenarioQuestStage, ScenarioQuest> _scenarioQuests = new();
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _moneyStorage = context.GetService<MoneyStorage>();
         _hero = context.GetService<HeroService>().GetHero();
+    }
 
+    void IGameInitElement.InitGame()
+    {
         _componentAddExp = _hero.Get<IComponent_AddExperience>();
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         StartScenarioQuest();
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         StopScenarioQuest();
     }
@@ -132,4 +136,6 @@ public sealed class ScenarioQuestManager : MonoBehaviour,
         scenarioQuest.Start();
         OnScenarioQuestChanged?.Invoke(scenarioQuest); // Event for GameStageSystem
     }
+
+
 }

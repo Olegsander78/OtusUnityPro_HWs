@@ -1,8 +1,9 @@
 using System;
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 
-public class EarnMoneyDailyQuest : DailyQuest, IGameInitElement
+public class EarnMoneyDailyQuest : DailyQuest, 
+    IGameConstructElement
 {
     public override event Action<DailyQuest> OnProgressChanged;
 
@@ -60,7 +61,7 @@ public class EarnMoneyDailyQuest : DailyQuest, IGameInitElement
         TryComplete();
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(GameSystem.IGameContext context)
     {
         _moneyStorage = context.GetService<MoneyStorage>();
     }

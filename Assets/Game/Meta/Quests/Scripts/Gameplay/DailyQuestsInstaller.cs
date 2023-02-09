@@ -1,8 +1,10 @@
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
-public sealed class DailyQuestsInstaller : MonoBehaviour, IGameInitElement
+public sealed class DailyQuestsInstaller : MonoBehaviour,
+    IGameConstructElement,
+    IGameInitElement
 {   
     [SerializeField]
     private DailyQuestConfig _easyDailyQuest;
@@ -13,23 +15,28 @@ public sealed class DailyQuestsInstaller : MonoBehaviour, IGameInitElement
     [SerializeField]
     private DailyQuestConfig _hardDailyQuest;
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {        
-        var missionsManager = context.GetService<DailyQuestManager>();
+    private DailyQuestManager _dailyQuestManager;
 
-        if (!missionsManager.IsDailyQuestExists(DailyQuestDifficulty.EASY))
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _dailyQuestManager = context.GetService<DailyQuestManager>();
+    }
+
+    void IGameInitElement.InitGame()
+    {
+        if (!_dailyQuestManager.IsDailyQuestExists(DailyQuestDifficulty.EASY))
         {
-            missionsManager.InstallDailyQuest(_easyDailyQuest);
+            _dailyQuestManager.InstallDailyQuest(_easyDailyQuest);
         }
 
-        if (!missionsManager.IsDailyQuestExists(DailyQuestDifficulty.NORMAL))
+        if (!_dailyQuestManager.IsDailyQuestExists(DailyQuestDifficulty.NORMAL))
         {
-            missionsManager.InstallDailyQuest(_normalDailyQuest);
+            _dailyQuestManager.InstallDailyQuest(_normalDailyQuest);
         }
 
-        if (!missionsManager.IsDailyQuestExists(DailyQuestDifficulty.HARD))
+        if (!_dailyQuestManager.IsDailyQuestExists(DailyQuestDifficulty.HARD))
         {
-            missionsManager.InstallDailyQuest(_hardDailyQuest);
+            _dailyQuestManager.InstallDailyQuest(_hardDailyQuest);
         }
     }
 }

@@ -1,14 +1,31 @@
 using System;
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
-public sealed class DailyQuestListPresenter : MonoBehaviour, IGameInitElement
+public sealed class DailyQuestListPresenter : MonoBehaviour, 
+    IGameConstructElement,
+    IGameInitElement
 {
     [SerializeField]
     private DailyQuestItem[] dailyQuestItems;
 
     private DailyQuestManager dailyQuestsManager;
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        this.dailyQuestsManager = context.GetService<DailyQuestManager>();
+    }
+    void IGameInitElement.InitGame()
+    {        
+        //var moneyPanelAnimator = context.GetService<MoneyPanelAnimator_AddMoney>();
+
+        for (int i = 0, count = this.dailyQuestItems.Length; i < count; i++)
+        {
+            var missionItem = this.dailyQuestItems[i];
+            missionItem.presenter.Construct(this.dailyQuestsManager);
+        }
+    }
 
     public void Show()
     {
@@ -45,17 +62,7 @@ public sealed class DailyQuestListPresenter : MonoBehaviour, IGameInitElement
         presenter.Start(dailyQuest);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        this.dailyQuestsManager = context.GetService<DailyQuestManager>();
-        //var moneyPanelAnimator = context.GetService<MoneyPanelAnimator_AddMoney>();
 
-        for (int i = 0, count = this.dailyQuestItems.Length; i < count; i++)
-        {
-            var missionItem = this.dailyQuestItems[i];
-            missionItem.presenter.Construct(this.dailyQuestsManager);
-        }
-    }
 
     private DailyQuestPresenter GetPresenter(DailyQuestDifficulty difficulty)
     {
@@ -70,6 +77,8 @@ public sealed class DailyQuestListPresenter : MonoBehaviour, IGameInitElement
 
         throw new Exception($"DailyQuest with TypeChest {difficulty} is not found"!);
     }
+
+
 
     [Serializable]
     private sealed class DailyQuestItem

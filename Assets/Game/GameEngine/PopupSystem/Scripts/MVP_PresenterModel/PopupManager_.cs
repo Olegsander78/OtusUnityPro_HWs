@@ -4,12 +4,12 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 
-public sealed class PopupManager : MonoBehaviour, Popup.ICallback
+public sealed class PopupManager_ : MonoBehaviour, Popup.ICallback
 {
     [SerializeField]
     private PopupHolder[] allPopups;
 
-    private readonly Dictionary<PopupName, Popup> activePopups = new();
+    private readonly Dictionary<PopupName_, Popup> activePopups = new();
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public sealed class PopupManager : MonoBehaviour, Popup.ICallback
 
     [Title("Methods")]
     [Button]
-    public void ShowPopup(PopupName name, object args = null)
+    public void ShowPopup(PopupName_ name, object args = null)
     {
         if (this.IsPopupActive(name))
         {
@@ -35,7 +35,7 @@ public sealed class PopupManager : MonoBehaviour, Popup.ICallback
     }
 
     [Button]
-    public void HidePopup(PopupName name)
+    public void HidePopup(PopupName_ name)
     {
         if (!this.IsPopupActive(name))
         {
@@ -49,7 +49,7 @@ public sealed class PopupManager : MonoBehaviour, Popup.ICallback
     }
 
     [Button]
-    public bool IsPopupActive(PopupName name)
+    public bool IsPopupActive(PopupName_ name)
     {
         return this.activePopups.ContainsKey(name);
     }
@@ -60,7 +60,7 @@ public sealed class PopupManager : MonoBehaviour, Popup.ICallback
         this.HidePopup(name);
     }
 
-    private PopupName FindName(Popup popup)
+    private PopupName_ FindName(Popup popup)
     {
         foreach (var holder in allPopups)
         {
@@ -73,7 +73,7 @@ public sealed class PopupManager : MonoBehaviour, Popup.ICallback
         throw new Exception($"Name of popup {popup.name} is not found!");
     }
 
-    private Popup FindPopup(PopupName name)
+    private Popup FindPopup(PopupName_ name)
     {
         foreach (var holder in this.allPopups)
         {
@@ -90,7 +90,7 @@ public sealed class PopupManager : MonoBehaviour, Popup.ICallback
     private struct PopupHolder
     {
         [SerializeField]
-        public PopupName name;
+        public PopupName_ name;
 
         [SerializeField]
         public Popup popup;

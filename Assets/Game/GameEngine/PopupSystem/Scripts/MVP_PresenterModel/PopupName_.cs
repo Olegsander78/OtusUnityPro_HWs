@@ -1,5 +1,5 @@
 
-public enum PopupName
+public enum PopupName_
 {
     WELCOME = 0,
     PRODUCT = 1,

@@ -47,6 +47,11 @@ public sealed class ChestListPresenter : MonoBehaviour,
         presenter.Start(chest);
     }
 
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _chestsManager = context.GetService<ChestsManager>();
+    }
+
     void IGameInitElement.InitGame()
     {
         
@@ -73,10 +78,7 @@ public sealed class ChestListPresenter : MonoBehaviour,
         throw new Exception($"Chest with TypeChest {typeChest} is not found"!);
     }
 
-    void IGameConstructElement.ConstructGame(IGameContext context)
-    {
-        _chestsManager = context.GetService<ChestsManager>();
-    }
+
 
     [Serializable]
     private sealed class ChestItem

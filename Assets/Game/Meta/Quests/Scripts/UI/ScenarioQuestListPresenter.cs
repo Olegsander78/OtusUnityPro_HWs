@@ -1,15 +1,33 @@
 using System;
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
-public sealed class ScenarioQuestListPresenter : MonoBehaviour, IGameInitElement
+public sealed class ScenarioQuestListPresenter : MonoBehaviour,
+    IGameConstructElement,
+    IGameInitElement
 {
     [SerializeField]
     private ScenarioQuestItem[] _scenarioQuestItems;
 
     private ScenarioQuestManager _scenarioQuestsManager;
 
+     void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _scenarioQuestsManager = context.GetService<ScenarioQuestManager>();
+    }
+
+    void IGameInitElement.InitGame()
+    {
+        
+        //var moneyPanelAnimator = context.GetService<MoneyPanelAnimator_AddMoney>();
+
+        for (int i = 0, count = _scenarioQuestItems.Length; i < count; i++)
+        {
+            var questItem = _scenarioQuestItems[i];
+            questItem.Presenter.Construct(_scenarioQuestsManager);
+        }
+    }
     public void Show()
     {
         _scenarioQuestsManager.OnScenarioQuestChanged += OnScenarioQuestChanged;
@@ -45,17 +63,6 @@ public sealed class ScenarioQuestListPresenter : MonoBehaviour, IGameInitElement
         presenter.Start(scenarioQuest);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _scenarioQuestsManager = context.GetService<ScenarioQuestManager>();
-        //var moneyPanelAnimator = context.GetService<MoneyPanelAnimator_AddMoney>();
-
-        for (int i = 0, count = _scenarioQuestItems.Length; i < count; i++)
-        {
-            var questItem = _scenarioQuestItems[i];
-            questItem.Presenter.Construct(_scenarioQuestsManager);
-        }
-    }
 
     private ScenarioQuestPresenter GetPresenter(ScenarioQuestStage stage)
     {

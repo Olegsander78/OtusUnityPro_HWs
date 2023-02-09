@@ -1,10 +1,9 @@
 using System;
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 
 
-public sealed class ScenarioQuest_StageKillEnemy : ScenarioQuest,
-    IGameInitElement
+public sealed class ScenarioQuest_StageKillEnemy : ScenarioQuest
 {
     public override event Action<ScenarioQuest> OnProgressChanged;
 
@@ -31,7 +30,7 @@ public sealed class ScenarioQuest_StageKillEnemy : ScenarioQuest,
     }
 
     private readonly ScenarioQuestConfig_StageKillEnemy _config;
-
+        
     private HeroService _heroService;
 
     private IComponent_MeleeCombat _heroMeleeCombatComponent;
@@ -42,6 +41,18 @@ public sealed class ScenarioQuest_StageKillEnemy : ScenarioQuest,
     {
         _config = config;
     }
+
+    public override void InitGame()
+    {
+        _heroMeleeCombatComponent = _heroService.GetHero().Get<IComponent_MeleeCombat>();
+        _heroRangeCombatComponent = _heroService.GetHero().Get<IComponent_ProjectileRangeAttack>();
+    }
+
+    public override void ConstructGame(IGameContext context)
+    {
+        _heroService = context.GetService<HeroService>();
+    }
+
 
     protected override void OnStart()
     {
@@ -80,10 +91,5 @@ public sealed class ScenarioQuest_StageKillEnemy : ScenarioQuest,
         TryComplete();
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _heroService = context.GetService<HeroService>();
-        _heroMeleeCombatComponent = _heroService.GetHero().Get<IComponent_MeleeCombat>();
-        _heroRangeCombatComponent = _heroService.GetHero().Get<IComponent_ProjectileRangeAttack>();
-    }
+
 }

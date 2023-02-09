@@ -101,9 +101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6540976477736056808}
   - component: {fileID: 7519431078568823448}
-  - component: {fileID: 339535376733940009}
   - component: {fileID: 8472192180810446214}
   - component: {fileID: 2891795443216085614}
+  - component: {fileID: 1811841116338365744}
   m_Layer: 5
   m_Name: PopupUpgrades
   m_TagString: Untagged
@@ -188,19 +188,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
---- !u!114 &339535376733940009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824582064249018530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3db8412a2584c4a39aa3361106d5942f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  includeInactive: 1
 --- !u!95 &8472192180810446214
 Animator:
   serializedVersion: 4
@@ -252,6 +239,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1811841116338365744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824582064249018530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb9f118c71a41ba8d7ff1aae02d95f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameElements:
+  - {fileID: 3269579814511521670}
 --- !u!1 &1886717226473061490
 GameObject:
   m_ObjectHideFlags: 0

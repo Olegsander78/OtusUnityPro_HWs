@@ -1,8 +1,8 @@
-using GameElements;
+using GameSystem;
 using Entities;
 
 public sealed class HitPointsUpgrade : Upgrade,
-    IGameInitElement
+    IGameConstructElement
 {
     private IEntity _hero;
 
@@ -30,7 +30,7 @@ public sealed class HitPointsUpgrade : Upgrade,
         _hero.Get<IComponent_SetMaxHitPoints>().SetMaxHitPoints(hitpoints);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _hero = context.GetService<HeroService>().GetHero();
 

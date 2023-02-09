@@ -1,10 +1,11 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
-public sealed class PlayerShower : MonoBehaviour, IGameInitElement
+public sealed class PlayerShower : MonoBehaviour, 
+    IGameConstructElement
 {
-    private PopupManager _popupManager;
+    private PopupManager_ _popupManager;
 
     private PlayerPresentationModelFactory _presenterFactory;
 
@@ -12,12 +13,12 @@ public sealed class PlayerShower : MonoBehaviour, IGameInitElement
     public void ShowHero()
     {
         var presentationModel = _presenterFactory.CreatePresenter();
-        _popupManager.ShowPopup(PopupName.HERO_LEVELUP, presentationModel);
+        _popupManager.ShowPopup(PopupName_.HERO_LEVELUP, presentationModel);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(GameSystem.IGameContext context)
     {
-        _popupManager = context.GetService<PopupManager>();
+        _popupManager = context.GetService<PopupManager_>();
         _presenterFactory = context.GetService<PlayerPresentationModelFactory>();
     }
 }

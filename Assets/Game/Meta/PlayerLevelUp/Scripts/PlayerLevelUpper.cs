@@ -1,9 +1,10 @@
 using UnityEngine;
 using Entities;
 using Sirenix.OdinInspector;
-using GameElements;
+using GameSystem;
 
-public class PlayerLevelUpper : MonoBehaviour, IGameInitElement
+public class PlayerLevelUpper : MonoBehaviour,
+    IGameConstructElement
 {
     //private const int INCREMENT_HP_PER_LEVEL = 5;
     //private const float INCREMENT_SPEED_PER_LEVEL = 0.2f; 
@@ -12,7 +13,7 @@ public class PlayerLevelUpper : MonoBehaviour, IGameInitElement
 
     private IEntity _character;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(GameSystem.IGameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
     }

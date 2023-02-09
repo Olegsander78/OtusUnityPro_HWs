@@ -1,8 +1,9 @@
 using Entities;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
-public sealed class PlayerPresentationModelFactory : MonoBehaviour, IGameInitElement
+public sealed class PlayerPresentationModelFactory : MonoBehaviour,
+    IGameConstructElement
 {
     [SerializeField]
     private PartyMember _partyMember;
@@ -16,7 +17,7 @@ public sealed class PlayerPresentationModelFactory : MonoBehaviour, IGameInitEle
         return new PlayerPresentationModel(_partyMember, _character, _playerLevelUpper);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(GameSystem.IGameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
         _playerLevelUpper = context.GetService<PlayerLevelUpper>();

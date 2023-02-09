@@ -1,10 +1,11 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
-public sealed class ProductShower : MonoBehaviour, IGameInitElement
+public sealed class ProductShower : MonoBehaviour,
+    IGameConstructElement
 {
-    private PopupManager popupManager;
+    private PopupManager_ popupManager;
 
     private ProductPresentationModelFactory presenterFactory;
 
@@ -12,12 +13,12 @@ public sealed class ProductShower : MonoBehaviour, IGameInitElement
     public void ShowProduct(Product product)
     {
         var presentationModel = this.presenterFactory.CreatePresenter(product);
-        this.popupManager.ShowPopup(PopupName.PRODUCT, presentationModel);
+        this.popupManager.ShowPopup(PopupName_.PRODUCT, presentationModel);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(GameSystem.IGameContext context)
     {
-        this.popupManager = context.GetService<PopupManager>();
+        this.popupManager = context.GetService<PopupManager_>();
         this.presenterFactory = context.GetService<ProductPresentationModelFactory>();
     }
 }

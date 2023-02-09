@@ -1,10 +1,10 @@
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
-public sealed class DailyQuestFactory: MonoBehaviour, IGameAttachElement
-{
-    //[Inject]
+public sealed class DailyQuestFactory: MonoBehaviour, 
+    IGameAttachElement
+{    
     private IGameContext _gameContext;
 
     void IGameAttachElement.AttachGame(IGameContext context)

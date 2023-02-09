@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 
 public sealed class UpgradeListPresenter : MonoBehaviour, 
-    IGameInitElement
+    IGameConstructElement
 {
     [SerializeField]
     private UpgradeView _viewPrefab;
@@ -22,6 +22,13 @@ public sealed class UpgradeListPresenter : MonoBehaviour,
     private readonly List<UpgradeView> _activeViews = new();
 
     private readonly List<UpgradePresenter> _activePresenters = new();
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _upgradesManager = context.GetService<UpgradesManager>();
+        _moneyStorage = context.GetService<MoneyStorage>();
+        _heroService = context.GetService<HeroService>();
+    }
 
     [Button]
     public void Show()
@@ -59,12 +66,5 @@ public sealed class UpgradeListPresenter : MonoBehaviour,
         }
 
         _activeViews.Clear();
-    }
-
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _upgradesManager = context.GetService<UpgradesManager>();
-        _moneyStorage = context.GetService<MoneyStorage>();
-        _heroService = context.GetService<HeroService>();
     }
 }

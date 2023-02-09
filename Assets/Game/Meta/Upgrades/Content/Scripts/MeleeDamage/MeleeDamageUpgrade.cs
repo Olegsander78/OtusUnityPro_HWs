@@ -1,8 +1,8 @@
-using GameElements;
+using GameSystem;
 using Entities;
 
 public sealed class MeleeDamageUpgrade : Upgrade,   
-    IGameInitElement
+    IGameConstructElement
 {
     private IEntity _hero;
 
@@ -28,7 +28,7 @@ public sealed class MeleeDamageUpgrade : Upgrade,
         _hero.Get<IComponent_SetMeleeDamage>().SetDamage(damage);        
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _hero = context.GetService<HeroService>().GetHero();
 

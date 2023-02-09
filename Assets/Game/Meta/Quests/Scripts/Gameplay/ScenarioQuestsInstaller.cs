@@ -1,19 +1,27 @@
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
-public sealed class ScenarioQuestsInstaller : MonoBehaviour, IGameInitElement
+public sealed class ScenarioQuestsInstaller : MonoBehaviour,
+    IGameConstructElement,
+    IGameInitElement
 {   
     [SerializeField]
     private ScenarioQuestConfig _startStageScenarioQuest;
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {        
-        var scenarioQuestManager = context.GetService<ScenarioQuestManager>();
+    private ScenarioQuestManager _scenarioQuestManager;
 
-        if (!scenarioQuestManager. IsScenarioQuestExists(ScenarioQuestStage.STAGE_I))
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {        
+        _scenarioQuestManager = context.GetService<ScenarioQuestManager>();
+              
+    }
+
+    void IGameInitElement.InitGame()
+    {
+        if (!_scenarioQuestManager.IsScenarioQuestExists(ScenarioQuestStage.STAGE_I))
         {
-            scenarioQuestManager.InstallScenarioQuest(_startStageScenarioQuest);
-        }        
+            _scenarioQuestManager.InstallScenarioQuest(_startStageScenarioQuest);
+        }
     }
 }

@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entities;
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 
 public sealed class UpgradesManager : MonoBehaviour,
+    IGameConstructElement,
     IGameAttachElement,
     IGameInitElement,
     IGameStartElement,
@@ -111,28 +112,31 @@ public sealed class UpgradesManager : MonoBehaviour,
         CreateUpgrades();
     }
 
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _moneyStorage = context.GetService<MoneyStorage>();
+        _hero = context.GetService<HeroService>().GetHero();
+    }
+
     void IGameAttachElement.AttachGame(IGameContext context)
     {
         RegisterUpgrades(context);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameInitElement.InitGame()
     {
-        _moneyStorage = context.GetService<MoneyStorage>();
-        _hero = context.GetService<HeroService>().GetHero();
-
         _componentOnLevelChanged = _hero.Get<IComponent_OnLevelChanged>();
         _componentGetLevel = _hero.Get<IComponent_GetLevel>();
         _currentMaxLevelOnHero = _componentGetLevel.Level;
         //Debug.Log("Constructed Hero's Level components");
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _componentOnLevelChanged.OnLevelChanged += UpdateCurrentMaxLevel;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _componentOnLevelChanged.OnLevelChanged -= UpdateCurrentMaxLevel;
     }

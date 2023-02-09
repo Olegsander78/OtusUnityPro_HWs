@@ -1,10 +1,10 @@
 using System;
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 
 
 public sealed class KillEnemyDailyQuest : DailyQuest,
-    IGameInitElement
+    IGameConstructElement
 {
     public override event Action<DailyQuest> OnProgressChanged;
 
@@ -77,7 +77,7 @@ public sealed class KillEnemyDailyQuest : DailyQuest,
         TryComplete();
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(GameSystem.IGameContext context)
     {
         _heroService = context.GetService<HeroService>();
         _heroMeleeCombatComponent = _heroService.GetHero().Get<IComponent_MeleeCombat>();

@@ -1,9 +1,9 @@
-using GameElements;
+using GameSystem;
 using UnityEngine;
 using Entities;
 
 public sealed class SpeedUpgrade : Upgrade,
-    IGameInitElement
+    IGameConstructElement
 {
     private IEntity _hero;
 
@@ -29,7 +29,7 @@ public sealed class SpeedUpgrade : Upgrade,
         _hero.Get<IComponent_SetMoveSpeed>().SetSpeed(speed);        
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {     
         _hero = context.GetService<HeroService>().GetHero();
 

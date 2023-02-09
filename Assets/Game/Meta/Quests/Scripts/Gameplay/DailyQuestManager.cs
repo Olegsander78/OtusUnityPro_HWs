@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entities;
-using GameElements;
+using GameSystem;
 using Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 
 public sealed class DailyQuestManager : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
@@ -32,20 +33,24 @@ public sealed class DailyQuestManager : MonoBehaviour,
     [ReadOnly, ShowInInspector]
     private readonly Dictionary<DailyQuestDifficulty, DailyQuest> _dailyQuests = new();
 
-    void IGameInitElement.InitGame(IGameContext context)
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _moneyStorage = context.GetService<MoneyStorage>();
         _hero = context.GetService<HeroService>().GetHero();
+    }
 
+    void IGameInitElement.InitGame()
+    {
         _componentAddExp = _hero.Get<IComponent_AddExperience>();
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         StartDailyQuests();
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         StopDailyQuests();
     }
