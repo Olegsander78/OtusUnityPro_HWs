@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using GameElements;
-using GameElements.Unity;
+using GameSystem;
 
 public sealed class GameManager
 {

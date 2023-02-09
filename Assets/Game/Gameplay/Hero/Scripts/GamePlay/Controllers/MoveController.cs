@@ -1,10 +1,11 @@
-using GameElements;
+using GameSystem;
 using InputModule;
 using UnityEngine;
 
 
 [AddComponentMenu("Gameplay/Hero/Hero Move Controller")]
 public sealed class MoveController : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
@@ -14,22 +15,17 @@ public sealed class MoveController : MonoBehaviour,
 
     private IComponent_MoveInDirection heroComponent;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameInitElement.InitGame()
     {
-        this.input = context.GetService<JoystickInput>();
-        //this.input = context.GetService<KeyboardInput>();
-        this.heroComponent = context
-            .GetService<HeroService>()
-            .GetHero()
-            .Get<IComponent_MoveInDirection>();
+        
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         this.input.OnDirectionMoved += this.OnDirectionMoved;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         this.input.OnDirectionMoved -= this.OnDirectionMoved;
     }
@@ -38,5 +34,15 @@ public sealed class MoveController : MonoBehaviour,
     {
         var worldDirection = new Vector3(screenDirection.x, 0.0f, screenDirection.y);
         this.heroComponent.Move(worldDirection);
+    }
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        this.input = context.GetService<JoystickInput>();
+        //this.input = context.GetService<KeyboardInput>();
+        this.heroComponent = context
+            .GetService<HeroService>()
+            .GetHero()
+            .Get<IComponent_MoveInDirection>();
     }
 }

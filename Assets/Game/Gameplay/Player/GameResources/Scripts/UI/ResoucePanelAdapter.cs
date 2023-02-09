@@ -1,10 +1,10 @@
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 
 public sealed class ResoucePanelAdapter : MonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
     IGameReadyElement,
     IGameFinishElement
 {
@@ -19,13 +19,13 @@ public sealed class ResoucePanelAdapter : MonoBehaviour,
 
     private ResourceStorage resourceStorage;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         this.resourceStorage = context.GetService<ResourceStorage>();
         this.SetupPanel();
     }
 
-    void IGameReadyElement.ReadyGame(IGameContext context)
+    void IGameReadyElement.ReadyGame()
     {
         if (this.listenIncome)
         {
@@ -38,7 +38,7 @@ public sealed class ResoucePanelAdapter : MonoBehaviour,
         }
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         this.resourceStorage.OnResourceExtracted -= this.OnResourceExtracted;
         this.resourceStorage.OnResourceAdded -= this.OnResourceAdded;

@@ -1,9 +1,10 @@
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 
-public sealed class HidePopupBehaviour : MonoBehaviour, IGameInitElement
+public sealed class HidePopupBehaviour : MonoBehaviour, 
+    IGameConstructElement
 {
     [SerializeField]
     private PopupName popupName;
@@ -16,7 +17,7 @@ public sealed class HidePopupBehaviour : MonoBehaviour, IGameInitElement
         this.popupManager.HidePopup(this.popupName);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         this.popupManager = context.GetService<PopupManager>();
     }

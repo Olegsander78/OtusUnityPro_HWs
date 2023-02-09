@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using Entities;
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
 [AddComponentMenu("Gameplay/Hero/Hero Interactor «Melee Combat»")]
 public sealed class MeleeCombatInteractor : MonoBehaviour,
-    IGameInitElement
+    IGameConstructElement
 {
     [SerializeField]
     private float delay = 0.15f;
@@ -16,7 +16,7 @@ public sealed class MeleeCombatInteractor : MonoBehaviour,
 
     private Coroutine delayCoroutine;
 
-    public void InitGame(IGameContext context)
+    public void ConstructGame(IGameContext context)
     {
         this.heroComponent = context.GetService<HeroService>().GetHero().Get<IComponent_MeleeCombat>();
     }    

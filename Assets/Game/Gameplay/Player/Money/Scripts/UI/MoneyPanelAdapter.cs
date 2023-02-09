@@ -1,8 +1,9 @@
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 //ADAPTER
 public sealed class MoneyPanelAdapter : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement, 
     IGameStartElement,
     IGameFinishElement
@@ -12,18 +13,17 @@ public sealed class MoneyPanelAdapter : MonoBehaviour,
 
     private MoneyStorage _moneyStorage;
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _moneyStorage = context.GetService<MoneyStorage>();
+    void IGameInitElement.InitGame()
+    {        
         _moneyPanel.SetupMoney(_moneyStorage.Money.ToString());
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _moneyStorage.OnMoneyChanged += OnMoneyChanged;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _moneyStorage.OnMoneyChanged -= OnMoneyChanged;
     }
@@ -31,6 +31,11 @@ public sealed class MoneyPanelAdapter : MonoBehaviour,
     private void OnMoneyChanged(int money)
     {
         _moneyPanel.UpdateMoney(money.ToString());
+    }
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _moneyStorage = context.GetService<MoneyStorage>();
     }
 }
 

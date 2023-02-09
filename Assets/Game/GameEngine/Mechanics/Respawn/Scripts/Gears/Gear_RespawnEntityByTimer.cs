@@ -1,6 +1,6 @@
 using System;
 using Entities;
-using GameElements;
+using GameSystem;
 using Elementary;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -36,7 +36,7 @@ public sealed class Gear_RespawnEntityByTimer : MonoBehaviour,
         
     }
 
-    void IGameReadyElement.ReadyGame(IGameContext context)
+    void IGameReadyElement.ReadyGame()
     {
         if (this.trigger == TriggerType.ENTITY_DESTROYED)
         {
@@ -57,7 +57,7 @@ public sealed class Gear_RespawnEntityByTimer : MonoBehaviour,
     }
 
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         if (this.trigger == TriggerType.ENTITY_DESTROYED)
         {

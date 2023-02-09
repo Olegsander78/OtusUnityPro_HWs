@@ -1,8 +1,9 @@
 using Entities;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 public class VisitLairController : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameReadyElement,
     IGameFinishElement
@@ -16,20 +17,18 @@ public class VisitLairController : MonoBehaviour,
     [SerializeField]
     private ScriptableEntityCondition _isLairCondition;
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _hero = context.GetService<HeroService>().GetHero();
-        _lairInteractor = context.GetService<LairInteractor>();
+    void IGameInitElement.InitGame()
+    {        
         _heroComponent = _hero.Get<IComponent_CollisionEvents>();
     }
 
-    void IGameReadyElement.ReadyGame(IGameContext context)
+    void IGameReadyElement.ReadyGame()
     {
         _heroComponent.OnCollisionEntered += OnHeroEntered;
         _heroComponent.OnCollisionExited += OnHeroExited;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _heroComponent.OnCollisionEntered -= OnHeroEntered;
         _heroComponent.OnCollisionExited -= OnHeroExited;
@@ -58,5 +57,11 @@ public class VisitLairController : MonoBehaviour,
                 _lairInteractor.CancelSpawnEnemy();
             }
         }
+    }
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _hero = context.GetService<HeroService>().GetHero();
+        _lairInteractor = context.GetService<LairInteractor>();
     }
 }

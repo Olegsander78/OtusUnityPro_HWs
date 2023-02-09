@@ -1,4 +1,4 @@
-﻿using GameElements;
+﻿using GameSystem;
 using Services;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
@@ -49,7 +49,7 @@ public sealed class ChestSystemInstaller: MonoBehaviour,
         _chestsManager.AddObserver(new ChestGetRewardObserver_HardMoney());
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameInitElement.InitGame()
     {
         
         if (!_chestsManager.IsChestExists(ChestType.WOODEN_CHEST))

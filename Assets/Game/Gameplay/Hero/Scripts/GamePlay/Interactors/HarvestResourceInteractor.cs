@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Entities;
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
 [AddComponentMenu("Gameplay/Hero/Hero Interactor «Harvest Resource»")]
 public sealed class HarvestResourceInteractor : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameReadyElement,
     IGameFinishElement
@@ -19,7 +20,7 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
 
     private HeroService _heroService;
 
-    //private ResourceStorage _resourceStorage;
+    private ResourceStorage _resourceStorage;
 
     private IComponent_HarvestResource _heroComponent;    
 
@@ -27,6 +28,16 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
     private ScriptableEntityCondition _isResourcesActive;
 
     private readonly List<IHarvestResourceAction> _finishActions = new();
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _heroComponent = context
+           .GetService<HeroService>()
+           .GetHero()
+           .Get<IComponent_HarvestResource>();
+
+        _resourceStorage = context.GetService<ResourceStorage>();
+    }
 
     public void Construct(HeroService heroService)
     {
@@ -36,54 +47,24 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
     {
         _finishActions.Add(action);
     }
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        _heroComponent = context
-            .GetService<HeroService>()
-            .GetHero()
-            .Get<IComponent_HarvestResource>();
+    void IGameInitElement.InitGame()
+    {      
 
         _finishActions.Add(new HarvestResourceAction_DestroyResource());
-        _finishActions.Add(new HarvestResourceAction_AddResourcesToStorage(
-            context.GetService<ResourceStorage>()));
+        _finishActions.Add(new HarvestResourceAction_AddResourcesToStorage(_resourceStorage));
 
-        //_resourceStorage = context .GetService<ResourceStorage>();
     }
-    void IGameReadyElement.ReadyGame(IGameContext context)
+    void IGameReadyElement.ReadyGame()
     {
         _heroComponent.OnHarvestStopped += OnHarvestFinished;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _heroComponent.OnHarvestStopped -= OnHarvestFinished;
     }
 
-    //public void TryStartHarvest(IEntity resourceObject)
-    //{
-    //    if (this.heroComponent.IsHarvesting)
-    //    {
-    //        return;
-    //    }
-
-    //    if (this.delayCoroutine == null)
-    //    {
-    //        this.delayCoroutine = this.StartCoroutine(this.HarvestRoutine(resourceObject));
-    //    }
-    //}
-
-    //private IEnumerator HarvestRoutine(IEntity resourceObject)
-    //{
-
-
-    //    var operation = new HarvestResourceOperation(resourceObject);
-    //    if (this.heroComponent.CanStartHarvest(operation))
-    //    {
-    //        this.heroComponent.StartHarvest(operation);
-    //    }
-    //    Debug.Log($"Start Harvest {resourceObject}");
-    //    this.delayCoroutine = null;
-    //}
+    
     
     internal bool CanHarvest(IEntity resource)
     {
@@ -138,7 +119,9 @@ public sealed class HarvestResourceInteractor : MonoBehaviour,
 
         //    Debug.LogWarning($" Interactor: Completed harvest {resource}");
         //}
-    }    
+    }
+
+
 
     //private void DestroyResource(IEntity resource)
     //{

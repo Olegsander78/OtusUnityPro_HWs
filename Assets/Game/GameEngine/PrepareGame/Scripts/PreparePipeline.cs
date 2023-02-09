@@ -1,4 +1,4 @@
-using GameElements.Unity;
+using GameSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -17,12 +17,12 @@ public sealed class PreparePipeline : MonoBehaviour
 
     private void OnEnable()
     {
-        this.gameContext.OnLoaded += this.PrepareGame;
+        this.gameContext.OnGameConstructed += this.PrepareGame;
     }
 
     private void OnDisable()
     {
-        this.gameContext.OnLoaded -= this.PrepareGame;
+        this.gameContext.OnGameConstructed -= this.PrepareGame;
     }
 
     private void PrepareGame()

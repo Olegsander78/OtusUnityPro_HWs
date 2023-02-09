@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Entities;
-using Game.GameEngine.Mechanics;
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
@@ -14,9 +13,9 @@ public sealed class EnemyDetector : AbstractDetector
 
     private MeleeCombatInteractor combatInteractor;
 
-    public override void InitGame(IGameContext context)
+    public override void ConstructGame(IGameContext context)
     {
-        base.InitGame(context);
+        base.ConstructGame(context);
         this.combatInteractor = context.GetService<MeleeCombatInteractor>();
     }
 

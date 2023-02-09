@@ -1,4 +1,4 @@
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
@@ -14,12 +14,12 @@ public abstract class TimeShiftObserver : MonoBehaviour,
         _emitter = context.GetService<TimeShiftEmitter>();
     }
 
-    public virtual void ReadyGame(IGameContext context)
+    public virtual void ReadyGame()
     {
         _emitter.OnTimeShifted += this.OnTimeShifted;
     }
 
-    public virtual void FinishGame(IGameContext context)
+    public virtual void FinishGame()
     {
         _emitter.OnTimeShifted -= this.OnTimeShifted;
     }

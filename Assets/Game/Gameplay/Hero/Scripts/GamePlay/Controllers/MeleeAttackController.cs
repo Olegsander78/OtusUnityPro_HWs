@@ -1,10 +1,10 @@
 using UnityEngine;
 using Entities;
-using GameElements;
+using GameSystem;
 
 [AddComponentMenu("Gameplay/Hero/Hero MeleeAttack Controller")]
 public class MeleeAttackController : MonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
     IGameStartElement,
     IGameFinishElement
 {
@@ -21,7 +21,7 @@ public class MeleeAttackController : MonoBehaviour,
 
     private IComponent_MeleeAttack _meleeAttackComponent;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _input = context.GetService<KeyboardInput>();
 
@@ -31,13 +31,15 @@ public class MeleeAttackController : MonoBehaviour,
             .GetHero()
             .Get<IComponent_MeleeAttack>();
     }
+      
 
-    void IGameStartElement.StartGame(IGameContext context)
+
+    void IGameStartElement.StartGame()
     {
         _input.OnMeleeAttackEvent += TryMeleeAttack;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _input.OnMeleeAttackEvent -= TryMeleeAttack;
     }

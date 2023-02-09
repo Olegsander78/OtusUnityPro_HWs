@@ -1,8 +1,9 @@
-using GameElements;
+using GameSystem;
 using Entities;
 using UnityEngine;
 
 public class EnemiesRewardsController : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
@@ -29,10 +30,13 @@ public class EnemiesRewardsController : MonoBehaviour,
 
     private int _baseMoney;
 
-
-    void IGameInitElement.InitGame(IGameContext context)
+    public virtual void ConstructGame(IGameContext context)
     {
         _hero = context.GetService<HeroService>().GetHero();
+    }
+
+    void IGameInitElement.InitGame()
+    {       
         _component_GetLevelHero = _hero.Get<IComponent_GetLevel>();
         _component_OnLevelHeroChanged = _hero.Get<IComponent_OnLevelChanged>();
 
@@ -46,12 +50,12 @@ public class EnemiesRewardsController : MonoBehaviour,
         //Debug.Log($"Init rewards: {_baseExp} , {_baseMoney} ");
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _component_OnLevelHeroChanged.OnLevelChanged += UpdateRewards;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _component_OnLevelHeroChanged.OnLevelChanged -= UpdateRewards;
     }

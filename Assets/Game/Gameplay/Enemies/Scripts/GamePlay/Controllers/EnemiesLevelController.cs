@@ -1,9 +1,10 @@
-using GameElements;
+using GameSystem;
 using Entities;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
 public class EnemiesLevelController : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
@@ -28,9 +29,13 @@ public class EnemiesLevelController : MonoBehaviour,
     private HitPointsEngine _hitPointsEngine;
 
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _hero = context.GetService<HeroService>().GetHero();
+    }
+
+    void IGameInitElement.InitGame()
+    {        
         _component_GetLevelHero = _hero.Get<IComponent_GetLevel>();
         _component_OnLevelHeroChanged = _hero.Get<IComponent_OnLevelChanged>();
 
@@ -39,12 +44,12 @@ public class EnemiesLevelController : MonoBehaviour,
         UpdateEnemyStats(_levelMultiplier);
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _component_OnLevelHeroChanged.OnLevelChanged += UpdateEnemyStats;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _component_OnLevelHeroChanged.OnLevelChanged -= UpdateEnemyStats;
     }

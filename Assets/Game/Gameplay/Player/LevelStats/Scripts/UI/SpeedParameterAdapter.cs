@@ -1,9 +1,9 @@
 using Entities;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 public class SpeedParameterAdapter : MonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
     IGameStartElement,
     IGameFinishElement
 
@@ -13,18 +13,18 @@ public class SpeedParameterAdapter : MonoBehaviour,
 
     private IEntity _character;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
         SetupPanel();
     }
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _character.Get<IComponent_OnMoveSpeedChanged>().OnSpeedChanged += UpdatePanel;
 
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _character.Get<IComponent_OnMoveSpeedChanged>().OnSpeedChanged -= UpdatePanel;
     }

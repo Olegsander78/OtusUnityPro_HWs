@@ -1,9 +1,10 @@
 using Entities;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 public sealed class VisitResourceController : MonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
+    //IGameInitElement,
     IGameReadyElement,
     IGameFinishElement
 {   
@@ -16,20 +17,20 @@ public sealed class VisitResourceController : MonoBehaviour,
     [SerializeField]
     private ScriptableEntityCondition _isResourceCondition;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _hero = context.GetService<HeroService>().GetHero();
         _harvestInteractor = context.GetService<HarvestResourceInteractor>();
         _heroComponent = _hero.Get<IComponent_CollisionEvents>();
     }
 
-    void IGameReadyElement.ReadyGame(IGameContext context)
+    void IGameReadyElement.ReadyGame()
     {
         _heroComponent.OnCollisionEntered += OnHeroEntered;
         _heroComponent.OnCollisionExited += OnHeroExited;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _heroComponent.OnCollisionEntered -= OnHeroEntered;
         _heroComponent.OnCollisionExited -= OnHeroExited;
@@ -60,4 +61,6 @@ public sealed class VisitResourceController : MonoBehaviour,
             }
         }
     }
+
+
 }

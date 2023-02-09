@@ -1,10 +1,10 @@
 using Cinemachine;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 [AddComponentMenu("Gameplay/Player/Player Cinemachine Controller")]
 public sealed class CinemachineController : MonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
     IGameStartElement,
     IGameFinishElement
 {
@@ -16,19 +16,19 @@ public sealed class CinemachineController : MonoBehaviour,
         _virtualCamera.enabled = false;
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _virtualCamera.Follow = context.GetService<HeroService>()
             .GetHero()
             .Get<Component_CinemachineFollowPoint>().Point;
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _virtualCamera.enabled = true;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _virtualCamera.enabled = false;
     }

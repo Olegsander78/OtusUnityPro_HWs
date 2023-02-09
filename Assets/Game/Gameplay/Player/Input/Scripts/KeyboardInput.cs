@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 public sealed class KeyboardInput : MonoBehaviour,
     IGameStartElement,
@@ -21,12 +21,12 @@ public sealed class KeyboardInput : MonoBehaviour,
         HandleKeyboard();
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         enabled = true;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         enabled = false;
     }

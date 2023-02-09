@@ -1,9 +1,9 @@
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 [AddComponentMenu("Gameplay/Hero/Hero Jump Controller")]
 public class JumpConroller : MonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
     IGameStartElement,
     IGameFinishElement
 {
@@ -11,7 +11,7 @@ public class JumpConroller : MonoBehaviour,
 
     private IComponent_Jump _jumpComponent;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _input = context.GetService<KeyboardInput>();
 
@@ -20,12 +20,13 @@ public class JumpConroller : MonoBehaviour,
             .Get<IComponent_Jump>();
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+
+    void IGameStartElement.StartGame()
     {
         _input.OnJumpEvent += Jump;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _input.OnJumpEvent -= Jump;
     }

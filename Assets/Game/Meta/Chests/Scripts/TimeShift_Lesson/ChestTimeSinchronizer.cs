@@ -1,12 +1,13 @@
 using Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 
-public class ChestTimeSinchronizer : MonoBehaviour, 
+public class ChestTimeSinchronizer : MonoBehaviour,
+    IGameConstructElement,
     ITimeShiftListener,
-    IGameInitElement,
+    //IGameInitElement,
     IGameReadyElement,
     IGameFinishElement
 {    
@@ -14,11 +15,17 @@ public class ChestTimeSinchronizer : MonoBehaviour,
 
     private TimeShifter _timeShifter;
 
-    void IGameInitElement.InitGame(IGameContext context)
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _chestsManager = context.GetService<ChestsManager>();
         _timeShifter = context.GetService<TimeShifter>();
     }
+
+    //void IGameInitElement.InitGame()
+    //{
+    
+    //}
 
     //void ITimeShiftListener.OnTimeShifted(float secondOffset)
     //{
@@ -29,12 +36,12 @@ public class ChestTimeSinchronizer : MonoBehaviour,
     //    }
     //}
 
-    void IGameReadyElement.ReadyGame(IGameContext context)
+    void IGameReadyElement.ReadyGame()
     {
         _timeShifter.AddListener(this);
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _timeShifter.RemoveListener(this);
     }
@@ -47,4 +54,5 @@ public class ChestTimeSinchronizer : MonoBehaviour,
             Debug.Log($"{chest.Id} shifted ");
         }
     }
+
 }

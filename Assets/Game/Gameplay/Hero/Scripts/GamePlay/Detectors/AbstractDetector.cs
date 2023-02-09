@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using Entities;
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 
 public abstract class AbstractDetector : SerializedMonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
+    //IGameInitElement,
     IGameReadyElement,
     IGameFinishElement
 {
@@ -21,17 +22,22 @@ public abstract class AbstractDetector : SerializedMonoBehaviour,
         this.detectedEntites = new List<IEntity>();
     }
 
-    public virtual void InitGame(IGameContext context)
+    public virtual void ConstructGame(IGameContext context)
     {
         this.sensor = context.GetService<EntitySensor>();
     }
 
-    public virtual void ReadyGame(IGameContext context)
+    //public virtual void InitGame()
+    //{
+        
+    //}
+
+    public virtual void ReadyGame()
     {
         this.sensor.OnEntitiesUpdated += this.OnEntitiesUpdated;
     }
 
-    public virtual void FinishGame(IGameContext context)
+    public virtual void FinishGame()
     {
         this.sensor.OnEntitiesUpdated -= this.OnEntitiesUpdated;
     }
@@ -56,4 +62,6 @@ public abstract class AbstractDetector : SerializedMonoBehaviour,
 
         this.OnEntitesChanged(this.detectedEntites);
     }
+
+
 }

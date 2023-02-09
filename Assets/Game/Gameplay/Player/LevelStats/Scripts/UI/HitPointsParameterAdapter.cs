@@ -1,9 +1,9 @@
 using Entities;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 public class HitPointsParameterAdapter : MonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
     IGameStartElement,
     IGameFinishElement
 {
@@ -11,19 +11,19 @@ public class HitPointsParameterAdapter : MonoBehaviour,
     private PropertyPanel _panel;
 
     private IEntity _character;
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _character = context.GetService<HeroService>().GetHero();
 
         SetupPanel();        
     }
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _character.Get<IComponent_OnHitPointsChanged>().OnHitPointsChanged += UpdateCurHPPanel;
         _character.Get<IComponent_OnHitPointsChanged>().OnMaxHitPointsChanged += UpdateMaxHPPanel;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _character.Get<IComponent_OnHitPointsChanged>().OnHitPointsChanged -= UpdateCurHPPanel;
         _character.Get<IComponent_OnHitPointsChanged>().OnMaxHitPointsChanged -= UpdateMaxHPPanel;

@@ -1,5 +1,5 @@
 using Entities;
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
@@ -10,12 +10,12 @@ public sealed class Gear_EnableEntityByGame : MonoBehaviour,
     [SerializeField]
     private UnityEntity unit;
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         this.unit.Get<IComponent_Enable>().SetEnable(true);
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         this.unit.Get<IComponent_Enable>().SetEnable(false);
     }

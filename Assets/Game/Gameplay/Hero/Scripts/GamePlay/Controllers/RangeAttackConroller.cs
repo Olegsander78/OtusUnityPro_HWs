@@ -1,8 +1,8 @@
 using UnityEngine;
-using GameElements;
-
+using GameSystem;
 [AddComponentMenu("Gameplay/Hero/Hero RangeAttack Controller")]
 public class RangeAttackConroller : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
@@ -11,21 +11,17 @@ public class RangeAttackConroller : MonoBehaviour,
 
     private IComponent_RangeAttack _rangeAttackComponent;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameInitElement.InitGame()
     {
-        _input = context.GetService<KeyboardInput>();
-
-        _rangeAttackComponent = context.GetService<HeroService>()
-            .GetHero()
-            .Get<IComponent_RangeAttack>();
+        
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _input.OnRangeAttackEvent += RangeAttack;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _input.OnRangeAttackEvent -= RangeAttack;
     }
@@ -33,5 +29,14 @@ public class RangeAttackConroller : MonoBehaviour,
     private void RangeAttack()
     {
         _rangeAttackComponent.Attack();
+    }
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _input = context.GetService<KeyboardInput>();
+
+        _rangeAttackComponent = context.GetService<HeroService>()
+            .GetHero()
+            .Get<IComponent_RangeAttack>();
     }
 }

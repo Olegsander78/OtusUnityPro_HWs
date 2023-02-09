@@ -1,9 +1,10 @@
-using GameElements;
+using GameSystem;
 using UIFrames.Unity;
 using UnityEngine;
 
 
-public sealed class PopupFactory : UnityFrameFactory<PopupName, UnityFrame>, IGameAttachElement
+public sealed class PopupFactory : UnityFrameFactory<PopupName, UnityFrame>, 
+    IGameAttachElement
 {
     private IGameContext gameContext;
 

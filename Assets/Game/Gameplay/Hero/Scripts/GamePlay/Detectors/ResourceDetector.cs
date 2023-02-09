@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Entities;
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
@@ -18,9 +18,9 @@ public sealed class ResourceDetector : AbstractDetector
         return this.resourceCondition.IsTrue(entity);
     }
 
-    public override void InitGame(IGameContext context)
+    public override void ConstructGame(IGameContext context)
     {
-        base.InitGame(context);
+        base.ConstructGame(context);
         this.resourceInteractor = context.GetService<HarvestResourceInteractor>();
     }
 

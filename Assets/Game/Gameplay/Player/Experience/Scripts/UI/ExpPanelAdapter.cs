@@ -1,9 +1,10 @@
 using Entities;
 using UnityEngine;
-using GameElements;
+using GameSystem;
 
 //ADAPTER
 public sealed class ExpPanelAdapter : MonoBehaviour,
+    IGameConstructElement,
     IGameInitElement,
     IGameStartElement,
     IGameFinishElement
@@ -22,10 +23,9 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
 
     private IComponent_ChangeExperience _component_AddExp;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameInitElement.InitGame()
     {
-        _character = context.GetService<HeroService>().GetHero();
-
+        
         _component_GetLevel = _character.Get<IComponent_GetLevel>();
 
         _component_GetExp = _character.Get<IComponent_GetExperience>();
@@ -39,7 +39,7 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
         _expPanel.SetupIcon(_partyMember.IconHeroImage);
     }
 
-    void IGameStartElement.StartGame(IGameContext context)
+    void IGameStartElement.StartGame()
     {
         _component_AddExp.OnExperienceChanged += OnCurrentExpChanged;
         _component_AddExp.OnNextlvlExperienceChanged += OnNextLvlExpChanged;
@@ -47,7 +47,7 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
         _character.Get<IComponent_OnLevelChanged>().OnLevelChanged += UpdateCurLvlPanel;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         _component_AddExp.OnExperienceChanged -= OnCurrentExpChanged;
         _component_AddExp.OnNextlvlExperienceChanged -= OnNextLvlExpChanged;
@@ -66,6 +66,11 @@ public sealed class ExpPanelAdapter : MonoBehaviour,
     private void UpdateCurLvlPanel(int level)
     {
         _expPanel.UpdateLevel(_component_GetLevel.Level.ToString());
+    }
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _character = context.GetService<HeroService>().GetHero();
     }
 }
 

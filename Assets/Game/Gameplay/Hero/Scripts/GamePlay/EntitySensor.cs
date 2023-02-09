@@ -2,14 +2,15 @@ using System;
 using System.Collections.Generic;
 using Entities;
 using Game.GameEngine.Mechanics;
-using GameElements;
+using GameSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 
 [AddComponentMenu("Gameplay/Hero/Hero Entity Sensor")]
 public sealed class EntitySensor : MonoBehaviour,
-    IGameInitElement,
+    IGameConstructElement,
+    //IGameInitElement,
     IGameReadyElement,
     IGameFinishElement
 {
@@ -31,20 +32,17 @@ public sealed class EntitySensor : MonoBehaviour,
         return this.detectedEntities;
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
-    {
-        this.heroComponent = context
-            .GetService<HeroService>()
-            .GetHero()
-            .Get<Component_ColliderSensor>();
-    }
+    //void IGameInitElement.InitGame()
+    //{
+        
+    //}
 
-    void IGameReadyElement.ReadyGame(IGameContext context)
+    void IGameReadyElement.ReadyGame()
     {
         this.heroComponent.OnCollisionsUpdated += this.UpdateEntities;
     }
 
-    void IGameFinishElement.FinishGame(IGameContext context)
+    void IGameFinishElement.FinishGame()
     {
         this.heroComponent.OnCollisionsUpdated -= this.UpdateEntities;
     }
@@ -64,5 +62,13 @@ public sealed class EntitySensor : MonoBehaviour,
         }
 
         this.OnEntitiesUpdated?.Invoke();
+    }
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        this.heroComponent = context
+            .GetService<HeroService>()
+            .GetHero()
+            .Get<Component_ColliderSensor>();
     }
 }

@@ -1,10 +1,11 @@
 using Entities;
-using GameElements;
+using GameSystem;
 using System;
 using UnityEngine;
 
 [AddComponentMenu("Gameplay/Hero/Hero Interactor «Spawn Enemies from Lair»")]
-public class LairInteractor : MonoBehaviour, IGameInitElement
+public class LairInteractor : MonoBehaviour, 
+    IGameConstructElement
 {
     public event Action<IEntity> OnSpawnCompleted;
     public bool IsSpawningEnemy { get; private set; }
@@ -28,7 +29,7 @@ public class LairInteractor : MonoBehaviour, IGameInitElement
     [SerializeField]
     private ScriptableEntityCondition _isLairActive;
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameConstructElement.ConstructGame(IGameContext context)
     {
         _heroTriggerComponent = context
             .GetService<HeroService>()

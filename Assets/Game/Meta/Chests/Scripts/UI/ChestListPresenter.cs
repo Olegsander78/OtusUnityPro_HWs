@@ -1,9 +1,11 @@
 using System;
-using GameElements;
+using GameSystem;
 using UnityEngine;
 
 
-public sealed class ChestListPresenter : MonoBehaviour, IGameInitElement
+public sealed class ChestListPresenter : MonoBehaviour,
+    IGameConstructElement,
+    IGameInitElement
 {
     [SerializeField]
     private ChestItem[] _chestItems;
@@ -45,9 +47,9 @@ public sealed class ChestListPresenter : MonoBehaviour, IGameInitElement
         presenter.Start(chest);
     }
 
-    void IGameInitElement.InitGame(IGameContext context)
+    void IGameInitElement.InitGame()
     {
-        _chestsManager = context.GetService<ChestsManager>();
+        
         //var moneyPanelAnimator = context.GetService<MoneyPanelAnimator_AddMoney>();
 
         for (int i = 0, count = _chestItems.Length; i < count; i++)
@@ -69,6 +71,11 @@ public sealed class ChestListPresenter : MonoBehaviour, IGameInitElement
         }
 
         throw new Exception($"Chest with TypeChest {typeChest} is not found"!);
+    }
+
+    void IGameConstructElement.ConstructGame(IGameContext context)
+    {
+        _chestsManager = context.GetService<ChestsManager>();
     }
 
     [Serializable]
