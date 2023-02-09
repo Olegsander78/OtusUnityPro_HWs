@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Services;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -16,7 +17,7 @@ public sealed class ApplicationLoader : MonoBehaviour
 
     [Space]
     [SerializeField]
-    [FormerlySerializedAs("_config")]
+    [FormerlySerializedAs("config")]
     private LoadingPipeline pipeline;
 
     private int taskPointer;
@@ -31,11 +32,11 @@ public sealed class ApplicationLoader : MonoBehaviour
 
     public async void LoadApplication()
     {
-        var tasks = this.pipeline.GetTasks();
-        for (int i = 0, count = tasks.Length; i < count; i++)
+        var taskList = this.pipeline.GetTaskList();
+        for (int i = 0, count = taskList.Length; i < count; i++)
         {
-            var task = tasks[i];
-            var result = await this.DoTask(task);
+            var taskType = taskList[i];
+            var result = await this.DoTask(taskType);
             if (!result.success)
             {
                 this.OnFailed?.Invoke(result.error);
@@ -46,9 +47,10 @@ public sealed class ApplicationLoader : MonoBehaviour
         this.OnCompleted?.Invoke();
     }
 
-    private Task<LoadingResult> DoTask(ILoadingTask loadingTask)
+    private Task<LoadingResult> DoTask(Type taskType)
     {
         var tcs = new TaskCompletionSource<LoadingResult>();
+        var loadingTask = (ILoadingTask)ServiceInjector.Instantiate(taskType);
         loadingTask.Do(result => tcs.SetResult(result));
         return tcs.Task;
     }

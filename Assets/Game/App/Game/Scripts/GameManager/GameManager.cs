@@ -2,24 +2,21 @@ using System.Collections.Generic;
 using GameElements;
 using GameElements.Unity;
 
-
 public sealed class GameManager
 {
     private readonly List<object> registeredServices;
 
-    private readonly List<object> registeredElements;
+    private readonly List<IGameElement> registeredElements;
 
     private IGameContext gameContext;
-
-    private bool gameSetuped;
 
     public GameManager()
     {
         this.registeredServices = new List<object>();
-        this.registeredElements = new List<object>();
+        this.registeredElements = new List<IGameElement>();
     }
 
-    public void Setup(MonoGameContext gameContext)
+    public void SetupGame(MonoGameContext gameContext)
     {
         for (int i = 0, count = this.registeredServices.Count; i < count; i++)
         {
@@ -30,16 +27,15 @@ public sealed class GameManager
         for (int i = 0, count = this.registeredElements.Count; i < count; i++)
         {
             var element = this.registeredElements[i];
-            if (element is IGameElement gameElement)
-            {
-                gameContext.RegisterElement(gameElement);
-            }
+            gameContext.RegisterElement(element);
         }
 
-        gameContext.LoadGame();
-
-        this.gameSetuped = true;
         this.gameContext = gameContext;
+    }
+
+    public void ConstructGame()
+    {
+        ((MonoGameContext)gameContext).ConstructGame();
     }
 
     public void InitGame()
@@ -70,36 +66,24 @@ public sealed class GameManager
     public void RegisterService(object service)
     {
         this.registeredServices.Add(service);
-        if (this.gameSetuped)
-        {
-            this.gameContext.RegisterService(service);
-        }
+        this.gameContext?.RegisterService(service);
     }
 
     public void UnregisterService(object service)
     {
         this.registeredServices.Remove(service);
-        if (this.gameSetuped)
-        {
-            this.gameContext.UnregisterService(service);
-        }
+        this.gameContext?.UnregisterService(service);
     }
 
     public void RegisterElement(IGameElement element)
     {
         this.registeredElements.Add(element);
-        if (this.gameSetuped)
-        {
-            this.gameContext.RegisterElement(element);
-        }
+        this.gameContext?.RegisterElement(element);
     }
 
     public void UnregisterElement(IGameElement element)
     {
         this.registeredElements.Remove(element);
-        if (this.gameSetuped)
-        {
-            this.gameContext.UnregisterElement(element);
-        }
+        this.gameContext?.UnregisterElement(element);
     }
 }

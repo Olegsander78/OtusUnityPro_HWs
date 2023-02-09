@@ -1,4 +1,3 @@
-using Game.GameEngine;
 using Services;
 
 
@@ -7,7 +6,7 @@ public sealed class RealtimeSynchronizer :
     IAppStopListener,
     IGameLoadDataListener
 {
-    [Inject]
+    [ServiceInject]
     private RealtimeManager realtimeManager;
         
     private TimeShiftEmitter timeShiftEmitter;

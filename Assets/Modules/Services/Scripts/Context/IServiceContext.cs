@@ -21,6 +21,8 @@ namespace Services
         
         void AddService(object service);
 
+        void AddServices(IEnumerable<object> services);
+
         void RemoveService(object service);
     }
 }

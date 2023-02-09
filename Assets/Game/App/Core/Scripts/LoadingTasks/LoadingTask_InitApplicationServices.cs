@@ -4,12 +4,20 @@ using Services;
 
 public sealed class LoadingTask_InitApplicationServices : ILoadingTask
 {
+    private readonly IAppInitListener[] services;
+
+    [ServiceInject]
+    public LoadingTask_InitApplicationServices(IAppInitListener[] services)
+    {
+        this.services = services;
+    }
+
     public void Do(Action<LoadingResult> callback)
     {
-        var listeners = ServiceLocator.GetServices<IAppInitListener>();
-        foreach (var listener in listeners)
+        for (int i = 0, count = this.services.Length; i < count; i++)
         {
-            listener.Init();
+            var service = this.services[i];
+            service.Init();
         }
 
         callback?.Invoke(LoadingResult.Success());

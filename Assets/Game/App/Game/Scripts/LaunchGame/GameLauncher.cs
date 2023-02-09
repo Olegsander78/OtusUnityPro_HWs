@@ -1,5 +1,8 @@
+using System;
 using System.Threading.Tasks;
+using Services;
 using UnityEngine;
+
 
 public sealed class GameLauncher
 {
@@ -8,17 +11,18 @@ public sealed class GameLauncher
     public async Task LaunchGame()
     {
         var taskPipeline = Resources.Load<LoadingPipeline>(LAUNCH_PIPELINE);
-        var tasks = taskPipeline.GetTasks();
-        for (int i = 0, count = tasks.Length; i < count; i++)
+        var taskList = taskPipeline.GetTaskList();
+        for (int i = 0, count = taskList.Length; i < count; i++)
         {
-            var task = tasks[i];
-            await DoTask(task);
+            var taskType = taskList[i];
+            await DoTask(taskType);
         }
     }
 
-    private static Task<LoadingResult> DoTask(ILoadingTask loadingTask)
+    private static Task<LoadingResult> DoTask(Type taskType)
     {
         var tcs = new TaskCompletionSource<LoadingResult>();
+        var loadingTask = (ILoadingTask)ServiceInjector.Instantiate(taskType);
         loadingTask.Do(result => tcs.SetResult(result));
         return tcs.Task;
     }

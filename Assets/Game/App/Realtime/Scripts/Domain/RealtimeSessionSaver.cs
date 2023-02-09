@@ -5,10 +5,10 @@ public sealed class RealtimeSessionSaver :
     IAppStartListener,
     IAppStopListener
 {
-    [Inject]
+    [ServiceInject]
     private RealtimeRepository repository;
 
-    [Inject]
+    [ServiceInject]
     private RealtimeManager realtimeManager;
 
     void IAppStartListener.Start()

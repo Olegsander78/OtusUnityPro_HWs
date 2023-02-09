@@ -2,26 +2,25 @@ using Services;
 using UnityEngine;
 
 public sealed class ChestsMediator :
-    IGameSetupListener,
-    IGameSaveListener
-    //IGameLoadDataListener
+    IGameLoadDataListener,
+    IGameSaveDataListener
 {
-    [Inject]
+    [ServiceInject]
     private ChestsRepository _repository;
 
-    [Inject]
+    [ServiceInject]
     private ChestsAssetSupplier _assetSupplier;
     
     private ChestsManager _chestsManager;
 
-    [Inject]
+    [ServiceInject]
     public void Construct(ChestsRepository repository, ChestsAssetSupplier chestsAssetSupplier)
     {
         _repository = repository;
         _assetSupplier = chestsAssetSupplier;
     }
 
-    void IGameSetupListener.OnSetupGame(GameManager gameManager)
+    void IGameLoadDataListener.OnLoadData(GameManager gameManager)
     {
         _chestsManager = gameManager.GetService<ChestsManager>();
 
@@ -31,7 +30,7 @@ public sealed class ChestsMediator :
         }
     }
 
-    void IGameSaveListener.OnSaveGame(GameSaveReason reason)
+    void IGameSaveDataListener.OnSaveData(GameSaveReason reason)
     {
         SaveChests();
     }

@@ -7,18 +7,18 @@ using UnityEngine;
 
 public sealed class RealtimeSessionStarter
 {
-    [Inject]
+    [ServiceInject]
     private RealtimeManager _realtimeManager;
 
-    [Inject]
+    [ServiceInject]
     private RealtimeRepository _repository;
 
-    [Inject]
-    public void Construct(RealtimeManager realtimeManager, RealtimeRepository repository)
-    {
-        _realtimeManager = realtimeManager;
-        _repository = repository;
-    }
+    //[ServiceInject]
+    //public void Construct(RealtimeManager realtimeManager, RealtimeRepository repository)
+    //{
+    //    _realtimeManager = realtimeManager;
+    //    _repository = repository;
+    //}
 
     public async Task StartSessionAsync()
     {

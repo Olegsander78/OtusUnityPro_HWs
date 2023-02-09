@@ -16,18 +16,29 @@ public sealed class LoadingPipeline : ScriptableObject
     [ListDrawerSettings(OnBeginListElementGUI = "DrawLabelForTask")]
     private TaskInfo[] tasks;
 
-    public ILoadingTask[] GetTasks()
+    public Type[] GetTaskList()
     {
         var count = this.tasks.Length;
-        var result = new ILoadingTask[count];
+        var result = new Type[count];
         for (var i = 0; i < count; i++)
         {
             var taskInfo = this.tasks[i];
-            var task = CreateTask(taskInfo);
+            var task = GetTaskType(taskInfo);
             result[i] = task;
         }
 
         return result;
+    }
+
+    private Type GetTaskType(TaskInfo info)
+    {
+        var classType = Type.GetType(info.className);
+        if (classType == null)
+        {
+            throw new Exception($"Missed class {info.className} of MonoScript {info.script.name}");
+        }
+
+        return classType;
     }
 
     [Serializable]
@@ -40,18 +51,6 @@ public sealed class LoadingPipeline : ScriptableObject
         [HideInInspector]
         [SerializeField]
         public string className;
-    }
-
-    private static ILoadingTask CreateTask(TaskInfo taskInfo)
-    {
-        var classType = Type.GetType(taskInfo.className);
-        if (classType == null)
-        {
-            throw new Exception($"Missed class {taskInfo.className} of MonoScript {taskInfo.script.name}");
-        }
-
-        var task = (ILoadingTask)Activator.CreateInstance(classType);
-        return task;
     }
 
 #if UNITY_EDITOR

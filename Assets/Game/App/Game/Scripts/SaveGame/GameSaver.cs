@@ -9,12 +9,12 @@ public sealed class GameSaver :
 
     private ApplicationManager applicationManager;
 
-    private IGameSaveListener[] listeners;
+    private IGameSaveDataListener[] listeners;
 
     private float remainingSeconds;
 
-    [Inject]
-    public void Construct(ApplicationManager applicationManager, IGameSaveListener[] listeners)
+    [ServiceInject]
+    public void Construct(ApplicationManager applicationManager, IGameSaveDataListener[] listeners)
     {
         this.applicationManager = applicationManager;
         this.listeners = listeners;
@@ -60,7 +60,7 @@ public sealed class GameSaver :
         for (int i = 0, count = this.listeners.Length; i < count; i++)
         {
             var listener = this.listeners[i];
-            listener.OnSaveGame(reason);
+            listener.OnSaveData(reason);
         }
 
         this.remainingSeconds = SAVE_PERIOD_IN_SECONDS;

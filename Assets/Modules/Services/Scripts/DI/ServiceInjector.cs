@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Services
@@ -10,12 +12,48 @@ namespace Services
     {
         private static readonly Type OBJECT_TYPE = typeof(object);
 
-        private static readonly Type ATTRIBUTE_TYPE = typeof(InjectAttribute);
+        private static readonly Type ATTRIBUTE_TYPE = typeof(ServiceInjectAttribute);
+        
+        public static T Instantiate<T>()
+        {
+            return (T) Instantiate(typeof(T));
+        }
+
+        public static object Instantiate(Type type)
+        {
+            var constructors = type.GetConstructors(BindingFlags.Instance |
+                                                    BindingFlags.Public | 
+                                                    BindingFlags.DeclaredOnly);
+
+            for (var i = 0; i < constructors.Length; i++)
+            {
+                var constructor = constructors[i];
+                if (constructor.IsDefined(ATTRIBUTE_TYPE))
+                {
+                    return InstantiateInternal(constructor);
+                }
+            }
+
+            var defaultConstructor = type.GetConstructor(Type.EmptyTypes);
+            if (defaultConstructor != null)
+            {
+                return defaultConstructor.Invoke(new object[0]);
+            }
+
+            throw new Exception("Constructor is not found!");
+        }
 
         public static void ResolveDependencies()
         {
             var services = ServiceLocator.GetAllServices();
             InjectAll(services);
+        }
+
+        public static ConfiguredTaskAwaitable ResolveDependenciesAsync()
+        {
+            return Task
+                .Run(ResolveDependencies)
+                .ConfigureAwait(continueOnCapturedContext: true);
         }
 
         public static void InjectAll(IEnumerable<object> targets)
@@ -116,7 +154,10 @@ namespace Services
                 }
                 else
                 {
-                    ServiceLocator.TryGetService(parameterType, out arg);
+                    if (!ServiceLocator.TryGetService(parameterType, out arg))
+                    {
+                        LogWarning(parameterType);
+                    }
                 }
 
                 args[i] = arg;
@@ -130,10 +171,40 @@ namespace Services
             var elementType = arrayType.GetElementType();
             var services = ServiceLocator.GetServices(elementType).ToArray();
             var serviceCount = services.Length;
-            
+
             var result = Array.CreateInstance(elementType!, serviceCount);
             Array.Copy(services, result, serviceCount);
             return result;
+        }
+        
+        private static object InstantiateInternal(ConstructorInfo constructor)
+        {
+            var parameters = constructor.GetParameters();
+            var count = parameters.Length;
+
+            var args = new object[count];
+            for (var i = 0; i < count; i++)
+            {
+                var parameter = parameters[i];
+                var parameterType = parameter.ParameterType;
+                object arg;
+
+                if (parameterType.IsArray)
+                {
+                    arg = CreateArray(parameterType);
+                }
+                else
+                {
+                    if (!ServiceLocator.TryGetService(parameterType, out arg))
+                    {
+                        LogWarning(parameterType);
+                    }
+                }
+
+                args[i] = arg;
+            }
+
+            return constructor.Invoke(args);
         }
 
         private static void LogWarning(Type serviceType)

@@ -112,6 +112,11 @@ namespace Services
             return this.services;
         }
 
+        public void AddServices(IEnumerable<object> services)
+        {
+            this.services.AddRange(services);
+        }
+
         public void RemoveService(object service)
         {
             this.services.Remove(service);

@@ -2,8 +2,7 @@ using Entities;
 using Services;
 
 public sealed class CharacterMediator :
-    //IGameSetupListener,
-    IGameSaveListener,
+    IGameSaveDataListener,
     IGameLoadDataListener
     
 {
@@ -11,7 +10,7 @@ public sealed class CharacterMediator :
         
     private IEntity _character;
 
-    [Inject]
+    [ServiceInject]
     public void Construct(CharacterRepository repository)
     {
         _repository = repository;
@@ -27,7 +26,7 @@ public sealed class CharacterMediator :
     //    }
     //}
 
-    void IGameSaveListener.OnSaveGame(GameSaveReason reason)
+    void IGameSaveDataListener.OnSaveData(GameSaveReason reason)
     {
         var data = CharacterConverter.ConvertToData(_character);
         _repository.SaveCharacter(data);

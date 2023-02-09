@@ -1,12 +1,20 @@
 using System;
 using Services;
 
+
 public sealed class LoadingTask_LaunchGame : ILoadingTask
 {
+    private readonly GameLauncher gameLauncher;
+
+    [ServiceInject]
+    public LoadingTask_LaunchGame(GameLauncher gameLauncher)
+    {
+        this.gameLauncher = gameLauncher;
+    }
+
     public async void Do(Action<LoadingResult> callback)
     {
-        var gameLauncher = ServiceLocator.GetService<GameLauncher>();
-        await gameLauncher.LaunchGame();
+        await this.gameLauncher.LaunchGame();
         callback?.Invoke(LoadingResult.Success());
     }
 }

@@ -1,4 +1,4 @@
-using Services.Unity;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -36,8 +36,9 @@ namespace Services.UnityEditor
             EditorGUILayout.Space(4.0f);
             EditorGUILayout.PropertyField(this.editorScripts, includeChildren: true);
             EditorGUILayout.EndToggleGroup();
- 
+
             this.serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
     }
 }
+#endif

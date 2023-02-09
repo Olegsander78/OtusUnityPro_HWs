@@ -4,13 +4,23 @@ using Services;
 
 public sealed class GameTask_LoadGameData : ILoadingTask
 {
+    private readonly GameManager gameManager;
+
+    private readonly IGameLoadDataListener[] loadListeners;
+
+    [ServiceInject]
+    public GameTask_LoadGameData(GameManager gameManager, IGameLoadDataListener[] loadListeners)
+    {
+        this.gameManager = gameManager;
+        this.loadListeners = loadListeners;
+    }
+
     public void Do(Action<LoadingResult> callback)
     {
-        var gameManager = ServiceLocator.GetService<GameManager>();
-        var setupListeners = ServiceLocator.GetServices<IGameLoadDataListener>();
-        foreach (var listener in setupListeners)
+        for (int i = 0, count = this.loadListeners.Length; i < count; i++)
         {
-            listener.OnLoadData(gameManager);
+            var listener = this.loadListeners[i];
+            listener.OnLoadData(this.gameManager);
         }
 
         callback?.Invoke(LoadingResult.Success());

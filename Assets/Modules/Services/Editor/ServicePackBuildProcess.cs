@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-using Services.Unity;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -17,8 +16,8 @@ namespace Services.UnityEditor
             {
                 var id = guids[i];
                 var assetPath = AssetDatabase.GUIDToAssetPath(id);
-                var asset = AssetDatabase.LoadAssetAtPath<ServicePack>(assetPath);
-                asset.PrepareServicesForBuild();
+                var servicePack = AssetDatabase.LoadAssetAtPath<ServicePack>(assetPath);
+                servicePack.PrepareServicesForBuild();
             }
 
             AssetDatabase.SaveAssets();

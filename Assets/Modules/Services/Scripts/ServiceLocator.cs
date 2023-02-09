@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Services
 {
+    /// <summary>
+    ///     <para>Global service registry</para>
+    /// </summary>
     public static class ServiceLocator
     {
         private static IServiceContext instance;
@@ -55,6 +59,11 @@ namespace Services
         public static void AddService(object service)
         {
             instance.AddService(service);
+        }
+
+        public static void AddServices(IEnumerable<object> services)
+        {
+            instance.AddServices(services);
         }
 
         public static void RemoveService(object service)

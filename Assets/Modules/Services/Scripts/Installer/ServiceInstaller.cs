@@ -1,21 +1,18 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Services.Unity
+namespace Services
 {
     public sealed class ServiceInstaller : MonoBehaviour
     {
         [SerializeField]
         private bool installOnAwake;
 
-        [Space]
-        [SerializeField]
+        [Space, SerializeField]
         private MonoBehaviour[] monoServices;
 
-        [Space]
-        [SerializeField]
-        [FormerlySerializedAs("serviceLoaders")]
-        private ServicePack[] servicePacks;
+        [Space, SerializeField, FormerlySerializedAs("serviceLoaders")]
+        private ServicePackBase[] servicePacks;
 
         private void Awake()
         {
@@ -33,24 +30,16 @@ namespace Services.Unity
 
         private void InstallServicesFromBehaviours()
         {
-            for (int i = 0, count = this.monoServices.Length; i < count; i++)
-            {
-                var service = this.monoServices[i];
-                ServiceLocator.AddService(service);
-            }
+            ServiceLocator.AddServices(this.monoServices);
         }
 
         private void InstallServicesFromPacks()
         {
             for (int i = 0, count = this.servicePacks.Length; i < count; i++)
             {
-                var serviceLoader = this.servicePacks[i];
-                var services = serviceLoader.LoadServices();
-                for (int j = 0, length = services.Length; j < length; j++)
-                {
-                    var service = services[j];
-                    ServiceLocator.AddService(service);
-                }
+                var pack = this.servicePacks[i];
+                var services = pack.ProvideServices();
+                ServiceLocator.AddServices(services);
             }
         }
     }

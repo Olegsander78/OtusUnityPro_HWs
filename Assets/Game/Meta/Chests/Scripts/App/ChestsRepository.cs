@@ -1,4 +1,3 @@
-using Game.App;
 using UnityEngine;
 
 public sealed class ChestsRepository : DataArrayRepository<ChestData>
