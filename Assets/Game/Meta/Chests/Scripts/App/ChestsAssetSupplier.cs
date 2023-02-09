@@ -19,6 +19,8 @@ public sealed class ChestsAssetSupplier : IAppConfigsLoader
     void IAppConfigsLoader.LoadConfigs()
     {
         _catalog = Resources.Load<ChestCatalog>("ChestsCatalog");
+        Debug.Log($"CatalogChests Task loaded, {_catalog.name}");
+
         //_catalog = Resources.Load<ChestCatalog>(BoosterExtensions.BOOSTER_CATALOG_RESOURCE_PATH);
     }
 }
