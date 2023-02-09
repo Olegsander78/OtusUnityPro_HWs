@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Services;
-
+using UnityEngine;
 
 public sealed class GameTask_ReadyGame : ILoadingTask
 {
@@ -17,5 +17,8 @@ public sealed class GameTask_ReadyGame : ILoadingTask
     {
         this.gameManager.ReadyGame();
         callback.Invoke(LoadingResult.Success());
+
+        Debug.Log($"ReadyGame Session {LoadingResult.Success()}, {gameManager}");
+
     }
 }

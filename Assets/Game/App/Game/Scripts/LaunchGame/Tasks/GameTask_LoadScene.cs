@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Asyncoroutine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
@@ -12,6 +13,9 @@ public sealed class GameTask_LoadScene : ILoadingTask
     {
         await LoadSceneRoutine();
         callback?.Invoke(LoadingResult.Success());
+
+        Debug.Log($"LoadScene Session {LoadingResult.Success()}");
+
     }
 
     private static IEnumerator LoadSceneRoutine()

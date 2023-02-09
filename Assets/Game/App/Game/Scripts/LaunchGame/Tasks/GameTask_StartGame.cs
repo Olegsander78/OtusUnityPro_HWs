@@ -1,6 +1,6 @@
 using System;
 using Services;
-
+using UnityEngine;
 
 public sealed class GameTask_StartGame : ILoadingTask
 {
@@ -16,5 +16,6 @@ public sealed class GameTask_StartGame : ILoadingTask
     {
         this.gameManager.StartGame();
         callback?.Invoke(LoadingResult.Success());
+        Debug.Log($"StartGame Session!!! {LoadingResult.Success()}, {gameManager} ");
     }
 }

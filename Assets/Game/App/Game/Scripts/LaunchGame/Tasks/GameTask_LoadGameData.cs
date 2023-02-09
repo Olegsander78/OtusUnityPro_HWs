@@ -1,6 +1,6 @@
 using System;
 using Services;
-
+using UnityEngine;
 
 public sealed class GameTask_LoadGameData : ILoadingTask
 {
@@ -24,5 +24,8 @@ public sealed class GameTask_LoadGameData : ILoadingTask
         }
 
         callback?.Invoke(LoadingResult.Success());
+
+        Debug.Log($"LoadGame Session {LoadingResult.Success()}, {loadListeners.Length}");
+
     }
 }

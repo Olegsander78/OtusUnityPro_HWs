@@ -1,6 +1,6 @@
 using System;
 using Services;
-
+using UnityEngine;
 
 public sealed class LoadingTask_LaunchGame : ILoadingTask
 {
@@ -16,5 +16,8 @@ public sealed class LoadingTask_LaunchGame : ILoadingTask
     {
         await this.gameLauncher.LaunchGame();
         callback?.Invoke(LoadingResult.Success());
+
+        Debug.Log($"LaunchGame Task {LoadingResult.Success()}, {gameLauncher}");
+
     }
 }

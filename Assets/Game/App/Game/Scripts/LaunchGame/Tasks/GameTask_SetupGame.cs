@@ -22,5 +22,7 @@ public sealed class GameTask_SetupGame : ILoadingTask
         this.gameManager.SetupGame(gameContext);
         this.gameManager.ConstructGame();
         callback?.Invoke(LoadingResult.Success());
+
+        Debug.Log($"SetupGame Session {LoadingResult.Success()}, {gameContext.name}");
     }
 }

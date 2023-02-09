@@ -12,5 +12,8 @@ public sealed class GameTask_LoadInterface : ILoadingTask
         var gameSystem = GameObject.FindObjectOfType<MonoGameContext>();
         //GUIInstaller.InstallGUI(gameSystem);
         callback?.Invoke(LoadingResult.Success());
+
+        Debug.Log($"Loadinterface Session {LoadingResult.Success()}");
+
     }
 }

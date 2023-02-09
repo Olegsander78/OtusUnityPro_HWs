@@ -9,7 +9,7 @@ public sealed class LoadingTask_StartRealtimeSession : ILoadingTask
         var sessionStarter = ServiceLocator.GetService<RealtimeSessionStarter>();
         await sessionStarter.StartSessionAsync();
         callback?.Invoke(LoadingResult.Success());
-        Debug.Log(LoadingResult.Success());
+        Debug.Log($"RealTime Session {LoadingResult.Success()}");
     }
 
     //public async void Do(Action<LoadingResult> callback)

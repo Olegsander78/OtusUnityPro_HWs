@@ -10,5 +10,8 @@ public sealed class LoadingTask_InstallApplicationServices : ILoadingTask
         var serviceInstaller = GameObject.FindObjectOfType<ServiceInstaller>();
         serviceInstaller.InstallServices();
         callback.Invoke(LoadingResult.Success());
+
+        Debug.Log($"InsApp Task {LoadingResult.Success()}, {serviceInstaller.name}");
+
     }
 }

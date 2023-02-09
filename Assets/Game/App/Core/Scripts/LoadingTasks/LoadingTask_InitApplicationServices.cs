@@ -1,6 +1,6 @@
 using System;
 using Services;
-
+using UnityEngine;
 
 public sealed class LoadingTask_InitApplicationServices : ILoadingTask
 {
@@ -21,5 +21,8 @@ public sealed class LoadingTask_InitApplicationServices : ILoadingTask
         }
 
         callback?.Invoke(LoadingResult.Success());
+
+        Debug.Log($"InitApp Task {LoadingResult.Success()}, {services.Length}");
+
     }
 }

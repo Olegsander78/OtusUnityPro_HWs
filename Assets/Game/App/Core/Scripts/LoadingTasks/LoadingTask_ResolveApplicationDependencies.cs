@@ -10,5 +10,8 @@ public sealed class LoadingTask_ResolveApplicationDependencies : ILoadingTask
     {
         await ServiceInjector.ResolveDependenciesAsync();
         callback?.Invoke(LoadingResult.Success());
+
+        Debug.Log($"ResolveAppDP Task {LoadingResult.Success()}");
+
     }
 }

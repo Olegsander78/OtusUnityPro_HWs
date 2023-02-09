@@ -1,6 +1,6 @@
 using System;
 using Services;
-
+using UnityEngine;
 
 public sealed class GameTask_NotifyAboutStart : ILoadingTask
 {
@@ -24,5 +24,8 @@ public sealed class GameTask_NotifyAboutStart : ILoadingTask
         }
 
         callback?.Invoke(LoadingResult.Success());
+
+        Debug.Log($"NotifyAboutStartGame Session {LoadingResult.Success()}, {startListeners.Length}");
+
     }
 }

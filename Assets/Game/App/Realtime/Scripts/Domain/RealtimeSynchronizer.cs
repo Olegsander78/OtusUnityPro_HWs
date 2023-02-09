@@ -43,4 +43,5 @@ public sealed class RealtimeSynchronizer :
             this.timeShiftEmitter.EmitEvent(TimeShiftReason.RESUME_GAME, pauseSeconds);
         }
     }
+
 }

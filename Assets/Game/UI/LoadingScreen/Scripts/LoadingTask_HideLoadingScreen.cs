@@ -9,5 +9,8 @@ public sealed class LoadingTask_HideLoadingScreen : ILoadingTask
         var loadingScreen = GameObject.FindObjectOfType<LoadingScreen>();
         loadingScreen.Hide();
         callback.Invoke(LoadingResult.Success());
+
+        Debug.Log($"HideLoadScreen Task {LoadingResult.Success()}");
+
     }
 }
