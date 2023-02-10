@@ -14,7 +14,7 @@ public sealed class ChestsRepository : DataArrayRepository<ChestData>
             {                
                 var id = item.id;
                 var time = item.remainingTime;
-                Debug.Log($"<color=yellow>LOAD Chests DATA: {id}:{time}</color>");
+                Debug.Log($"<color=magenta>LOAD Chests DATA: {id}:{time}</color>");
             }
         }
             
@@ -28,8 +28,7 @@ public sealed class ChestsRepository : DataArrayRepository<ChestData>
         {
             var id = item.id;
             var time = item.remainingTime;
-            Debug.Log($"<color=green>SAVE Chests DATA: {id}:{time}</color>");
+            Debug.Log($"<color=magenta>SAVE Chests DATA: {id}:{time}</color>");
         }
-        //Debug.Log($"<color=blue>SAVE Chest DATA: {chestsData}</color>");
     }
 }
