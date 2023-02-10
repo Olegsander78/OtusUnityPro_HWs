@@ -9,7 +9,7 @@ using UnityEngine;
 
 
 public sealed class ChestsManager :
-    IGameStartElement,
+    IGameReadyElement,
     IGameFinishElement
 {
     public event Action<Chest> OnChestCountdownStarted;
@@ -52,7 +52,7 @@ public sealed class ChestsManager :
         _monoContext = monoContext;
     }
 
-    void IGameStartElement.StartGame()
+    void IGameReadyElement.ReadyGame()
     {
         StartAllChests();
     }

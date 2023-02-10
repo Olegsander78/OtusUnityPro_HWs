@@ -26,6 +26,7 @@ public sealed class TimeShiftEmitter : MonoBehaviour
         {
             var listener = this.listeners[i];
             listener.OnTimeShifted(reason, shiftSeconds);
+            Debug.Log("Time shifted.");
         }
 
         this.OnTimeShifted?.Invoke(reason, shiftSeconds);
