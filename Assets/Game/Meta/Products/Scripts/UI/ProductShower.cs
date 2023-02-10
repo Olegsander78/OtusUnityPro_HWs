@@ -16,6 +16,7 @@ public sealed class ProductShower : MonoBehaviour,
         this.popupManager.ShowPopup(PopupName_.PRODUCT, presentationModel);
     }
 
+
     void IGameConstructElement.ConstructGame(GameSystem.IGameContext context)
     {
         this.popupManager = context.GetService<PopupManager_>();
