@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Golden Chest
   m_EditorClassIdentifier: 
   Id: golden_chest
-  DurationSeconds: 45
+  DurationSeconds: 3600
   ChestType: 2
   PriceOpen: 2500
   ChestMetadata:
@@ -21,13 +21,13 @@ MonoBehaviour:
     DisplayName: Golden Chest
     Description: 'Gold: 1500 - 2500 , chance 40 %
 
-      Simple Resources: 25 -
-      50, chance 25 %
+      Simple Resources: 25 - 50,
+      chance 25 %
 
       Experience: 250 - 500, chance 25 %
 
-      Crystals:
-      2 - 5, chance 10 %'
+      Crystals: 2 -
+      5, chance 10 %'
   _chestRewardConfigs:
   - RewardConfig: {fileID: 11400000, guid: b8f5b3dbfd9b0534486839d28ae59556, type: 2}
     DropChance: 40

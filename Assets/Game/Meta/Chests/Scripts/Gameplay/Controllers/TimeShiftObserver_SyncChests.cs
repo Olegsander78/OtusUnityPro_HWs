@@ -1,5 +1,7 @@
 
 
+using UnityEngine;
+
 public sealed class TimeShiftObserver_SyncChests : ITimeShiftListener
 {
     private readonly ChestsManager _chestsManager;
@@ -20,7 +22,17 @@ public sealed class TimeShiftObserver_SyncChests : ITimeShiftListener
         for (int i = 0, count = chests.Length; i < count; i++)
         {
             var chest = chests[i];
-            chest.RemainingSeconds -= shiftSeconds;
+
+            if (chest.RemainingSeconds > shiftSeconds)
+            {
+                chest.RemainingSeconds -= shiftSeconds;
+                Debug.Log($"{chest.Config.ChestType}: {chest.RemainingSeconds}, {shiftSeconds} - Remaining > shifted time");
+            }
+            else
+            {
+                chest.RemainingSeconds = 0f;
+                Debug.Log($"{chest.Config.ChestType}: {shiftSeconds} - Remaining < shifted time");
+            }                
         }
     }
 }
