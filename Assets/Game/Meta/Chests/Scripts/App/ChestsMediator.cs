@@ -13,7 +13,7 @@ public sealed class ChestsMediator :
     
     private ChestsManager _chestsManager;
 
-    [ServiceInject]
+    
     public void Construct(ChestsRepository repository, ChestsAssetSupplier chestsAssetSupplier)
     {
         _repository = repository;
