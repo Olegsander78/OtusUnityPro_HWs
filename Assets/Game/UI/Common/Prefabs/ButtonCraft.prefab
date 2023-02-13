@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 1633734359116192497}
   - component: {fileID: 1193138924784223275}
   - component: {fileID: 5358603104446136671}
-  - component: {fileID: 1805895333025503764}
   - component: {fileID: 5358603104446136670}
   m_Layer: 5
   m_Name: ButtonCraft
@@ -283,64 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8a650240844078a2b8f8da12049468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1805895333025503764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5349744342943863567}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84e81316abb472643b22ecfb768337de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 5349744343882218548}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: children
-      Entry: 7
-      Data: 0|LocalizationModule.IComponent[], Localization
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 1|Game.Localization.TMProUGUIComponent_TranslationText, Assembly-CSharp
-    - Name: text
-      Entry: 10
-      Data: 0
-    - Name: key
-      Entry: 1
-      Data: Common|UPGRADE
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|Game.Localization.TMProUGUIComponent_TranslationText, Assembly-CSharp
-    - Name: text
-      Entry: 6
-      Data: 
-    - Name: key
-      Entry: 1
-      Data: Common|MAX
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
 --- !u!114 &5358603104446136670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +291,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5349744342943863567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5da9a0d390449a99b38b4a77047148b, type: 3}
+  m_Script: {fileID: 11500000, guid: 175253600a92ad64d82afed256612677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 5349744342943863565}
@@ -428,9 +369,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CRAFT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ef035577179af4b13b6c10edfbf6586a, type: 2}
-  m_sharedMaterial: {fileID: 7738102052382203216, guid: ef035577179af4b13b6c10edfbf6586a,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
