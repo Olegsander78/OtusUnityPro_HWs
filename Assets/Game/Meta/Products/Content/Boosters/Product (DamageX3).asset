@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab92fe69cdc54522930096f1af6b3723, type: 3}
+  m_Name: Product (DamageX3)
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: 9737f9b73645948418de49432c3414ac, type: 3}
+    - {fileID: 11400000, guid: 67fa21f5f8e6d40f18703d7087b7e10e, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: origin
+      Entry: 7
+      Data: 0|Game.GameEngine.Products.Product, Products
+    - Name: id
+      Entry: 1
+      Data: damage_boost
+    - Name: metadata
+      Entry: 7
+      Data: 1|Game.GameEngine.Products.ProductMetadata, Products
+    - Name: icon
+      Entry: 10
+      Data: 0
+    - Name: title
+      Entry: 1
+      Data: Damage Boost
+    - Name: decription
+      Entry: 1
+      Data: Increases the melee damage of the hero by 3 times for 1.5 hours
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: components
+      Entry: 7
+      Data: 2|System.Object[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 3|Game.GameEngine.Mechanics.Component_MoneyPrice, Assembly-CSharp
+    - Name: price
+      Entry: 3
+      Data: 500
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Game.Meta.Component_BoosterInfo, Assembly-CSharp
+    - Name: config
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

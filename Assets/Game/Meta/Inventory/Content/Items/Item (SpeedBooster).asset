@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad27b70e75942d5980359cfa3a7b9e6, type: 3}
+  m_Name: Item (SpeedBooster)
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: 017ff9854ebc446f0a95269efca9f6e2, type: 3}
+    - {fileID: 11400000, guid: 01b689f0bea8e4f5ab630fb846dea221, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: origin
+      Entry: 7
+      Data: 0|Game.GameEngine.InventorySystem.InventoryItem, InventorySystem
+    - Name: name
+      Entry: 1
+      Data: speed_booster
+    - Name: flags
+      Entry: 3
+      Data: 3
+    - Name: metadata
+      Entry: 7
+      Data: 1|Game.GameEngine.InventorySystem.InventoryItemMetadata, InventorySystem
+    - Name: icon
+      Entry: 10
+      Data: 0
+    - Name: title
+      Entry: 1
+      Data: Speed Booster
+    - Name: decription
+      Entry: 1
+      Data: Increases the movement speed of the hero by 1.5 times for 1.5 hours
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: components
+      Entry: 7
+      Data: 2|System.Object[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 3|Game.GameEngine.InventorySystem.Component_Stackable, InventorySystem
+    - Name: size
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Game.Meta.Component_BoosterInfo, Assembly-CSharp
+    - Name: config
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
