@@ -15,8 +15,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 7ea2a41da77b34ef1af52ddf7cfd7e8b, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -24,40 +23,34 @@ MonoBehaviour:
     SerializationNodes:
     - Name: origin
       Entry: 7
-      Data: 0|Game.GameEngine.Products.Product, Products
+      Data: 0|Product, Products
     - Name: id
       Entry: 1
       Data: arcane_boots
     - Name: metadata
-      Entry: 7
-      Data: 1|Game.Meta.ProductMetadata_InventoryItem, Assembly-CSharp
-    - Name: config
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: components
       Entry: 7
-      Data: 2|System.Object[], mscorlib
+      Data: 1|System.Object[], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 3|Game.GameEngine.Mechanics.Component_MoneyPrice, Assembly-CSharp
+      Data: 2|Component_MoneyPrice, Assembly-CSharp
     - Name: price
       Entry: 3
-      Data: 1500
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|Game.GameEngine.InventorySystem.Component_InventoryItem, InventorySystem
+      Data: 3|Component_InventoryItem, InventorySystem
     - Name: config
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 

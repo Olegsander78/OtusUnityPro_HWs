@@ -24,7 +24,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: origin
       Entry: 7
-      Data: 0|Game.GameEngine.InventorySystem.InventoryItem, InventorySystem
+      Data: 0|InventoryItem, InventorySystem
     - Name: name
       Entry: 1
       Data: crystal
@@ -33,7 +33,7 @@ MonoBehaviour:
       Data: 1
     - Name: metadata
       Entry: 7
-      Data: 1|Game.GameEngine.InventorySystem.InventoryItemMetadata, InventorySystem
+      Data: 1|InventoryItemMetadata, InventorySystem
     - Name: icon
       Entry: 10
       Data: 0
@@ -56,10 +56,10 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 3|Game.GameEngine.InventorySystem.Component_Stackable, InventorySystem
+      Data: 3|Component_Stackable, InventorySystem
     - Name: size
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 

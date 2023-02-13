@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Elementary
 {
-    public sealed class Timer:ITimer
+    [AddComponentMenu("Elementary/Time/Timer")]
+    public sealed class MonoTimer : MonoBehaviour, ITimer
     {
         public event Action OnStarted;
 
@@ -48,20 +49,12 @@ namespace Elementary
             set { this.currentTime = Mathf.Clamp(value, 0, this.duration); }
         }
 
-        private readonly MonoBehaviour coroutineDispatcher;
-
-        private float duration;
+        [SerializeField]
+        private float duration = 5.0f;
 
         private float currentTime;
 
         private Coroutine coroutine;
-        
-        public Timer(MonoBehaviour coroutineDispatcher, float duration)
-        {
-            this.coroutineDispatcher = coroutineDispatcher;
-            this.duration = duration;
-            this.currentTime = 0;
-        }
 
         public void Play()
         {
@@ -72,14 +65,14 @@ namespace Elementary
 
             this.IsPlaying = true;
             this.OnStarted?.Invoke();
-            this.coroutine = this.coroutineDispatcher.StartCoroutine(this.TimerRoutine());
+            this.coroutine = this.StartCoroutine(this.TimerRoutine());
         }
 
         public void Stop()
         {
             if (this.coroutine != null)
             {
-                this.coroutineDispatcher.StopCoroutine(this.coroutine);
+                this.StopCoroutine(this.coroutine);
             }
 
             if (this.IsPlaying)

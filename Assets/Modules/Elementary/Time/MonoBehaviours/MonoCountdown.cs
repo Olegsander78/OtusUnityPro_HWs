@@ -5,15 +5,16 @@ using UnityEngine;
 
 namespace Elementary
 {
-    public sealed class Timer:ITimer
+    [AddComponentMenu("Elementary/Time/Countdown")]
+    public sealed class MonoCountdown : MonoBehaviour, ICountdown
     {
         public event Action OnStarted;
 
         public event Action OnTimeChanged;
 
-        public event Action OnCanceled;
+        public event Action OnStopped;
 
-        public event Action OnFinished;
+        public event Action OnEnded;
 
         public event Action OnReset;
 
@@ -29,7 +30,7 @@ namespace Elementary
         [ProgressBar(0, 1)]
         public float Progress
         {
-            get { return this.currentTime / this.duration; }
+            get { return 1 - this.remainingTime / this.duration; }
             set { this.SetProgress(value); }
         }
 
@@ -42,26 +43,19 @@ namespace Elementary
         [ReadOnly]
         [ShowInInspector]
         [PropertyOrder(-8)]
-        public float CurrentTime
+        public float RemainingTime
         {
-            get { return this.currentTime; }
-            set { this.currentTime = Mathf.Clamp(value, 0, this.duration); }
+            get { return this.remainingTime; }
+            set { this.remainingTime = Mathf.Clamp(value, 0, this.duration); }
         }
 
-        private readonly MonoBehaviour coroutineDispatcher;
+        [Space]
+        [SerializeField]
+        private float duration = 5.0f;
 
-        private float duration;
-
-        private float currentTime;
+        private float remainingTime;
 
         private Coroutine coroutine;
-        
-        public Timer(MonoBehaviour coroutineDispatcher, float duration)
-        {
-            this.coroutineDispatcher = coroutineDispatcher;
-            this.duration = duration;
-            this.currentTime = 0;
-        }
 
         public void Play()
         {
@@ -72,47 +66,48 @@ namespace Elementary
 
             this.IsPlaying = true;
             this.OnStarted?.Invoke();
-            this.coroutine = this.coroutineDispatcher.StartCoroutine(this.TimerRoutine());
+            this.coroutine = this.StartCoroutine(this.TimerRoutine());
         }
 
         public void Stop()
         {
             if (this.coroutine != null)
             {
-                this.coroutineDispatcher.StopCoroutine(this.coroutine);
+                this.StopCoroutine(this.coroutine);
+                this.coroutine = null;
             }
 
             if (this.IsPlaying)
             {
                 this.IsPlaying = false;
-                this.OnCanceled?.Invoke();
+                this.OnStopped?.Invoke();
             }
         }
 
         public void ResetTime()
         {
-            this.currentTime = 0;
+            this.remainingTime = this.duration;
             this.OnReset?.Invoke();
+        }
+
+        private IEnumerator TimerRoutine()
+        {
+            while (this.remainingTime > 0)
+            {
+                yield return null;
+                this.remainingTime -= Time.deltaTime;
+                this.OnTimeChanged?.Invoke();
+            }
+
+            this.IsPlaying = false;
+            this.OnEnded?.Invoke();
         }
 
         private void SetProgress(float progress)
         {
             progress = Mathf.Clamp01(progress);
-            this.currentTime = this.duration * progress;
+            this.remainingTime = this.duration * (1 - progress);
             this.OnTimeChanged?.Invoke();
-        }
-
-        private IEnumerator TimerRoutine()
-        {
-            while (this.currentTime < this.duration)
-            {
-                yield return null;
-                this.currentTime += Time.deltaTime;
-                this.OnTimeChanged?.Invoke();
-            }
-
-            this.IsPlaying = false;
-            this.OnFinished?.Invoke();
         }
     }
 }
