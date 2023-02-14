@@ -5,7 +5,8 @@ using UnityEngine;
 public sealed class UEffectHandler_MoveSpeed : UEffectHandler
 {
     [SerializeField]
-    private MonoFloatVariable speedMultiplier;
+    private FloatBehaviour speedMultiplier;
+    //private MonoFloatVariable speedMultiplier;
 
     public override void OnEffectAdded(IEffect effect)
     {

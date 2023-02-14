@@ -5,7 +5,8 @@ using UnityEngine;
 public sealed class UEffectHandler_MeleeDamage : UEffectHandler
 {
     [SerializeField]
-    private MonoFloatVariable damageMultiplier;
+    private FloatBehaviour damageMultiplier;
+    //private MonoFloatVariable damageMultiplier;
 
     public override void OnEffectAdded(IEffect effect)
     {

@@ -17,6 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 21300000, guid: 017ff9854ebc446f0a95269efca9f6e2, type: 3}
+    - {fileID: 11400000, guid: 01b689f0bea8e4f5ab630fb846dea221, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -63,7 +64,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|System.Object, mscorlib
+      Data: 4|Component_BoosterInfo, Assembly-CSharp
+    - Name: config
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
