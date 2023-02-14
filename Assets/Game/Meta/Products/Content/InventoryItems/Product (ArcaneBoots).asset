@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 7ea2a41da77b34ef1af52ddf7cfd7e8b, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -28,29 +29,35 @@ MonoBehaviour:
       Entry: 1
       Data: arcane_boots
     - Name: metadata
-      Entry: 6
+      Entry: 7
+      Data: 1|ProductMetadata_InventoryItem, Assembly-CSharp
+    - Name: config
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: components
       Entry: 7
-      Data: 1|System.Object[], mscorlib
+      Data: 2|System.Object[], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 2|Component_MoneyPrice, Assembly-CSharp
+      Data: 3|Component_MoneyPrice, Assembly-CSharp
     - Name: price
       Entry: 3
-      Data: 0
+      Data: 1500
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|Component_InventoryItem, InventorySystem
+      Data: 4|Component_InventoryItem, InventorySystem
     - Name: config
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 

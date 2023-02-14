@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7aeb73e1794e8daa9ce4e05cebd9ff, type: 3}
+  m_Name: BoosterIncomeX2
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  id: income_x2
+  duration: 5400
+  metadata:
+    icon: {fileID: 21300000, guid: a8cffb96c92054dd598693cee291fdb8, type: 3}
+    viewLabel: X2
+    viewColor: {r: 0.25490198, g: 0.65882355, b: 0.2901961, a: 1}
+  incomeCoefficient: 2

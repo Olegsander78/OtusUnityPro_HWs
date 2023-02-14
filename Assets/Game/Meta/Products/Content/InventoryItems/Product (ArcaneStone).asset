@@ -24,13 +24,13 @@ MonoBehaviour:
     SerializationNodes:
     - Name: origin
       Entry: 7
-      Data: 0|Game.GameEngine.Products.Product, Products
+      Data: 0|Product, Products
     - Name: id
       Entry: 1
       Data: arcane_stone
     - Name: metadata
       Entry: 7
-      Data: 1|Game.Meta.ProductMetadata_InventoryItem, Assembly-CSharp
+      Data: 1|ProductMetadata_InventoryItem, Assembly-CSharp
     - Name: config
       Entry: 10
       Data: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 3|Game.GameEngine.Mechanics.Component_MoneyPrice, Assembly-CSharp
+      Data: 3|Component_MoneyPrice, Assembly-CSharp
     - Name: price
       Entry: 3
       Data: 750
@@ -54,7 +54,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|Game.GameEngine.InventorySystem.Component_InventoryItem, InventorySystem
+      Data: 4|Component_InventoryItem, InventorySystem
     - Name: config
       Entry: 10
       Data: 0

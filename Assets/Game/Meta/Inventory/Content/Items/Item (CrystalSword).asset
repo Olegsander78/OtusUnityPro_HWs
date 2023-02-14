@@ -24,7 +24,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: origin
       Entry: 7
-      Data: 0|Game.GameEngine.InventorySystem.InventoryItem, InventorySystem
+      Data: 0|InventoryItem, InventorySystem
     - Name: name
       Entry: 1
       Data: crystal_sword
@@ -33,7 +33,7 @@ MonoBehaviour:
       Data: 12
     - Name: metadata
       Entry: 7
-      Data: 1|Game.GameEngine.InventorySystem.InventoryItemMetadata, InventorySystem
+      Data: 1|InventoryItemMetadata, InventorySystem
     - Name: icon
       Entry: 10
       Data: 0
@@ -54,34 +54,34 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 3|Game.GameEngine.Mechanics.Component_EquipType, Assembly-CSharp
+      Data: 3|Component_EquipType, Assembly-CSharp
     - Name: type
       Entry: 3
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|Game.GameEngine.Mechanics.Component_Effect, Assembly-CSharp
+      Data: 4|Component_Effect, Assembly-CSharp
     - Name: effect
       Entry: 7
-      Data: 5|Game.GameEngine.Mechanics.Effect, Assembly-CSharp
+      Data: 5|Effect, Assembly-CSharp
     - Name: parameters
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[Game.GameEngine.Mechanics.IEffectParameter,
-        Assembly-CSharp]], mscorlib
+      Data: 6|System.Collections.Generic.List`1[[IEffectParameter, Assembly-CSharp]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 7|Game.GameEngine.Mechanics.FloatEffectParameter, Assembly-CSharp
+      Data: 7|IntEffectParameter, Assembly-CSharp
     - Name: name
       Entry: 3
       Data: 1
     - Name: value
-      Entry: 4
+      Entry: 3
       Data: 2
     - Name: 
       Entry: 8
