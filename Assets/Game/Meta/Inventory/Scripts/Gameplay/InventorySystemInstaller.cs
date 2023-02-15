@@ -55,8 +55,8 @@ public sealed class InventorySystemInstaller : MonoGameInstaller
 
     private void InstallProductBuyKit(IGameContext context)
     {
-        //var buySystem = context.GetService<ProductBuyer>();
-        //buySystem.AddCompletor(new ProductBuyCompletor_AddInventoryItem(this.inventory));
+        var buySystem = context.GetService<ProductBuyer>();
+        buySystem.AddCompletor(new ProductBuyCompletor_AddInventoryItem(this.inventory));
     }
 
     private void InstallEquipmentKit(IGameContext context)
