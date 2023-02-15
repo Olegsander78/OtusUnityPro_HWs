@@ -19,6 +19,10 @@ public sealed class InventorySystemInstaller : MonoGameInstaller
     [ShowInInspector]
     private InventoryItemCrafter itemCrafter = new();
 
+    [GameComponent(SERVICE)]
+    [ShowInInspector]
+    private InventoryItemEquipper itemEquipper = new();
+
     [GameComponent(ELEMENT)]
     [ReadOnly, ShowInInspector]
     private InventoryItemsEffectController effectsObserver = new();
@@ -28,10 +32,12 @@ public sealed class InventorySystemInstaller : MonoGameInstaller
         this.service.Setup(this.inventory);
         this.itemConsumer.SetInventory(this.inventory);
         this.itemCrafter.SetInventory(this.inventory);
+        this.itemEquipper.SetInventory(this.inventory);
 
         this.InstallEffectObserver(context);
         this.InstallConsumeHealingKit(context);
         this.InstallProductBuyKit(context);
+        this.InstallEquipmentKit(context);
     }
 
     private void InstallEffectObserver(IGameContext context)
@@ -51,6 +57,12 @@ public sealed class InventorySystemInstaller : MonoGameInstaller
     {
         //var buySystem = context.GetService<ProductBuyer>();
         //buySystem.AddCompletor(new ProductBuyCompletor_AddInventoryItem(this.inventory));
+    }
+
+    private void InstallEquipmentKit(IGameContext context)
+    {
+        var heroService = context.GetService<HeroService>();
+        this.itemEquipper.Construct(heroService);
     }
 
     [Title("Debug")]

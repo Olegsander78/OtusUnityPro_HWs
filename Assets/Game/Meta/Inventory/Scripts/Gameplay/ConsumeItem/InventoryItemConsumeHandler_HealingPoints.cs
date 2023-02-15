@@ -11,17 +11,17 @@ public sealed class InventoryItemConsumeHandler_HealingPoints : IInventoryItemCo
 
     void IInventoryItemConsumeHandler.OnConsume(InventoryItem item)
     {
-        //if (!item.TryGetComponent(out IComponent_GetHealingPoints healingComponent))
-        //{
-        //    return;
-        //}
+        if (!item.TryGetComponent(out IComponent_GetHealingPoints healingComponent))
+        {
+            return;
+        }
 
-        //if (!this.heroService.GetHero().TryGet(out IComponent_AddHitPoints hitPointsComponent))
-        //{
-        //    return;
-        //}
+        if (!this.heroService.GetHero().TryGet(out IComponent_AddHitPoints hitPointsComponent))
+        {
+            return;
+        }
 
-        //var healingPoints = healingComponent.HealingPoints;
-        //hitPointsComponent.AddHitPoints(healingPoints);
+        var healingPoints = healingComponent.HealingPoints;
+        hitPointsComponent.AddHitPoints(healingPoints);
     }
 }

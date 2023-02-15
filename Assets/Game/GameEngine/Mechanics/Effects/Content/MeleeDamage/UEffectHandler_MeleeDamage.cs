@@ -10,7 +10,7 @@ public sealed class UEffectHandler_MeleeDamage : UEffectHandler
 
     public override void OnEffectAdded(IEffect effect)
     {
-        if (effect.TryGetParameter<float>(EffectParameterKey.DAMAGE, out var multiplier))
+        if (effect.TryGetParameter<int>(EffectParameterKey.DAMAGE, out var multiplier))
         {
             this.damageMultiplier.Multiply(multiplier);
         }
@@ -18,7 +18,7 @@ public sealed class UEffectHandler_MeleeDamage : UEffectHandler
 
     public override void OnEffectRemoved(IEffect effect)
     {
-        if (effect.TryGetParameter<float>(EffectParameterKey.DAMAGE, out var multiplier))
+        if (effect.TryGetParameter<int>(EffectParameterKey.DAMAGE, out var multiplier))
         {
             this.damageMultiplier.Divide(multiplier);
         }
