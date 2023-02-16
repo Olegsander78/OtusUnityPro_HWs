@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using GameSystem;
+using UIFrames.Unity;
 using UnityEngine;
 
 
-public sealed class InventoryItemReceiptListPresenter : MonoBehaviour, IGameConstructElement
+public sealed class InventoryItemReceiptListPresenter_UFrame : UnityFrame, IGameConstructElement
 {
     [SerializeField]
     private InventoryItemReceiptCatalog receiptCatalog;
@@ -20,7 +21,7 @@ public sealed class InventoryItemReceiptListPresenter : MonoBehaviour, IGameCons
 
     private readonly List<InventoryItemReceiptPresenter> presenters = new();
 
-    public void Show()
+    protected override void OnShow(object args)
     {
         for (int i = 0, count = this.presenters.Count; i < count; i++)
         {
@@ -29,7 +30,7 @@ public sealed class InventoryItemReceiptListPresenter : MonoBehaviour, IGameCons
         }
     }
 
-    public void Hide()
+    protected override void OnHide()
     {
         for (int i = 0, count = this.presenters.Count; i < count; i++)
         {

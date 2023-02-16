@@ -18,6 +18,8 @@ public sealed class InventoryItemListPresenter_UFarame : UnityFrame, IGameConstr
 
     private InventoryItemConsumer consumeManager;
 
+    private InventoryItemEquipper equipperManager;
+
     private readonly Dictionary<InventoryItem, ViewHolder> items = new();
 
     protected override void OnShow(object args)
@@ -57,7 +59,7 @@ public sealed class InventoryItemListPresenter_UFarame : UnityFrame, IGameConstr
 
         var view = Instantiate(this.prefab, this.container);
         var presenter = new InventoryItemViewPresenter(view, item);
-        presenter.Construct(this.popupManager, this.consumeManager);
+        presenter.Construct(this.popupManager, this.consumeManager, this.equipperManager);
 
         var viewHolder = new ViewHolder(view, presenter);
         this.items.Add(item, viewHolder);
@@ -83,6 +85,7 @@ public sealed class InventoryItemListPresenter_UFarame : UnityFrame, IGameConstr
         this.inventoryService = context.GetService<InventoryService>();
         this.popupManager = context.GetService<PopupManager>();
         this.consumeManager = context.GetService<InventoryItemConsumer>();
+        this.equipperManager = context.GetService<InventoryItemEquipper>();
     }
 
     private sealed class ViewHolder

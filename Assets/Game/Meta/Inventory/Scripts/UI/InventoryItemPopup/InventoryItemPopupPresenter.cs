@@ -22,14 +22,17 @@ public sealed class InventoryItemPopupPresenter : InventoryItemPopup.IPresenter
 
     private InventoryItemConsumer consumeManager;
 
+    private InventoryItemEquipper equipperManager;
+
     public InventoryItemPopupPresenter(InventoryItem item)
     {
         this.item = item;
     }
 
-    public void Construct(InventoryItemConsumer consumeManager)
+    public void Construct(InventoryItemConsumer consumeManager, InventoryItemEquipper equipperManager)
     {
         this.consumeManager = consumeManager;
+        this.equipperManager = equipperManager;
     }
 
     public bool IsStackableItem()
@@ -59,6 +62,24 @@ public sealed class InventoryItemPopupPresenter : InventoryItemPopup.IPresenter
         if (this.consumeManager.CanConsumeItem(this.item))
         {
             this.consumeManager.ConsumeItem(this.item);
+        }
+    }
+
+    public bool IsEquipableItem()
+    {
+        return this.item.FlagsExists(InventoryItemFlags.EQUIPPABLE);
+    }
+
+    public bool CanEquipableItem()
+    {
+        return this.equipperManager.CanEquipItem(this.item);
+    }
+
+    public void OnEquipClicked()
+    {
+        if (this.equipperManager.CanEquipItem(this.item))
+        {
+            this.equipperManager.EquipItem(this.item);
         }
     }
 }

@@ -13,16 +13,19 @@ public sealed class InventoryItemViewPresenter
 
     private InventoryItemConsumer consumeManager;
 
+    private InventoryItemEquipper equipperManager;
+
     public InventoryItemViewPresenter(InventoryItemView view, InventoryItem item)
     {
         this.view = view;
         this.item = item;
     }
 
-    public void Construct(PopupManager popupManager, InventoryItemConsumer consumeManager)
+    public void Construct(PopupManager popupManager, InventoryItemConsumer consumeManager, InventoryItemEquipper equipperManager)
     {
         this.popupManager = popupManager;
         this.consumeManager = consumeManager;
+        this.equipperManager = equipperManager;
     }
 
     public void Start()
@@ -63,7 +66,7 @@ public sealed class InventoryItemViewPresenter
     private void OnItemClicked()
     {
         var presenter = new InventoryItemPopupPresenter(this.item);
-        presenter.Construct(this.consumeManager);
+        presenter.Construct(this.consumeManager, this.equipperManager);
         this.popupManager.ShowPopup(PopupName.INVENTORY_ITEM, presenter);
     }
 }

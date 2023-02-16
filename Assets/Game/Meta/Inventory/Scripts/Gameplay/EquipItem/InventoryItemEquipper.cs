@@ -50,7 +50,7 @@ public class InventoryItemEquipper
         this.heroService = heroService;
         this.heroComponent = this.heroService.GetHero().Get<IComponent_Effector>();
 
-        InstallEquipment();
+        InitEquipment();
     }
 
     //void IGameInitElement.InitGame()
@@ -75,10 +75,24 @@ public class InventoryItemEquipper
     //}
 
     [Button]
-    public void ItemEquip(InventoryItemConfig item)
+    [GUIColor(0, 1, 0)]
+    public bool CanEquipItem(InventoryItem item)
+    {
+        return item.FlagsExists(InventoryItemFlags.EQUIPPABLE) &&
+               this.inventory.IsItemExists(item);
+    }
+
+    [Button]
+    [GUIColor(0, 1, 0)]
+    public void EquipItem(InventoryItemConfig item)
     {
         if (item.Prototype == null)
             return;
+
+        //if (!CanEquipItem(item))
+        //{
+        //    throw new Exception($"Can not equip item {item.Prototype.Name}!");
+        //}
 
         var typeItem = item.Prototype.GetComponent<IComponent_GetEqupType>().Type;
 
@@ -88,7 +102,7 @@ public class InventoryItemEquipper
         }
         else
         {
-            ItemUnequip(typeItem);
+            UnequipItem(typeItem);
             _equipment[typeItem] = item.Prototype;
         }
             
@@ -102,8 +116,41 @@ public class InventoryItemEquipper
         OnItemEquipped?.Invoke(item.Prototype);
     }
 
+    public void EquipItem(InventoryItem item)
+    {
+        if (item == null)
+            return;
+
+        if (!CanEquipItem(item))
+        {
+            throw new Exception($"Can not equip item {item.Name}!");
+        }
+
+        var typeItem = item.GetComponent<IComponent_GetEqupType>().Type;
+
+        if (_equipment[typeItem] == null)
+        {
+            _equipment[typeItem] = item;
+        }
+        else
+        {
+            UnequipItem(typeItem);
+            _equipment[typeItem] = item;
+        }
+
+
+        if (item.FlagsExists(InventoryItemFlags.EFFECTIBLE))
+        {
+            this.ActivateEffect(item);
+        }
+
+        inventory.RemoveItem(item);
+        OnItemEquipped?.Invoke(item);
+    }
+
     [Button]
-    public void ItemUnequip(EquipType type)
+    [GUIColor(0, 1, 0)]
+    public void UnequipItem(EquipType type)
     {
         if(_equipment.TryGetValue(type , out var equipItem))
         {
@@ -133,7 +180,7 @@ public class InventoryItemEquipper
     }
 
     
-    public void InstallEquipment()
+    public void InitEquipment()
     {
         foreach (EquipType equipType in Enum.GetValues(typeof(EquipType)))
         {

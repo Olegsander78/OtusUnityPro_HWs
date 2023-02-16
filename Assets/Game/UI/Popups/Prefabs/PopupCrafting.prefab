@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 4221848075159859147}
   - component: {fileID: 4221848075159859189}
   - component: {fileID: 1805238812231114298}
-  - component: {fileID: 4221848075159859146}
+  - component: {fileID: 7838604019034379639}
   m_Layer: 5
   m_Name: ContainerReceipts
   m_TagString: Untagged
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect: {fileID: 4221848075159859189}
   animator: {fileID: 8858035366710267425}
---- !u!114 &4221848075159859146
+--- !u!114 &7838604019034379639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,15 +272,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4221848075159859191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6301e6dd664b948ed80bd4f2d02f38, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ee0c8aa77f0cdd41901d78186a13ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShow:
-    m_PersistentCalls:
-      m_Calls: []
-  onHide:
-    m_PersistentCalls:
-      m_Calls: []
   receiptCatalog: {fileID: 11400000, guid: 212685a4e2fbc4bfba0d453aa8e8f514, type: 2}
   viewPrefab: {fileID: 1509925872865830782, guid: 6b362c9ae5fa444f58c51c9c93cea7bc,
     type: 3}
@@ -366,7 +360,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4221848075159859146}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Game.UISoundComponent, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
@@ -381,7 +375,7 @@ MonoBehaviour:
   onHide:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4221848075159859146}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Game.Meta.InventoryItemReceiptListPresenter, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
@@ -457,7 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameElements:
-  - {fileID: 4221848075159859146}
+  - {fileID: 7838604019034379639}
 --- !u!114 &708262258570553476
 MonoBehaviour:
   m_ObjectHideFlags: 0
