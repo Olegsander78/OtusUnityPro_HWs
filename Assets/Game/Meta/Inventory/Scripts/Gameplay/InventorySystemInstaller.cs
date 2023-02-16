@@ -23,9 +23,9 @@ public sealed class InventorySystemInstaller : MonoGameInstaller
     [ShowInInspector]
     private InventoryItemEquipper itemEquipper = new();
 
-    [GameComponent(ELEMENT)]
-    [ReadOnly, ShowInInspector]
-    private InventoryItemsEffectController effectsObserver = new();
+    //[GameComponent(ELEMENT)]
+    //[ReadOnly, ShowInInspector]
+    //private InventoryItemsEffectController effectsObserver = new();
 
     public override void ConstructGame(IGameContext context)
     {
@@ -34,18 +34,18 @@ public sealed class InventorySystemInstaller : MonoGameInstaller
         this.itemCrafter.SetInventory(this.inventory);
         this.itemEquipper.SetInventory(this.inventory);
 
-        this.InstallEffectObserver(context);
+        //this.InstallEffectObserver(context);
         this.InstallConsumeHealingKit(context);
         this.InstallProductBuyKit(context);
         this.InstallEquipmentKit(context);
     }
 
-    private void InstallEffectObserver(IGameContext context)
-    {
-        var heroService = context.GetService<HeroService>();
-        this.effectsObserver.Construct(heroService);
-        this.effectsObserver.SetInventory(this.inventory);
-    }
+    //private void InstallEffectObserver(IGameContext context)
+    //{
+    //    var heroService = context.GetService<HeroService>();
+    //    this.effectsObserver.Construct(heroService);
+    //    this.effectsObserver.SetInventory(this.inventory);
+    //}
 
     private void InstallConsumeHealingKit(IGameContext context)
     {

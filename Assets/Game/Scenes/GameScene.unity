@@ -5005,13 +5005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6036b94b270e2844280349c22b99c002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allPopups:
-  - name: 0
-    popup: {fileID: 1505714480508210639}
-  - name: 1
-    popup: {fileID: 599806995357123775}
-  - name: 2
-    popup: {fileID: 7920939749022121789}
+  allPopups: []
 --- !u!114 &905701459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13853,18 +13847,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
---- !u!114 &1505714480508210639 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2065221862756091865, guid: 488f88d713bd87a4eaa417af950f76f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 597988091271580182}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e06cd3e5ff262f84995b7c6208a82af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1505714480508210647 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2065221862756091841, guid: 488f88d713bd87a4eaa417af950f76f7,
@@ -17570,18 +17552,6 @@ MonoBehaviour:
   _amountRestoreHPPerOne: {fileID: 1326233381659330262}
   _delay: {fileID: 5903914146912807724}
   _restorePeriod: {fileID: 1066004362165097236}
---- !u!114 &7920939749022121789 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 165693582455875275, guid: 691674935dd66954b864f74a5c43bcd4,
-    type: 3}
-  m_PrefabInstance: {fileID: 8043567281426668022}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb3cd4c8775654940823782bcddb45dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7979669084478048979 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4287134387437160089, guid: dfd36e6f6552e454389bed82b768f6d4,

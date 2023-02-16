@@ -196,9 +196,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2943512250478604988}
-        m_TargetAssemblyTypeName: UIFrames.Unity.UnityFrame, UIFrames
+        m_TargetAssemblyTypeName: InventoryItemListPresenter, Assembly-CSharp
         m_MethodName: Show
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -401,15 +401,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7289018261017399925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2926fad0fb454c82df3c602d4bc684, type: 3}
+  m_Script: {fileID: 11500000, guid: 72f1f564e8a36164c8346f65a97f0a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShow:
-    m_PersistentCalls:
-      m_Calls: []
-  onHide:
-    m_PersistentCalls:
-      m_Calls: []
   prefab: {fileID: 7823166265415889302, guid: e5fef2a7bc69247099bdd0aad287dcda, type: 3}
   container: {fileID: 7289018260171597468}
 --- !u!1 &7289018261300003055

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using Game.GameEngine;
-using Game.GameEngine.InventorySystem;
 using GameSystem;
+using UIFrames.Unity;
 using UnityEngine;
 
 
-public sealed class InventoryItemListPresenter : MonoBehaviour, IGameConstructElement
+public sealed class InventoryItemListPresenter_UFarame : UnityFrame, IGameConstructElement
 {
     [SerializeField]
     private InventoryItemView prefab;
@@ -21,7 +20,7 @@ public sealed class InventoryItemListPresenter : MonoBehaviour, IGameConstructEl
 
     private readonly Dictionary<InventoryItem, ViewHolder> items = new();
 
-    public void Show()
+    protected override void OnShow(object args)
     {
         var playerInventory = this.inventoryService.GetInventory();
         playerInventory.OnItemAdded += this.AddItem;
@@ -35,7 +34,7 @@ public sealed class InventoryItemListPresenter : MonoBehaviour, IGameConstructEl
         }
     }
 
-    public void Hide()
+    protected override void OnHide()
     {
         var playerInventory = this.inventoryService.GetInventory();
         playerInventory.OnItemAdded -= this.AddItem;
