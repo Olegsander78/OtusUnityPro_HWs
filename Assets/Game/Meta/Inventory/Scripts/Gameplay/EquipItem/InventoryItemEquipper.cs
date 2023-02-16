@@ -77,11 +77,14 @@ public class InventoryItemEquipper
     [Button]
     public void ItemEquip(InventoryItemConfig item)
     {
+        if (item.Prototype == null)
+            return;
+
         var typeItem = item.Prototype.GetComponent<IComponent_GetEqupType>().Type;
 
         if (_equipment[typeItem] == null)
         {
-            _equipment[typeItem] = item.Prototype;
+            _equipment[typeItem] = item.Prototype;            
         }
         else
         {
@@ -95,6 +98,7 @@ public class InventoryItemEquipper
             this.ActivateEffect(item.Prototype);
         }
 
+        inventory.RemoveItem(item.Prototype);
         OnItemEquipped?.Invoke(item.Prototype);
     }
 
