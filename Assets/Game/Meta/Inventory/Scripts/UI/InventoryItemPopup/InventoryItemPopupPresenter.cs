@@ -62,6 +62,7 @@ public sealed class InventoryItemPopupPresenter : InventoryItemPopup.IPresenter
         if (this.consumeManager.CanConsumeItem(this.item))
         {
             this.consumeManager.ConsumeItem(this.item);
+            Debug.Log("Button clicked - Consume item");
         }
     }
 
@@ -70,7 +71,7 @@ public sealed class InventoryItemPopupPresenter : InventoryItemPopup.IPresenter
         return this.item.FlagsExists(InventoryItemFlags.EQUIPPABLE);
     }
 
-    public bool CanEquipableItem()
+    public bool CanEquipItem()
     {
         return this.equipperManager.CanEquipItem(this.item);
     }
@@ -80,6 +81,11 @@ public sealed class InventoryItemPopupPresenter : InventoryItemPopup.IPresenter
         if (this.equipperManager.CanEquipItem(this.item))
         {
             this.equipperManager.EquipItem(this.item);
+            Debug.Log("Button clicked - Equipped item");
+        }
+        else
+        {
+            Debug.Log("Button not clicked - Equipped item");
         }
     }
 }

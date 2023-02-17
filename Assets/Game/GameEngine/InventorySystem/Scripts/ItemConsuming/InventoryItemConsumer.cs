@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-
+using UnityEngine;
 
 public class InventoryItemConsumer
 {
@@ -39,6 +39,8 @@ public class InventoryItemConsumer
     [GUIColor(0, 1, 0)]
     public bool CanConsumeItem(InventoryItem item)
     {
+        Debug.Log($"{InventoryItemFlags.CONSUMABLE} - Flag, {inventory.IsItemExists(item)} - in inventory?");
+
         return item.FlagsExists(InventoryItemFlags.CONSUMABLE) &&
                this.inventory.IsItemExists(item);
     }

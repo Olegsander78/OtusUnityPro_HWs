@@ -1035,7 +1035,7 @@ PrefabInstance:
     - target: {fileID: 6713471270188580873, guid: 522e6b0364530324694d53a7f28fec57,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 187
+      value: 304
       objectReference: {fileID: 0}
     - target: {fileID: 6713471270188580873, guid: 522e6b0364530324694d53a7f28fec57,
         type: 3}
@@ -1051,6 +1051,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713471270188580876, guid: 522e6b0364530324694d53a7f28fec57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1330765802332375009}
+    - target: {fileID: 6713471270188580876, guid: 522e6b0364530324694d53a7f28fec57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7011405932625617220}
+    - target: {fileID: 6713471270188580876, guid: 522e6b0364530324694d53a7f28fec57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAccept
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713471270188580876, guid: 522e6b0364530324694d53a7f28fec57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Hide
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713471270188580876, guid: 522e6b0364530324694d53a7f28fec57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UISoundComponent, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522e6b0364530324694d53a7f28fec57, type: 3}
@@ -1188,7 +1213,7 @@ PrefabInstance:
     - target: {fileID: 6713471270188580873, guid: bfe5183162297764495daf561cc19ec4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 187
+      value: 304
       objectReference: {fileID: 0}
     - target: {fileID: 6713471270188580873, guid: bfe5183162297764495daf561cc19ec4,
         type: 3}

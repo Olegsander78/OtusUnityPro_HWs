@@ -31,13 +31,13 @@ public sealed class InventoryItemPopup : UnityFrame
     private void OnEnable()
     {
         this.consumeButton.onClick.AddListener(this.OnConsumeButtonClicked);
-        this.consumeButton.onClick.AddListener(this.OnEquipButtonClicked);
+        this.equipButton.onClick.AddListener(this.OnEquipButtonClicked);
     }
 
     private void OnDisable()
     {
         this.consumeButton.onClick.RemoveListener(this.OnConsumeButtonClicked);
-        this.consumeButton.onClick.RemoveListener(this.OnEquipButtonClicked);
+        this.equipButton.onClick.RemoveListener(this.OnEquipButtonClicked);
     }
 
     protected override void OnShow(object args)
@@ -85,32 +85,45 @@ public sealed class InventoryItemPopup : UnityFrame
     {
         var isConsumableItem = presenter.IsConsumableItem();
         var isEquipableItem = presenter.IsEquipableItem();
+
         if (isConsumableItem)
-            SetupConsumeButton(presenter);
-        if (isEquipableItem)
-            SetupEquipButton(presenter);
+        {
+            SetupConsumeButton();
+        }
+        else if (isEquipableItem)
+        {
+            SetupEquipButton();
+        }
     }
 
-    private void SetupConsumeButton(IPresenter presenter)
+    private void SetupConsumeButton()
     {
-        var isConsumableItem = presenter.IsConsumableItem();
-        this.consumeButton.gameObject.SetActive(isConsumableItem);
+        this.consumeButton.gameObject.SetActive(true);
         this.equipButton.gameObject.SetActive(false);
-        if (isConsumableItem)
-        {
-            this.consumeButton.interactable = presenter.CanConsumeItem();
-        }
+        this.consumeButton.interactable = true;
+
+        //var isConsumableItem = presenter.IsConsumableItem();
+        //this.consumeButton.gameObject.SetActive(isConsumableItem);
+        //this.equipButton.gameObject.SetActive(false);
+        //if (isConsumableItem)
+        //{
+        //    this.consumeButton.interactable = presenter.CanConsumeItem();
+        //}
     }
 
-    private void SetupEquipButton(IPresenter presenter)
+    private void SetupEquipButton()
     {
-        var isEquipableItem = presenter.IsEquipableItem();
-        this.equipButton.gameObject.SetActive(isEquipableItem);
         this.consumeButton.gameObject.SetActive(false);
-        if (isEquipableItem)
-        {
-            this.equipButton.interactable = presenter.CanEquipableItem();
-        }
+        this.equipButton.gameObject.SetActive(true);
+        this.equipButton.interactable = true;
+
+        //var isEquipableItem = presenter.IsEquipableItem();
+        //this.equipButton.gameObject.SetActive(isEquipableItem);
+        //this.consumeButton.gameObject.SetActive(false);
+        //if (isEquipableItem)
+        //{
+        //    this.equipButton.interactable = presenter.CanEquipItem();
+        //}
     }
 
     public interface IPresenter
@@ -132,6 +145,6 @@ public sealed class InventoryItemPopup : UnityFrame
         void OnConsumeClicked();
         void OnEquipClicked();
         bool IsEquipableItem();
-        bool CanEquipableItem();
+        bool CanEquipItem();
     }
 }

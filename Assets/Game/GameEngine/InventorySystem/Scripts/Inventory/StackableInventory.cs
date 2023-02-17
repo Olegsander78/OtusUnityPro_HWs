@@ -314,7 +314,6 @@ public class StackableInventory
     {
         var item = prototype.Clone();
         this.list.AddItem(item);
-        Debug.Log($"{item.Name} was spawned and added");
         this.OnItemAdded?.Invoke(item);
     }
 
