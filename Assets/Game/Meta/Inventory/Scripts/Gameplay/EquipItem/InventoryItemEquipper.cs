@@ -98,10 +98,10 @@ public class InventoryItemEquipper
         if (item == null)
             return;
 
-        //if (!CanEquipItem(item))
-        //{
-        //    throw new Exception($"Can not equip item {item.Name}!");
-        //}
+        if (!CanEquipItem(item))
+        {
+            throw new Exception($"Can not equip item {item.Name}!");
+        }
 
         this.inventory.RemoveItem(item);
 

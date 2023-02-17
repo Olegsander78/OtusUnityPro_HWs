@@ -9,5 +9,6 @@ public enum PopupName
     INVENTORY_ITEM_CRAFTING = 5,
     //MARKET = 6,
     //HERO_LEVELUP = 7,
-    CHESTS = 8
+    CHESTS = 8,
+    EQUIPMENT = 9
 }
