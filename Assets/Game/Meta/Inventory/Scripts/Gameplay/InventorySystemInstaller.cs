@@ -63,6 +63,8 @@ public sealed class InventorySystemInstaller : MonoGameInstaller
     {
         var heroService = context.GetService<HeroService>();
         this.itemEquipper.Construct(heroService);
+        this.itemEquipper.AddHandler(new InventoryItemEquipHandler(heroService));
+
     }
 
     [Title("Debug")]

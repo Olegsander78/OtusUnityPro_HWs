@@ -12,15 +12,13 @@ public class InventoryItemEquipper
 
     public event Action<InventoryItem> OnItemUnequipped;
 
-    public Dictionary<EquipType, InventoryItem> Equipment { get => _equipment; set => _equipment = value; }
-
     private StackableInventory inventory;
 
-    private HeroService heroService;
+    //private HeroService heroService;
 
-    private IComponent_Effector heroComponent;
+    //private IComponent_Effector heroComponent;
 
-    //private readonly List<IInventoryItemEquipHandler> handlers = new();
+    private readonly List<IInventoryItemEquipHandler> _handlers = new();
 
     [PropertySpace(8)]
     [ReadOnly]
@@ -43,12 +41,20 @@ public class InventoryItemEquipper
 
     public void Construct(HeroService heroService)
     {
-        this.heroService = heroService;
-        this.heroComponent = this.heroService.GetHero().Get<IComponent_Effector>();
+        //this.heroService = heroService;
+        //this.heroComponent = this.heroService.GetHero().Get<IComponent_Effector>();
 
         InitEquipment();
     }
+    public void AddHandler(IInventoryItemEquipHandler handler)
+    {
+        _handlers.Add(handler);
+    }
 
+    public void RemoveHandler(IInventoryItemEquipHandler handler)
+    {
+        _handlers.Remove(handler);
+    }
 
     [Button]
     [GUIColor(0, 1, 0)]
@@ -105,11 +111,6 @@ public class InventoryItemEquipper
 
         this.inventory.RemoveItem(item);
 
-        //for (int i = 0, count = this.handlers.Count; i < count; i++)
-        //{
-        //    var handler = this.handlers[i];
-        //    handler.OnEquip(item);            
-        //}
 
         var typeItem = item.GetComponent<IComponent_GetEqupType>().Type;
 
@@ -125,7 +126,11 @@ public class InventoryItemEquipper
 
         if (item.FlagsExists(InventoryItemFlags.EFFECTIBLE))
         {
-            this.ActivateEffect(item);
+            for (int i = 0, count = _handlers.Count; i < count; i++)
+            {
+                var handler = _handlers[i];
+                handler.OnEquip(item);
+            }
         }
 
         OnItemEquipped?.Invoke(item);
@@ -139,7 +144,11 @@ public class InventoryItemEquipper
         {
             if (equipItem.FlagsExists(InventoryItemFlags.EFFECTIBLE))
             {
-                this.DeactivateEffect(equipItem);
+                for (int i = 0, count = _handlers.Count; i < count; i++)
+                {
+                    var handler = _handlers[i];
+                    handler.OnUnequip(equipItem);
+                }
             }
 
             inventory.AddItemAsInstance(equipItem);            
@@ -150,17 +159,17 @@ public class InventoryItemEquipper
         }
     }
 
-    private void ActivateEffect(InventoryItem item)
-    {
-        var effect = item.GetComponent<IComponent_GetEffect>().Effect;
-        this.heroComponent.AddEffect(effect);
-    }
+    //private void ActivateEffect(InventoryItem item)
+    //{
+    //    var effect = item.GetComponent<IComponent_GetEffect>().Effect;
+    //    this.heroComponent.AddEffect(effect);
+    //}
 
-    private void DeactivateEffect(InventoryItem item)
-    {
-        var effect = item.GetComponent<IComponent_GetEffect>().Effect;
-        this.heroComponent.RemoveEffect(effect);
-    }
+    //private void DeactivateEffect(InventoryItem item)
+    //{
+    //    var effect = item.GetComponent<IComponent_GetEffect>().Effect;
+    //    this.heroComponent.RemoveEffect(effect);
+    //}
 
     
     public void InitEquipment()
