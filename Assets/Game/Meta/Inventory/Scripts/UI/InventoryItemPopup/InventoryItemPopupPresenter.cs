@@ -88,4 +88,14 @@ public sealed class InventoryItemPopupPresenter : InventoryItemPopup.IPresenter
             Debug.Log("Button not clicked - Equipped item");
         }
     }
+
+    public void OnUnequipClicked()
+    {
+        this.equipperManager.UnequipItem(this.item.GetComponent<IComponent_GetEqupType>().Type);
+    }
+
+    public bool IsEquippedItem()
+    {
+        return this.equipperManager.IsItemEquipped(this.item.GetComponent<IComponent_GetEqupType>().Type);
+    }
 }

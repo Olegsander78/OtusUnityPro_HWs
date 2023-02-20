@@ -8,15 +8,11 @@ using UnityEngine;
 
 public class InventoryItemEquipper 
 {
-    public event Action<InventoryItem> OnItemEquipped;
+    public event Action<EquipType, InventoryItem> OnItemEquipped;
 
     public event Action<InventoryItem> OnItemUnequipped;
 
     private StackableInventory inventory;
-
-    //private HeroService heroService;
-
-    //private IComponent_Effector heroComponent;
 
     private readonly List<IInventoryItemEquipHandler> _handlers = new();
 
@@ -41,9 +37,6 @@ public class InventoryItemEquipper
 
     public void Construct(HeroService heroService)
     {
-        //this.heroService = heroService;
-        //this.heroComponent = this.heroService.GetHero().Get<IComponent_Effector>();
-
         InitEquipment();
     }
     public void AddHandler(IInventoryItemEquipHandler handler)
@@ -64,40 +57,6 @@ public class InventoryItemEquipper
         return item.FlagsExists(InventoryItemFlags.EQUIPPABLE) &&
                this.inventory.IsItemExists(item);
     }
-
-    //[Button]
-    //[GUIColor(0, 1, 0)]
-    //public void EquipItem(InventoryItemConfig item)
-    //{
-    //    if (item.Prototype == null)
-    //        return;
-
-    //    //if (!CanEquipItem(item))
-    //    //{
-    //    //    throw new Exception($"Can not equip item {item.Prototype.Name}!");
-    //    //}
-
-    //    var typeItem = item.Prototype.GetComponent<IComponent_GetEqupType>().Type;
-
-    //    if (_equipment[typeItem] == null)
-    //    {
-    //        _equipment[typeItem] = item.Prototype;            
-    //    }
-    //    else
-    //    {
-    //        UnequipItem(typeItem);
-    //        _equipment[typeItem] = item.Prototype;
-    //    }
-            
-
-    //    if (item.Prototype.FlagsExists(InventoryItemFlags.EFFECTIBLE))
-    //    {
-    //        this.ActivateEffect(item.Prototype);
-    //    }
-
-    //    inventory.RemoveItem(item.Prototype);
-    //    OnItemEquipped?.Invoke(item.Prototype);
-    //}
 
     public void EquipItem(InventoryItem item)
     {
@@ -133,7 +92,7 @@ public class InventoryItemEquipper
             }
         }
 
-        OnItemEquipped?.Invoke(item);
+        OnItemEquipped?.Invoke(typeItem, item);
     }
 
     [Button]
@@ -159,18 +118,6 @@ public class InventoryItemEquipper
         }
     }
 
-    //private void ActivateEffect(InventoryItem item)
-    //{
-    //    var effect = item.GetComponent<IComponent_GetEffect>().Effect;
-    //    this.heroComponent.AddEffect(effect);
-    //}
-
-    //private void DeactivateEffect(InventoryItem item)
-    //{
-    //    var effect = item.GetComponent<IComponent_GetEffect>().Effect;
-    //    this.heroComponent.RemoveEffect(effect);
-    //}
-
     
     public void InitEquipment()
     {
@@ -182,8 +129,13 @@ public class InventoryItemEquipper
     }
     public bool IsItemEquipped(EquipType type)
     {
-        return _equipment.ContainsKey(type);
+        return _equipment.TryGetValue(type, out var item);
     }
+
+    //public bool IsItemEquipped(EquipType type)
+    //{
+    //    return _equipment.ContainsKey(type);
+    //}
 
     public InventoryItem GetEquippedItem(EquipType equipType)
     {
@@ -195,8 +147,18 @@ public class InventoryItemEquipper
         throw new Exception($"Item {equipType} is'n equipped!");
     }
 
-    public InventoryItem[] GetEquippedItems()
+    public List<KeyValuePair<EquipType, InventoryItem>> GetEquippedItems()
     {
-        return _equipment.Values.ToArray();
+        var result = new List<KeyValuePair<EquipType, InventoryItem>>();
+
+        foreach (var pair in _equipment)
+        {
+            if(pair.Value != null)
+            {
+                result.Add(pair);
+            }
+        }
+
+        return result;
     }
 }

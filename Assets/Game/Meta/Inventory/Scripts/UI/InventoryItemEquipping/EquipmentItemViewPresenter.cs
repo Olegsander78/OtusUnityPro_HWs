@@ -7,11 +7,7 @@ public sealed class EquipmentItemViewPresenter
 
     private readonly InventoryItem item;
 
-    //private IComponent_Stackable stackableComponent;
-
     private PopupManager popupManager;
-
-    //private InventoryItemConsumer consumeManager;
 
     private InventoryItemEquipper equipperManager;
 
@@ -24,7 +20,6 @@ public sealed class EquipmentItemViewPresenter
     public void Construct(PopupManager popupManager, InventoryItemEquipper equipperManager)
     {
         this.popupManager = popupManager;
-        //this.consumeManager = consumeManager;
         this.equipperManager = equipperManager;
     }
 
@@ -33,17 +28,6 @@ public sealed class EquipmentItemViewPresenter
         var metadata = this.item.Metadata;
         this.view.SetTitle(metadata.title);
         this.view.SetIcon(metadata.icon);
-
-        //var flagsExists = this.item.FlagsExists(InventoryItemFlags.STACKABLE);
-        //this.view.Stack.SetVisible(flagsExists);
-
-        //if (flagsExists)
-        //{
-        //    this.stackableComponent = this.item.GetComponent<IComponent_Stackable>();
-        //    this.stackableComponent.OnValueChanged += this.OnAmountChanged;
-
-        //    this.view.Stack.SetAmount(this.stackableComponent.Value, this.stackableComponent.Size);
-        //}
 
         this.view.AddClickListener(this.OnItemClicked);
     }
@@ -57,11 +41,6 @@ public sealed class EquipmentItemViewPresenter
 
         this.view.RemoveClickListener(this.OnItemClicked);
     }
-
-    //private void OnAmountChanged(int newCount)
-    //{
-    //    this.view.Stack.SetAmount(newCount, this.stackableComponent.Size);
-    //}
 
     private void OnItemClicked()
     {

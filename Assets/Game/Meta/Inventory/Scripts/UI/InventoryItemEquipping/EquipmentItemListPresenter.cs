@@ -17,7 +17,7 @@ public sealed class EquipmentItemListPresenter : MonoBehaviour, IGameConstructEl
     [SerializeField]
     private List<EquipmentSlot> equipmentSlots;
 
-    private List<InventoryItem> equipmentList = new();
+    private List<KeyValuePair<EquipType, InventoryItem>> equipmentList = new();
 
     private InventoryService inventoryService;
 
@@ -45,14 +45,13 @@ public sealed class EquipmentItemListPresenter : MonoBehaviour, IGameConstructEl
         this.equipmentList.Clear();
         this.equipmentList.AddRange(this.equipperManager.GetEquippedItems());
         Debug.Log($"{equipmentList.Count} - amount items equipped");
-        this.equipperManager.OnItemEquipped += EquipItem;
-        this.equipperManager.OnItemUnequipped += UnquipItem;
+        this.equipperManager.OnItemEquipped += SetupEquippedItem;
+        this.equipperManager.OnItemUnequipped += RemoveUnquippedItem;
 
-        //var inventoryItems = playerEquipment.GetAllItems();
         for (int i = 0, count = this.equipmentList.Count; i < count; i++)
         {
-            var equippedItem = this.equipmentList[i];
-            EquipItem(equippedItem);
+            KeyValuePair<EquipType, InventoryItem> equippedItem = this.equipmentList[i];
+            SetupEquippedItem(equippedItem.Key, equippedItem.Value);
         }
     }
 
@@ -60,8 +59,8 @@ public sealed class EquipmentItemListPresenter : MonoBehaviour, IGameConstructEl
     {
         this.equipmentList.Clear();
 
-        this.equipperManager.OnItemEquipped -= EquipItem;
-        this.equipperManager.OnItemUnequipped -= UnquipItem;
+        this.equipperManager.OnItemEquipped -= SetupEquippedItem;
+        this.equipperManager.OnItemUnequipped -= RemoveUnquippedItem;
 
         //var inventoryItems = playerInventory.GetAllItems();
         //for (int i = 0, count = playerEquipment.Length; i < count; i++)
@@ -71,22 +70,23 @@ public sealed class EquipmentItemListPresenter : MonoBehaviour, IGameConstructEl
         //}
     }
 
-    private void EquipItem(InventoryItem item)
+    private void SetupEquippedItem(EquipType type, InventoryItem item)
     {
+        if (item == null)
+            return;
+        
         if (this.items.ContainsKey(item))
         {
             return;
         }
 
-        //this.equipmentList.Add(item);
 
-        var typeItem = item.GetComponent<IComponent_GetEqupType>().Type;
+        //var typeItem = item.GetComponent<IComponent_GetEqupType>().Type;
 
         for (int i = 0; i < equipmentSlots.Count; i++)
         {
-            if(typeItem == equipmentSlots[i].TypeEquipment)
+            if(type == equipmentSlots[i].TypeEquipment)
             {
-                //SpawnAsSingle(item);
                 
                 var view = Instantiate(equipmentSlots[i].Prefab, this.equipmentSlots[i].Container);
                 var presenter = new InventoryItemViewPresenter(view, item);
@@ -98,78 +98,23 @@ public sealed class EquipmentItemListPresenter : MonoBehaviour, IGameConstructEl
                 presenter.Start();
             }            
         }
-        
-
-
-        //if (this.items.ContainsKey(item))
-        //{
-        //    return;
-        //}
-
-        //var view = Instantiate(this.prefab, this.container);
-        //var presenter = new InventoryItemViewPresenter(view, item);
-        //presenter.Construct(this.popupManager, this.consumeManager, this.equipperManager);
-
-        //var viewHolder = new ViewHolder(view, presenter);
-        //this.items.Add(item, viewHolder);
-
-        //presenter.Start();
     }
 
-    private void SpawnAsSingle(InventoryItem prototype)
-    {
-        var item = prototype.Clone();
-        this.equipmentList.Add(item);
-        //this.OnItemAdded?.Invoke(item);
-    }
 
-    private bool RemoveAsInstance(InventoryItem item)
+    private void RemoveUnquippedItem(InventoryItem item)
     {
-        if (this.equipmentList.Remove(item))
-        {
-            //this.OnItemRemoved?.Invoke(item);
-            return true;
-        }
+        if (item == null)
+            return;
 
-        return false;
-    }
-
-    private void UnquipItem(InventoryItem item)
-    {
         if (!this.items.ContainsKey(item))
         {
             return;
         }
 
-        //RemoveAsInstance(item);
-
         var viewHolder = this.items[item];
         viewHolder.presenter.Stop();
         Destroy(viewHolder.view.gameObject);
         this.items.Remove(item);
-
-        //var typeItem = item.GetComponent<IComponent_GetEqupType>().Type;
-
-        //for (int i = 0; i < equipmentSlots.Count; i++)
-        //{
-        //    if (typeItem == equipmentSlots[i].TypeEquipment)
-        //    {
-        //        //var view = Instantiate(equipmentSlots[i].Prefab, this.equipmentSlots[i].Container);
-        //        //var presenter = new InventoryItemViewPresenter(view, item);
-        //        //presenter.Construct(this.popupManager, this.consumeManager, this.equipperManager);
-
-        //        //var viewHolder = new ViewHolder(view, presenter);
-        //        //this.items.Add(item, viewHolder);
-
-        //        //presenter.Start();
-               
-        //    }
-        //}
-
-        //var viewHolder = this.items[item];
-        //viewHolder.presenter.Stop();
-        //Destroy(viewHolder.view.gameObject);
-        //this.items.Remove(item);
     }
 
 
