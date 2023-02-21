@@ -15,11 +15,13 @@ public class InventoryItemEquipper
     private StackableInventory inventory;
 
     private readonly List<IInventoryItemEquipHandler> _handlers = new();
+    public Dictionary<EquipType, InventoryItem> Equipment { get => _equipment; private set => _equipment = value; }
 
     [PropertySpace(8)]
     [ReadOnly]
     [ShowInInspector]
     private Dictionary<EquipType, InventoryItem> _equipment = new();
+
 
     public void SetInventory(StackableInventory inventory)
     {
