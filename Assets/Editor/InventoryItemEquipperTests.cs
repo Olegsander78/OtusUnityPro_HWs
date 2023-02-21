@@ -40,25 +40,23 @@ public class InventoryItemEquipperTests
         //Assert.AreEqual(false, equipper.IsItemEquipped(EquipType.LEGS));
     }
 
-       
-    
-    //[Test]
-    //[Category("Equipment")]
-    //public void EquipItem_True_ItemEquippedToHero()
-    //{
-    //    //Arrange
-    //    const string itemName = "sample";
-    //    InventoryItemEquipper equipper = new InventoryItemEquipper();
-    //    InventoryItem item = new InventoryItem(itemName, InventoryItemFlags.EQUIPPABLE, metadata: null);
 
-    //    //Act
-    //    equipper.EquipItem(item);
 
-    //    //Assert
-    //    Assert.AreEqual(item, equipper.Equipment[0]);
-    //    //Assert.AreEqual(null, equipper.IsItemEquipped(item.GetComponent<IComponent_GetEqupType>().Type));
+    [Test]
+    [Category("Equipment")]
+    public void EquipItem_True_ItemEquippedToHero()
+    {
+        //Arrange
+        const string itemName = "sample";
+        InventoryItemEquipper equipper = new InventoryItemEquipper();
+        InventoryItem item = new InventoryItem(itemName, InventoryItemFlags.EQUIPPABLE, metadata: null);
 
-    //}
+        //Act
+        equipper.EquipItem(item);
+
+        //Assert
+        Assert.AreEqual(item, equipper.IsItemEquipped(item.GetComponent<IComponent_GetEqupType>().Type));
+    }
 
     //[Test]
     //[Category("Inventory")]
