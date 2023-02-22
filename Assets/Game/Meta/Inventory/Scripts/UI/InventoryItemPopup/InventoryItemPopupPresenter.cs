@@ -91,11 +91,34 @@ public sealed class InventoryItemPopupPresenter : InventoryItemPopup.IPresenter
 
     public void OnUnequipClicked()
     {
-        this.equipperManager.UnequipItem(this.item.GetComponent<IComponent_GetEqupType>().Type);
+        if (this.IsEquippedItem())
+        {
+            if(item.TryGetComponent(out IComponent_GetEqupType component))
+            {
+                this.equipperManager.UnequipItem(component.Type);
+                //this.equipperManager.UnequipItem(this.item.GetComponent<IComponent_GetEqupType>().Type);
+
+                Debug.Log("Button clicked - UnEquipped item");
+            }
+        }
+        else
+        {
+            Debug.Log("Button not clicked - UnEquipped item");
+        }
+        //this.equipperManager.UnequipItem(this.item.GetComponent<IComponent_GetEqupType>().Type);
     }
 
     public bool IsEquippedItem()
     {
-        return this.equipperManager.IsItemEquipped(this.item.GetComponent<IComponent_GetEqupType>().Type);
+        if (item.TryGetComponent(out IComponent_GetEqupType component))
+        {
+            //return this.equipperManager.IsItemEquipped(this.item.GetComponent<IComponent_GetEqupType>().Type);
+
+            //return this.equipperManager.GetEquippedItem(this.item.GetComponent<IComponent_GetEqupType>().Type) != null;
+            return this.equipperManager.GetEquippedItem(component.Type) != null;
+
+        }
+
+        return false;
     }
 }
