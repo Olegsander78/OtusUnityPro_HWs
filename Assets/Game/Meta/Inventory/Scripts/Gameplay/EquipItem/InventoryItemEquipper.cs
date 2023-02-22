@@ -83,7 +83,7 @@ public class InventoryItemEquipper
             _equipment[typeItem] = item;
         }
 
-        if (item.FlagsExists(InventoryItemFlags.EFFECTIBLE))
+        if (_handlers.Count > 0))
         {
             for (int i = 0, count = _handlers.Count; i < count; i++)
             {
