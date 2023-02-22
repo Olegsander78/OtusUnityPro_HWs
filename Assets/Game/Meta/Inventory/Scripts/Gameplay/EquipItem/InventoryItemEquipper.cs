@@ -101,7 +101,7 @@ public class InventoryItemEquipper
     {
         if(_equipment.TryGetValue(type , out var equipItem))
         {
-            if (equipItem.FlagsExists(InventoryItemFlags.EFFECTIBLE))
+            if (_handlers.Count > 0)
             {
                 for (int i = 0, count = _handlers.Count; i < count; i++)
                 {
