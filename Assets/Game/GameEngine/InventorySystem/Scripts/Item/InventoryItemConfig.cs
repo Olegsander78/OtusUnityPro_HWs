@@ -27,6 +27,7 @@ public sealed class InventoryItemConfig : SerializedScriptableObject
     public InventoryItem Prototype
     {
         get { return this.origin; }
+        set { this.origin = value; }
     }
 
     [OdinSerialize]

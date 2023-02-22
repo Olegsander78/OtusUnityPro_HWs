@@ -12,4 +12,14 @@ public sealed class Component_EquipType : IComponent_GetEqupType
 
     [SerializeField]
     private EquipType type;
+
+    public Component_EquipType()
+    {
+            
+    }
+
+    public Component_EquipType(EquipType type)
+    {
+        this.type = type;   
+    }
 }

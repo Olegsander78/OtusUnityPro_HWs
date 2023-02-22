@@ -7,12 +7,34 @@ using UnityEngine.TestTools;
 
 public class InventoryItemEquipperTests
 {
+
     [Test]
     [Category("Equipment")]
     public void InitItems_True_NoItemsEquippedOnHeroByDefault()
     {
+        //Equipment:
+        //Input: null
+
+        //Output:
+        //Slot HEAD = null
+        //Slot BODY = null
+        //Slot HANDS = null
+        //Slot RIGHT_HAND = null
+        //Slot LEFT_HAND = null
+        //Slot LEGS = null
+
         //Arrange:
         InventoryItemEquipper equipper = new InventoryItemEquipper();
+
+        equipper.Equipment = new Dictionary<EquipType, InventoryItem>()
+        {
+            {EquipType.HEAD, null },
+            {EquipType.BODY, null },
+            {EquipType.HANDS, null },
+            {EquipType.LEFT_HAND, null },
+            {EquipType.RIGHT_HAND, null },
+            {EquipType.LEGS, null }
+        };
 
         //Act:
         equipper.InitEquipment();
@@ -31,87 +53,196 @@ public class InventoryItemEquipperTests
         Assert.AreEqual(null, itemOnRHand);
         Assert.AreEqual(null, itemOnLHand);
         Assert.AreEqual(null, itemOnLegs);
+    }
 
-        //Assert.AreEqual(false, equipper.IsItemEquipped(EquipType.HEAD));
-        //Assert.AreEqual(false, equipper.IsItemEquipped(EquipType.BODY));
-        //Assert.AreEqual(false, equipper.IsItemEquipped(EquipType.HANDS));
-        //Assert.AreEqual(false, equipper.IsItemEquipped(EquipType.LEFT_HAND));
-        //Assert.AreEqual(false, equipper.IsItemEquipped(EquipType.RIGHT_HAND));
-        //Assert.AreEqual(false, equipper.IsItemEquipped(EquipType.LEGS));
+    [Test]
+    [Category("Equipment")]
+    public void EquipItem_True_ItemCanEquipToHero()
+    {
+        //Inventory:
+
+        //Input:
+        //SimpleBoots = 1
+
+        //Output:
+        //SimpleBoots = 1
+
+        //Equipment:
+
+        //Input:
+        //Slot HEAD = null
+        //Slot BODY = null
+        //Slot HANDS = null
+        //Slot RIGHT_HAND = null
+        //Slot LEFT_HAND = null
+        //Slot LEGS = null
+
+        //Output:
+        //Slot HEAD = null
+        //Slot BODY = null
+        //Slot HANDS = null
+        //Slot RIGHT_HAND = null
+        //Slot LEFT_HAND = null
+        //Slot LEGS = null
+
+        //Arrange
+        const string itemName = "SimpleBoots";
+        InventoryItemEquipper equipper = new InventoryItemEquipper();
+
+        equipper.Equipment = new Dictionary<EquipType, InventoryItem>()
+        {
+            {EquipType.HEAD, null },
+            {EquipType.BODY, null },
+            {EquipType.HANDS, null },
+            {EquipType.LEFT_HAND, null },
+            {EquipType.RIGHT_HAND, null },
+            {EquipType.LEGS, null }
+        };
+
+        var inventory = new StackableInventory();
+        equipper.SetInventory(inventory);
+
+        var bootsItemConfig = ScriptableObject.CreateInstance<InventoryItemConfig>();
+        bootsItemConfig.Prototype = new InventoryItem(itemName, InventoryItemFlags.EQUIPPABLE, metadata: null,
+            new Component_EquipType(type: EquipType.LEGS));
+
+
+        inventory.AddItemAsInstance(bootsItemConfig.Prototype);
+
+        //Act
+
+        //Assert
+        Assert.True(equipper.CanEquipItem(bootsItemConfig.Prototype));
+    }
+
+    [Test]
+    [Category("Equipment")]
+    public void EquipItem_True_ItemEquippedToHero()
+    {
+        //Inventory:
+
+        //Input:
+        //SimpleBoots = 1
+
+        //Output:
+        //SimpleBoots = 0
+
+        //Equipment:
+
+        //Input:
+        //Slot HEAD = null
+        //Slot BODY = null
+        //Slot HANDS = null
+        //Slot RIGHT_HAND = null
+        //Slot LEFT_HAND = null
+        //Slot LEGS = null
+
+        //Output:
+        //Slot HEAD = null
+        //Slot BODY = null
+        //Slot HANDS = null
+        //Slot RIGHT_HAND = null
+        //Slot LEFT_HAND = null
+        //Slot LEGS = SimpleBoots = 1
+
+        //Arrange
+        const string itemName = "SimpleBoots";
+        InventoryItemEquipper equipper = new InventoryItemEquipper();
+
+        equipper.Equipment = new Dictionary<EquipType, InventoryItem>()
+        {
+            {EquipType.HEAD, null },
+            {EquipType.BODY, null },
+            {EquipType.HANDS, null },
+            {EquipType.LEFT_HAND, null },
+            {EquipType.RIGHT_HAND, null },
+            {EquipType.LEGS, null }
+        };
+
+        var inventory = new StackableInventory();
+        equipper.SetInventory(inventory);
+
+        var bootsItemConfig = ScriptableObject.CreateInstance<InventoryItemConfig>();
+        bootsItemConfig.Prototype = new InventoryItem(itemName, InventoryItemFlags.EQUIPPABLE, metadata: null,
+            new Component_EquipType(type: EquipType.LEGS));
+       
+        inventory.AddItemAsInstance(bootsItemConfig.Prototype);
+
+        //Act
+        equipper.EquipItem(bootsItemConfig.Prototype);
+
+        //Assert
+        Assert.False(inventory.IsItemExists(bootsItemConfig.Prototype));
+        Assert.AreEqual(bootsItemConfig.Prototype, equipper.GetEquippedItem(EquipType.LEGS));
     }
 
 
 
     [Test]
     [Category("Equipment")]
-    public void EquipItem_True_ItemEquippedToHero()
+    public void UnequipItem_True_ItemUnequippedFromHero()
     {
+        //Inventory:
+
+        //Input:
+        //SimpleBoots = 0
+
+        //Output:
+        //SimpleBoots = 1
+
+        //Equipment:
+
+        //Input:
+        //Slot HEAD = null
+        //Slot BODY = null
+        //Slot HANDS = null
+        //Slot RIGHT_HAND = null
+        //Slot LEFT_HAND = null
+        //Slot LEGS = SimpleBoots = 1
+
+        //Output:
+        //Slot HEAD = null
+        //Slot BODY = null
+        //Slot HANDS = null
+        //Slot RIGHT_HAND = null
+        //Slot LEFT_HAND = null
+        //Slot LEGS = null
+
         //Arrange
-        const string itemName = "sample";
+        const string itemName = "SimpleBoots";
         InventoryItemEquipper equipper = new InventoryItemEquipper();
-        InventoryItem item = new InventoryItem(itemName, InventoryItemFlags.EQUIPPABLE, metadata: null);
+
+        var inventory = new StackableInventory();
+
+        equipper.SetInventory(inventory);
+
+        var bootsItemConfig = ScriptableObject.CreateInstance<InventoryItemConfig>();
+        bootsItemConfig.Prototype = new InventoryItem(itemName, InventoryItemFlags.EQUIPPABLE, metadata: null,
+            new Component_EquipType(type: EquipType.LEGS));
+
+
+        equipper.Equipment = new Dictionary<EquipType, InventoryItem>()
+        {
+            {EquipType.HEAD, null },
+            {EquipType.BODY, null },
+            {EquipType.HANDS, null },
+            {EquipType.LEFT_HAND, null },
+            {EquipType.RIGHT_HAND, null },
+            {EquipType.LEGS, bootsItemConfig.Prototype }
+        };        
 
         //Act
-        equipper.EquipItem(item);
+        equipper.UnequipItem(EquipType.LEGS);
 
-        //Assert
-        Assert.AreEqual(item, equipper.IsItemEquipped(item.GetComponent<IComponent_GetEqupType>().Type));
+        //Assert        
+        Assert.AreEqual(null, equipper.GetEquippedItem(EquipType.LEGS));
+        Assert.True(inventory.IsItemExists(bootsItemConfig.Prototype));
     }
 
-    //[Test]
-    //[Category("Inventory")]
-    //public void DepositGold_True_DepositedGold()
-    //{
-    //    //Arrange
-    //    Inventory inventory = new Inventory();
-    //    int expected = 10;
+    
 
-    //    //Act
-    //    inventory.DepositGold(10);
 
-    //    //Assert
-    //    Assert.AreEqual(expected, inventory.Gold);
-    //}
-    //[Test]
-    //[Category("Inventory")]
-    //[TestCase(100)]
-    //[TestCase(500)]
-    //public void DepositGold_True_DoesntExceedMaxGold(int amount)
-    //{
-    //    //Arrange
-    //    Inventory inventory = new Inventory();
 
-    //    //Act
-    //    inventory.DepositGold(amount);
-
-    //    //Assert
-    //    Assert.LessOrEqual(inventory.Gold, inventory.MaxGold);
-    //}
-    //[Test]
-    //[Category("Inventory")]
-    //public void InventoryGold_True_StartAtZeroMaxGold()
-    //{
-    //    //Arrange
-    //    Inventory inventory = new Inventory();
-
-    //    //Assert
-    //    Assert.AreEqual(0, inventory.Gold);
-    //}
-    //[Test]
-    //[Category("Inventory")]
-    //public void DebitGold_True_GoldDebitRemoved()
-    //{
-    //    //Arrange
-    //    Inventory inventory = new Inventory();
-    //    int expected = 20;
-
-    //    //Act
-    //    inventory.DepositGold(50);
-    //    inventory.DebitGold(30);
-
-    //    //Assert
-    //    Assert.AreEqual(expected, inventory.Gold);
-    //}
     //[Test]
     //[Category("Inventory")]
     //[TestCase(50, 60, 50)]

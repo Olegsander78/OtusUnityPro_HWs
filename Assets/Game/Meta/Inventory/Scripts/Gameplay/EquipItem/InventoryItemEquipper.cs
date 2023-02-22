@@ -15,7 +15,7 @@ public class InventoryItemEquipper
     private StackableInventory inventory;
 
     private readonly List<IInventoryItemEquipHandler> _handlers = new();
-    public Dictionary<EquipType, InventoryItem> Equipment { get => _equipment; private set => _equipment = value; }
+    public Dictionary<EquipType, InventoryItem> Equipment { get => _equipment; set => _equipment = value; }
 
     [PropertySpace(8)]
     [ReadOnly]
