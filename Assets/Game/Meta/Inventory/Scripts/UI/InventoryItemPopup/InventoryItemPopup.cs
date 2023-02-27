@@ -57,11 +57,13 @@ public sealed class InventoryItemPopup : UnityFrame
         this.decriptionText.text = presenter.Description;
         this.iconImage.sprite = presenter.Icon;
 
-        this.SetupStackContainer(presenter);
-
-        this.SetupButtons(presenter);
-
         this.presenter = presenter;
+
+        this.SetupButton(presenter);
+        
+        //this.SetupConsumeButton(presenter);
+
+        this.SetupStackContainer(presenter);              
     }
 
     private void OnConsumeButtonClicked()
@@ -92,31 +94,47 @@ public sealed class InventoryItemPopup : UnityFrame
         }
     }
 
-    private void SetupButtons(IPresenter presenter)
+    private void SetupButton(IPresenter presenter)
     {
         var isConsumableItem = presenter.IsConsumableItem();
         var isEquipableItem = presenter.IsEquipableItem();
         var isEquipped = presenter.IsEquippedItem();
 
-        if (isConsumableItem)
+        //if (isConsumableItem)
+        //{
+        //    SetupConsumeButton(presenter);
+        //    return;
+        //}
+        if (isEquipableItem)
         {
-            SetupConsumeButton();
-        }
-        else if (isEquipableItem)
-        {
-            if (!isEquipped)
+            if (isEquipped)
             {
                 SetupUnequipButton();
+                Debug.Log("Button Unquip Item setuped!");
             }
             else
             {
                 SetupEquipButton();
+                Debug.Log("Button Equip Item setuped!");
             }
+        }
+        else
+        {
+            SetupConsumeButton();
+            Debug.Log("Button Consume Item setuped!");
         }
     }
 
     private void SetupConsumeButton()
     {
+        //var isConsumableItem = presenter.IsConsumableItem();
+        //this.consumeButton.gameObject.SetActive(isConsumableItem);
+        //if (isConsumableItem)
+        //{
+        //    this.equipButton.gameObject.SetActive(false);
+        //    this.unequipButton.gameObject.SetActive(false);
+        //    this.consumeButton.interactable = presenter.CanConsumeItem();
+        //}
         this.consumeButton.gameObject.SetActive(true);
         this.equipButton.gameObject.SetActive(false);
         this.unequipButton.gameObject.SetActive(false);

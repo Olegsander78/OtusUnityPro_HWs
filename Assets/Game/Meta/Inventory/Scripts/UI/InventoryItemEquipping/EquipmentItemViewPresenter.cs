@@ -11,15 +11,18 @@ public sealed class EquipmentItemViewPresenter
 
     private InventoryItemEquipper equipperManager;
 
+    private InventoryItemConsumer consumeManager;
+
     public EquipmentItemViewPresenter(InventoryItemView view, InventoryItem item)
     {
         this.view = view;
         this.item = item;
     }
 
-    public void Construct(PopupManager popupManager, InventoryItemEquipper equipperManager)
+    public void Construct(PopupManager popupManager, InventoryItemConsumer consumeManager, InventoryItemEquipper equipperManager)
     {
         this.popupManager = popupManager;
+        this.consumeManager= consumeManager;
         this.equipperManager = equipperManager;
     }
 
@@ -33,18 +36,19 @@ public sealed class EquipmentItemViewPresenter
     }
 
     public void Stop()
-    {
-        //if (this.item.FlagsExists(InventoryItemFlags.STACKABLE))
-        //{
-        //    this.stackableComponent.OnValueChanged -= this.OnAmountChanged;
-        //}
+    {   
 
         this.view.RemoveClickListener(this.OnItemClicked);
     }
 
     private void OnItemClicked()
     {
-        this.equipperManager.UnequipItem(item.GetComponent<IComponent_GetEqupType>().Type);
+
+        var presenter = new InventoryItemPopupPresenter(this.item);
+        presenter.Construct(this.consumeManager, this.equipperManager);
+        this.popupManager.ShowPopup(PopupName.INVENTORY_ITEM, presenter);
+
+        //this.equipperManager.UnequipItem(item.GetComponent<IComponent_GetEqupType>().Type);
         
         //var presenter = new InventoryItemPopupPresenter(this.item);
         //presenter.Construct(this.consumeManager, this.equipperManager);
