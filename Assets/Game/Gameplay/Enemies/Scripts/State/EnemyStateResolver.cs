@@ -13,11 +13,11 @@ public sealed class EnemyStateResolver : MonoBehaviour
     //[SerializeField]
     //private TakeDamageEngine _takeDamageEngine;
 
-    //[SerializeField]
-    //private MeleeCombatEngine combatEngine;
+    [SerializeField]
+    private MeleeCombatEngine _combatEngine;
 
-    //[SerializeField]
-    //private MoveInDirectionEngine moveEngine;
+    [SerializeField]
+    private MoveInDirectionEngine _moveEngine;
 
     [SerializeField]
     private EventBehaviour _respawnReceiver;
@@ -27,11 +27,11 @@ public sealed class EnemyStateResolver : MonoBehaviour
         _dieReceiver.OnDestroy += OnDestroyed;
         _respawnReceiver.OnEvent += OnRespawned;
 
-        //this.moveEngine.OnStartMove += this.OnMoveStarted;
-        //this.moveEngine.OnStopMove += this.OnMoveEnded;
+        _moveEngine.OnStartMove += OnMoveStarted;
+        _moveEngine.OnStopMove += OnMoveEnded;
 
-        //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
-        //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
+        _combatEngine.OnCombatStarted += OnCombatStarted;
+        _combatEngine.OnCombatStopped += OnCombatEnded;
 
 
         //_takeDamageEngine.OnDamageTaken += OnDamageTakenStarted;
@@ -43,11 +43,11 @@ public sealed class EnemyStateResolver : MonoBehaviour
         _dieReceiver.OnDestroy -= OnDestroyed;
         _respawnReceiver.OnEvent -= OnRespawned;
 
-        //this.moveEngine.OnStartMove += this.OnMoveStarted;
-        //this.moveEngine.OnStopMove += this.OnMoveEnded;
+        _moveEngine.OnStartMove -= OnMoveStarted;
+        _moveEngine.OnStopMove -= OnMoveEnded;
 
-        //this.combatEngine.OnCombatStarted += this.OnCombatStarted;
-        //this.combatEngine.OnCombatStopped += this.OnCombatEnded;
+        _combatEngine.OnCombatStarted -= OnCombatStarted;
+        _combatEngine.OnCombatStopped -= OnCombatEnded;
 
 
         //_takeDamageEngine.OnDamageTaken -= OnDamageTakenStarted;
@@ -65,31 +65,31 @@ public sealed class EnemyStateResolver : MonoBehaviour
         }
     }
 
-    //private void OnMoveStarted()
-    //{
-    //    this.stateMachine.SwitchState(EnemyStateType.MOVE);
-    //}
+    private void OnMoveStarted()
+    {
+        _stateMachine.SwitchState(EnemyStateType.MOVE);
+    }
 
-    //private void OnMoveEnded()
-    //{
-    //    if (this.stateMachine.CurrentState == EnemyStateType.MOVE)
-    //    {
-    //        this.stateMachine.SwitchState(EnemyStateType.IDLE);
-    //    }
-    //}
+    private void OnMoveEnded()
+    {
+        if (_stateMachine.CurrentState == EnemyStateType.MOVE)
+        {
+            _stateMachine.SwitchState(EnemyStateType.IDLE);
+        }
+    }
 
-    //private void OnCombatStarted(MeleeCombatOperation operation)
-    //{
-    //    this.stateMachine.SwitchState(EnemyStateType.MELEE_COMBAT);
-    //}
+    private void OnCombatStarted(MeleeCombatOperation operation)
+    {
+        _stateMachine.SwitchState(EnemyStateType.MELEE_COMBAT);
+    }
 
-    //private void OnCombatEnded(MeleeCombatOperation operation)
-    //{
-    //    if (this.stateMachine.CurrentState == EnemyStateType.MELEE_COMBAT)
-    //    {
-    //        this.stateMachine.SwitchState(EnemyStateType.IDLE);
-    //    }
-    //}
+    private void OnCombatEnded(MeleeCombatOperation operation)
+    {
+        if (_stateMachine.CurrentState == EnemyStateType.MELEE_COMBAT)
+        {
+            _stateMachine.SwitchState(EnemyStateType.IDLE);
+        }
+    }
 
 
     //private void OnDamageTakenStarted(TakeDamageEvent obj)
