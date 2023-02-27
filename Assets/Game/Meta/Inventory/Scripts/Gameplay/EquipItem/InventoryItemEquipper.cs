@@ -72,29 +72,33 @@ public class InventoryItemEquipper
 
         this.inventory.RemoveItem(item);
 
-
-        var typeItem = item.GetComponent<IComponent_GetEqupType>().Type;
-
-        if (_equipment[typeItem] == null)
+        if(item.TryGetComponent(out IComponent_GetEqupType component))
         {
-            _equipment[typeItem] = item;
-        }
-        else
-        {
-            UnequipItem(typeItem);
-            _equipment[typeItem] = item;
-        }
+            //var typeItem = item.GetComponent<IComponent_GetEqupType>().Type;
+            var typeItem = component.Type;
 
-        if (item.FlagsExists(InventoryItemFlags.EFFECTIBLE))
-        {
-            for (int i = 0, count = _handlers.Count; i < count; i++)
+
+            if (_equipment[typeItem] == null)
             {
-                var handler = _handlers[i];
-                handler.OnEquip(item);
+                _equipment[typeItem] = item;
             }
-        }
+            else
+            {
+                UnequipItem(typeItem);
+                _equipment[typeItem] = item;
+            }
 
-        OnItemEquipped?.Invoke(typeItem, item);
+            if (_handlers.Count > 0)
+            {
+                for (int i = 0, count = _handlers.Count; i < count; i++)
+                {
+                    var handler = _handlers[i];
+                    handler.OnEquip(item);
+                }
+            }
+
+            OnItemEquipped?.Invoke(typeItem, item);
+        }
     }
 
     [Button]
@@ -103,7 +107,7 @@ public class InventoryItemEquipper
     {
         if(_equipment.TryGetValue(type , out var equipItem))
         {
-            if (equipItem.FlagsExists(InventoryItemFlags.EFFECTIBLE))
+            if (_handlers.Count > 0)
             {
                 for (int i = 0, count = _handlers.Count; i < count; i++)
                 {

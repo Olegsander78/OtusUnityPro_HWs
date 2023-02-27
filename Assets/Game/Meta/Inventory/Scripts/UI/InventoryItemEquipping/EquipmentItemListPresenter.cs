@@ -8,11 +8,6 @@ using UnityEngine;
 
 public sealed class EquipmentItemListPresenter : MonoBehaviour, IGameConstructElement
 {
-    //[SerializeField]
-    //private InventoryItemView prefab;
-
-    //[SerializeField]
-    //private Transform container;
 
     [SerializeField]
     private List<EquipmentSlot> equipmentSlots;
@@ -144,6 +139,7 @@ public sealed class EquipmentItemListPresenter : MonoBehaviour, IGameConstructEl
         public Transform Container;
 
         [SerializeField]
-        public EquipmentItemViewPresenter Presenter;
+        public InventoryItemViewPresenter Presenter;
+        //public EquipmentItemViewPresenter Presenter;
     }
 }

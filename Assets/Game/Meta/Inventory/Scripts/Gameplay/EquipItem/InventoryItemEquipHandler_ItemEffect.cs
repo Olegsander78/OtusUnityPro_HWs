@@ -1,34 +1,18 @@
 
 
-public sealed class InventoryItemEquipHandler : IInventoryItemEquipHandler
+public sealed class InventoryItemEquipHandler_ItemEffect : IInventoryItemEquipHandler
 {
     private readonly HeroService _heroService;
 
 
-    public InventoryItemEquipHandler(HeroService heroService)
+    public InventoryItemEquipHandler_ItemEffect(HeroService heroService)
     {
         _heroService = heroService;
     }
 
-    void IInventoryItemEquipHandler.OnEquip(InventoryItem item)
-    {
-        if (!item.TryGetComponent(out IComponent_GetEqupType equipComponent))
-        {
-            return;
-        }        
+    void IInventoryItemEquipHandler.OnEquip(InventoryItem item) => ActivateEffect(item);
 
-        ActivateEffect(item);       
-    }
-
-    void IInventoryItemEquipHandler.OnUnequip(InventoryItem item)
-    {
-        if (!item.TryGetComponent(out IComponent_GetEqupType equipComponent))
-        {
-            return;
-        }
-
-        DeactivateEffect(item);
-    }
+    void IInventoryItemEquipHandler.OnUnequip(InventoryItem item) => DeactivateEffect(item);
 
     private void ActivateEffect(InventoryItem item)
     {
@@ -52,7 +36,5 @@ public sealed class InventoryItemEquipHandler : IInventoryItemEquipHandler
                 heroComponent.RemoveEffect(effect);
             }
         }
-        //var effect = item.GetComponent<IComponent_GetEffect>().Effect;
-        //this.heroComponent.RemoveEffect(effect);
     }
 }
