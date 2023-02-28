@@ -10,7 +10,7 @@ namespace MonoOptimization
             yield break;
         }
         
-        public virtual void Construct(MonoContextModular context)
+        public virtual void ConstructSensor(MonoContextModular context)
         {
         }
     }

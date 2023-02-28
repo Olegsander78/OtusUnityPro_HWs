@@ -13685,6 +13685,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1986805187}
     m_Modifications:
+    - target: {fileID: 4514713014455059808, guid: 6d028e0d43970874fa54c8c3bb6f46d6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6901262646242737070, guid: 6d028e0d43970874fa54c8c3bb6f46d6,
         type: 3}
       propertyPath: m_Name
@@ -14216,24 +14221,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (LizardWarrior)
       objectReference: {fileID: 0}
-    - target: {fileID: 8655693823717781809, guid: acfe6833ce8f6f24ea144bb68c5b29c4,
-        type: 3}
-      propertyPath: movingTransforms.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8655693823717781809, guid: acfe6833ce8f6f24ea144bb68c5b29c4,
-        type: 3}
-      propertyPath: movingTransforms.Array.data[2]
-      value: 
-      objectReference: {fileID: 1837044180551412572}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acfe6833ce8f6f24ea144bb68c5b29c4, type: 3}
---- !u!4 &1837044180551412572 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 187467717675364287, guid: acfe6833ce8f6f24ea144bb68c5b29c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1837044180551412571}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2043997277507611755
 GameObject:
   m_ObjectHideFlags: 0

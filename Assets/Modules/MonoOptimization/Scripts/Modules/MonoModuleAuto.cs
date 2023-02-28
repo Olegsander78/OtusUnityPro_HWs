@@ -19,7 +19,7 @@ namespace MonoOptimization
             return Provider.ProvideComponents(this.rootType, this);
         }
 
-        public override void Construct(MonoContextModular context)
+        public override void ConstructSensor(MonoContextModular context)
         {
             Constructor.ConstructModule(context, this.rootType, this);
         }
