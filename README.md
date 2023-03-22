@@ -1,4 +1,4 @@
-# Otus Unity Pro. Homeworks.
+# Otus. Unity Game Developer Professional. Homeworks collection. 2023
 
 ## Домашнее задание № 1: Ядро игрового объекта
 
